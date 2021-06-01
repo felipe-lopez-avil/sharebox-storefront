@@ -1,4 +1,6 @@
 .Nav{
+    position: fixed;
+    width: 100%;
     background: #fff;
     min-height: 11vh;
     display: flex;
@@ -68,6 +70,11 @@
     }
 }
 
+.Menu{
+    font-size: 1.6rem;
+    color: #003360;
+}
+
 .Arrow {
     font-size: 1.5rem;
 }
@@ -85,7 +92,7 @@
 }
 
 .SearchIcon{
-    color: #003360;
+    color: #003360 !important;
     font-size: 1.6rem;
 }
 

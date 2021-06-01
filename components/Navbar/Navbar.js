@@ -34,7 +34,7 @@ export default function Navbar() {
 
 
                 <div className={styles.NavBurger} onClick={handleClick}>
-                    <FontAwesomeIcon icon={ click ? faTimes : faBars}/>
+                    <FontAwesomeIcon icon={ click ? faTimes : faBars} className={styles.Menu}/>
                 </div>
 
                 {/* <ul className={click ? `${styles.MobileMenu} ${styles.Active}` : `${styles.MobileMenu}`}>

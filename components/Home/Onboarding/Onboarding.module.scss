@@ -1,10 +1,21 @@
-.onboarding{
-    color: #fff;
-    background-color: #003360;
+.h{
+    color: #003360;
+}
+
+.p{
+    color: #000
 }
 
 .row{
     display: flex;
+}
+
+.firstRow{
+    background-color: #e3e2ed;
+}
+
+.secondRow{
+    background-color: #f6ebeb;
 }
 
 .column{
