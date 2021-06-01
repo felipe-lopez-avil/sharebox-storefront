@@ -1,0 +1,119 @@
+.Nav{
+    background: #fff;
+    min-height: 11vh;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 3rem;
+    z-index: 10;
+    box-shadow: 0 1px 4px (rgba($color: #000000, $alpha: 0.13));
+
+    @media (max-width: 768px){
+        height: 9vh;
+        padding: 0.5rem 1rem;
+    }
+}
+
+.LogoContainer{
+    width: 180px;
+    display: flex;
+    align-items: center;
+}
+
+.Logo{
+    height: auto;
+    width: 180px;
+}
+
+.NavLink{
+    display: flex;
+    font-weight: 600;
+    align-items: center;
+    text-decoration: none;
+    padding: 0 1 rem;
+    height: 100%;
+    cursor: pointer;
+
+    &.Item{
+        margin: 0 12px;
+    }
+
+    a {
+        color: #003360;
+    }
+}
+
+.NavBurger{
+    display: none;
+
+    @media (max-width: 768px) {
+        display: block;
+        display: flex;
+        align-items: center;
+        justify-content: end;
+    }
+}
+
+.Bars{
+    color: #003360;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+.NavMenu{
+    display: flex;
+    align-items: center;
+
+    @media (max-width: 768px){
+        display: none;
+    }
+}
+
+.Arrow {
+    font-size: 1.5rem;
+}
+
+.NavIcon{
+    width: 180px;
+    display: flex;
+    align-items: center;
+    justify-content:flex-end;
+   
+
+    @media (max-width: 768px) {
+        display: none;
+    }
+}
+
+.SearchIcon{
+    color: #003360;
+    font-size: 1.6rem;
+}
+
+.UserIcon{
+    color: #003360;
+    font-size: 1.6rem;
+    margin: 0 15px;
+}
+
+.CartIcon{
+    color: #003360;
+    font-size: 1.6rem;
+}
+
+
+.SiteNav{
+    position: relative;
+    padding: 0;
+    text-align: center;
+    display: block;
+
+    .NavLink{
+        display: inline-block;
+        vertical-align: middle;
+    }
+}
+
+.AlignedContainer{
+    display: flex;
+    align-items: center;
+}

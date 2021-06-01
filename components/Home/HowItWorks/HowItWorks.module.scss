@@ -1,0 +1,52 @@
+.HowItWorks{
+    width: 100%;
+    margin: 0;
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    padding: 60px 20px;
+    color: #003360;
+}
+
+.title{
+    margin-bottom: 25px;
+}
+
+.steps {
+    padding: 30px 0px;
+    display: flex;
+    justify-content: center;
+}
+
+.step{
+    width: 250px;
+    margin: 0px 20px;
+
+    .icon{
+        font-size: 8rem;
+        color: #028ab5;
+    }
+
+    h4{
+        font-size: 1.8rem;
+    }  
+}
+
+@media (max-width: 768px) {
+
+    .steps {
+        flex-direction: column;
+        padding: 0px 5px;
+    }
+
+    .step{
+        margin: 12px 0px;  
+        align-self: center;
+
+        h4{
+            font-size: 1.5rem;
+        } 
+    }
+
+}
+
