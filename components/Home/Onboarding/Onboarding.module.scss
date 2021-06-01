@@ -24,3 +24,29 @@
         margin-top: 15px;
     }
 }
+
+@media (max-width: 768px) {
+
+    .row{
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .column{
+        width: 100%;
+        padding: 0px 30px;
+        text-align:center;
+        font-size: 1.2rem;
+        display: flex;
+        justify-content: center;
+    }
+
+    .first{
+        order: 1;
+    }
+
+    .second{
+        order: 2;
+    }
+
+}
