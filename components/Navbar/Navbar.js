@@ -60,9 +60,11 @@ export default function Navbar() {
                 <nav className={styles.NavMenu}>
                     <ul className={styles.SiteNav} >
                         <li className={`${styles.NavLink} ${styles.Item}`}>
-                            <div className={styles.AlignedContainer} >
-                                To Go <MdKeyboardArrowDown className={styles.Arrow}/>   
-                            </div>   
+                            <Link href='/box-to-go'>
+                                <div className={styles.AlignedContainer} >
+                                    To Go <MdKeyboardArrowDown className={styles.Arrow}/>   
+                                </div>   
+                            </Link>            
                         </li>
                         <li className={`${styles.NavLink} ${styles.Item}`}>
                             <Link href='/make-your-box'>
@@ -70,9 +72,11 @@ export default function Navbar() {
                             </Link>
                         </li>
                         <li className={`${styles.NavLink} ${styles.Item}`}>
-                            <div className={styles.AlignedContainer} >
-                                Out of the Box <MdKeyboardArrowDown className={styles.Arrow}/>
-                            </div>
+                            <Link href='/out-of-the-box'>
+                                <div className={styles.AlignedContainer} >
+                                    Out of the Box <MdKeyboardArrowDown className={styles.Arrow}/>
+                                </div>
+                            </Link>
                         </li>
                         <li className={`${styles.NavLink} ${styles.Item}`}>
                             <Link href='/corporate'>
