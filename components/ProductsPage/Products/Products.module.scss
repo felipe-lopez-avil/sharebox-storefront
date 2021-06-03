@@ -1,0 +1,124 @@
+
+
+.productsContainer{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 20px;
+}
+
+.productsContainer a {
+    text-decoration: none;
+}
+
+.productContainer{
+    margin: 1%;
+    flex-grow: 1;
+    overflow: hidden;
+}
+
+.productImg{
+    height: 350px;
+    position: relative;
+}
+
+.productImg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    box-sizing: border-box;
+}
+
+.productInfo{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0px;
+    font-size: 1.2rem
+}
+
+.type{
+    display: flex;
+    flex-direction: column;
+}
+
+.type h4{
+    color: #003360;
+    font-size: 1.2rem;
+}
+
+.price{
+    color: #003360;
+}
+
+.type span{
+    color: #003360;
+}
+
+.overlay{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.116);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+}
+
+.buyNow{
+    display: flex;
+    width: 180px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    color: #003360;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 30px rgba(0,0,0,0.2);
+}
+
+.buyNow:hover {
+    background-color: #0188b3;
+    color: #ffffff;
+    transition: all ease 0.2s;
+}
+
+.productImg:hover .overlay{
+    visibility: visible;
+    animation: fade 0.5s;
+}
+
+@keyframes fade{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+@media (max-width: 648px) {
+    .productsContainer{
+        width: 100%;
+        padding: 0px 5%;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        grid-gap: 5px;
+    }
+    .productImg{
+        height: 250px;
+    }
+    .productInfo{
+        display: block;
+    }
+    .type{
+        margin-bottom: 5px;
+    }
+}

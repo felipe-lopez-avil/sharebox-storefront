@@ -1,6 +1,4 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import Navbar from '../components/navbar/Navbar'
 
 import Banner from '../components/Home/Banner/Banner'
 import HowItWorks from '../components/Home/HowItWorks/HowItWorks'
