@@ -6,6 +6,7 @@ import Image from 'next/image'
 
 import { MdKeyboardArrowDown } from 'react-icons/md'
 
+import Accordion from '../../components/Accordion/Accordion'
 
 const formReducer = (state, event) => {
     return {
@@ -18,6 +19,9 @@ export default function SingleProduct({product}){
 
     const [formData, setFormData] = useReducer(formReducer, {});
     const [submitting, setSubmitting] = useState(false);
+
+    const summary = "¿Qué incluye?";
+    const details = product.description;
     
     const handleSubmit = event => {
         event.preventDefault();
@@ -27,7 +31,12 @@ export default function SingleProduct({product}){
             setSubmitting(false);
         }, 5000)
 
-        console.log(formData);
+        /* const title=JSON.stringify(formData);
+
+        console.log(title); */
+        const array = Object.values(formData);
+        const title = array.join(' / ')
+        console.log(title);
     }
 
     const handleChange = event => {
@@ -60,6 +69,10 @@ export default function SingleProduct({product}){
                     <div className={styles.price}>
                         $ {product.variants[0].price}
                     </div>
+                    
+                    <Accordion summary={summary} details={details}/>
+
+                   {/*  
                     <div className={styles.details}>
                         <h4>¿Qué incluye?</h4> <MdKeyboardArrowDown/>
                     </div>
@@ -68,7 +81,7 @@ export default function SingleProduct({product}){
                             {product.description}
                         </p>
                     </div>
-
+                    */}
                     <form className={styles.form} onSubmit={handleSubmit}>
                         { variants > 1 ? 
                                 <div >
@@ -132,33 +145,3 @@ export async function getServerSideProps({query}) {
     // Pass data to the page via props
     return { props: { product: JSON.parse(JSON.stringify(product))} }
 }
-
-/* .radioToolbar input[type="radio"]{
-    opacity: 0;
-    position: fixed;
-    width: 0;
-    display: inline-block;
-}
-
-.radioToolbar label {
-    display: inline-block;
-    background-color: #ddd;
-    padding: 10px 20px;
-    font-family: sans-serif, Arial;
-    font-size: 16px;
-    border: 2px solid #444;
-    border-radius: 4px;
-}
-
-.radioToolbar label:hover {
-    background-color: #dfd;
-}
-
-.radioToolbar input[type="radio"]:focus + label {
-    border: 2px dashed #444;
-}
-
-.radioToolbar input[type="radio"]:checked + label {
-    background-color: #bfb;
-    border-color: #4c4;
-} */
