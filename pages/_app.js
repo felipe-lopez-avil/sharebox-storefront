@@ -1,4 +1,4 @@
-import '../styles/globals.css'
+import '../styles/globals.scss'
 import 'semantic-ui-css/semantic.min.css'
 import Layout from '../components/Layout'
 import "@fortawesome/fontawesome-svg-core/styles.css"; // import Font Awesome CSS
