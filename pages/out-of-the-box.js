@@ -36,4 +36,4 @@ export async function getServerSideProps() {
     console.log({ collection })
     // Pass data to the page via props
     return { props: { collection: JSON.parse(JSON.stringify(collection))} }
-  }
+}

@@ -135,4 +135,50 @@
     color: #028ab5
 }
 
+.recommended{
+    padding: 0px 12%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 
+    h3{
+        text-align: center;
+        font-size: 1.8rem;
+        color: #003363;
+        margin: 50px 0px 50px 0px;
+    }
+
+    .button{
+        margin: 0px auto;
+    }
+}
+
+.products{
+    width: 100%;
+}
+
+.cartModal{
+    position: sticky;
+    bottom: 10vh;
+    left: 40px;
+    z-index: 5000;
+    padding: 0px 50px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.modalBox{
+    display: flex;
+    align-items: center;
+    padding: 0px 10px;
+    height: 50px;
+    width: 300px;
+    background-color: rgb(160, 250, 160);
+    text-align: right;
+    
+    span{
+        width: 100%;
+        text-align: right;
+    }
+}
