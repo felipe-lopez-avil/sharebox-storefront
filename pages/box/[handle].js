@@ -5,11 +5,38 @@ import { useRouter } from 'next/router'
 import Image from 'next/image'
 
 import { MdKeyboardArrowDown } from 'react-icons/md'
-import { useState } from 'react/cjs/react.development'
 
+
+const formReducer = (state, event) => {
+    return {
+        ...state,
+        [event.name]: event.value
+    }
+}
 
 export default function SingleProduct({product}){
+
+    const [formData, setFormData] = useReducer(formReducer, {});
+    const [submitting, setSubmitting] = useState(false);
     
+    const handleSubmit = event => {
+        event.preventDefault();
+        setSubmitting(true);
+
+        setTimeout(() => {
+            setSubmitting(false);
+        }, 5000)
+
+        console.log(formData);
+    }
+
+    const handleChange = event => {
+        setFormData({
+            name: event.target.name,
+            value: event.target.value
+        })
+    }
+
     console.log(product)
 
     const variants = product.variants.length;
@@ -42,7 +69,7 @@ export default function SingleProduct({product}){
                         </p>
                     </div>
 
-                    <form className={styles.form}>
+                    <form className={styles.form} onSubmit={handleSubmit}>
                         { variants > 1 ? 
                                 <div >
                                     {product.options.map(option => (
@@ -57,7 +84,7 @@ export default function SingleProduct({product}){
                                             <div className={styles.selectOption}>
                                                 {option.values.map(value => (
                                                     <div className={styles.optionContainer}>
-                                                        <input type="radio" name={option.name} id={value.value} value={value.value} className={styles.hidden}/>
+                                                        <input type="radio" name={option.name} id={value.value} value={value.value} className={styles.hidden} onChange={handleChange}/>
                                                         <label for={value.value}>
                                                             <div className={styles.displayBox}>
                                                                 {value.value}
@@ -73,12 +100,20 @@ export default function SingleProduct({product}){
                                     ))}
                             </div>
                         : ''}
+                        <button className={styles.add} type="submit">AGREGAR AL CARRITO</button>
                     </form>
 
-                    
-                        
-                    
-                    <button className={styles.add}>AGREGAR AL CARRITO</button>
+                    {submitting && 
+                        <div>
+                            Data:
+                            <ul>
+                                {Object.entries(formData).map(([name, value]) => (
+                                    <li key={name}> <strong>{name}</strong>: {value.toString()} </li>
+                                ))}
+                            </ul>
+                        </div>
+                    }
+
                 </div>
             </div>
         </div>
