@@ -7,11 +7,11 @@ export default function Products({collection, link}){
 
     const products = collection.products;
 
-    console.log(products)
+    /* console.log(products)
     console.log("<----- SEPARADOR ----->")
     products.map(producto => (
         console.log(producto.images[0].src)
-    ))
+    )) */
     
 
     return (

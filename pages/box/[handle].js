@@ -20,6 +20,7 @@ export default function SingleProduct({product, collection}){
 
     const [formData, setFormData] = useReducer(formReducer, {});
     const [submitting, setSubmitting] = useState(false);
+    const [variantIndex, setVariantIndex] = useState(0);
 
     const summary = "¿Qué incluye?";
     const details = product.description;
@@ -32,12 +33,20 @@ export default function SingleProduct({product, collection}){
             setSubmitting(false);
         }, 30000)
 
-        /* const title=JSON.stringify(formData);
-
-        console.log(title); */
         const array = Object.values(formData);
         const title = array.join(' / ')
-        console.log(title);
+        console.log("Opciones elegidas: "+title);
+
+        product.variants.map((variant, index) => {
+            if (variant.title == title) {
+                console.log(variant.title);
+                console.log(title)
+                console.log(index)
+                setVariantIndex(index)
+                console.log("Index de la variante: "+variantIndex)
+            }
+            
+        })
     }
 
     const handleChange = event => {
@@ -81,9 +90,16 @@ export default function SingleProduct({product, collection}){
                                             <div>
                                                 <h4 className={styles.section}>{option.name}:</h4>                                                
                                                 <div className={styles.selectOption}>
-                                                    {option.values.map(value => (
+                                                    {option.values.map((value, index) => (
                                                         <div className={styles.optionContainer}>
-                                                            <input type="radio" name={option.name} id={value.value} value={value.value} className={styles.hidden} onChange={handleChange}/>
+                                                            <input 
+                                                                type="radio" 
+                                                                name={option.name} 
+                                                                id={value.value} 
+                                                                value={value.value} 
+                                                                className={styles.hidden} 
+                                                                onChange={handleChange}
+                                                            />
                                                             <label for={value.value}>
                                                                 <div className={styles.displayBox}>
                                                                     {value.value}
@@ -130,7 +146,6 @@ export async function getServerSideProps({query}) {
 
     const handle = query.handle
     const product = await client.product.fetchByHandle(handle)
-    console.log({ product })
 
     const collectionId = 'Z2lkOi8vc2hvcGlmeS9Db2xsZWN0aW9uLzIzNjk4NjkyNTIxOA==';
     const collection = await client.collection.fetchWithProducts(collectionId, {productsFirst: 4})
