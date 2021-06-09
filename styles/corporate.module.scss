@@ -1,0 +1,39 @@
+.corporate{
+    display: flex;
+    flex-direction: column;
+    padding-top: 85px;
+    text-align: center;
+    background-color: #003360;
+    color: #fff;
+    min-height: calc(100vh - 85px);
+    align-items: center;
+    justify-content: center;
+}
+
+.logoContainer{
+    margin: 35px 0px;
+    width: 500px;
+    height: 121px;
+    position: relative;
+}
+
+.forms{
+    width: 100%;
+    display: flex;
+    padding: 0px 80px;
+}
+
+.form{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 10px;
+}
+
+.summary{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
