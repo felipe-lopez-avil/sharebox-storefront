@@ -31,7 +31,9 @@ export default function SingleProduct({product, collection}){
 
         setTimeout(() => {
             setSubmitting(false);
-        }, 30000)
+        }, 10000)
+
+        
 
         const array = Object.values(formData);
         const title = array.join(' / ')
@@ -42,7 +44,7 @@ export default function SingleProduct({product, collection}){
                 console.log(variant.title);
                 console.log(title)
                 console.log(index)
-                setVariantIndex(index)
+                setVariantIndex(parseInt(index))
                 console.log("Index de la variante: "+variantIndex)
             }
             
