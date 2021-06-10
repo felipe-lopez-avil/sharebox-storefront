@@ -20,35 +20,66 @@ export default function SingleProduct({product, collection}){
 
     const [formData, setFormData] = useReducer(formReducer, {});
     const [submitting, setSubmitting] = useState(false);
-    const [variantIndex, setVariantIndex] = useState(0);
 
     const summary = "¿Qué incluye?";
     const details = product.description;
+    let variantIndex;
     
     const handleSubmit = event => {
         event.preventDefault();
+        
+        // Makes an announcement appear to tell the user that they added the product to the cart
         setSubmitting(true);
-
         setTimeout(() => {
             setSubmitting(false);
         }, 10000)
 
-        
 
+        // Reads the data from the Product Options and convert them to the format "Input_1 / Input_2 / ... / Input_n "
+        // so it can be compared to the format of the Product Variant Titles
         const array = Object.values(formData);
         const title = array.join(' / ')
         console.log("Opciones elegidas: "+title);
 
+        // We go over every Variant Title and compare it to the one that we storaged in the last step.
+        // When it finds a coincidence, we take the index of the element.
         product.variants.map((variant, index) => {
             if (variant.title == title) {
                 console.log(variant.title);
                 console.log(title)
-                console.log(index)
-                setVariantIndex(parseInt(index))
-                console.log("Index de la variante: "+variantIndex)
-            }
-            
+                console.log("El índice de la variante es: "+index)   
+                variantIndex = index;          
+            }    
         })
+        console.log("El dato guardado en variantIndex es: "+variantIndex);
+
+        // Local Storage is checked to see if a CheckoutID already exists. If not, a new one is created;
+        const storage = window.localStorage;
+        let checkoutId = storage.getItem("checkoutId");
+        if (!checkoutId) {
+            client.checkout.create().then((checkout) => {
+
+                // Do something with the checkout
+                checkoutId = checkout.id;
+                storage.setItem("checkoutId", checkoutId);
+                //console.log(checkoutId);
+            });
+        }
+        // const checkoutId = 'Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0SW1hZ2UvMTgyMTc3ODc1OTI='; ID of an existing checkout
+        const lineItemsToAdd = [
+        {
+            variantId: product.variants[variantIndex].id,
+            quantity: 1,
+            // customAttributes: [{key: "MyKey", value: "MyValue"}]
+        }
+        ];
+
+        // Add an item to the checkout
+        client.checkout.addLineItems(checkoutId, lineItemsToAdd).then((checkout) => {
+            // Do something with the updated checkout
+            console.log(checkout); 
+        });
+
     }
 
     const handleChange = event => {
