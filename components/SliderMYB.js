@@ -3,6 +3,8 @@ import Slider from "react-slick";
 import MYBSection from "./MYBSection/MYBSection";
 
 
+
+
 export default function MakeYourBoxSlider() {
   var settings = {
     dots: true,

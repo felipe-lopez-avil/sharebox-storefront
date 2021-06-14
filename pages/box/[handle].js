@@ -24,6 +24,41 @@ export default function SingleProduct({product, collection}){
     const summary = "¿Qué incluye?";
     const details = product.description;
     let variantIndex;
+
+    const addToCart = () => {
+
+        setSubmitting(true);
+        setTimeout(() => {
+            setSubmitting(false);
+        }, 10000)
+
+        // Local Storage is checked to see if a CheckoutID already exists. If not, a new one is created;
+        const storage = window.localStorage;
+        let checkoutId = storage.getItem("checkoutId");
+        if (!checkoutId) {
+            client.checkout.create().then((checkout) => {
+
+                // Do something with the checkout
+                checkoutId = checkout.id;
+                storage.setItem("checkoutId", checkoutId);
+                //console.log(checkoutId);
+            });
+        }
+        // const checkoutId = 'Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0SW1hZ2UvMTgyMTc3ODc1OTI='; ID of an existing checkout
+        const lineItemsToAdd = [
+        {
+            variantId: product.variants[0].id,
+            quantity: 1,
+            // customAttributes: [{key: "MyKey", value: "MyValue"}]
+        }
+        ];
+
+        // Add an item to the checkout
+        client.checkout.addLineItems(checkoutId, lineItemsToAdd).then((checkout) => {
+            // Do something with the updated checkout
+            console.log(checkout); 
+        });
+    }
     
     const handleSubmit = event => {
         event.preventDefault();
@@ -115,38 +150,42 @@ export default function SingleProduct({product, collection}){
                         </div>
                         
                         <Accordion summary={summary} details={details}/>
-
-                        <form className={styles.form} onSubmit={handleSubmit}>
-                            { variants > 1 ? 
-                                    <div >
-                                        {product.options.map(option => (
-                                            <div>
-                                                <h4 className={styles.section}>{option.name}:</h4>                                                
-                                                <div className={styles.selectOption}>
-                                                    {option.values.map((value, index) => (
-                                                        <div className={styles.optionContainer}>
-                                                            <input 
-                                                                type="radio" 
-                                                                name={option.name} 
-                                                                id={value.value} 
-                                                                value={value.value} 
-                                                                className={styles.hidden} 
-                                                                onChange={handleChange}
-                                                            />
-                                                            <label for={value.value}>
-                                                                <div className={styles.displayBox}>
-                                                                    {value.value}
-                                                                </div>
-                                                            </label>  
-                                                        </div>                                         
-                                                    ))}
-                                                </div>                                                                                         
-                                            </div>
-                                        ))}
+                        {variants > 1 ?
+                        
+                            <form className={styles.form} onSubmit={handleSubmit}>
+                                
+                                <div >
+                                    {product.options.map(option => (
+                                        <div>
+                                            <h4 className={styles.section}>{option.name}:</h4>                                                
+                                            <div className={styles.selectOption}>
+                                                {option.values.map((value, index) => (
+                                                    <div className={styles.optionContainer}>
+                                                        <input 
+                                                            type="radio" 
+                                                            name={option.name} 
+                                                            id={value.value} 
+                                                            value={value.value} 
+                                                            className={styles.hidden} 
+                                                            onChange={handleChange}
+                                                        />
+                                                        <label for={value.value}>
+                                                            <div className={styles.displayBox}>
+                                                                {value.value}
+                                                            </div>
+                                                        </label>  
+                                                    </div>                                         
+                                                ))}
+                                            </div>                                                                                         
+                                        </div>
+                                    ))}
                                 </div>
-                            : ''}
-                            <button className={styles.add} type="submit">AGREGAR AL CARRITO</button>
-                        </form>
+                                
+                                <button className={styles.add} type="submit">AGREGAR AL CARRITO</button>
+                            </form>
+                        : 
+                            <button className={styles.add} onClick={addToCart}>AGREGAR AL CARRITO</button>
+                        }
 
                     </div>
                 </div>

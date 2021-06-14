@@ -1,0 +1,111 @@
+.container{
+    display: flex;
+    justify-content: center;
+    color: #003360;
+}
+
+.card{
+    padding-top: 85px;
+    min-height: 100vh;
+    width: 1200px;
+}
+
+.cartHeader{
+    padding: 75px 10px;
+    text-align: center;
+}
+
+.content{
+    display: flex;
+    width: 100%;
+}
+
+.productsSummary{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+}
+
+.fields{
+    display: flex;
+    font-size: 1.2rem;
+    font-weight: 600;
+    align-items: center;
+    padding-bottom: 40px;
+}
+
+.firstField{
+    width: 52%;
+}
+
+.field{
+    width: 16%;
+    text-align: center;
+}
+
+.subtotal{
+    margin-top: 100px;
+    display: flex;
+    font-size: 1.2rem;
+
+    .title{
+        width: 84%;
+        font-weight: 600;
+    }
+
+    .price{
+        width: 16%;
+        text-align: center;
+    }
+}
+
+.cardAndDate{
+    width: 30%;
+    display: flex;
+    padding: 0px 10px;
+    flex-direction: column;
+}
+
+.choose{
+    display: flex;
+    flex-direction: column;
+}
+
+.options{
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+}
+
+.chooseButton{
+    color: #028ab5;
+    border-color: #028ab5;
+    background-color: #fff;
+    margin-bottom: 10px;
+    min-height: 60px;
+
+    &:hover{
+        box-shadow: none;
+        border-color: #028ab5;
+        background-color: #028bb515;
+    }
+}
+
+.continue{
+    margin-top: 10px;
+    background-color: #003360;
+    border-color: #003360;
+    min-height: 60px;
+    &:hover{
+        box-shadow: none;
+        border-color: #003360;
+        color:#003360;
+    }
+}
+
+.goBack{
+    margin-top: 10px;
+    min-height: 60px;
+}
+
+

@@ -88,7 +88,9 @@ export default function Navbar() {
                 <nav className={styles.NavIcon}>
                     <GrSearch className={styles.SearchIcon} />
                     <FaRegUser className={styles.UserIcon}/>
-                    <FiShoppingBag className={styles.CartIcon}/>
+                    <Link href='/cart'>
+                        <FiShoppingBag className={styles.CartIcon}/>
+                    </Link>   
                 </nav>
             </nav>
         </> 
