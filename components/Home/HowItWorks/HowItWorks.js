@@ -13,15 +13,15 @@ export default function HowItWorks() {
             <div className={styles.steps}>
                 <div className={styles.step}>
                     <IoMdGift className={styles.icon} />
-                    <h4>SELECCIONA UN REGALO</h4>
+                    <h4>Selecciona un Regalo</h4>
                 </div>
                 <div className={styles.step}>
                     <CgCardHearts className={styles.icon}/>
-                    <h4>PERSONALIZA TU MENSAJE</h4>
+                    <h4>Personaliza tu Mensaje</h4>
                 </div>
                 <div className={styles.step}>
                     <BiPaperPlane className={styles.icon}/>
-                    <h4>ENVÍA Y COMPARTE FELICIDAD</h4>
+                    <h4>Envía y Comparte Felicidad</h4>
                 </div>
             </div>
         </div>
