@@ -1,17 +1,8 @@
 import styles from '../styles/make-your-box.module.scss'
 
-import MYBSection from '../components/MYBSection/MYBSection'
-import MakeYourBoxSlider from '../components/SliderMYB'
+import MakeYourBoxSlider from '../components/SliderMYB/SliderMYB'
 
 export default function MakeYourBox() {
-
-    const settings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1
-    };
 
     return (
         <div className={styles.makeYourBox}>
@@ -27,10 +18,6 @@ export default function MakeYourBox() {
 
                 <MakeYourBoxSlider/>
 
-                {/* <MYBSection title='¡PASO 1!'/>
-                <MYBSection title='¡PASO 2!'/>
-                <MYBSection title='¡PASO 3!'/>
-                <MYBSection title='¡PASO 4!'/> */}
             </div>
             
             {/* <div className={styles.total}>
