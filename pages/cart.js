@@ -55,10 +55,10 @@ const Cart = () => {
                                     Total
                                 </div>
                             </div>
-                            {checkout.lineItems.map(lineItem => (
+                            {/* {checkout.lineItems.map(lineItem => (
                                 <ProductsInCart product={lineItem.title} price={`${lineItem.variant.price}`} quantity='2' total='$1000' />
-                            ))} 
-                            {/* <ProductsInCart product={checkout.lineItems[0].title} price='$500' quantity='2' total='$1000' /> */}
+                            ))}  */}
+                            <ProductsInCart product={checkout !== 'undefined' ? checkout.lineItems[0].title : 'Cargando...'} price='$500' quantity='2' total='$1000' />
                             <div className={styles.subtotal}>
                                 <div className={styles.title}>
                                     SUBTOTAL
