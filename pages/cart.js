@@ -38,7 +38,7 @@ const Cart = () => {
                 <div className={styles.cartHeader}>
                     <h1>Carrito de Compras</h1>   
                 </div>
-                {testState ? 
+                {checkout !== null ? 
                     <div className={styles.content}>
                         <div className={styles.productsSummary}>
                             <div className={styles.fields}>
@@ -55,16 +55,16 @@ const Cart = () => {
                                     Total
                                 </div>
                             </div>
-                            {/* {checkout.lineItems.map(lineItem => (
-                                <ProductsInCart product={lineItem.title} price={`${lineItem.variant.price}`} quantity='2' total='$1000' />
-                            ))}  */}
-                            <ProductsInCart product={checkout !== null ? checkout.lineItems[0].title : 'Cargando...'} price='$500' quantity='2' total='$1000' />
+                            {checkout.lineItems.map(lineItem => (
+                                <ProductsInCart product={lineItem.title} price={`${lineItem.variant.price}`} quantity='-' total='-' />
+                            ))} 
+                            {/* <ProductsInCart product={checkout !== null ? checkout.lineItems[0].title : 'Cargando...'} price='$500' quantity='2' total='$1000' /> */}
                             <div className={styles.subtotal}>
                                 <div className={styles.title}>
                                     SUBTOTAL
                                 </div>
                                 <div className={styles.price}>
-                                    $1000
+                                    {checkout.totalPrice}
                                 </div>
                             </div>
                         </div>
