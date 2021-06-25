@@ -42,3 +42,24 @@ button:hover{
   padding-top: 85px;
   min-height: 100vh;
 }
+
+.ant-steps-item-finish .ant-steps-item-icon{
+  border-color: #028ab5 !important;
+}
+
+.ant-steps-item-process {
+  .ant-steps-item-container{
+    .ant-steps-item-icon{
+      background-color: #028ab5 !important;
+    }
+  }
+  
+}
+
+.ant-steps-item-process .ant-steps-item-icon{
+  border-color: #028ab5 !important;
+}
+
+.stepper{
+  margin-bottom: 50px;
+}

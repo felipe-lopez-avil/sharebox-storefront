@@ -6,17 +6,38 @@
 }
 
 .summary{
-    width: 25%;
+    width: 20%;
     height: 100%;
     display: flex;
     align-items: center;
     background-color: #fff;
-    padding: 15px;
+    padding-top: 45px;
+    padding-left: 45px;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .choose{
-    width: 75%;
+    width: 80%;
     height: 100%;
-    padding: 5vh 20px;
+    padding: 0px 35px;
+    padding-top: 45px;
+}
+
+@media (max-width: 768px) {
+    .makeYourBox{
+        flex-direction: column;
+    }
+
+    .summary{
+        width: 100%;
+        padding: 0px 10px;
+        text-align: center;
+        height: auto;
+    }
+    .choose{
+        width: 100%;
+        padding: 10px 20px;
+    }
 }
 

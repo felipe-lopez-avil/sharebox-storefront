@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useCallback } from "react";
 import styles from './MultiStepForm.module.scss'
 
 import { useFormik } from 'formik';
@@ -10,20 +10,23 @@ import "swiper/components/navigation/navigation.min.css"
 
 SwiperCore.use([Navigation]);
 
-export default function MultiStepForm() {
+export default function MultiStepForm({currentStep, setCurrentStep}) {
 
     const swiperRef = useRef(null);
     const swiperRef2 = useRef(null);
 
     const goNext = () => {
         swiperRef.current.swiper.slideNext(500);
+        setCurrentStep(currentStep+1)
     }
     const goPrev = () => {
         swiperRef.current.swiper.slidePrev(500);
+        setCurrentStep(currentStep-1)
     }
 
     const goTo = (index) => {
         swiperRef.current.swiper.slideTo(index);
+        setCurrentStep(index)
     }
 
     const goTwo = (index) => {
@@ -51,7 +54,7 @@ export default function MultiStepForm() {
                 <SwiperSlide className={styles.slide}>
                     <div className={styles.slideContainer}>
                         <div className={styles.stepContent}>
-                            <h2>STEP 1</h2>
+                            <h2 className={styles.stepTitle}>Elige la Box que te guiñe el ojo</h2>
                             <label htmlFor="firstName">First Name</label>
                             <input
                                 id="firstName"
@@ -61,80 +64,86 @@ export default function MultiStepForm() {
                                 value={formik.values.firstName}
                             />
                         </div> 
-                        <p onClick={() => goNext()}>
-                            NEXT SLIDE
-                        </p>
+                    </div>
+                    <div className={styles.buttonsAndTotal}>
+                        <div onClick={() => goNext()} className={styles.nextPrev}>
+                            CONTINUAR
+                        </div>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide className={styles.slide}>
-                    <Swiper cssMode={true} ref={swiperRef2} className={styles.swiper} direction={'vertical'} mousewheel={false} keyboard={false}> 
-                        <SwiperSlide className={styles.slide}>
-                            <div className={styles.slide}>
-                                <div className={styles.stepContent}>
-                                    <h2>STEP 2</h2>
-                                    <label htmlFor="lastName">Last Name</label>
-                                    <input
-                                        id="lastName"
-                                        name="lastName"
-                                        type="text"
-                                        onChange={formik.handleChange}
-                                        value={formik.values.lastName}
-                                    />
-                                    <div onClick={() => goTwo(1)}>
-                                        GO TO SNACKS
-                                    </div>
-                                    <div onClick={() => goTwo(2)}>
-                                        GO TO SKIN CARE
-                                    </div>
-                                    <div onClick={() => goTwo(3)}>
-                                        GO TO JEWERLY
-                                    </div>
-                                </div>
-                                <p onClick={() => goNext()}>
-                                    NEXT SLIDE
-                                </p>
-                                <p onClick={() => goPrev()}>
-                                    PREVIOUS SLIDE
-                                </p>
-                            </div>
-                        </SwiperSlide>
-                        <SwiperSlide className={styles.slide}>
-                            <div className={styles.slide}>
-                                <div className={styles.stepContent}>
-                                    <h2>SNACKS</h2>
-                                    <div onClick={() => goTwo(0)}>
-                                        Go Back
+                    <div className={styles.slideContainer}>
+                        <Swiper cssMode={true} ref={swiperRef2} className={styles.swiper} direction={'vertical'} mousewheel={false} keyboard={false}> 
+                            <SwiperSlide className={styles.slide}>
+                                <div className={styles.slide}>
+                                    <div className={styles.stepContent}>
+                                        <h2>Selecciona los productos dentro de tu Box</h2>
+                                        <label htmlFor="lastName">Last Name</label>
+                                        <input
+                                            id="lastName"
+                                            name="lastName"
+                                            type="text"
+                                            onChange={formik.handleChange}
+                                            value={formik.values.lastName}
+                                        />
+                                        <div onClick={() => goTwo(1)}>
+                                            GO TO SNACKS
+                                        </div>
+                                        <div onClick={() => goTwo(2)}>
+                                            GO TO SKIN CARE
+                                        </div>
+                                        <div onClick={() => goTwo(3)}>
+                                            GO TO JEWERLY
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </SwiperSlide>
-                        <SwiperSlide className={styles.slide}>
-                            <div className={styles.slide}>
-                                <div className={styles.stepContent}>
-                                    <h2>SKIN CARE</h2>
-                                    <div onClick={() => goTwo(0)}>
-                                        Go Back
+                            </SwiperSlide>
+                            <SwiperSlide className={styles.slide}>
+                                <div className={styles.slide}>
+                                    <div className={styles.stepContent}>
+                                        <h2>SNACKS</h2>
+                                        <div onClick={() => goTwo(0)}>
+                                            Go Back
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </SwiperSlide>
-                        <SwiperSlide className={styles.slide}>
-                            <div className={styles.slide}>
-                                <div className={styles.stepContent}>
-                                    <h2>JEWERLY</h2>
-                                    <div onClick={() => goTwo(0)}>
-                                        Go Back
+                            </SwiperSlide>
+                            <SwiperSlide className={styles.slide}>
+                                <div className={styles.slide}>
+                                    <div className={styles.stepContent}>
+                                        <h2>SKIN CARE</h2>
+                                        <div onClick={() => goTwo(0)}>
+                                            Go Back
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </SwiperSlide>
-                    </Swiper>
+                            </SwiperSlide>
+                            <SwiperSlide className={styles.slide}>
+                                <div className={styles.slide}>
+                                    <div className={styles.stepContent}>
+                                        <h2>JEWERLY</h2>
+                                        <div onClick={() => goTwo(0)}>
+                                            Go Back
+                                        </div>
+                                    </div>
+                                </div>
+                            </SwiperSlide>
+                        </Swiper>
+                    </div>
+                    <div className={styles.buttonsAndTotal}>
+                        <div onClick={() => goPrev()} className={styles.nextPrev}>
+                            REGRESAR
+                        </div>
+                        <div onClick={() => goNext()} className={styles.nextPrev}>
+                            CONTINUAR
+                        </div>
+                    </div>
                 </SwiperSlide>
                 
                 <SwiperSlide className={styles.slide}>
-                    <div className={styles.slide}>
+                    <div className={styles.slideContainer}>
                         <div className={styles.stepContent}>
-                            <h2>STEP 3</h2>
+                            <h2>Acompaña tu Box con un detalle especial</h2>
                             <label htmlFor="email">Email Address</label>
                             <input
                                 id="email"
@@ -144,15 +153,17 @@ export default function MultiStepForm() {
                                 value={formik.values.email}
                             />
                         </div>
-                        <p onClick={() => goNext()}>
-                            NEXT SLIDE
-                        </p>
-                        <p onClick={() => goPrev()}>
-                            PREVIOUS SLIDE
-                        </p>
+                    </div>
+                    <div className={styles.buttonsAndTotal}>
+                        <div onClick={() => goPrev()} className={styles.nextPrev}>
+                            REGRESAR
+                        </div>
+                        <div onClick={() => goNext()} className={styles.nextPrev}>
+                            CONTINUAR
+                        </div>
                     </div>
                 </SwiperSlide>
-                <SwiperSlide className={styles.slide}>
+                {/* <SwiperSlide className={styles.slide}>
                     <div className={styles.slide}>
                         <div className={styles.stepContent}>
                             <h2>STEP 4</h2>
@@ -169,6 +180,27 @@ export default function MultiStepForm() {
                             PREVIOUS SLIDE
                         </p>
                         <button type="submit">Submit</button>
+                    </div>
+                </SwiperSlide> */}
+                <SwiperSlide className={styles.slide}>
+                    <div className={styles.slideContainer}>
+                        <div className={styles.stepContent}>
+                            <h2>¡Estás a punto de compartir felicidad!</h2>
+                            <label htmlFor="message">Message</label>
+                            <input
+                                id="message"
+                                name="message"
+                                type="text"
+                                
+                                value={formik.values.message}
+                            />
+                        </div>
+                    </div>
+                    <div className={styles.buttonsAndTotal}>
+                        <div onClick={() => goTo(2)} className={styles.nextPrev}>
+                            REGRESAR
+                        </div>
+                        <button type="submit">CONFIRMAR</button>
                     </div>
                 </SwiperSlide>
             </Swiper> 
