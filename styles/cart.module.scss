@@ -95,7 +95,12 @@
     }
 }
 
+.fullWidth, .buttonText{
+    width: 100%;
+}
+
 .continue{
+    width: 100%;
     margin-top: 10px;
     background-color: #003360;
     border-color: #003360;
@@ -110,6 +115,7 @@
 .goBack{
     margin-top: 10px;
     min-height: 60px;
+    width: 100%;
 }
 
 

@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import styles from '../styles/cart.module.scss'
+import Link from 'next/link'
 import {client} from '../utils/shopify'
 
 import ProductsInCart from '../components/CartPage/ProductsInCart/ProductsInCart'
@@ -56,7 +57,7 @@ const Cart = () => {
                                 </div>
                             </div>
                             {checkout.lineItems.map(lineItem => (
-                                <ProductsInCart product={lineItem.title} price={`${lineItem.variant.price}`} quantity='-' total='-' />
+                                <ProductsInCart product={lineItem.title} price={`$${lineItem.variant.price}`} quantity={lineItem.quantity.toString()} total={`$${(parseFloat(lineItem.variant.price)*lineItem.quantity).toString()}.00`} />
                             ))} 
                             {/* <ProductsInCart product={checkout !== null ? checkout.lineItems[0].title : 'Cargando...'} price='$500' quantity='2' total='$1000' /> */}
                             <div className={styles.subtotal}>
@@ -74,8 +75,16 @@ const Cart = () => {
                                 <button className={styles.chooseButton}>SELECCIONA LA HORA Y FECHA DE ENTREGA</button>
                             </div>
                             <div className={styles.options}>
-                                <button className={styles.continue}>CONTINUAR CON EL PAGO</button>
-                                <button className={styles.goBack}>SEGUIR COMPRANDO</button>
+                                <a href={checkout.webUrl} className={styles.fullWidth}>
+                                    <button className={styles.continue}>
+                                        CONTINUAR CON EL PAGO                                    
+                                    </button>
+                                </a>
+                                <Link href='./box-to-go' className={styles.fullWidth}>
+                                    <button className={styles.goBack}>
+                                        SEGUIR COMPRANDO 
+                                    </button>
+                                </Link>
                             </div>
                         </div>
                     </div>
