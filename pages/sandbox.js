@@ -1,7 +1,6 @@
 import styles from '../styles/make-your-box.module.scss'
 
-import MakeYourBoxSlider from '../components/SliderMYB/SliderMYB'
-import MultiStepForm from '../components/MakeYourBox/MultiStepForm/MultiStepForm'
+import SandBoxSlider from '../components/SliderMYB/SandBoxSlider'
 
 export default function MakeYourBox() {
 
@@ -17,7 +16,7 @@ export default function MakeYourBox() {
             {/*Columna derecha. Sección donde se muestran los productos a elegir*/}
             <div className={styles.choose}>
 
-                <MultiStepForm/>
+                <SandBoxSlider/>
 
             </div>
             

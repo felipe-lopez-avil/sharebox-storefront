@@ -16,16 +16,33 @@ const formReducer = (state, event) => {
     }
 }
 
+const getDataFromStorage = (key) => {
+    const storage = window.localStorage;
+    return JSON.parse(storage.getItem(key))
+}
+
+const setDataToStorage = (key, data) => {
+    const storage = window.localStorage;
+    storage.setItem(key, JSON.stringify(data))
+}
+
+const parseData = (data) => {
+    return JSON.parse(JSON.stringify(data))
+}
+
 export default function SingleProduct({product, collection}){
 
     const [formData, setFormData] = useReducer(formReducer, {});
     const [submitting, setSubmitting] = useState(false);
 
+    const[checkout, setCheckout] = useState(null)
+
     const summary = "¿Qué incluye?";
     const details = product.description;
     let variantIndex;
 
-    const addToCart = () => {
+
+    const addToCart = async () => {
 
         setSubmitting(true);
         setTimeout(() => {
@@ -33,18 +50,16 @@ export default function SingleProduct({product, collection}){
         }, 10000)
 
         // Local Storage is checked to see if a CheckoutID already exists. If not, a new one is created;
-        const storage = window.localStorage;
-        let checkoutId = storage.getItem("checkoutId");
-        if (!checkoutId) {
-            client.checkout.create().then((checkout) => {
-
-                // Do something with the checkout
-                checkoutId = checkout.id;
-                storage.setItem("checkoutId", checkoutId);
-                //console.log(checkoutId);
-            });
+       /*  const storage = window.localStorage;
+        let checkout = storage.getItem("checkout"); */
+        let checkoutTemp = null
+        if (getDataFromStorage('checkout')) {
+            checkoutTemp = getDataFromStorage('checkout')
+        }else{
+            checkoutTemp = await client.checkout.create()
         }
-        // const checkoutId = 'Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0SW1hZ2UvMTgyMTc3ODc1OTI='; ID of an existing checkout
+        let checkout = parseData(checkoutTemp)
+        const checkoutId = checkout.id
         const lineItemsToAdd = [
         {
             variantId: product.variants[0].id,
@@ -53,14 +68,21 @@ export default function SingleProduct({product, collection}){
         }
         ];
 
+        checkout = await client.checkout.addLineItems(checkoutId, lineItemsToAdd)
+
+        console.log(parseData(checkout))
+        setCheckout(parseData(checkout))
+        setDataToStorage('checkout', checkout)
+
         // Add an item to the checkout
-        client.checkout.addLineItems(checkoutId, lineItemsToAdd).then((checkout) => {
+        /* client.checkout.addLineItems(checkoutId, lineItemsToAdd).then((checkout) => {
             // Do something with the updated checkout
             console.log(checkout); 
-        });
+            
+        }); */
     }
     
-    const handleSubmit = event => {
+    const handleSubmit = async event => {
         event.preventDefault();
         
         // Makes an announcement appear to tell the user that they added the product to the cart
@@ -89,9 +111,17 @@ export default function SingleProduct({product, collection}){
         console.log("El dato guardado en variantIndex es: "+variantIndex);
 
         // Local Storage is checked to see if a CheckoutID already exists. If not, a new one is created;
-        const storage = window.localStorage;
-        let checkoutId = storage.getItem("checkoutId");
-        if (!checkoutId) {
+        /* const storage = window.localStorage;
+        let checkoutId = storage.getItem("checkoutId"); */
+        let checkoutTemp = null
+        if (getDataFromStorage('checkout')) {
+            checkoutTemp = getDataFromStorage('checkout')
+        }else{
+            checkoutTemp = await client.checkout.create()
+        }
+
+
+        /* if (!checkoutId) {
             client.checkout.create().then((checkout) => {
 
                 // Do something with the checkout
@@ -99,8 +129,11 @@ export default function SingleProduct({product, collection}){
                 storage.setItem("checkoutId", checkoutId);
                 //console.log(checkoutId);
             });
-        }
+        } */
+
         // const checkoutId = 'Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0SW1hZ2UvMTgyMTc3ODc1OTI='; ID of an existing checkout
+        let checkout = parseData(checkoutTemp)
+        const checkoutId = checkout.id
         const lineItemsToAdd = [
         {
             variantId: product.variants[variantIndex].id,
@@ -109,11 +142,17 @@ export default function SingleProduct({product, collection}){
         }
         ];
 
+        checkout = await client.checkout.addLineItems(checkoutId, lineItemsToAdd)
+
+        console.log(parseData(checkout))
+        setCheckout(parseData(checkout))
+        setDataToStorage('checkout', checkout)
+
         // Add an item to the checkout
-        client.checkout.addLineItems(checkoutId, lineItemsToAdd).then((checkout) => {
+        /* client.checkout.addLineItems(checkoutId, lineItemsToAdd).then((checkout) => {
             // Do something with the updated checkout
             console.log(checkout); 
-        });
+        }); */
 
     }
 

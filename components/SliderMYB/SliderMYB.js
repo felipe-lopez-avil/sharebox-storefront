@@ -47,9 +47,15 @@ export default class MakeYourBoxSlider extends Component {
   previous() {
     this.slider.slickPrev();
   }
-  /* goTo(index){
+
+  /* handleOnClick() {
+    this.slider.slickGoTo(3);
+  }; */
+
+  goTo(index){
     this.slider.slickGoTo(index);
-  } */
+  }
+
   render() {
     const settings = {
       infinite: false,
@@ -64,7 +70,7 @@ export default class MakeYourBoxSlider extends Component {
     return (
       <div>
         
-        <Slider ref={c => (this.slider = c)} {...settings}>
+        <Slider ref={slider => (this.slider = slider)} {...settings}>
           <div>
 
             <MYBSection title='¡PASO 1!'/>
@@ -112,9 +118,9 @@ export default class MakeYourBoxSlider extends Component {
           
         </Slider>
 
-        {/* <button onClick={this.goTo(3)} >
+        <button>
             GO TO SLIDE 4
-        </button> */}
+        </button>
 
       </div>
     );
