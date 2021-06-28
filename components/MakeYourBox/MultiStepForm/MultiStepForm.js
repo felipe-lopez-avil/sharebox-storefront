@@ -70,10 +70,10 @@ export default function MultiStepForm({currentStep, setCurrentStep, totalPrice, 
                     </div>
                     <div className={styles.buttonsAndTotal}>
                         <div className={styles.totalSection}>
-                            <h3>Total: 0.00</h3>
+                            <p><span className={styles.totalColor}>Total: </span>{totalPrice}.00</p>
                         </div>
                         <div className={styles.buttonSection}>
-                            <div onClick={() => goNext()} className={styles.nextPrev}>
+                            <div onClick={() => goNext()} className={`${styles.nextPrev} ${styles.continue}`}>
                                 CONTINUAR
                             </div>
                         </div>
@@ -139,11 +139,16 @@ export default function MultiStepForm({currentStep, setCurrentStep, totalPrice, 
                         </Swiper>
                     </div>
                     <div className={styles.buttonsAndTotal}>
-                        <div onClick={() => goPrev()} className={styles.nextPrev}>
-                            REGRESAR
+                        <div className={styles.totalSection}>
+                            <p><span className={styles.totalColor}>Total: </span>{totalPrice}.00</p>
                         </div>
-                        <div onClick={() => goNext()} className={styles.nextPrev}>
-                            CONTINUAR
+                        <div className={styles.buttonSection}>
+                            <div onClick={() => goPrev()} className={styles.nextPrev}>
+                                REGRESAR
+                            </div>
+                            <div onClick={() => goNext()} className={`${styles.nextPrev} ${styles.continue}`}>
+                                CONTINUAR
+                            </div>
                         </div>
                     </div>
                 </SwiperSlide>
@@ -163,11 +168,16 @@ export default function MultiStepForm({currentStep, setCurrentStep, totalPrice, 
                         </div>
                     </div>
                     <div className={styles.buttonsAndTotal}>
-                        <div onClick={() => goPrev()} className={styles.nextPrev}>
-                            REGRESAR
+                        <div className={styles.totalSection}>
+                            <p><span className={styles.totalColor}>Total: </span>{totalPrice}.00</p>
                         </div>
-                        <div onClick={() => goNext()} className={styles.nextPrev}>
-                            CONTINUAR
+                        <div className={styles.buttonSection}>
+                            <div onClick={() => goPrev()} className={styles.nextPrev}>
+                                REGRESAR
+                            </div>
+                            <div onClick={() => goNext()} className={`${styles.nextPrev} ${styles.continue}`}>
+                                CONTINUAR
+                            </div>
                         </div>
                     </div>
                 </SwiperSlide>
@@ -205,10 +215,17 @@ export default function MultiStepForm({currentStep, setCurrentStep, totalPrice, 
                         </div>
                     </div>
                     <div className={styles.buttonsAndTotal}>
-                        <div onClick={() => goTo(2)} className={styles.nextPrev}>
-                            REGRESAR
+                        <div className={styles.totalSection}>
+                            <p><span className={styles.totalColor}>Total: </span>{totalPrice}.00</p>
                         </div>
-                        <button type="submit">CONFIRMAR</button>
+                        <div className={styles.buttonSection}>
+                            <div onClick={() => goTo(2)} className={styles.nextPrev}>
+                                REGRESAR
+                            </div>
+                            <div className={`${styles.nextPrev} ${styles.continue}`}>
+                                CONTINUAR
+                            </div>
+                        </div>
                     </div>
                 </SwiperSlide>
             </Swiper> 
