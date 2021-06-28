@@ -18,8 +18,8 @@ import MultiStepForm from '../components/MakeYourBox/MultiStepForm/MultiStepForm
 const StepperConnector = withStyles({
     alternativeLabel: {
       top: 10,
-      left: 'calc(-50% + 16px)',
-      right: 'calc(50% + 16px)',
+      left: 'calc(-50% +16)',
+      right: 'calc(50% +16)',
     },
     active: {
       '& $line': {
@@ -44,13 +44,15 @@ const useStepIconStyles = makeStyles({
       display: 'flex',
       height: 22,
       alignItems: 'center',
+      justifyContent: 'center',
+      width: 24
     },
     active: {
       color: '#028ab5',
     },
     circle: {
-      width: 8,
-      height: 8,
+      width: 15,
+      height: 15,
       borderRadius: '50%',
       backgroundColor: 'currentColor',
     },
@@ -90,6 +92,7 @@ StepIcon.propTypes = {
 export default function MakeYourBox() {
 
     const [currentStep, setCurrentStep] = useState(0)
+    const [totalPrice, setTotalPrice] = useState(0)
     return (
         <div className={styles.makeYourBox}>
 
@@ -103,7 +106,7 @@ export default function MakeYourBox() {
                         </StepLabel>
                         <StepContent>
                             <h3 className={styles.stepLabel}>Let the Magic Begin.</h3>
-                        </StepContent>
+                        </StepContent> 
                     </Step>
                     <Step>
                         <StepLabel StepIconComponent={StepIcon}>
@@ -134,9 +137,12 @@ export default function MakeYourBox() {
 
             {/*Columna derecha. Sección donde se muestran los productos a elegir*/}
             <div className={styles.choose}>
-
-                <MultiStepForm currentStep={currentStep} setCurrentStep={setCurrentStep} />
-
+                <MultiStepForm 
+                  currentStep={currentStep} 
+                  setCurrentStep={setCurrentStep} 
+                  totalPrice={totalPrice} 
+                  setTotalPrice={setTotalPrice} 
+                />
             </div>
             
             {/* <div className={styles.total}>

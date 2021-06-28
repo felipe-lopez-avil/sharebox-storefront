@@ -10,7 +10,7 @@ import "swiper/components/navigation/navigation.min.css"
 
 SwiperCore.use([Navigation]);
 
-export default function MultiStepForm({currentStep, setCurrentStep}) {
+export default function MultiStepForm({currentStep, setCurrentStep, totalPrice, setTotalPrice}) {
 
     const swiperRef = useRef(null);
     const swiperRef2 = useRef(null);
@@ -55,19 +55,27 @@ export default function MultiStepForm({currentStep, setCurrentStep}) {
                     <div className={styles.slideContainer}>
                         <div className={styles.stepContent}>
                             <h2 className={styles.stepTitle}>Elige la Box que te guiñe el ojo</h2>
-                            <label htmlFor="firstName">First Name</label>
+                            {/* <label htmlFor="firstName">First Name</label>
                             <input
                                 id="firstName"
                                 name="firstName"
                                 type="text"
                                 onChange={formik.handleChange}
                                 value={formik.values.firstName}
-                            />
+                            /> */}
+                            <div className={styles.productsContainer}>
+                                <span>PRODUCTS LIST</span>
+                            </div>
                         </div> 
                     </div>
                     <div className={styles.buttonsAndTotal}>
-                        <div onClick={() => goNext()} className={styles.nextPrev}>
-                            CONTINUAR
+                        <div className={styles.totalSection}>
+                            <h3>Total: 0.00</h3>
+                        </div>
+                        <div className={styles.buttonSection}>
+                            <div onClick={() => goNext()} className={styles.nextPrev}>
+                                CONTINUAR
+                            </div>
                         </div>
                     </div>
                 </SwiperSlide>
