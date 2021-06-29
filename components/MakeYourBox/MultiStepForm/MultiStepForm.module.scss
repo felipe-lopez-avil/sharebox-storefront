@@ -15,22 +15,37 @@
 
 .slideContainer{
     height: 80%;
-    padding: 15px;
     border: 2px solid rgb(233, 233, 233);
     border-radius: 10px;
     text-align: center;
 }
 
 .stepContent{
-    padding-top: 10px;
+    height: 100%;
+}
+
+.stepTitle{
+    margin: 0;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #003360;
 }
 
 .productsContainer{
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    height: calc(100% - 80px);
+}
+
+.scrollContainer{
+    height: calc(100% - 10px);
+    padding: 0px 10px;
+}
+
+.scroller{
     height: 100%;
+    overflow-y: scroll;
 }
 
 .buttonsAndTotal{

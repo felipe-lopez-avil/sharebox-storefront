@@ -1,5 +1,6 @@
 import React, { useRef, useCallback } from "react";
 import styles from './MultiStepForm.module.scss'
+import ScrollContainer from '../ScrollContainer/ScrollContainer'
 
 import { useFormik } from 'formik';
 
@@ -54,7 +55,9 @@ export default function MultiStepForm({currentStep, setCurrentStep, totalPrice, 
                 <SwiperSlide className={styles.slide}>
                     <div className={styles.slideContainer}>
                         <div className={styles.stepContent}>
-                            <h2 className={styles.stepTitle}>Elige la Box que te guiñe el ojo</h2>
+                            <h2 className={styles.stepTitle}>
+                                <span>Elige la Box que te guiñe el ojo</span>
+                            </h2>
                             {/* <label htmlFor="firstName">First Name</label>
                             <input
                                 id="firstName"
@@ -64,7 +67,10 @@ export default function MultiStepForm({currentStep, setCurrentStep, totalPrice, 
                                 value={formik.values.firstName}
                             /> */}
                             <div className={styles.productsContainer}>
-                                <span>PRODUCTS LIST</span>
+                                <ScrollContainer>
+                                    <h2>test</h2>
+                                    
+                                </ScrollContainer>
                             </div>
                         </div> 
                     </div>
