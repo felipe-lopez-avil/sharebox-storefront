@@ -1,6 +1,7 @@
 import React, { useRef, useCallback } from "react";
 import styles from './MultiStepForm.module.scss'
 import ScrollContainer from '../ScrollContainer/ScrollContainer'
+import ProductsOptions from "../ProductsOptions/ProductsOptions";
 
 import { useFormik } from 'formik';
 
@@ -68,8 +69,7 @@ export default function MultiStepForm({currentStep, setCurrentStep, totalPrice, 
                             /> */}
                             <div className={styles.productsContainer}>
                                 <ScrollContainer>
-                                    <h2>test</h2>
-                                    
+                                    <ProductsOptions/>
                                 </ScrollContainer>
                             </div>
                         </div> 

@@ -38,16 +38,6 @@
     height: calc(100% - 80px);
 }
 
-.scrollContainer{
-    height: calc(100% - 10px);
-    padding: 0px 10px;
-}
-
-.scroller{
-    height: 100%;
-    overflow-y: scroll;
-}
-
 .buttonsAndTotal{
     display: flex;
     justify-content: space-between;
@@ -88,4 +78,15 @@
         background-color: rgba(255, 255, 255, 0);
         border-color: #028ab5;
     }
+}
+
+
+@media (max-width: 768px) {
+
+    .slideContainer{
+        height: auto;
+        text-align: center;
+        border: none;
+    }
+
 }
