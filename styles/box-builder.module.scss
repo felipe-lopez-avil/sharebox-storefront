@@ -1,0 +1,94 @@
+.makeYourBox{
+    width: 100%;
+    height: 100vh;
+    padding-top: 80px;
+    display: flex;
+}
+
+.summary{
+    width: 20%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    padding-top: 45px;
+    padding-left: 45px;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.mobileSummary{
+    display: none;
+}
+
+.choose{
+    width: 80%;
+    height: 100%;
+    padding: 0;
+    padding-top: 45px;
+    background-color: none;
+}
+
+.form{
+    height: 75%;
+    width: 100%;
+}
+
+.slides{
+    background-color: none;
+    padding-right: 45px;
+    padding-left: 15px;
+    height: 100%;
+}
+
+.controllers{
+    padding-right: 45px;
+    padding-left: 15px;
+    background-color: #fff;
+    box-shadow: 0 -1px 4px (rgba($color: #000000, $alpha: 0.13));
+}
+
+@media (max-width: 768px) {
+    .makeYourBox{
+        flex-direction: column;
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .summary{
+        width: 100%;
+        padding: 0px 10px;
+        text-align: center;
+        height: auto;
+        display: none;
+    }
+
+    .mobileSummary{
+        display: block;
+    }
+
+    .slides{
+        padding-right: 0px;
+        padding-left: 0px;
+        min-height: 100vh;
+    }
+
+    .choose{
+        width: 100%;
+        height: 100%;
+        padding: 0px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form{
+        height: auto;
+    }
+
+    .controllers{
+        padding: 0;
+        position: -webkit-sticky;
+        position: sticky;
+        bottom: 0px;
+    }
+}
