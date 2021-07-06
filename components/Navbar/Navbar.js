@@ -61,6 +61,43 @@ export default function Navbar() {
                             <span>Box Armadas</span> <MdKeyboardArrowDown className={styles.ArrowRight}/>
                         </div>
                     </li>
+                    <li>
+                        <Link href='/box-to-go'>
+                            <div className={styles.menuOption}>
+                                <span>Click para ver productos</span> <MdKeyboardArrowDown className={styles.ArrowRight}/>
+                            </div>
+                        </Link>
+                    </li>
+                </ul>
+            </div>
+            <div className={styles.menuCol}>
+                <ul style={{listStyle: 'none', padding: '0', margin: '0'}}>
+                    {subMenuOptions.map(option => (
+                        <li>
+                            <div className={styles.menuOption}>
+                                {option}
+                            </div>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        </div>
+    );
+
+    const ootbMenu = () => (
+        <div className={styles.menuContainer}>
+            <div className={styles.menuCol}>
+                <ul style={{listStyle: 'none', padding: '0', margin: '0'}}>
+                    <li onMouseEnter={handleRTG}>
+                        <div className={ activeSubmenu === 'rtg' ? `${styles.menuOption} ${styles.menuOptionActive}` : styles.menuOption}>
+                            <span>Ready To Go</span> <MdKeyboardArrowDown className={styles.ArrowRight}/>
+                        </div>
+                    </li>
+                    <li onMouseEnter={handleBTG}>
+                        <div className={ activeSubmenu === 'btg' ? `${styles.menuOption} ${styles.menuOptionActive}` : styles.menuOption}>
+                            <span>Box Armadas</span> <MdKeyboardArrowDown className={styles.ArrowRight}/>
+                        </div>
+                    </li>
                 </ul>
             </div>
             <div className={styles.menuCol}>
@@ -165,7 +202,7 @@ export default function Navbar() {
                             {btgMenu()}
                         </Popover>
                         <li className={`${styles.NavLink} ${styles.Item}`}>
-                            <Link href='/make-your-box'>
+                            <Link href='/box-builder'>
                                 <div className={styles.AlignedContainer}>
                                     Make your Box
                                 </div>
