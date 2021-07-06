@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import BtgDropdown from './BtgDropdown'
+import SideMenu from './SideMenu'
 
 
 import Link from 'next/link'
@@ -13,13 +14,116 @@ import { FiShoppingBag } from 'react-icons/fi'
 import { MdKeyboardArrowDown } from 'react-icons/md'
 import { GrSearch } from 'react-icons/gr'
 
-export default function Navbar() {
+import clsx from 'clsx';
+import { makeStyles } from '@material-ui/core/styles';
+import Popover from '@material-ui/core/Popover';
+import { height } from 'dom-helpers';
+  
+const useStyles = makeStyles((theme) => ({
+    root: {
+        width: 'auto',
+    },
+    paper: {
+        boxShadow: 'none',
+        padding: '5px 0px',
+        borderRadius: '0px 0px 5px 5px',
+    },
+}));
 
-    const [click, setClick] = useState(false);
-    const [dropdown, setDropdown] = useState(false);
+export default function Navbar() {  
+    const rtgSubMenus = ['Kit Festivo', 'Wine Lovers Kit', 'Bride To Be Kit', 'Beer Kit']
+    const btgSubMenus = ['Todas las Boxes', 'Día del padre', 'Anillos y Compromisos', 'Aniversario', 'Cumpleaños', 'Condolencias', 'For Her', 'For Him', 'Just Because']
 
-    const handleClick = () => setClick(!click);
-    const closeMobileMenu = () => setClick(false);
+    const [activeSubmenu, setActiveSubmenu] = useState('rtg');
+    const [subMenuOptions, setSubMenuOptions] = useState(rtgSubMenus)
+
+    const handleRTG = (event) => {
+        setActiveSubmenu('rtg')
+        console.log(activeSubmenu)
+    };
+    
+    const handleBTG = (event) => {
+        setActiveSubmenu('btg')
+        console.log(activeSubmenu)
+    };
+
+    const btgMenu = () => (
+        <div className={styles.menuContainer}>
+            <div className={styles.menuCol}>
+                <ul style={{listStyle: 'none', padding: '0', margin: '0'}}>
+                    <li onMouseEnter={handleRTG}>
+                        <div className={styles.menuOption}>
+                            <span>Ready To Go</span> <MdKeyboardArrowDown className={styles.ArrowRight}/>
+                        </div>
+                    </li>
+                    <li onMouseEnter={handleBTG}>
+                        <div className={styles.menuOption}>
+                            <span>Box Armadas</span> <MdKeyboardArrowDown className={styles.ArrowRight}/>
+                        </div>
+                    </li>
+                    <li>
+                        <div className={styles.menuOption}>
+                            <span>La Opción activa es: { activeSubmenu === 'rtg' ? 'Box To Go' : '' }</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div className={styles.menuCol}>
+            <ul style={{listStyle: 'none', padding: '0', margin: '0'}}>
+                    <li>
+                        <div className={styles.menuOption}>
+                            Kit Festivo
+                        </div>
+                    </li>
+                    <li>
+                        <div className={styles.menuOption}>
+                            Wine Lovers Kit
+                        </div>
+                    </li>
+                    <li>
+                        <div className={styles.menuOption}>
+                            Bride To Be Kit
+                        </div>
+                    </li>
+                    <li>
+                        <div className={styles.menuOption}>
+                            Beer Kit
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    );
+
+    const classes = useStyles();
+    
+    const [anchorEl1, setAnchorEl1] = React.useState(null);
+
+    const handleClick1 = (event) => {
+        setAnchorEl1(event.currentTarget);
+    };
+    
+    const handleClose1 = () => {
+        setAnchorEl1(null);
+    };
+
+    const open1 = Boolean(anchorEl1);
+    const id1 = open1 ? 'menu-popover' : undefined;
+
+    const [anchorEl2, setAnchorEl2] = React.useState(null);
+
+    const handleClick2 = (event) => {
+        setAnchorEl2(event.currentTarget);
+    };
+    
+    const handleClose2 = () => {
+        setAnchorEl2(null);
+    };
+
+    const open2 = Boolean(anchorEl2);
+    const id2 = open2 ? 'menu-popover' : undefined;
+
+    const [click, setClick] = useState(false);  
 
     return(
         <>
@@ -31,56 +135,77 @@ export default function Navbar() {
                         </Link> 
                     </div>
                 </div>
-
-
-                <div className={styles.NavBurger} onClick={handleClick}>
+                <div className={styles.NavBurger}>
                     <FontAwesomeIcon icon={ click ? faTimes : faBars} className={styles.Menu}/>
                 </div>
-
-                {/* <ul className={click ? `${styles.MobileMenu} ${styles.Active}` : `${styles.MobileMenu}`}>
-                    <li className={styles.NavItem} >
-                        <Link href="/box-to-go" className={styles.MobileNavLink} onClick={closeMobileMenu}>
-                            Box To Go
-                        </Link>
-                        
-                    </li>
-                    <li className={styles.NavItem}>
-                        <Link href="/make-your-box" className={styles.MobileNavLink} onClick={closeMobileMenu}>
-                            Make Your Box
-                        </Link>
-                    </li>
-                    <li className={styles.NavItem}>
-                        <Link href="/out-of-the-box" className={styles.MobileNavLink} onClick={closeMobileMenu}>
-                            Out of the Box
-                        </Link>
-                    </li>
-                </ul> */}
-
-
                 <nav className={styles.NavMenu}>
                     <ul className={styles.SiteNav} >
-                        <li className={`${styles.NavLink} ${styles.Item}`}>
-                            <Link href='/box-to-go'>
-                                <div className={styles.AlignedContainer} >
-                                    To Go <MdKeyboardArrowDown className={styles.Arrow}/>   
+                        <li className={`${styles.NavLink} ${styles.Item}`} aria-describedby={id1} onClick={handleClick1}>
+                            {/* <Link href='/box-to-go'> */}
+                                <div className={styles.AlignedContainer}>
+                                    To Go <MdKeyboardArrowDown className={styles.Arrow}/>                                  
                                 </div>   
-                            </Link>            
+                            {/* </Link>   */}       
                         </li>
+                        <Popover
+                            id={id1}
+                            open={open1}
+                            anchorEl={anchorEl1}
+                            onClose={handleClose1}
+                            classes={{
+                                root: classes.root,
+                                paper: classes.paper, 
+                            }}
+                            anchorOrigin={{
+                                vertical: 'bottom',
+                                horizontal: 'left',
+                            }}
+                              transformOrigin={{
+                                vertical: 'top',
+                                horizontal: 'left',
+                            }}
+                        >
+                            {btgMenu()}
+                        </Popover>
                         <li className={`${styles.NavLink} ${styles.Item}`}>
                             <Link href='/make-your-box'>
-                                Make your Box
-                            </Link>
-                        </li>
-                        <li className={`${styles.NavLink} ${styles.Item}`}>
-                            <Link href='/out-of-the-box'>
-                                <div className={styles.AlignedContainer} >
-                                    Out of the Box <MdKeyboardArrowDown className={styles.Arrow}/>
+                                <div className={styles.AlignedContainer}>
+                                    Make your Box
                                 </div>
                             </Link>
                         </li>
+                        <li className={`${styles.NavLink} ${styles.Item}`} aria-describedby={id2} onClick={handleClick2}>
+                            {/* <Link href='/out-of-the-box'> */}
+                                <div className={styles.AlignedContainer}>
+                                    Out of the Box <MdKeyboardArrowDown className={styles.Arrow}/>
+                                </div>
+                            {/* </Link> */}
+                        </li>
+                        <Popover
+                            id={id2}
+                            open={open2}
+                            anchorEl={anchorEl2}
+                            onClose={handleClose2}
+                            classes={{
+                                root: classes.root,
+                                paper: classes.paper, 
+                            }}
+                            anchorOrigin={{
+                                vertical: 'bottom',
+                                horizontal: 'left',
+                            }}
+                              transformOrigin={{
+                                vertical: 'top',
+                                horizontal: 'left',
+                            }}
+                        >
+                            <h5>OUT OF THE BOX POPOVER</h5>
+                        </Popover>
                         <li className={`${styles.NavLink} ${styles.Item}`}>
                             <Link href='/corporate'>
-                                Sharebox Corporate
+                                <div className={styles.AlignedContainer}>
+                                    Sharebox Corporate
+                                </div>
                             </Link>
                         </li> 
                     </ul>       

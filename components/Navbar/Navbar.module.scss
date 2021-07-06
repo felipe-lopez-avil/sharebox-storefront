@@ -1,3 +1,4 @@
+
 .Nav{
     position: fixed;
     width: 100%;
@@ -5,8 +6,8 @@
     height: 85px;
     display: flex;
     justify-content: space-between;
-    padding: 0.5rem 3rem;
-    z-index: 10;
+    padding: 0 3rem;
+    z-index: 10000;
     box-shadow: 0 1px 4px (rgba($color: #000000, $alpha: 0.13));
 
     @media (max-width: 768px){
@@ -62,6 +63,7 @@
 }
 
 .NavMenu{
+    height: 100%;
     display: flex;
     align-items: center;
 
@@ -70,13 +72,13 @@
     }
 }
 
-.Menu{
-    font-size: 1.6rem;
-    color: #003360;
-}
-
 .Arrow {
     font-size: 1.5rem;
+}
+
+.ArrowRight{
+    font-size: 1.5rem;
+    transform: rotate(-90deg);
 }
 
 .NavIcon{
@@ -112,15 +114,57 @@
     position: relative;
     padding: 0;
     text-align: center;
-    display: block;
+    display: flex;
+    height: 100%;
 
     .NavLink{
         display: inline-block;
         vertical-align: middle;
+        height: 100%;
     }
 }
 
 .AlignedContainer{
     display: flex;
     align-items: center;
+    height: 100%;
+}
+
+.sideBar{
+    padding-top: 95px;
+    width: 100%;
+    height: 200px;
+    z-index: 5;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+}
+
+.box{
+    width: 50%;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.menuContainer{
+    min-width: 350px;
+    display: flex;
+}
+
+.menuCol{
+    width: 50%;
+    padding: 0px 5px;
+}
+
+.menuOption{
+    padding: 5px 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &:hover{
+        background-color: #e9e9e9;
+    }
 }
