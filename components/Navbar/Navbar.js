@@ -39,12 +39,12 @@ export default function Navbar() {
 
     const handleRTG = (event) => {
         setActiveSubmenu('rtg')
-        console.log(activeSubmenu)
+        setSubMenuOptions(rtgSubMenus)
     };
     
     const handleBTG = (event) => {
         setActiveSubmenu('btg')
-        console.log(activeSubmenu)
+        setSubMenuOptions(btgSubMenus)
     };
 
     const btgMenu = () => (
@@ -52,44 +52,26 @@ export default function Navbar() {
             <div className={styles.menuCol}>
                 <ul style={{listStyle: 'none', padding: '0', margin: '0'}}>
                     <li onMouseEnter={handleRTG}>
-                        <div className={styles.menuOption}>
+                        <div className={ activeSubmenu === 'rtg' ? `${styles.menuOption} ${styles.menuOptionActive}` : styles.menuOption}>
                             <span>Ready To Go</span> <MdKeyboardArrowDown className={styles.ArrowRight}/>
                         </div>
                     </li>
                     <li onMouseEnter={handleBTG}>
-                        <div className={styles.menuOption}>
+                        <div className={ activeSubmenu === 'btg' ? `${styles.menuOption} ${styles.menuOptionActive}` : styles.menuOption}>
                             <span>Box Armadas</span> <MdKeyboardArrowDown className={styles.ArrowRight}/>
-                        </div>
-                    </li>
-                    <li>
-                        <div className={styles.menuOption}>
-                            <span>La Opción activa es: { activeSubmenu === 'rtg' ? 'Box To Go' : '' }</span>
                         </div>
                     </li>
                 </ul>
             </div>
             <div className={styles.menuCol}>
-            <ul style={{listStyle: 'none', padding: '0', margin: '0'}}>
-                    <li>
-                        <div className={styles.menuOption}>
-                            Kit Festivo
-                        </div>
-                    </li>
-                    <li>
-                        <div className={styles.menuOption}>
-                            Wine Lovers Kit
-                        </div>
-                    </li>
-                    <li>
-                        <div className={styles.menuOption}>
-                            Bride To Be Kit
-                        </div>
-                    </li>
-                    <li>
-                        <div className={styles.menuOption}>
-                            Beer Kit
-                        </div>
-                    </li>
+                <ul style={{listStyle: 'none', padding: '0', margin: '0'}}>
+                    {subMenuOptions.map(option => (
+                        <li>
+                            <div className={styles.menuOption}>
+                                {option}
+                            </div>
+                        </li>
+                    ))}
                 </ul>
             </div>
         </div>
@@ -100,7 +82,12 @@ export default function Navbar() {
     const [anchorEl1, setAnchorEl1] = React.useState(null);
 
     const handleClick1 = (event) => {
-        setAnchorEl1(event.currentTarget);
+        if (anchorEl1 === null) {
+            setAnchorEl1(event.currentTarget);
+        }else{
+            setAnchorEl1(null)
+        }
+        setAnchorEl2(null)
     };
     
     const handleClose1 = () => {
@@ -113,10 +100,20 @@ export default function Navbar() {
     const [anchorEl2, setAnchorEl2] = React.useState(null);
 
     const handleClick2 = (event) => {
-        setAnchorEl2(event.currentTarget);
+        if (anchorEl2 === null) {
+            setAnchorEl2(event.currentTarget);
+        }else{
+            setAnchorEl2(null)
+        }
+        setAnchorEl1(null);
     };
     
     const handleClose2 = () => {
+        setAnchorEl2(null);
+    };
+
+    const closeAllPopovers = (event) => {
+        setAnchorEl1(null);
         setAnchorEl2(null);
     };
 
@@ -130,7 +127,7 @@ export default function Navbar() {
             <nav className={styles.Nav}>
                 <div className={styles.LogoContainer}>
                     <div className={styles.NavLink}>
-                        <Link href='/' >
+                        <Link href='/'>
                             <img src="https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Sharebox_editable-17.png?v=1614310399" className={styles.Logo}/>
                         </Link> 
                     </div>
