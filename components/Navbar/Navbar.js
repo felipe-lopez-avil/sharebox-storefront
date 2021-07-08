@@ -18,24 +18,88 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Popover from '@material-ui/core/Popover';
 import { height } from 'dom-helpers';
+
+import Drawer from '@material-ui/core/Drawer';
+import Button from '@material-ui/core/Button';
+import List from '@material-ui/core/List';
+import Divider from '@material-ui/core/Divider';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import InboxIcon from '@material-ui/icons/MoveToInbox';
+import MailIcon from '@material-ui/icons/Mail';
   
 const useStyles = makeStyles((theme) => ({
     root: {
         width: 'auto',
+        zIndex: '900 !important'
     },
     paper: {
         boxShadow: 'none',
         padding: '5px 0px',
         borderRadius: '0px 0px 5px 5px',
     },
+    list: {
+        width: 250,
+    },
+        fullList: {
+        width: 'auto',
+    },
 }));
 
 export default function Navbar() {  
     const rtgSubMenus = ['Kit Festivo', 'Wine Lovers Kit', 'Bride To Be Kit', 'Beer Kit']
     const btgSubMenus = ['Todas las Boxes', 'Día del padre', 'Anillos y Compromisos', 'Aniversario', 'Cumpleaños', 'Condolencias', 'For Her', 'For Him', 'Just Because']
+    const ootbOptions = ['Todo', 'Globos', 'Flores', 'Pasteles y Velas']
 
     const [activeSubmenu, setActiveSubmenu] = useState('rtg');
     const [subMenuOptions, setSubMenuOptions] = useState(rtgSubMenus)
+    
+    // DRAWER COMPONENTS
+    const [state, setState] = React.useState({
+        top: false,
+        left: false,
+        bottom: false,
+        right: false,
+    });
+
+    const toggleDrawer = (anchor, open) => (event) => {
+        if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+          return;
+        }
+    
+        setState({ ...state, [anchor]: open });
+    };
+    
+    const list = (anchor) => (
+        <div
+            className={clsx(classes.list, {
+                [classes.fullList]: anchor === 'top' || anchor === 'bottom',
+            })}
+            role="presentation"
+            onClick={toggleDrawer(anchor, false)}
+            onKeyDown={toggleDrawer(anchor, false)}
+        >
+          <List>
+            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+                <ListItem button key={text}>
+                    <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                    <ListItemText primary={text} />
+                </ListItem>
+            ))}
+          </List>
+          <Divider />
+          <List>
+            {['All mail', 'Trash', 'Spam'].map((text, index) => (
+                <ListItem button key={text}>
+                    <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                    <ListItemText primary={text} />
+                </ListItem>
+            ))}
+          </List>
+        </div>
+    );
+    // ENDS DRAWERS COMPONENTS
 
     const handleRTG = (event) => {
         setActiveSubmenu('rtg')
@@ -46,6 +110,12 @@ export default function Navbar() {
         setActiveSubmenu('btg')
         setSubMenuOptions(btgSubMenus)
     };
+
+    const handleBalloons = (event) => {
+        setActiveSubmenu('balloons')
+        setSubMenuOptions(rtgSubMenus)
+    };
+
 
     const btgMenu = () => (
         <div className={styles.menuContainer}>
@@ -61,22 +131,17 @@ export default function Navbar() {
                             <span>Box Armadas</span> <MdKeyboardArrowDown className={styles.ArrowRight}/>
                         </div>
                     </li>
-                    <li>
-                        <Link href='/box-to-go'>
-                            <div className={styles.menuOption}>
-                                <span>Click para ver productos</span> <MdKeyboardArrowDown className={styles.ArrowRight}/>
-                            </div>
-                        </Link>
-                    </li>
                 </ul>
             </div>
             <div className={styles.menuCol}>
                 <ul style={{listStyle: 'none', padding: '0', margin: '0'}}>
                     {subMenuOptions.map(option => (
-                        <li>
-                            <div className={styles.menuOption}>
-                                {option}
-                            </div>
+                        <li onClick={handleClick1}>
+                            <Link href='/box-to-go'>
+                                <div className={styles.menuOption}>
+                                    {option}
+                                </div>
+                            </Link>
                         </li>
                     ))}
                 </ul>
@@ -85,32 +150,18 @@ export default function Navbar() {
     );
 
     const ootbMenu = () => (
-        <div className={styles.menuContainer}>
-            <div className={styles.menuCol}>
-                <ul style={{listStyle: 'none', padding: '0', margin: '0'}}>
-                    <li onMouseEnter={handleRTG}>
-                        <div className={ activeSubmenu === 'rtg' ? `${styles.menuOption} ${styles.menuOptionActive}` : styles.menuOption}>
-                            <span>Ready To Go</span> <MdKeyboardArrowDown className={styles.ArrowRight}/>
-                        </div>
-                    </li>
-                    <li onMouseEnter={handleBTG}>
-                        <div className={ activeSubmenu === 'btg' ? `${styles.menuOption} ${styles.menuOptionActive}` : styles.menuOption}>
-                            <span>Box Armadas</span> <MdKeyboardArrowDown className={styles.ArrowRight}/>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div className={styles.menuCol}>
-                <ul style={{listStyle: 'none', padding: '0', margin: '0'}}>
-                    {subMenuOptions.map(option => (
-                        <li>
+        <div className={styles.ootbContainer}>
+            <ul style={{listStyle: 'none', padding: '0', margin: '0'}}>
+                {ootbOptions.map(option => (
+                    <li onClick={handleClick2}>
+                        <Link href='/out-of-the-box'>
                             <div className={styles.menuOption}>
                                 {option}
                             </div>
-                        </li>
-                    ))}
-                </ul>
-            </div>
+                        </Link>
+                    </li>
+                ))}
+            </ul>
         </div>
     );
 
@@ -169,9 +220,12 @@ export default function Navbar() {
                         </Link> 
                     </div>
                 </div>
-                <div className={styles.NavBurger}>
+                <div className={styles.NavBurger} onClick={toggleDrawer('right', true)}>
                     <FontAwesomeIcon icon={ click ? faTimes : faBars} className={styles.Menu}/>
                 </div>
+                <Drawer anchor={'right'} open={state['right']} onClose={toggleDrawer('right', false)}>
+                    {list('right')}
+                </Drawer>
                 <nav className={styles.NavMenu}>
                     <ul className={styles.SiteNav} >
                         <li className={`${styles.NavLink} ${styles.Item}`} aria-describedby={id1} onClick={handleClick1}>
@@ -233,7 +287,7 @@ export default function Navbar() {
                                 horizontal: 'left',
                             }}
                         >
-                            <h5>OUT OF THE BOX POPOVER</h5>
+                            {ootbMenu()}
                         </Popover>
                         <li className={`${styles.NavLink} ${styles.Item}`}>
                             <Link href='/corporate'>
