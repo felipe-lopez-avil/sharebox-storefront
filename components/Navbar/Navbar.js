@@ -101,57 +101,55 @@ export default function Navbar() {
                 <CloseIcon style={{fontSize: '2.2rem', color: '#003360'}}/>
             </div>
             <List>
-                <Link href='/box-to-go'>
-                    <ListItem button key='Box To Go!' style={{padding: '0'}}>
-                        <Accordion style={{width: '100%', boxShadow: 'none'}}>
-                            <AccordionSummary
-                            expandIcon={<ExpandMoreIcon />}
-                            aria-controls="panel1a-content"
-                            id="panel1a-header"
-                            style={{
-                                minHeight: 'auto'
-                            }}
-                            >
-                                <Typography className={classes.heading}>Box To Go!</Typography>
-                            </AccordionSummary>
-                            <AccordionDetails style={{paddingTop: '0', paddingBottom: '0'}}>
-                                <div style={{width: '100%', display: 'flex', flexDirection:'column'}}>
-                                    <Accordion style={{width: '100%', boxShadow: 'none'}}>
-                                        <AccordionSummary
-                                        expandIcon={<ExpandMoreIcon />}
-                                        aria-controls="panel1a-content"
-                                        id="panel1a-header"
-                                        style={{
-                                            padding: '0',
-                                            minHeight: '48px !important'
-                                        }}
-                                        >
-                                            <Typography>Ready To Go</Typography>
-                                        </AccordionSummary>
-                                        <AccordionDetails>
-                                            <Typography>Opciones Ready To Go</Typography>
-                                        </AccordionDetails>
-                                    </Accordion>
-                                    <Accordion style={{width: '100%', boxShadow: 'none'}}>
-                                        <AccordionSummary
-                                        expandIcon={<ExpandMoreIcon />}
-                                        aria-controls="panel1a-content"
-                                        id="panel1a-header"
-                                        style={{
-                                            padding: '0'
-                                        }}
-                                        >
-                                            <Typography>Box Armadas</Typography>
-                                        </AccordionSummary>
-                                        <AccordionDetails>
-                                            <Typography>Opciones Box Armadas</Typography>
-                                        </AccordionDetails>
-                                    </Accordion>
-                                </div>
-                            </AccordionDetails>
-                        </Accordion>
-                    </ListItem>
-                </Link>
+                <ListItem button key='Box To Go!' style={{padding: '0'}}>
+                    <Accordion style={{width: '100%', boxShadow: 'none'}}>
+                        <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel1a-content"
+                        id="panel1a-header"
+                        style={{
+                            minHeight: 'auto'
+                        }}
+                        >
+                            <Typography className={classes.heading}>Box To Go!</Typography>
+                        </AccordionSummary>
+                        <AccordionDetails style={{paddingTop: '0', paddingBottom: '0'}}>
+                            <div style={{width: '100%', display: 'flex', flexDirection:'column'}}>
+                                <Accordion style={{width: '100%', boxShadow: 'none'}}>
+                                    <AccordionSummary
+                                    expandIcon={<ExpandMoreIcon />}
+                                    aria-controls="panel1a-content"
+                                    id="panel1a-header"
+                                    style={{
+                                        padding: '0',
+                                        minHeight: '48px !important'
+                                    }}
+                                    >
+                                        <Typography>Ready To Go</Typography>
+                                    </AccordionSummary>
+                                    <AccordionDetails>
+                                        <Typography>Opciones Ready To Go</Typography>
+                                    </AccordionDetails>
+                                </Accordion>
+                                <Accordion style={{width: '100%', boxShadow: 'none'}}>
+                                    <AccordionSummary
+                                    expandIcon={<ExpandMoreIcon />}
+                                    aria-controls="panel1a-content"
+                                    id="panel1a-header"
+                                    style={{
+                                        padding: '0'
+                                    }}
+                                    >
+                                        <Typography>Box Armadas</Typography>
+                                    </AccordionSummary>
+                                    <AccordionDetails>
+                                        <Typography>Opciones Box Armadas</Typography>
+                                    </AccordionDetails>
+                                </Accordion>
+                            </div>
+                        </AccordionDetails>
+                    </Accordion>
+                </ListItem>
             </List>
             <List>
                 <Link href='/box-builder'>
