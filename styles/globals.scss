@@ -82,3 +82,23 @@ button:hover{
 .MuiBackdrop-root{
   background-color: rgba(0, 0, 0, 0) !important;
 }
+
+.MuiAccordionSummary-content{
+  margin: 0 !important;
+}
+
+.MuiIconButton-root{
+  padding: 0px 12px !important;
+}
+
+.MuiAccordion-root:before{
+  display: none !important;
+}
+
+.MuiAccordion-root.Mui-expanded{
+  margin: 0 !important;
+}
+
+.MuiAccordionSummary-root{
+  min-height: 38px !important;
+}

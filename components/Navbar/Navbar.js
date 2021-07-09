@@ -25,9 +25,16 @@ import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
+import CloseIcon from '@material-ui/icons/Close';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
   
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -35,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
         zIndex: '900 !important'
     },
     paper: {
-        boxShadow: 'none',
+        boxShadow: '0px 0px 1px 1px rgb(0 0 0 / 8%)',
         padding: '5px 0px',
         borderRadius: '0px 0px 5px 5px',
     },
@@ -45,6 +52,10 @@ const useStyles = makeStyles((theme) => ({
         fullList: {
         width: 'auto',
     },
+    heading: {
+        fontSize: '1.1rem',
+        fontWeight: '600',
+    }
 }));
 
 export default function Navbar() {  
@@ -77,26 +88,116 @@ export default function Navbar() {
                 [classes.fullList]: anchor === 'top' || anchor === 'bottom',
             })}
             role="presentation"
-            onClick={toggleDrawer(anchor, false)}
             onKeyDown={toggleDrawer(anchor, false)}
         >
-          <List>
-            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                <ListItem button key={text}>
-                    <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                    <ListItemText primary={text} />
-                </ListItem>
-            ))}
-          </List>
-          <Divider />
-          <List>
-            {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                <ListItem button key={text}>
-                    <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                    <ListItemText primary={text} />
-                </ListItem>
-            ))}
-          </List>
+            <div style={{
+                minHeight: '9vh', 
+                width: '250px', 
+                display: 'flex', 
+                alignItems: 'center', 
+                justifyContent: 'flex-end',
+                paddingRight: '16px'
+            }}>
+                <CloseIcon style={{fontSize: '2.2rem', color: '#003360'}}/>
+            </div>
+            <List>
+                <Link href='/box-to-go'>
+                    <ListItem button key='Box To Go!' style={{padding: '0'}}>
+                        <Accordion style={{width: '100%', boxShadow: 'none'}}>
+                            <AccordionSummary
+                            expandIcon={<ExpandMoreIcon />}
+                            aria-controls="panel1a-content"
+                            id="panel1a-header"
+                            style={{
+                                minHeight: 'auto'
+                            }}
+                            >
+                                <Typography className={classes.heading}>Box To Go!</Typography>
+                            </AccordionSummary>
+                            <AccordionDetails style={{paddingTop: '0', paddingBottom: '0'}}>
+                                <div style={{width: '100%', display: 'flex', flexDirection:'column'}}>
+                                    <Accordion style={{width: '100%', boxShadow: 'none'}}>
+                                        <AccordionSummary
+                                        expandIcon={<ExpandMoreIcon />}
+                                        aria-controls="panel1a-content"
+                                        id="panel1a-header"
+                                        style={{
+                                            padding: '0',
+                                            minHeight: '48px !important'
+                                        }}
+                                        >
+                                            <Typography>Ready To Go</Typography>
+                                        </AccordionSummary>
+                                        <AccordionDetails>
+                                            <Typography>Opciones Ready To Go</Typography>
+                                        </AccordionDetails>
+                                    </Accordion>
+                                    <Accordion style={{width: '100%', boxShadow: 'none'}}>
+                                        <AccordionSummary
+                                        expandIcon={<ExpandMoreIcon />}
+                                        aria-controls="panel1a-content"
+                                        id="panel1a-header"
+                                        style={{
+                                            padding: '0'
+                                        }}
+                                        >
+                                            <Typography>Box Armadas</Typography>
+                                        </AccordionSummary>
+                                        <AccordionDetails>
+                                            <Typography>Opciones Box Armadas</Typography>
+                                        </AccordionDetails>
+                                    </Accordion>
+                                </div>
+                            </AccordionDetails>
+                        </Accordion>
+                    </ListItem>
+                </Link>
+            </List>
+            <List>
+                <Link href='/box-builder'>
+                    <ListItem button key='Make your Box' style={{paddingTop: '0', paddingBottom: '0'}} onClick={toggleDrawer(anchor, false)}>
+                        <Typography className={classes.heading}>Make Your Box</Typography>
+                    </ListItem>
+                </Link>
+            </List>
+            <List>
+                <Link href='/box-to-go'>
+                    <ListItem button key='Out of The Box' style={{padding: '0'}}>
+                    <Accordion style={{width: '100%', boxShadow: 'none'}}>
+                            <AccordionSummary
+                            expandIcon={<ExpandMoreIcon />}
+                            aria-controls="panel1a-content"
+                            id="panel1a-header"
+                            style={{
+                                minHeight: 'auto'
+                            }}
+                            >
+                                <Typography className={classes.heading}>Out of the Box</Typography>
+                            </AccordionSummary>
+                            <AccordionDetails style={{paddingTop: '0', paddingBottom: '0'}}>
+                                <List>
+                                    <ListItem>
+                                        Globos
+                                    </ListItem>
+                                    <ListItem>
+                                        Flores
+                                    </ListItem>
+                                    <ListItem>
+                                        Pasteles
+                                    </ListItem>
+                                </List>
+                            </AccordionDetails>
+                        </Accordion>
+                    </ListItem>
+                </Link>
+            </List>
+            <List>
+                <Link href='/corporate'>
+                    <ListItem button key='Sharebox Corporate' style={{paddingTop: '0', paddingBottom: '0'}} onClick={toggleDrawer(anchor, false)}>
+                        <Typography className={classes.heading}>Sharebox Corporate</Typography>
+                    </ListItem>
+                </Link>
+            </List>
         </div>
     );
     // ENDS DRAWERS COMPONENTS
@@ -221,7 +322,7 @@ export default function Navbar() {
                     </div>
                 </div>
                 <div className={styles.NavBurger} onClick={toggleDrawer('right', true)}>
-                    <FontAwesomeIcon icon={ click ? faTimes : faBars} className={styles.Menu}/>
+                    <FontAwesomeIcon icon={ click ? faTimes : faBars} className={styles.MenuIcon}/>
                 </div>
                 <Drawer anchor={'right'} open={state['right']} onClose={toggleDrawer('right', false)}>
                     {list('right')}
