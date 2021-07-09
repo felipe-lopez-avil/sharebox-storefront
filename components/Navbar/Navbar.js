@@ -159,35 +159,33 @@ export default function Navbar() {
                 </Link>
             </List>
             <List>
-                <Link href='/box-to-go'>
-                    <ListItem button key='Out of The Box' style={{padding: '0'}}>
-                    <Accordion style={{width: '100%', boxShadow: 'none'}}>
-                            <AccordionSummary
-                            expandIcon={<ExpandMoreIcon />}
-                            aria-controls="panel1a-content"
-                            id="panel1a-header"
-                            style={{
-                                minHeight: 'auto'
-                            }}
-                            >
-                                <Typography className={classes.heading}>Out of the Box</Typography>
-                            </AccordionSummary>
-                            <AccordionDetails style={{paddingTop: '0', paddingBottom: '0'}}>
-                                <List>
-                                    <ListItem>
-                                        Globos
-                                    </ListItem>
-                                    <ListItem>
-                                        Flores
-                                    </ListItem>
-                                    <ListItem>
-                                        Pasteles
-                                    </ListItem>
-                                </List>
-                            </AccordionDetails>
-                        </Accordion>
-                    </ListItem>
-                </Link>
+                <ListItem button key='Out of The Box' style={{padding: '0'}}>
+                <Accordion style={{width: '100%', boxShadow: 'none'}}>
+                        <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel1a-content"
+                        id="panel1a-header"
+                        style={{
+                            minHeight: 'auto'
+                        }}
+                        >
+                            <Typography className={classes.heading}>Out of the Box</Typography>
+                        </AccordionSummary>
+                        <AccordionDetails style={{paddingTop: '0', paddingBottom: '0'}}>
+                            <List>
+                                <ListItem>
+                                    Globos
+                                </ListItem>
+                                <ListItem>
+                                    Flores
+                                </ListItem>
+                                <ListItem>
+                                    Pasteles
+                                </ListItem>
+                            </List>
+                        </AccordionDetails>
+                    </Accordion>
+                </ListItem>
             </List>
             <List>
                 <Link href='/corporate'>
