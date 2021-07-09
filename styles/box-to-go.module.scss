@@ -17,9 +17,27 @@
 }
 
 .Filters{
-    width: 22%;
+    width: 240px;
 }
 
 .ProductsDisplay{
-    width: 78%;
+    width: calc(100% - 240px);
+}
+
+@media (max-width: 768px) {
+
+    .Products{
+        flex-direction: column;
+        padding: 0;
+    }
+
+    .Filters{
+        width: 100%;
+        padding: 5px 20px;
+    }
+
+    .ProductsDisplay{
+        width: 100%;
+    }
+    
 }

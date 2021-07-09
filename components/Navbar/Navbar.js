@@ -1,8 +1,4 @@
 import React, { useState } from 'react';
-import BtgDropdown from './BtgDropdown'
-import SideMenu from './SideMenu'
-
-
 import Link from 'next/link'
 import styles from './Navbar.module.scss'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // Import the FontAwesomeIcon component
@@ -17,18 +13,11 @@ import { GrSearch } from 'react-icons/gr'
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Popover from '@material-ui/core/Popover';
-import { height } from 'dom-helpers';
 
 import Drawer from '@material-ui/core/Drawer';
-import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import CloseIcon from '@material-ui/icons/Close';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
@@ -208,12 +197,6 @@ export default function Navbar() {
         setSubMenuOptions(btgSubMenus)
     };
 
-    const handleBalloons = (event) => {
-        setActiveSubmenu('balloons')
-        setSubMenuOptions(rtgSubMenus)
-    };
-
-
     const btgMenu = () => (
         <div className={styles.menuContainer}>
             <div className={styles.menuCol}>
@@ -297,11 +280,6 @@ export default function Navbar() {
         setAnchorEl2(null);
     };
 
-    const closeAllPopovers = (event) => {
-        setAnchorEl1(null);
-        setAnchorEl2(null);
-    };
-
     const open2 = Boolean(anchorEl2);
     const id2 = open2 ? 'menu-popover' : undefined;
 
@@ -326,11 +304,9 @@ export default function Navbar() {
                 <nav className={styles.NavMenu}>
                     <ul className={styles.SiteNav} >
                         <li className={`${styles.NavLink} ${styles.Item}`} aria-describedby={id1} onClick={handleClick1}>
-                            {/* <Link href='/box-to-go'> */}
-                                <div className={styles.AlignedContainer}>
-                                    To Go <MdKeyboardArrowDown className={styles.Arrow}/>                                  
-                                </div>   
-                            {/* </Link>   */}       
+                            <div className={styles.AlignedContainer}>
+                                To Go <MdKeyboardArrowDown className={styles.Arrow}/>                                  
+                            </div>   
                         </li>
                         <Popover
                             id={id1}
@@ -360,11 +336,9 @@ export default function Navbar() {
                             </Link>
                         </li>
                         <li className={`${styles.NavLink} ${styles.Item}`} aria-describedby={id2} onClick={handleClick2}>
-                            {/* <Link href='/out-of-the-box'> */}
-                                <div className={styles.AlignedContainer}>
-                                    Out of the Box <MdKeyboardArrowDown className={styles.Arrow}/>
-                                </div>
-                            {/* </Link> */}
+                            <div className={styles.AlignedContainer}>
+                                Out of the Box <MdKeyboardArrowDown className={styles.Arrow}/>
+                            </div>
                         </li>
                         <Popover
                             id={id2}

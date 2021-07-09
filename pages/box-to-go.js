@@ -1,6 +1,7 @@
 import styles from '../styles/box-to-go.module.scss'
 
 import Products from '../components/ProductsPage/Products/Products'
+import Filters from '../components/ProductsPage/Filters/Filters'
 import { client } from '../utils/shopify'
 
 export default function BoxToGo({collection}){
@@ -11,7 +12,7 @@ export default function BoxToGo({collection}){
             </div>
             <div className={styles.Products}>
                 <div className={styles.Filters}>
-                    <h3>FILTROS</h3>
+                    <Filters/>
                 </div>
                 <div className={styles.ProductsDisplay}>
                     <Products collection={collection} link="box"/>
