@@ -18,6 +18,11 @@ export default function BoxBuilder() {
     const [totalPrice, setTotalPrice] = useState(0)
     const [stepper, setStepper] = useState(false)
 
+    const [step1Items, setStep1Items] = useState([])
+    const [step2Items, setStep2Items] = useState([])
+    const [step3Items, setStep3Items] = useState([])
+    const [step4Items, setStep4Items] = useState([])
+
     const goNext = () => {
         setCurrentStep(currentStep + 1);
     }
@@ -38,7 +43,7 @@ export default function BoxBuilder() {
             {/*Columna izquierda. Sección donde se muestran los pasos del proceso así como los porductos que llevas en el proceso*/}
             <div className={styles.summary}>
                 {stepper ?
-                    <BoxBuilderStepper currentStep={currentStep}/>   
+                    <BoxBuilderStepper currentStep={currentStep} step1Items={step1Items} step2Items={step2Items} step3Items={step3Items} />   
                 : ''}
             </div>
             <div className={styles.mobileSummary}>
@@ -51,8 +56,8 @@ export default function BoxBuilder() {
             <div className={styles.choose}>
                 <form className={styles.form}>
                     <div className={styles.slides}>
-                        {currentStep === 0 && <FirstStep/>}
-                        {currentStep === 1 && <SecondStep/>}
+                        {currentStep === 0 && <FirstStep step1Items={step1Items} setStep1Items={setStep1Items} />}
+                        {currentStep === 1 && <SecondStep step2Items={step2Items} setStep2Items={setStep2Items}/>}
                         {currentStep === 2 && <ThirdStep/>}
                         {currentStep === 3 && <FourthStep/>}
                     </div> 

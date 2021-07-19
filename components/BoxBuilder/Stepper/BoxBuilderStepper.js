@@ -83,8 +83,9 @@ StepIcon.propTypes = {
     completed: PropTypes.bool,
   }; 
 
-export default function BoxBuilderStepper({currentStep}) {
+export default function BoxBuilderStepper({currentStep, step1Items, step2Items, step3Items}) {
     return (
+      <>
         <Stepper activeStep={currentStep} orientation="vertical" connector={<StepperConnector />}>
             <Step>
                 <StepLabel StepIconComponent={StepIcon}>
@@ -119,5 +120,18 @@ export default function BoxBuilderStepper({currentStep}) {
                 </StepContent>
             </Step>
         </Stepper> 
+        <div>
+          Storaged Items:
+            {step1Items.map(item => (
+              <div>{item.productID} - {item.quantity}</div>
+            ))}
+            {step2Items.map(item => (
+              <div>{item.productID} - {item.quantity}</div>
+            ))}
+            {step3Items.map(item => (
+              <div>{item.productID} - {item.quantity}</div>
+            ))}
+        </div>
+      </>
     )
 }
