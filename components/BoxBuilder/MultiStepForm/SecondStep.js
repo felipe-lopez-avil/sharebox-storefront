@@ -66,17 +66,12 @@ export default function SecondStep ({step2Items, setStep2Items}) {
             newItems[itemIndex].quantity = newItems[itemIndex].quantity + 1;
             setStep2Items(newItems);
         }
-
-        console.log('Click: ' + id);
     }
 
     const removeItem = (id, e) => {
         e.preventDefault();
-
-        var items = [...step2Items];
-        console.log(items)
-        console.log('ID del elemento por eliminar:')
-        console.log(id)
+        const newItems = step2Items.filter(item => item.productID !== id)
+        setStep2Items(newItems);
     }
 
     const mostrarItems = (e) => {
@@ -93,11 +88,11 @@ export default function SecondStep ({step2Items, setStep2Items}) {
             <div className={styles.scrollContainer}>
                 <h3>PRODUCTOS</h3>
                 <button onClick={ (e) => mostrarItems(e) }>Mostrar Step2Items</button>
-                {testArray.map((product, index) => (
+                {testArray.map((product) => (
                     <div>
                         <h5>{product.name}</h5>
                         <div onClick={(e) => addItem(product.productId, e)}>Añadir producto</div>
-                        <div name={product.productId} onClick={(e) => removeItem(product.productId, e)}>Eliminar producto</div>
+                        <div onClick={(e) => removeItem(product.productId, e)}>Eliminar producto</div>
                     </div>
                 ))}
                 {
