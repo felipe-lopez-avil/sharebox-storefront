@@ -9,8 +9,6 @@ import Controllers from '../components/BoxBuilder/Controllers/Controllers';
 
 import React, { useState, useEffect } from 'react'
 
-
-
 export default function BoxBuilder() {
 
     const [currentStep, setCurrentStep] = useState(0)

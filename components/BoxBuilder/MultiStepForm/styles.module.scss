@@ -5,17 +5,23 @@
     flex-direction: column;
     background-color: none;
     border-radius: 5px;
-    border: 2px solid slategrey;
+    border: 2px solid #e9e9e9;
+    position: relative;
 }
 
 .stepTitle{
-    height: 50px;
+    height: 70px;
     width: 100%;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0px 10px;
+    padding: 0;
+
+    h2{
+        margin: 0;
+        padding: 0;
+    }
 }
 
 .productList{
@@ -29,6 +35,40 @@
     width: 100%;
     height: 100%;
     overflow-y: scroll;
+}
+
+.cardContainer{
+    height: calc(100% - 50px);
+    width: 100%;
+    padding: 0px 20px 20px 20px;
+}
+
+.categoryContainer{
+
+    h4{
+        font-size: 1.5rem;
+    }
+}
+
+.productsContainer{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.categoryTitle{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    color: #003360;
+}
+
+.title{
+    font-size: 1.8rem;
+    font-weight: 700;
 }
 
 @media (max-width: 768px) {
