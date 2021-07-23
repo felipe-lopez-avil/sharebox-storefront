@@ -1,6 +1,23 @@
 import styles from './styles.module.scss'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { client } from '../../../utils/shopify'
+
+import { makeStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+      flexGrow: 1,
+    },
+    paper: {
+      padding: theme.spacing(2),
+      textAlign: 'center',
+      color: '#003360',
+      fontWeight: '700',
+    },
+  }));
+  
 
 const testArray = [
     {   
@@ -26,21 +43,24 @@ const testArray = [
 ]
 
 export default function FirstStep ({step1Items, setStep1Items}) {
+    const classes = useStyles();
 
     const collectionMYB1 = 'Z2lkOi8vc2hvcGlmeS9Db2xsZWN0aW9uLzI3MjA2NDg3MjYxMA==';
     //var productsMYB1 = '';
     const [productsMYB1, setProductsMYB1] = useState(null)
-
-    client.collection.fetchWithProducts(collectionMYB1, {productsFirst: 4}).then((collection) => {
-        // Do something with the collection
-
-        // Se convierte el objeto a JSON
-        var parsedCollection = JSON.parse(JSON.stringify(collection));
-
-        // Se guarda el objeto
-        // productsMYB1 = parsedCollection.products;
-        setProductsMYB1(parsedCollection.products);
-    });
+    
+    useEffect(() => {
+        client.collection.fetchWithProducts(collectionMYB1, {productsFirst: 4}).then((collection) => {
+            // Do something with the collection
+    
+            // Se convierte el objeto a JSON
+            var parsedCollection = JSON.parse(JSON.stringify(collection));
+    
+            // Se guarda el objeto
+            // productsMYB1 = parsedCollection.products;
+            setProductsMYB1(parsedCollection.products);
+        });
+    }, [])
 
     function addItem(id, image, e) {
         e.preventDefault();
@@ -83,11 +103,6 @@ export default function FirstStep ({step1Items, setStep1Items}) {
         setStep1Items(newItems);
     }
 
-    const show = (e) => {
-        e.preventDefault();
-        console.log(productsMYB1);
-    }
-
     return(
         <div className = {styles.container}>
             <div className={styles.stepTitle}>
@@ -96,36 +111,32 @@ export default function FirstStep ({step1Items, setStep1Items}) {
             <div className={styles.productList}>
                 <div className={styles.scrollContainer}>
                     <h3>CAJAS</h3>
-                    <button onClick={(e) => show(e)}>Mostrar objeto</button>
-                    {productsMYB1 === null ? 
-                    <h5>productsMYB1 es undefined</h5> 
-                        : 
-                    productsMYB1.map((product) => (
-                        <div>
-                            <h5>{product.title}</h5>
-                            <div onClick={(e) => addItem(product.variants[0].id, product.images[0].src, e)}>Añadir producto</div>
-                            <div onClick={(e) => removeItem(product.variants[0].id, e)}>Eliminar producto</div>
-                        </div>
-                    ))
-                    }
-                    {/*productsMYB1.map((product) => (
-                        <div>
-                            <h5>{product.title}</h5>
-                            <div onClick={(e) => addItem(product.variants[0].id, e)}>Añadir producto</div>
-                            <div onClick={(e) => removeItem(product.variants[0].id, e)}>Eliminar producto</div>
-                        </div>
-                    ))*/}
-                    {/* {
-                        step1Items.length === 0 ? 
-                            <div style={{marginTop:'20px'}}>No hay ninguna caja seleccionada</div>
-                        :
-                            <div style={{marginTop:'20px'}}>
-                                <div>
-                                    Los productos seleccionados son:
-                                </div>
-                                {step1Items}
-                            </div>
-                    } */}
+                    <Grid container spacing={3}>
+                        {productsMYB1 === null ? 
+                        <h5>productsMYB1 es undefined</h5> 
+                            : 
+                        productsMYB1.map((product) => (
+                            <Grid item xs={6} sm={3}>
+                                <Paper className={classes.paper}>
+                                    <div className={styles.productCard}>
+                                        <div className={styles.productInfo}>
+                                            {product.title}
+                                        </div>
+                                        <div className={styles.actions}>
+                                            <button onClick={(e) => addItem(product.variants[0].id, product.images[0].src, e)}>Add</button>
+                                            <button onClick={(e) => removeItem(product.variants[0].id, e)}>Delete</button>
+                                        </div>
+                                    </div>
+                                </Paper>
+                            </Grid>
+                            /* <div>
+                                <h5>{product.title}</h5>
+                                <div onClick={(e) => addItem(product.variants[0].id, product.images[0].src, e)}>Añadir producto</div>
+                                <div onClick={(e) => removeItem(product.variants[0].id, e)}>Eliminar producto</div>
+                            </div> */
+                        ))
+                        }
+                    </Grid>
                 </div>
             </div>
         </div>  

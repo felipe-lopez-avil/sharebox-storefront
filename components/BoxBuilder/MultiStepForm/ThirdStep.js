@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './styles.module.scss'
 import { client } from '../../../utils/shopify'
 
@@ -58,14 +58,39 @@ const useStyles = makeStyles((theme) => ({
 }));
     
 export default function ThirdStep () {
+
+    const collectionMYB3 = 'Z2lkOi8vc2hvcGlmeS9Db2xsZWN0aW9uLzI3Mjc5NTMzNjg2Ng=='
     const classes = useStyles();
 
     const [checked, setChecked] = useState(false)
+    const [activeCategory, setActiveCategory] = useState(null)
 
-    const handlePopup = (e) => {
+    const openPopup = (category, e) => {
         e.preventDefault();
-        setChecked(!checked);
+        setChecked(true);
+        setActiveCategory(category)
     };
+
+    const closePopup = (e) => {
+        e.preventDefault();
+        setChecked(false);
+        setActiveCategory(null);
+    };
+
+    const [productsMYB3, setProductsMYB3] = useState(null);
+    useEffect(() => {
+        client.collection.fetchWithProducts(collectionMYB3, {productsFirst: 4}).then((collection) => {
+            // Do something with the collection
+
+            // Se convierte el objeto a JSON
+            var parsedCollection = JSON.parse(JSON.stringify(collection));
+
+            // Se guarda el objeto
+            // productsMYB1 = parsedCollection.products;
+            setProductsMYB3(parsedCollection.products);
+            console.log(productsMYB3)
+        });
+    }, [])
 
     return(
         <div className = {styles.container}>
@@ -75,7 +100,7 @@ export default function ThirdStep () {
             <div className={styles.cardContainer}>
                 <Grid container spacing={3} className={classes.fullheight}>
                     <Grid item xs={12} sm={4} className={classes.fullheight}>
-                        <Paper className={classes.paper} onClick={(e) => {handlePopup(e)}}>
+                        <Paper className={classes.paper} onClick={(e) => {openPopup('globo', e)}}>
                             <div className={styles.categoryContainer}>
                                 <RadioButtonUncheckedIcon className={classes.icon}/>
                                 <h4>Globos</h4>
@@ -103,10 +128,17 @@ export default function ThirdStep () {
             <Grow in={checked} className={classes.grow}>
                 <div className={styles.productsContainer}>
                     <div className={styles.categoryTitle}>
-                        <ArrowBackIosIcon className={classes.logoBlue} onClick={(e) => {handlePopup(e)}}/>
+                        <ArrowBackIosIcon className={classes.logoBlue} onClick={(e) => {closePopup(e)}}/>
                         <div className={styles.title}>
                             Category Title
                         </div>
+                        {
+                            productsMYB3 === null ? 
+                            '' :
+                            productsMYB3.map(product => (
+                                <div>{product.title}</div>
+                            ))
+                        }
                     </div>
                 </div>
             </Grow>

@@ -36,6 +36,8 @@ const testArray = [
 
 export default function SecondStep ({step2Items, setStep2Items}) {
 
+    const collectionMYB2 = 'Z2lkOi8vc2hvcGlmeS9Db2xsZWN0aW9uLzI3Mjc5NTI3MTMzMA=='
+
     function addItem(id, e) {
         e.preventDefault();
 
@@ -79,11 +81,6 @@ export default function SecondStep ({step2Items, setStep2Items}) {
         e.preventDefault();
         console.log(step2Items);
     }
-    
-    client.collection.fetchAllWithProducts().then((collections) => {
-        // Do something with the collections
-        console.log(collections);
-    });
 
     return(
         <div className = {styles.container}>
