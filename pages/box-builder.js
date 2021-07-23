@@ -56,7 +56,7 @@ export default function BoxBuilder() {
                     <div className={styles.slides}>
                         {currentStep === 0 && <FirstStep step1Items={step1Items} setStep1Items={setStep1Items} />}
                         {currentStep === 1 && <SecondStep step2Items={step2Items} setStep2Items={setStep2Items}/>}
-                        {currentStep === 2 && <ThirdStep/>}
+                        {currentStep === 2 && <ThirdStep step3Items={step3Items} setStep3Items={setStep3Items}/>}
                         {currentStep === 3 && <FourthStep/>}
                     </div> 
                 </form>

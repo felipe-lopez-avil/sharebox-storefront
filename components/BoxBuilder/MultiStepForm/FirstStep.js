@@ -8,13 +8,15 @@ import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-      flexGrow: 1,
+        flexGrow: 1,
     },
     paper: {
-      padding: theme.spacing(2),
-      textAlign: 'center',
-      color: '#003360',
-      fontWeight: '700',
+        padding: theme.spacing(2),
+        textAlign: 'center',
+        color: '#003360',
+        fontWeight: '700',
+        boxShadow: 'none',
+        border: '2px solid #e9e9e9',
     },
   }));
   
@@ -110,7 +112,6 @@ export default function FirstStep ({step1Items, setStep1Items}) {
             </div>
             <div className={styles.productList}>
                 <div className={styles.scrollContainer}>
-                    <h3>CAJAS</h3>
                     <Grid container spacing={3}>
                         {productsMYB1 === null ? 
                         <h5>productsMYB1 es undefined</h5> 

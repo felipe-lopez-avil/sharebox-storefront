@@ -153,7 +153,18 @@ export default function BoxBuilderStepper({currentStep, step1Items, step2Items, 
           ))}
           <h6>Step 3:</h6>
           {step3Items.map(item => (
-            <div>{item.productID} - {item.quantity}</div>
+            <div>
+              {/*item.productID} - {item.quantity*/}
+              <Badge badgeContent={item.quantity} color="primary">
+                <div className={classes.producImage}>
+                  <Image
+                        src={item.image}
+                        layout="fill"
+                        objectFit="cover"
+                    />
+                </div>
+              </Badge>
+            </div>
           ))}
         </div>
       </>

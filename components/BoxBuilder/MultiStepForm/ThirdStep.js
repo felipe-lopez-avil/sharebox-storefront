@@ -57,13 +57,15 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
     
-export default function ThirdStep () {
+export default function ThirdStep ({step3Items, setStep3Items}) {
 
     const collectionMYB3 = 'Z2lkOi8vc2hvcGlmeS9Db2xsZWN0aW9uLzI3Mjc5NTMzNjg2Ng=='
     const classes = useStyles();
 
     const [checked, setChecked] = useState(false)
     const [activeCategory, setActiveCategory] = useState(null)
+
+    const [productsMYB3, setProductsMYB3] = useState(null)
 
     const openPopup = (category, e) => {
         e.preventDefault();
@@ -77,7 +79,6 @@ export default function ThirdStep () {
         setActiveCategory(null);
     };
 
-    const [productsMYB3, setProductsMYB3] = useState(null);
     useEffect(() => {
         client.collection.fetchWithProducts(collectionMYB3, {productsFirst: 4}).then((collection) => {
             // Do something with the collection
@@ -91,6 +92,47 @@ export default function ThirdStep () {
             console.log(productsMYB3)
         });
     }, [])
+
+    function addItem(id, image, e) {
+        e.preventDefault();
+
+        var toAdd;
+        var itemIndex = -1;
+
+        if (step3Items.length > 0) {
+            step3Items.map((item, index) => {
+                if (item.productID === id) {
+                    itemIndex = index
+                }
+            })
+        }else{
+            toAdd = {
+                productID: id,
+                quantity: 1,
+                image: image,
+            }
+            setStep3Items([...step3Items, toAdd]);
+        }
+        
+        if (itemIndex === -1) {
+            toAdd = {
+                productID: id,
+                quantity: 1,
+                image: image,
+            }
+            setStep3Items([...step3Items, toAdd]);
+        }else{
+            var newItems = [...step3Items];
+            newItems[itemIndex].quantity = newItems[itemIndex].quantity + 1;
+            setStep3Items(newItems);
+        }
+    }
+
+    const removeItem = (id, e) => {
+        e.preventDefault();
+        const newItems = step3Items.filter(item => item.productID !== id)
+        setStep3Items(newItems);
+    }
 
     return(
         <div className = {styles.container}>
@@ -132,14 +174,27 @@ export default function ThirdStep () {
                         <div className={styles.title}>
                             Category Title
                         </div>
-                        {
-                            productsMYB3 === null ? 
-                            '' :
-                            productsMYB3.map(product => (
-                                <div>{product.title}</div>
-                            ))
-                        }
                     </div>
+                    {
+                        productsMYB3 === null ? 
+                        '' :
+                        productsMYB3.map(product => (
+                            <Grid item xs={6} sm={3}>
+                                <Paper className={classes.paper}>
+                                    <div className={styles.productCard}>
+                                        <div className={styles.productInfo}>
+                                            {product.title}
+                                        </div>
+                                        <div className={styles.actions}>
+                                            <button onClick={(e) => addItem(product.variants[0].id, product.images[0].src, e)}>Add</button>
+                                            <button onClick={(e) => removeItem(product.variants[0].id, e)}>Delete</button>
+                                        </div>
+                                    </div>
+                                </Paper>
+                            </Grid>
+                            // <div>{product.title}</div>
+                        ))
+                    }
                 </div>
             </Grow>
         </div>   
