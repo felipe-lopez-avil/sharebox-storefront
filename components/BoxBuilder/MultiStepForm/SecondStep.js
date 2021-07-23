@@ -1,4 +1,5 @@
 import styles from './styles.module.scss'
+import { client } from '../../../utils/shopify'
 
 const testArray = [
     {   
@@ -78,6 +79,11 @@ export default function SecondStep ({step2Items, setStep2Items}) {
         e.preventDefault();
         console.log(step2Items);
     }
+    
+    client.collection.fetchAllWithProducts().then((collections) => {
+        // Do something with the collections
+        console.log(collections);
+    });
 
     return(
         <div className = {styles.container}>
@@ -87,7 +93,7 @@ export default function SecondStep ({step2Items, setStep2Items}) {
         <div className={styles.productList}>
             <div className={styles.scrollContainer}>
                 <h3>PRODUCTOS</h3>
-                <button onClick={ (e) => mostrarItems(e) }>Mostrar Step2Items</button>
+                {/* <button onClick={ (e) => mostrarItems(e) }>Mostrar Step2Items</button> */}
                 {testArray.map((product) => (
                     <div>
                         <h5>{product.name}</h5>

@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import Image from 'next/image'
 
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
@@ -7,6 +8,7 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import StepContent from '@material-ui/core/StepContent';
 import StepConnector from '@material-ui/core/StepConnector';
+import Badge from '@material-ui/core/Badge';
 import Check from '@material-ui/icons/Check';
 
 const StepperConnector = withStyles({
@@ -55,6 +57,12 @@ const useStepIconStyles = makeStyles({
       zIndex: 1,
       fontSize: 18,
     },
+    producImage: {
+      width: '35px',
+      height: '35px',
+      borderRadius: '5px',
+      overflow: 'hidden',
+    }
 });
 
 function StepIcon(props) {
@@ -84,6 +92,8 @@ StepIcon.propTypes = {
   }; 
 
 export default function BoxBuilderStepper({currentStep, step1Items, step2Items, step3Items}) {
+  const classes = useStepIconStyles();
+
     return (
       <>
         <Stepper activeStep={currentStep} orientation="vertical" connector={<StepperConnector />}>
@@ -122,15 +132,29 @@ export default function BoxBuilderStepper({currentStep, step1Items, step2Items, 
         </Stepper> 
         <div>
           Storaged Items:
-            {step1Items.map(item => (
-              <div>{item.productID} - {item.quantity}</div>
-            ))}
-            {step2Items.map(item => (
-              <div>{item.productID} - {item.quantity}</div>
-            ))}
-            {step3Items.map(item => (
-              <div>{item.productID} - {item.quantity}</div>
-            ))}
+          <h6>Step 1:</h6>
+          {step1Items.map(item => (
+            <div>
+              {/*item.productID} - {item.quantity*/}
+              <Badge badgeContent={item.quantity} color="primary">
+                <div className={classes.producImage}>
+                  <Image
+                        src={item.image}
+                        layout="fill"
+                        objectFit="cover"
+                    />
+                </div>
+              </Badge>
+            </div>
+          ))}
+          <h6>Step 2:</h6>
+          {step2Items.map(item => (
+            <div>{item.productID} - {item.quantity}</div>
+          ))}
+          <h6>Step 3:</h6>
+          {step3Items.map(item => (
+            <div>{item.productID} - {item.quantity}</div>
+          ))}
         </div>
       </>
     )

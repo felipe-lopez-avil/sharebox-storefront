@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import styles from './styles.module.scss'
+import { client } from '../../../utils/shopify'
+
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
