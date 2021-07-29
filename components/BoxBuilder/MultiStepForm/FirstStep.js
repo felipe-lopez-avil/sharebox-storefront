@@ -119,10 +119,8 @@ export default function FirstStep ({step1Items, setStep1Items}) {
                                                 <div className={styles.price}>${product.variants[0].price}</div>
                                             </div>
                                             <div className={styles.addRemove}>
-                                                <Button variant="contained" color="primary">+</Button>
-                                                <Button variant="contained" color="secondary">-</Button>
-                                                {/* <AddCircleOutlinedIcon className={classes.add} onClick={(e) => addItem(product.variants[0].id, product.images[0].src, e)}/>
-                                                <RemoveCircleIcon className={classes.remove}/> */}
+                                                <AddCircleOutlinedIcon className={classes.add} onClick={(e) => addItem(product.variants[0].id, product.images[0].src, e)}/>
+                                                <RemoveCircleIcon className={classes.remove} onClick={(e) => removeItem(product.variants[0].id, e)}/>
                                             </div>
                                         </div>
                                         {/* <div className={styles.productInfo}>
