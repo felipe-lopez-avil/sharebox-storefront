@@ -1,48 +1,34 @@
 import styles from './styles.module.scss'
 import { useState, useEffect } from 'react'
 import { client } from '../../../utils/shopify'
+import Image from 'next/image'
 
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
+import AddCircleOutlinedIcon from '@material-ui/icons/AddCircleOutlined';
+import RemoveCircleIcon from '@material-ui/icons/RemoveCircle';
 
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
     },
     paper: {
-        padding: theme.spacing(2),
-        textAlign: 'center',
+        padding: '0px',
         color: '#003360',
-        fontWeight: '700',
+        fontWeight: '600',
         boxShadow: 'none',
-        border: '2px solid #e9e9e9',
     },
-  }));
-  
-
-const testArray = [
-    {   
-        productId: 'ID1',
-        name: 'Caja 1',
-        price: 500,
+    add: {
+        color: '#028ab5',
+        fontSize: '1.8rem',
     },
-    {   
-        productId: 'ID2',
-        name: 'Caja 2',
-        price: 500,
-    },
-    {   
-        productId: 'ID3',
-        name: 'Caja 3',
-        price: 500,
-    },
-    {   
-        productId: 'ID4',
-        name: 'Caja 4',
-        price: 500,
-    },
-]
+    remove: {
+        color: 'red',
+        fontSize: '1.8rem',
+    }
+}));
 
 export default function FirstStep ({step1Items, setStep1Items}) {
     const classes = useStyles();
@@ -120,21 +106,35 @@ export default function FirstStep ({step1Items, setStep1Items}) {
                             <Grid item xs={6} sm={3}>
                                 <Paper className={classes.paper}>
                                     <div className={styles.productCard}>
-                                        <div className={styles.productInfo}>
+                                        <div className={styles.productImage}>
+                                            <Image
+                                                src={product.images[0].src}
+                                                layout="fill"
+                                                objectFit="cover"
+                                            />
+                                        </div>
+                                        <div className={styles.productActions}>
+                                            <div className={styles.productInfo}>
+                                                <div className={styles.productTitle}>{product.title}</div>
+                                                <div className={styles.price}>${product.variants[0].price}</div>
+                                            </div>
+                                            <div className={styles.addRemove}>
+                                                <Button variant="contained" color="primary">+</Button>
+                                                <Button variant="contained" color="secondary">-</Button>
+                                                {/* <AddCircleOutlinedIcon className={classes.add} onClick={(e) => addItem(product.variants[0].id, product.images[0].src, e)}/>
+                                                <RemoveCircleIcon className={classes.remove}/> */}
+                                            </div>
+                                        </div>
+                                        {/* <div className={styles.productInfo}>
                                             {product.title}
                                         </div>
                                         <div className={styles.actions}>
                                             <button onClick={(e) => addItem(product.variants[0].id, product.images[0].src, e)}>Add</button>
                                             <button onClick={(e) => removeItem(product.variants[0].id, e)}>Delete</button>
-                                        </div>
+                                        </div> */}
                                     </div>
                                 </Paper>
                             </Grid>
-                            /* <div>
-                                <h5>{product.title}</h5>
-                                <div onClick={(e) => addItem(product.variants[0].id, product.images[0].src, e)}>Añadir producto</div>
-                                <div onClick={(e) => removeItem(product.variants[0].id, e)}>Eliminar producto</div>
-                            </div> */
                         ))
                         }
                     </Grid>

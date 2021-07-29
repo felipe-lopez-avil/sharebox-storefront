@@ -1,42 +1,135 @@
+import { useState, useEffect } from 'react';
+
 import styles from './styles.module.scss'
 import { client } from '../../../utils/shopify'
 
-const testArray = [
-    {   
-        productId: 'ID1',
-        name: 'Producto 1',
-        price: 500,
+import { makeStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+import Grow from '@material-ui/core/Grow';
+
+import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
+import LocalFloristOutlinedIcon from '@material-ui/icons/LocalFloristOutlined';
+import CakeOutlinedIcon from '@material-ui/icons/CakeOutlined';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import { BorderRight } from '@material-ui/icons';
+import LoyaltyOutlinedIcon from '@material-ui/icons/LoyaltyOutlined';
+import ChildFriendlyOutlinedIcon from '@material-ui/icons/ChildFriendlyOutlined';
+import HomeWorkOutlinedIcon from '@material-ui/icons/HomeWorkOutlined';
+import FaceOutlinedIcon from '@material-ui/icons/FaceOutlined';
+import LocalBarOutlinedIcon from '@material-ui/icons/LocalBarOutlined';
+import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
+import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
+import FreeBreakfastOutlinedIcon from '@material-ui/icons/FreeBreakfastOutlined';
+import FastfoodOutlinedIcon from '@material-ui/icons/FastfoodOutlined';
+
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        flexGrow: 1,
     },
-    {   
-        productId: 'ID2',
-        name: 'Producto 2',
-        price: 500,
+    paper: {
+        padding: theme.spacing(2),
+        color: theme.palette.text.secondary,
+        textAlign: 'center',
+        height: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        boxShadow: 'none',
+        border: '2px solid #e9e9e9',
+        borderRadius: '10px',
+        cursor: 'pointer',
+
+        '&:hover': {
+            backgroundColor: '#fafafa',
+        },
     },
-    {   
-        productId: 'ID3',
-        name: 'Producto 3',
-        price: 500,
+    categoryPaper: {
+        padding: theme.spacing(2),
+        color: theme.palette.text.secondary,
+        textAlign: 'center',
+        height: '180px',
+        width: '180px',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        boxShadow: 'none',
+        border: '2px solid #e9e9e9',
+        borderRadius: '10px',
+        cursor: 'pointer',
+
+        '&:hover': {
+            backgroundColor: '#fafafa',
+        },
     },
-    {   
-        productId: 'ID4',
-        name: 'Producto 4',
-        price: 500,
+    fullheight: {
+        marginTop: '0',
+        marginBottom: '0',
+        backgroundColor: 'royalblue',
     },
-    {   
-        productId: 'ID5',
-        name: 'Producto 5',
-        price: 500,
+    categories: {
+        backgroundColor: 'red',
+        height: '100%',
+        display: 'flex',
+        overflow: 'hidden',
     },
-    {   
-        productId: 'ID6',
-        name: 'Producto 6',
-        price: 500,
+    icon: {
+        fontSize: '5rem',
+        color: '#003360'
     },
-]
+    grow: {
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+        backgroundColor: '#fff',
+        padding: '25px 30px',
+    },
+    logoBlue: {
+        color: '#028ab5',
+        cursor: 'pointer',
+    }
+}));
 
 export default function SecondStep ({step2Items, setStep2Items}) {
 
     const collectionMYB2 = 'Z2lkOi8vc2hvcGlmeS9Db2xsZWN0aW9uLzI3Mjc5NTI3MTMzMA=='
+    const classes = useStyles();
+
+    const [checked, setChecked] = useState(false)
+    const [activeCategory, setActiveCategory] = useState(null)
+    const [catTitle, setCatTitle] = useState(null)
+
+    const [productsMYB2, setProductsMYB2] = useState(null)
+
+    const openPopup = (category, e) => {
+        e.preventDefault();
+        setChecked(true);
+        setActiveCategory(category)
+    };
+
+    const closePopup = (e) => {
+        e.preventDefault();
+        setChecked(false);
+        setActiveCategory(null);
+        setCatTitle(null)
+    };
+
+    useEffect(() => {
+        client.collection.fetchWithProducts(collectionMYB2, {productsFirst: 20}).then((collection) => {
+            // Do something with the collection
+
+            // Se convierte el objeto a JSON
+            var parsedCollection = JSON.parse(JSON.stringify(collection));
+
+            // Se guarda el objeto
+            // productsMYB1 = parsedCollection.products;
+            setProductsMYB2(parsedCollection.products);
+            console.log(productsMYB2)
+        });
+        
+    }, [])
 
     function addItem(id, e) {
         e.preventDefault();
@@ -77,43 +170,112 @@ export default function SecondStep ({step2Items, setStep2Items}) {
         setStep2Items(newItems);
     }
 
-    const mostrarItems = (e) => {
-        e.preventDefault();
-        console.log(step2Items);
-    }
-
     return(
         <div className = {styles.container}>
-        <div className={styles.stepTitle}>
-            <h2>Elige los Productos dentro de tu Box</h2>
-        </div>
-        <div className={styles.productList}>
-            <div className={styles.scrollContainer}>
-                <h3>PRODUCTOS</h3>
-                {/* <button onClick={ (e) => mostrarItems(e) }>Mostrar Step2Items</button> */}
-                {testArray.map((product) => (
-                    <div>
-                        <h5>{product.name}</h5>
-                        <div onClick={(e) => addItem(product.productId, e)}>Añadir producto</div>
-                        <div onClick={(e) => removeItem(product.productId, e)}>Eliminar producto</div>
-                    </div>
-                ))}
-                {
-                    step2Items.length === 0 ? 
-                        <div style={{marginTop:'20px'}}>No hay ninguna caja seleccionada</div>
-                    :
-                        <div style={{marginTop:'20px'}}>
-                            <div>
-                                Los productos seleccionados son:
-                            </div>
-                            {step2Items.map(item => (
-                                <div>{item.productID}</div>
-                            ))}
-                        </div>
-                }
+            <div className={styles.stepTitle}>
+                <h2>Elige los Productos dentro de tu Box</h2>
             </div>
+            <div className={styles.cardContainer}>
+                <div className={styles.categories}>
+                    <div className={styles.catRow}>
+                        <div className={styles.category}>
+                            <Paper className={classes.categoryPaper} onClick={(e) => {openPopup('globo', e)}}>
+                                <LoyaltyOutlinedIcon className={classes.icon}/>
+                                <h4>Moda & Joyería</h4>
+                            </Paper>
+                        </div>
+                        <div className={styles.category}>
+                            <Paper className={classes.categoryPaper} onClick={(e) => {openPopup('flores', e)}}>
+                                <ChildFriendlyOutlinedIcon className={classes.icon}/>
+                                <h4>Moms & Babies</h4>
+                            </Paper>
+                        </div>
+                        <div className={styles.category}>
+                            <Paper className={classes.categoryPaper} onClick={(e) => {openPopup('pastel', e)}}>
+                                <HomeWorkOutlinedIcon className={classes.icon}/>
+                                <h4>Office and Stationary</h4>
+                            </Paper>
+                        </div>
+                        <div className={styles.category}>
+                            <Paper className={classes.categoryPaper} onClick={(e) => {openPopup('globo', e)}}>
+                                <FaceOutlinedIcon className={classes.icon}/>
+                                <h4>For Him</h4>
+                            </Paper>
+                        </div>
+                        <div className={styles.category}>
+                            <Paper className={classes.categoryPaper} onClick={(e) => {openPopup('flores', e)}}>
+                                <LocalBarOutlinedIcon className={classes.icon}/>
+                                <h4>Brides</h4>
+                            </Paper>
+                        </div>
+                    </div>
+                    <div className={styles.catRow}>                        
+                        <div className={styles.category}>
+                            <Paper className={classes.categoryPaper} onClick={(e) => {openPopup('globo', e)}}>
+                                <HomeOutlinedIcon className={classes.icon}/>
+                                <h4>Home & Arts</h4>
+                            </Paper>
+                        </div>
+                        <div className={styles.category}>
+                            <Paper className={classes.categoryPaper} onClick={(e) => {openPopup('flores', e)}}>
+                                <FavoriteBorderOutlinedIcon className={classes.icon}/>
+                                <h4>Bienestar & Cuidado Personal</h4>
+                            </Paper>
+                        </div>
+                        <div className={styles.category}>
+                            <Paper className={classes.categoryPaper} onClick={(e) => {openPopup('pastel', e)}}>
+                                <FreeBreakfastOutlinedIcon className={classes.icon}/>
+                                <h4>Bebidas & complementos</h4>
+                            </Paper>
+                        </div>
+                        <div className={styles.category}>
+                            <Paper className={classes.categoryPaper} onClick={(e) => {openPopup('globo', e)}}>
+                                <FastfoodOutlinedIcon className={classes.icon}/>
+                                <h4>Snacks & Postres</h4>
+                            </Paper>
+                        </div>
+                        <div className={styles.category}>
+                            <Paper className={classes.categoryPaper} onClick={(e) => {openPopup('flores', e)}}>
+                                <CakeOutlinedIcon className={classes.icon}/>
+                                <h4>Pasteles & Festejos</h4>
+                            </Paper>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <Grow in={checked} className={classes.grow}>
+                <div className={styles.productsContainer}>
+                    <div className={styles.categoryTitle}>
+                        <ArrowBackIosIcon className={classes.logoBlue} onClick={(e) => {closePopup(e)}}/>
+                        <div className={styles.title}>
+                            Category Title
+                        </div>
+                    </div>
+                    <Grid container spacing={3}>
+                    {
+                        productsMYB2 === null ? 
+                        '' :
+                        productsMYB2.filter(item => item.productType === activeCategory).map(product => (
+                            <Grid item xs={6} sm={3}>
+                                <Paper className={classes.paper}>
+                                    <div className={styles.productCard}>
+                                        <div className={styles.productInfo}>
+                                            {product.title}
+                                        </div>
+                                        <div className={styles.actions}>
+                                            <button onClick={(e) => addItem(product.variants[0].id, product.images[0].src, e)}>Add</button>
+                                            <button onClick={(e) => removeItem(product.variants[0].id, e)}>Delete</button>
+                                        </div>
+                                    </div>
+                                </Paper>
+                            </Grid>
+                            // <div>{product.title}</div>
+                        ))
+                    }
+                    </Grid>
+                </div>
+            </Grow>
         </div>
-    </div>
     )
     
 }

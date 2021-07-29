@@ -150,7 +150,7 @@ export default function ThirdStep ({step3Items, setStep3Items}) {
                         </Paper>
                     </Grid>
                     <Grid item xs={12} sm={4} className={classes.fullheight}>
-                        <Paper className={classes.paper}>
+                        <Paper className={classes.paper} onClick={(e) => {openPopup('flores', e)}}>
                             <div className={styles.categoryContainer}>
                                 <LocalFloristOutlinedIcon className={classes.icon}/>
                                 <h4>Flores</h4>
@@ -158,7 +158,7 @@ export default function ThirdStep ({step3Items, setStep3Items}) {
                         </Paper>
                     </Grid>
                     <Grid item xs={12} sm={4} className={classes.fullheight}>
-                        <Paper className={classes.paper}>
+                        <Paper className={classes.paper} onClick={(e) => {openPopup('pastel', e)}}>
                             <div className={styles.categoryContainer}>
                                 <CakeOutlinedIcon className={classes.icon}/>
                                 <h4>Pasteles y Velas</h4>
@@ -175,10 +175,11 @@ export default function ThirdStep ({step3Items, setStep3Items}) {
                             Category Title
                         </div>
                     </div>
+                    <Grid container spacing={3}>
                     {
                         productsMYB3 === null ? 
                         '' :
-                        productsMYB3.map(product => (
+                        productsMYB3.filter(item => item.productType === activeCategory).map(product => (
                             <Grid item xs={6} sm={3}>
                                 <Paper className={classes.paper}>
                                     <div className={styles.productCard}>
@@ -195,6 +196,7 @@ export default function ThirdStep ({step3Items, setStep3Items}) {
                             // <div>{product.title}</div>
                         ))
                     }
+                    </Grid>
                 </div>
             </Grow>
         </div>   
