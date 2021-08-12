@@ -11,17 +11,25 @@ export default function HowItWorks() {
                 <p>¿Cómo funciona?</p>
             </div>
             <div className={styles.steps}>
-                <div className={styles.step}>
-                    <IoMdGift className={styles.icon} />
-                    <h4>Selecciona un Regalo</h4>
+                <div className={styles.stepRow}>
+                    <div className={styles.step}>
+                        <IoMdGift className={styles.icon} />
+                        <h4>Selecciona un Regalo</h4>
+                    </div>
+                    <div className={styles.step}>
+                        <CgCardHearts className={styles.icon}/>
+                        <h4>Personaliza tu Mensaje</h4>
+                    </div>
                 </div>
-                <div className={styles.step}>
-                    <CgCardHearts className={styles.icon}/>
-                    <h4>Personaliza tu Mensaje</h4>
-                </div>
-                <div className={styles.step}>
-                    <BiPaperPlane className={styles.icon}/>
-                    <h4>Envía y Comparte Felicidad</h4>
+                <div className={styles.stepRow}>
+                    <div className={styles.step}>
+                        <BiPaperPlane className={styles.icon}/>
+                        <h4>Envía y Comparte Felicidad</h4>
+                    </div>
+                    <div className={styles.step}>
+                        <CgCardHearts className={styles.icon}/>
+                        <h4>Personaliza tu Mensaje</h4>
+                    </div>
                 </div>
             </div>
         </div>

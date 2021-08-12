@@ -5,14 +5,26 @@
     width: 42vw;
     height: 50vw;
     position: absolute;
-    top: 100px;
+    top: 14%;
     left: 0px;
+
+    @media (max-width: 980px) {
+        top: 25%;
+    }
+
+    @media (max-width: 780px) {
+        display: none;
+    }
 }
 
 .onboarding{
     display: flex;
     justify-content: center;
-    padding: 140px 0px;
+    padding: 130px 0px;
+
+    @media (max-width: 780px) {
+        padding: 85px 0px;
+    }
 }
 
 .contentBlock{
@@ -20,6 +32,12 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+
+    @media (max-width: 780px) {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+    }
 }
 
 .content{
@@ -35,6 +53,11 @@
 
     button{
         margin-top: 35px;
+    }
+
+    @media (max-width: 780px) {
+        width: 100%;
+        padding: 0px 5%;
     }
 }
 
