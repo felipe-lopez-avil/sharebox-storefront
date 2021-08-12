@@ -1,0 +1,147 @@
+.container{
+    height: 650px;
+    display: flex;
+    justify-content: center;
+    padding: 50px;
+
+    @media (max-width: 1100px){
+        padding: 50px 30px;
+    }
+
+    @media (max-width: 790px){
+        height: auto;
+        flex-direction: column;
+    }
+}
+
+.leftCol{
+    width: 50%;
+    padding-right: 15px;
+
+    @media (max-width: 1100px){
+        padding-right: 10px;
+        width: 40%;
+    }
+
+    @media (max-width: 790px){
+        width: 100%;
+        padding: 0;
+        margin-bottom: 15px;
+    }
+}
+
+.rightCol{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-left: 15px;
+
+    @media (max-width: 1100px){
+        padding-left: 10px;
+        width: 60%;
+    }
+
+    @media (max-width: 790px){
+        width: 100%;
+        padding: 0;
+    }
+}
+
+.mainSection{
+    background-color: #EFB4DB;
+    height: 100%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    padding: 0px 15px;
+    padding-top: 50px;
+
+    @media (max-width: 790px){
+        padding: 0px 25px;
+        height: 260px;
+        flex-direction: row;
+    }
+}
+
+.upperSection{
+    background-color: #C2A4D7;
+    height: 265px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    overflow: hidden;
+    padding: 0px 25px;
+    margin-bottom: 15px;
+
+    @media (max-width: 790px){
+        height: 200px;
+    }
+}
+
+.downSection{
+    background-color: #919BD8;
+    height: 265px;
+    border-radius: 10px;
+    padding: 0px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+
+    @media (max-width: 790px){
+        height: 200px;
+    }
+}
+
+.sectionHeader{
+    text-align: center;
+
+    h4{
+        font-size: 1.9rem;
+        text-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2);
+        color: #fff;
+        margin-bottom: 30px;
+    }
+
+    @media (max-width: 790px){
+        text-align: inherit;
+        width: 300px;
+
+        h4{
+            margin-bottom: 15px;
+        }
+    }
+
+    @media (max-width: 480px){
+        width: 250px;
+    }
+}
+
+.halfSectionHeader{
+    width: 300px;
+
+    &.textRight{
+        text-align: right;
+    }
+    
+    h4{
+        font-size: 1.6rem;
+        text-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2);
+        color: #fff;
+        margin-bottom: 15px;
+    }
+
+    @media (max-width: 480px){
+        width: 250px;
+    }
+}
+
+.btn{
+    background-color: #028ab5;
+    color: #fff;
+    padding-top: 100px 15px;
+}

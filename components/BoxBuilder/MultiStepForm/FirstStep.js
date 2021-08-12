@@ -52,8 +52,9 @@ export default function FirstStep ({step1Items, setStep1Items}) {
 
     function addItem(id, image, e) {
         e.preventDefault();
-
-        var toAdd;
+        
+        setStep1Items([{productID: id, quantity: 1, image: image,}]);
+        /* var toAdd;
         var itemIndex = -1;
 
         if (step1Items.length > 0) {
@@ -82,7 +83,8 @@ export default function FirstStep ({step1Items, setStep1Items}) {
             var newItems = [...step1Items];
             newItems[itemIndex].quantity = newItems[itemIndex].quantity + 1;
             setStep1Items(newItems);
-        }
+        } */
+
     }
 
     const removeItem = (id, e) => {

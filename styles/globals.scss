@@ -9,6 +9,7 @@ body {
   margin: 0;
   color: #003360;
   width: 100% !important;
+  line-height: 1.2;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -47,9 +48,8 @@ button{
 }
 
 button:hover{
-  color: #028ab5;
-  background-color: rgba(255, 255, 255, 0);
-  border-color: #028ab5;
+  background-color: #0082aa;
+  border-color: #0082aa;
 }
 
 

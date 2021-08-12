@@ -5,20 +5,23 @@ import HowItWorks from '../components/Home/HowItWorks/HowItWorks'
 import Bestsellers from '../components/Home/Bestsellers/Bestsellers'
 import Onboarding from '../components/Home/Onboarding/Onboarding'
 import InstaFeed from '../components/Home/InstaFeed/InstaFeed'
+import SectionsGrid from '../components/Home/SectionsGrid/SectionsGrid'
 
 export default function Home() {
   return (
     <div>
 
       <Banner/>
-
-      <HowItWorks/>
-
+      <SectionsGrid/>
       <Bestsellers/>
+      <Onboarding/>
+      <InstaFeed/>
+
+      {/* <HowItWorks/>
 
       <Onboarding/>
 
-      <InstaFeed/>
+      <InstaFeed/> */}
 
     </div>
   )
