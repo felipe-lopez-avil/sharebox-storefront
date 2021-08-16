@@ -102,3 +102,19 @@ button:hover{
 .MuiAccordionSummary-root{
   min-height: 38px !important;
 }
+
+.button{
+  background-color: #028ab5;
+  color: #fff;
+  font-weight: 600;
+  padding: 10px 25px;
+  border: 2px solid #028ab5;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.button:hover{
+  background-color: #0082aa;
+  border-color: #0082aa;
+}

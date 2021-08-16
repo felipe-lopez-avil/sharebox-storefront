@@ -31,12 +31,18 @@
         font-size: 0.9rem;
         font-weight: 500;
         color: #59748b;
-        height: 55px;
+        height: 100%;
         display: flex;
         align-items: center;
-        cursor: pointer;
         position: relative;
+
+        span{
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
     }
+
 }
 
 .navItemContent{
@@ -66,6 +72,27 @@
     }
 }
 
+.itemImage{
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .image{
+        width: 200px;
+        height: 120px;
+        position: relative;
+        align-self: center;
+    }
+}
+
+.itemDescription{
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
 .gtgCategories{
     display: flex;
     flex-direction: column;
@@ -78,6 +105,7 @@
         align-items: center;
         padding: 2px 10px;
         border-radius: 5px;
+        cursor: pointer;
 
         &:hover{
             background-color: #ececec;
