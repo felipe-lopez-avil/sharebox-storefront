@@ -4,12 +4,12 @@ import Link from 'next/link'
 import { makeStyles } from '@material-ui/core/styles';
 import styles from './Navbar.module.scss'
 
-import Collapse from '@material-ui/core/Collapse';
 import Grow from '@material-ui/core/Grow';
 import Slide from '@material-ui/core/Slide';
 import { FiShoppingBag } from 'react-icons/fi'
+import { FaBars } from 'react-icons/fa'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import zIndex from '@material-ui/core/styles/zIndex';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -27,6 +27,16 @@ const useStyles = makeStyles((theme) => ({
         borderRadius: '0px 0px 10px 10px',
         display: 'flex',
     },
+    slide: {
+        position: 'fixed',
+        top: '0',
+        right: '0',
+        width: '100%',
+        height: '100%',
+        zIndex: '1',
+        display: 'flex',
+        justifyContent: 'flex-end',
+    }
   }));
 
 export default function Navbar () {
@@ -36,7 +46,8 @@ export default function Navbar () {
     const [gtg, setGtg] = useState(false);
     const [myb, setMyb] = useState(false);
     const [gfm, setGfm] = useState(false);
-    const [sbcorp, setSbcorp] = useState(false);
+
+    const [mobileMenu, setMobileMenu] = useState(false);
 
     useEffect(() => {
         if(typeof window !== 'undefined'){
@@ -54,11 +65,19 @@ export default function Navbar () {
         setGfm(!gfm);
     }; 
 
+    const openMobileMenu = () => {
+        setMobileMenu(true)
+    }
+
+    const closeMobileMenu = () => {
+        setMobileMenu(false)
+    }
+
     return (
         <>
             <div className={styles.desktopNavbar}>
                 <div className={styles.logo}>
-                    <img src='https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Sharebox_editable-17.png?v=1614310399'/>
+                    <Link href="/"><img src='https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Sharebox_editable-17.png?v=1614310399'/></Link>
                 </div>
 
                 {windowReady === true && 
@@ -144,6 +163,24 @@ export default function Navbar () {
                     </div>
                 </div>  
             </div>
+            
+            <div className={styles.mobileNavbar}>
+                <div className={styles.mobileLogo}>
+                    <Link href="/"><img src='https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Sharebox_editable-17.png?v=1614310399'/></Link>
+                </div>
+                <div className={styles.icons}>
+                    <div className={styles.mobileIcon}>
+                        <FiShoppingBag style={{ fontSize: 25 }}/>
+                    </div>
+                    <div className={styles.mobileIcon} onClick={openMobileMenu}>
+                        <FaBars style={{ fontSize: 25 }}/>
+                    </div>
+                </div>
+            </div>
+
+            <Slide className={classes.slide} direction="left" in={mobileMenu} mountOnEnter unmountOnExit>
+                <div className={styles.mobileMenuBackground}>Test</div>
+            </Slide>
         </>
     )
 }
