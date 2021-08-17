@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image'
+import Link from 'next/link'
 import { makeStyles } from '@material-ui/core/styles';
 import styles from './Navbar.module.scss'
 
@@ -80,10 +81,10 @@ export default function Navbar () {
                                     <p>Descripción de Gifts To Go! Lorem Ipsum dolor sit amet</p>
                                 </div>
                                 <div className={styles.gtgCategories}>
-                                    <div className={styles.categoryLink}>Boxes</div>
-                                    <div className={styles.categoryLink}>Kits Armados</div>
-                                    <div className={styles.categoryLink}>Globos y Flores</div>
-                                    <div className={styles.categoryLink}>Snacks y Postres</div>
+                                    <Link href="/box-to-go"><div className={styles.categoryLink}>Boxes</div></Link>
+                                    <Link href="/box-to-go"><div className={styles.categoryLink}>Kits Armados</div></Link>
+                                    <Link href="/box-to-go"><div className={styles.categoryLink}>Globos y Flores</div></Link>
+                                    <Link href="/box-to-go"><div className={styles.categoryLink}>Snacks y Postres</div></Link>
                                 </div>
                             </div>
                         </Grow>
@@ -105,7 +106,7 @@ export default function Navbar () {
                                 <div className={styles.itemDescription}>
                                     <h3>Make Your Box</h3>
                                     <p>Descripción de Make Your Box Lorem Ipsum dolor sit amet</p>
-                                    <div className="button">¡Empieza a Crear!</div>
+                                    <Link href="/box-builder"><div className="button">¡Empieza a Crear!</div></Link>
                                 </div>
                             </div>
                         </Grow>
@@ -127,7 +128,7 @@ export default function Navbar () {
                                 <div className={styles.itemDescription}>
                                     <h3>GIFTS FOR ME</h3>
                                     <p>Descripción de Gifts For Me Lorem Ipsum dolor sit amet</p>
-                                    <div className="button">¡Ver productos!</div>
+                                    <Link href="/out-of-the-box"><div className="button">¡Ver productos!</div></Link>
                                 </div>
                             </div>
                         </Grow>
