@@ -12,6 +12,10 @@
         height: auto;
         flex-direction: column;
     }
+
+    @media (max-width: 1100px){
+        padding: 50px 3%;
+    }
 }
 
 .leftCol{
