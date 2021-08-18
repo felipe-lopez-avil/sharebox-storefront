@@ -1,5 +1,143 @@
 .footer{
     background-color: #003360;
-    height: 250px;
-    width: 100%;
+    padding: 70px 0px;
+    display: flex;
+    justify-content: center;
+
+    @media (max-width: 750px) {
+        flex-direction: column;
+        align-items: center;
+        padding: 50px 0px;
+    }
+}
+
+.links{
+    width: 250px;
+    color: #b3dbe5;
+
+    .sectionTitle{
+        font-size: 1.2rem;
+        color: #b3dbe5;
+        margin-bottom: 25px;
+    }
+    
+    .link{
+        margin: 5px 0;
+        font-weight: 600;
+    }
+
+    @media (max-width: 1050px) {
+        width: 200px;
+        font-size: 0.9rem;
+    }
+
+    @media (max-width: 890px) {
+        width: 150px;
+        font-size: 0.9rem;
+    }
+
+    @media (max-width: 750px) {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 35px;
+
+        .link{
+            margin: 15px 0;
+            font-weight: 600;
+        }
+    }
+}
+
+.newsletter{
+    width: 500px;
+    height: 150px;
+    padding: 0px 25px;
+
+    .sectionTitle{
+        font-size: 1.2rem;
+        color: #b3dbe5;
+        margin-bottom: 25px;
+    }
+
+    .input{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 500;
+
+        .textArea{
+            width: 70%;
+            background-color: #fafafa;
+            padding: 8px 15px;
+            color: dimgray;
+        }
+
+        .button{
+            width: 30%;
+            background-color: #028ab5;
+            padding: 8px 15px;
+            text-align: center;
+            color: #fff;
+        }
+    }
+
+    @media (max-width: 1050px) {
+        width: 400px;
+
+        .input{
+            flex-direction: column;
+    
+            .textArea{
+                width: 100%;
+                margin-bottom: 5px;
+            }
+    
+            .button{
+                width: 100%;
+            }
+        }
+    }
+
+    @media (max-width: 890px) {
+        width: 350px;
+    }
+
+    @media (max-width: 750px){
+        width: 100%;
+        text-align: center;
+        margin-bottom: 35px;
+    }
+}
+
+.contact{
+    width: 300px;
+    color: #b3dbe5;
+
+    .sectionTitle{
+        font-size: 1.2rem;
+        color: #b3dbe5;
+        margin-bottom: 25px;
+    }
+    
+    .adress{
+        font-weight: 600;
+    }
+
+    @media (max-width: 1050px) {
+        width: 250px;
+        font-size: 0.9rem;
+    }
+
+    @media (max-width: 890px) {
+        width: 200px;
+    }
+
+    @media (max-width: 750px){
+        width: 100%;
+        text-align: center;
+    }
+}
+
+.sectionTitle{
+    font-size: 1.2rem;
 }
