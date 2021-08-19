@@ -153,13 +153,17 @@ export default function Navbar () {
                         </Grow>
                     </div>
                     <div className={styles.navItem}>
-                        <span>Sharebox Corporate</span>
+                        <Link href="/corporate">
+                            <span>Sharebox Corporate</span>
+                        </Link>
                     </div>
                 </div>
                 }
                 <div className={styles.icons}>
-                    <div className={styles.icon}>                    
-                        <FiShoppingBag style={{ fontSize: 27 }}/>
+                    <div className={styles.icon}>
+                        <Link href="/cart">                    
+                            <FiShoppingBag style={{ fontSize: 27 }}/>
+                        </Link>
                     </div>
                 </div>  
             </div>
@@ -170,7 +174,9 @@ export default function Navbar () {
                 </div>
                 <div className={styles.icons}>
                     <div className={styles.mobileIcon}>
-                        <FiShoppingBag style={{ fontSize: 25 }}/>
+                        <Link href="/cart">
+                            <FiShoppingBag style={{ fontSize: 25 }}/>
+                        </Link>
                     </div>
                     <div className={styles.mobileIcon} onClick={openMobileMenu}>
                         <FaBars style={{ fontSize: 25 }}/>
