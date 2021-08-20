@@ -1,0 +1,133 @@
+.howItWorks{
+    min-height: calc(100vh - 85px);
+    background-image: url("https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Fondo.png?v=1627590003");
+    background-color: #004c6d;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 5%; 
+    overflow: hidden;
+}
+
+.header{
+    color: #fff;
+    text-align: center;
+
+    h2{
+        color: #f1d433;
+        font-size: 3.5rem;
+        font-weight: 600;
+    }
+
+    p{
+        font-size: 2rem;
+        font-weight: 500;
+        margin-top: 15px;
+        margin-bottom: 10px;
+    }
+
+    span{
+        font-size: 1.1rem;
+        font-weight: 400;
+    }
+}
+
+.steps{
+    margin-top: 50px;
+    width: 100%;
+}
+
+.step1, 
+.step2,
+.step3,
+.step4,
+.step5,
+.step6{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+}
+
+.step2,
+.step4,
+.step6{
+    margin-top: 60px;
+}
+
+.stepImage{
+    position: relative;
+    width: 10vw;
+    height: 10vw;
+}
+
+.description{
+    color: #fff;
+    font-weight: 600;
+    padding: 0px 10px;
+}
+
+@media (max-width: 960px) {
+    .step2,
+    .step5{
+        margin-top: 60px;
+    }
+
+    .step1,
+    .step3,
+    .step4,
+    .step6{
+        margin-top: 0px;
+    }
+
+    .stepImage{
+        position: relative;
+        width: 20vw;
+        height: 20vw;
+    }
+}
+
+@media (max-width: 600px) {
+    .step2,
+    .step4,
+    .step6{
+        margin-top: 60px;
+    }
+
+    .step1,
+    .step3,
+    .step5{
+        margin-top: 0px;
+    }
+
+    .stepImage{
+        position: relative;
+        width: 30vw;
+        height: 30vw;
+    }
+}
+
+@media (max-width: 390px){
+    .header{
+    
+        h2{
+            font-size: 2.5rem;
+        }
+    
+        p{
+            font-size: 1.3rem;
+        }
+    
+        span{
+            font-size: 1.1rem;
+            font-weight: 400;
+        }
+    }
+
+    .description{
+        font-size: 0.9rem;
+    }
+}

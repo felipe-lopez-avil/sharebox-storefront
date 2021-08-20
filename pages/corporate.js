@@ -1,6 +1,9 @@
 import Image from 'next/image'
 
 import styles from '../styles/corporate.module.scss'
+import Hero from '../components/Corporate/Hero/Hero'
+import Moments from '../components/Corporate/Moments/Moments';
+import HowItWorks from '../components/Corporate/HowItWorks/HowItWorks';
 
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
@@ -17,21 +20,9 @@ export default function Corporate() {
 
     return(
         <div className={styles.corporate}>
-            <div className={styles.heroSection}>
-                <div className={styles.heroImage}>
-                    <img src="https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Main_3b.png?v=1628265752"/>
-                </div>
-                <div className={styles.heroContent}>
-                    <h1>Tu generador <br/> de experiencias</h1>
-                    <div className={styles.separator}></div>
-                    <p>
-                        Somos el mejor aliado de tu Negocio o Institución.
-                        Creamos experiencias únicas, a través de BOXES personalizadas
-                        para tus clientes, colaboradores y cualquier ocasión.
-                    </p>
-                    <button>¡Contáctanos ahora!</button>
-                </div>
-            </div>
+            <Hero/>
+            <Moments/>
+            <HowItWorks/>
         </div>
     )
 }

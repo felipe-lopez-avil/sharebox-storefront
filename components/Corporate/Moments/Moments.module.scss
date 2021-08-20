@@ -1,0 +1,105 @@
+.container{
+    padding: 85px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.moments{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @media (max-width: 700px) {
+        flex-direction: column;
+    }
+}
+
+.content{
+    width: 35%;
+    text-align: center;
+
+    h3{
+        font-size: 2.5rem;
+        margin-bottom: 35px;
+    }
+
+    p{
+        font-size: 1.1rem;
+    }
+
+    .bold{
+        font-weight: 600;
+        margin-bottom: 45px;
+    }
+
+    @media (max-width: 1295px) {
+        width: 45%;
+    }
+
+    @media (max-width: 1050px) {
+        width: 49%;
+    }
+
+    @media (max-width: 700px) {
+        width: 80%;
+    }
+
+    @media (max-width: 500px) {
+        width: 80%;
+    }
+}
+
+.imageCarousel{
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    @media (max-width: 1050px) {
+        width: 40%;
+    }
+
+    @media (max-width: 700px) {
+        width: 60%;
+        justify-content: center;
+        margin-top: 40px;
+    }
+
+    @media (max-width: 500px) {
+        width: 90%;
+    }
+}
+
+.imagesContainer{
+    width: 25vw;
+    height: 25vw;
+    background-color: cadetblue;
+
+    @media (max-width: 1050px) {
+        width: 35vw;
+        height: 35vw;
+    }
+
+    @media (max-width: 700px) {
+        width: 55vw;
+        height: 55vw;
+    }
+
+    @media (max-width: 500px) {
+        width: 85vw;
+        height: 85vw;
+    }
+}
+
+.ocassionSlide{
+    padding: 20px 0px;
+}
+
+.ocassion{
+    background-color: #003360;
+    color: #fff;
+    padding: 15px 35px;
+    border-radius: 10px;
+}
