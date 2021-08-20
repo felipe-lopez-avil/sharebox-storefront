@@ -1,0 +1,13 @@
+.formSection{
+    min-height: calc(100vh - 85px);
+    background-color: #004c6e;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    h2{
+        color: #f1d433;
+    }
+}

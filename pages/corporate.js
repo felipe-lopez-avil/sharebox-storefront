@@ -4,6 +4,8 @@ import styles from '../styles/corporate.module.scss'
 import Hero from '../components/Corporate/Hero/Hero'
 import Moments from '../components/Corporate/Moments/Moments';
 import HowItWorks from '../components/Corporate/HowItWorks/HowItWorks';
+import Form from '../components/Corporate/Form/Form';
+import Urgent from '../components/Corporate/Urgent/Urgent';
 
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
@@ -23,6 +25,8 @@ export default function Corporate() {
             <Hero/>
             <Moments/>
             <HowItWorks/>
+            <Form/>
+            <Urgent/>
         </div>
     )
 }
