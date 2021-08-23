@@ -1,0 +1,33 @@
+.container{
+    padding: 120px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.body{
+    max-width: 800px;
+    text-align: justify;
+    font-size: 0.9rem;
+
+    h1{
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    h2{
+        font-size: 1rem;
+        font-weight: 600;
+        margin-top: 45px;
+    }
+
+    h3{
+        font-size: 1rem;
+        font-weight: 600;
+        margin-top: 35px;
+    }
+}
+
+.noMargin{
+    margin: 3px 0px;
+}

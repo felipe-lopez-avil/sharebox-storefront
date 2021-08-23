@@ -1,8 +1,9 @@
 .footer{
     background-color: #003360;
-    padding: 70px 0px;
     display: flex;
     justify-content: center;
+    padding-top: 70px;
+    padding-bottom: 120px;
 
     @media (max-width: 750px) {
         flex-direction: column;
