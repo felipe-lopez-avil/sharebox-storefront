@@ -12,7 +12,6 @@
 
 .content{
     display: flex;
-    background-color: royalblue;
     width: 90vw;
     min-height: 200px;
 }
@@ -20,14 +19,12 @@
 .filters{
     width: 18vw;
     min-height: 200px;
-    background-color: sandybrown;
     padding-right: 20px;
 }
 
 .products{
     width: 72vw;
     min-height: 200px;
-    background-color: seagreen;
     display: flex;
 }
 
@@ -49,13 +46,34 @@
 }
 
 .productTitle{
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     font-weight: 600;
+    margin-top: 10px;
 }
 
 .price{
-    font-size: 0.8rem;
+    font-size: 1rem;
     font-weight: 400;
+    margin-bottom: 20px;
+}
+
+.filters{
+    
+    h4{
+        font-size: 1rem;
+        font-weight: 700;
+    }
+
+    .filter{
+        margin-top: 25px;
+    }
+
+    h5{
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+    
 }
 
 @media (max-width: 1250px) {
@@ -81,7 +99,7 @@
     }
 
     .filters{
-        width: 90%;
+        width: 100%;
         min-height: 50px;
         margin-bottom: 15px;
     }
@@ -115,6 +133,6 @@
     }
 
     .productImage{
-        height: 57vw;
+        height: 62vw;
     }
 }
