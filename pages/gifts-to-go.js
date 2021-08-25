@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { client } from '../utils/shopify'
 import styles from '../styles/gifts-to-go.module.scss'
+import Image from 'next/image';
+import Link from 'next/link'
 
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
@@ -112,13 +114,21 @@ export default function GiftsToGo ({collection}) {
                             {products.map(product => (
 
                                 <Grid item xs={6} sm={4} md={3} className={classes.grid}>
-                                    <div className={styles.productContainer}>
-                                        <div className={styles.productImage}></div>
-                                        <div className={styles.productDescription}>
-                                            <div className={styles.productTitle}>{product.title}</div>
-                                            <div className={styles.price}>${product.variants[0].price}</div>
+                                    <Link href={`/gifts-to-go/${product.handle}`}>
+                                        <div className={styles.productContainer}>
+                                            <div className={styles.productImage}>
+                                                <Image
+                                                    src={product.images[0].src}
+                                                    layout="fill"
+                                                    objectFit="cover"
+                                                />
+                                            </div>
+                                            <div className={styles.productDescription}>
+                                                <div className={styles.productTitle}>{product.title}</div>
+                                                <div className={styles.price}>${product.variants[0].price}</div>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </Link>
                                 </Grid>
                         
                                 /* <Link href={`/${link}/${product.handle}`}>

@@ -8,7 +8,7 @@ export default function HowItWorks() {
     return(
         <div className={styles.HowItWorks}>
             <div className={styles.title}>
-                <p>¿Cómo funciona?</p>
+                <h3>¿Cómo funciona?</h3>
             </div>
             <div className={styles.steps}>
                 <div className={styles.stepRow}>

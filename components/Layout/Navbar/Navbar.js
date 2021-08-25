@@ -100,10 +100,10 @@ export default function Navbar () {
                                     <p>Descripción de Gifts To Go! Lorem Ipsum dolor sit amet</p>
                                 </div>
                                 <div className={styles.gtgCategories}>
-                                    <Link href="/box-to-go"><div className={styles.categoryLink}>Boxes</div></Link>
-                                    <Link href="/box-to-go"><div className={styles.categoryLink}>Kits Armados</div></Link>
-                                    <Link href="/box-to-go"><div className={styles.categoryLink}>Globos y Flores</div></Link>
-                                    <Link href="/box-to-go"><div className={styles.categoryLink}>Snacks y Postres</div></Link>
+                                    <Link href="/gifts-to-go"><div className={styles.categoryLink}>Boxes</div></Link>
+                                    <Link href="/gifts-to-go"><div className={styles.categoryLink}>Kits Armados</div></Link>
+                                    <Link href="/gifts-to-go"><div className={styles.categoryLink}>Globos y Flores</div></Link>
+                                    <Link href="/gifts-to-go"><div className={styles.categoryLink}>Snacks y Postres</div></Link>
                                 </div>
                             </div>
                         </Grow>
