@@ -2,6 +2,51 @@
     min-height: 100vh;
     padding-top: 85px;
     display: flex;
-    align-items: center;
     justify-content: center;
+}
+
+.product{
+    width: 900px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+}
+
+.productImages{
+    width: 48%;
+    height: 500px;
+    border-radius: 5px;
+    background-color: rgb(248, 248, 248);
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.15);
+}
+
+.productInfo{
+    width: 48%;
+    background-color: #fff;
+
+    .title{
+        font-size: 2.5rem;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+
+    .price{
+        font-size: 1.8rem;
+        font-weight: 600;
+        margin-bottom: 30px;
+    }
+
+    .dropdown{
+        display: flex;
+        align-items: center;
+        font-size: 1.2rem;
+        font-family: 'Poppins', Helvetica, Arial, sans-serif;
+        font-weight: 500;
+        cursor: context-menu;
+    }
+
+    .addToCart{
+        width: 100%;
+        margin-top: 30px;
+    }
 }

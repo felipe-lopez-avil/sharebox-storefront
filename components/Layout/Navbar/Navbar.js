@@ -147,7 +147,7 @@ export default function Navbar () {
                                 <div className={styles.itemDescription}>
                                     <h3>GIFTS FOR ME</h3>
                                     <p>Descripción de Gifts For Me Lorem Ipsum dolor sit amet</p>
-                                    <Link href="/out-of-the-box"><div className="button">¡Ver productos!</div></Link>
+                                    <Link href="/gifts-for-me"><div className="button">¡Ver productos!</div></Link>
                                 </div>
                             </div>
                         </Grow>

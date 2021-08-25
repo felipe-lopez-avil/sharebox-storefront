@@ -8,6 +8,7 @@ import InstaFeed from '../components/Home/InstaFeed/InstaFeed'
 import SectionsGrid from '../components/Home/SectionsGrid/SectionsGrid'
 
 export default function Home() {
+
   return (
     <div>
 
