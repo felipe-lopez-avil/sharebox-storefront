@@ -9,6 +9,7 @@ import Slide from '@material-ui/core/Slide';
 import { FiShoppingBag } from 'react-icons/fi'
 import { FaBars } from 'react-icons/fa'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import CloseIcon from '@material-ui/icons/Close';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -185,7 +186,14 @@ export default function Navbar () {
             </div>
 
             <Slide className={classes.slide} direction="left" in={mobileMenu} mountOnEnter unmountOnExit>
-                <div className={styles.mobileMenuBackground}>Test</div>
+                <div>
+                    <div className={styles.mobileMenuBackground}>
+                        <div className={styles.closeSection}>
+                            <CloseIcon style={{ fontSize: 40 }} onClick={closeMobileMenu}/>
+                        </div>
+
+                    </div>
+                </div>
             </Slide>
         </>
     )
