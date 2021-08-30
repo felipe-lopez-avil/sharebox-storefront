@@ -213,7 +213,7 @@ export default function GiftsToGo ({collection}) {
 export async function getServerSideProps() {
     // Fetch data from external API
 
-    const collectionId = 'Z2lkOi8vc2hvcGlmeS9Db2xsZWN0aW9uLzI3NTY0MjE4NzkzOA==';
+    const collectionId = 'Z2lkOi8vc2hvcGlmeS9Db2xsZWN0aW9uLzIxMjM4MTEzOTEwNg==';
 
     const collection = await client.collection.fetchWithProducts(collectionId, {productsFirst: 50})
     

@@ -125,3 +125,25 @@ button:hover{
   background-color: #0082aa;
   border-color: #0082aa;
 }
+
+select{
+  appearance: none;
+  margin: 0;
+  font-family: inherit;
+  outline: none;
+  width: 100%;
+  min-width: 200px;
+  border: 1px solid #777;
+  border-radius: 0.25em;
+  padding: 0.4em 0.5em;
+  font-size: 1rem;
+  cursor: pointer;
+  line-height: 1.1;
+  background-color: #fff;
+  background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+  margin-top: 4px;
+}
+
+select::-ms-expand {
+  display: none;
+}
