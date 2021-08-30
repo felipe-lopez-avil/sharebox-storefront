@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
         right: '0',
         width: '100%',
         height: '100%',
-        zIndex: '1',
+        zIndex: '100000',
         display: 'flex',
         justifyContent: 'flex-end',
     }
@@ -191,7 +191,28 @@ export default function Navbar () {
                         <div className={styles.closeSection}>
                             <CloseIcon style={{ fontSize: 40 }} onClick={closeMobileMenu}/>
                         </div>
-
+                        <div className={styles.mobileNavigation}>
+                            <Link href="/gifts-to-go">
+                                <div className={styles.mobileNavItem} onClick={closeMobileMenu}>
+                                    Gifts To Go
+                                </div>
+                            </Link>
+                            <Link href="/make-your-box">
+                                <div className={styles.mobileNavItem} onClick={closeMobileMenu}>
+                                    Make Your Box
+                                </div>
+                            </Link>
+                            <Link href="/gifts-for-me">
+                                <div className={styles.mobileNavItem} onClick={closeMobileMenu}>
+                                    Gifts For Me
+                                </div>
+                            </Link>
+                            <Link href="/corporate">
+                                <div className={styles.mobileNavItem} onClick={closeMobileMenu}>
+                                   Sharebox Corporate
+                                </div>
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </Slide>
