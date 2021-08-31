@@ -4,10 +4,12 @@ import Link from 'next/link'
 import {client} from '../utils/shopify'
 
 import ProductsInCart from '../components/CartPage/ProductsInCart/ProductsInCart'
-import { TrendingUpTwoTone } from '@material-ui/icons'
+import CardModal from '../components/CartPage/CardModal.js/CardModal'
+import { Height, TrendingUpTwoTone } from '@material-ui/icons'
 
-import Paper from '@material-ui/core/Paper';
+import { makeStyles } from '@material-ui/core/styles';
 import Grow from '@material-ui/core/Grow';
+
 
 const getDataFromStorage = (key) => {
     const storage = window.localStorage;
@@ -19,7 +21,20 @@ const setDataToStorage = (key, data) => {
     storage.setItem(key, JSON.stringify(data))
 }
 
+const useStyles = makeStyles((theme) => ({
+    paper: {
+      margin: theme.spacing(1),
+      position: 'fixed',
+      width: '500px',
+      height: '200px',
+      backgroundColor: 'red',
+      top: '50%',
+      left: '50%'
+    }
+}));
+
 export default function Cart () {
+    const classes = useStyles();
     
     /* const [itemsInCart, setItemsInCart] = useState(0)
     const [checkoutExist, setCheckoutExist] = useState(false)
@@ -36,6 +51,15 @@ export default function Cart () {
     }, [])
     console.log('Checkout:')
     console.log(checkout);
+
+    const openCardModal = () => {
+        setCardModal(true)
+    }
+
+    const closeCardModal = () => {
+        setCardModal(false);
+    }
+
 
     return (
         <div className={styles.container}>
@@ -74,7 +98,7 @@ export default function Cart () {
                         </div>
                         <div className={styles.cardAndDate}>
                             <div className={styles.choose}>
-                                <button className={styles.chooseButton}>SELECCIONA UNA TARJETA TARJETA</button>
+                                <button className={styles.chooseButton} onClick={openCardModal}>SELECCIONA UNA TARJETA TARJETA</button>
                                 <button className={styles.chooseButton}>SELECCIONA LA HORA Y FECHA DE ENTREGA</button>
                             </div>
                             <div className={styles.options}>
@@ -103,13 +127,11 @@ export default function Cart () {
                 :
                     <h3>NO HAY PRODUCTOS EN EL CARRITO</h3>}
             </div>
-            {/* <Grow in={cardModal}>
-                <Paper elevation={4} className={classes.paper}>
-                    <svg className={classes.svg}>
-                    <polygon points="0,100 50,00, 100,100" className={classes.polygon} />
-                    </svg>
-                </Paper>
-            </Grow> */}
+            <Grow in={cardModal}>
+                <div className={styles.modal}>
+                    <CardModal closeCardModal={closeCardModal}/>
+                </div>
+            </Grow>
         </div>
     )  
 }
