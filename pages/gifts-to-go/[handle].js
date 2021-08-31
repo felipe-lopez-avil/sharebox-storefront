@@ -18,12 +18,27 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+const getDataFromStorage = (key) => {
+    const storage = window.localStorage;
+    return JSON.parse(storage.getItem(key))
+}
+
+const setDataToStorage = (key, data) => {
+    const storage = window.localStorage;
+    storage.setItem(key, JSON.stringify(data))
+}
+
+const parseData = (data) => {
+    return JSON.parse(JSON.stringify(data))
+}
+
 export default function GTGProduct ({product, collection}) {
     const classes = useStyles();
 
     const [multiVariants, setMultiVariants] = useState(false)
     const [formData, setFormData] = useState({})
     const [windowReady, setWindowReady] = useState(false)
+    const [checkout, setCheckout] = useState(null)
 
     useEffect(() => {
         console.log(product)
@@ -84,8 +99,43 @@ export default function GTGProduct ({product, collection}) {
         })
     }
 
-    const handleFormData = (event) => {
-       
+    const activeVariant = (event) => {
+        console.log(variantIndex)
+    }
+    
+    const addToCart = async () => {
+
+        // Local Storage is checked to see if a CheckoutID already exists. If not, a new one is created;
+       /*  const storage = window.localStorage;
+        let checkout = storage.getItem("checkout"); */
+        let checkoutTemp = null
+        if (getDataFromStorage('checkout')) {
+            checkoutTemp = getDataFromStorage('checkout')
+        }else{
+            checkoutTemp = await client.checkout.create()
+        }
+        let checkout = parseData(checkoutTemp)
+        const checkoutId = checkout.id
+        const lineItemsToAdd = [
+        {
+            variantId: product.variants[variantIndex].id,
+            quantity: 1,
+            // customAttributes: [{key: "MyKey", value: "MyValue"}]
+        }
+        ];
+
+        checkout = await client.checkout.addLineItems(checkoutId, lineItemsToAdd)
+
+        console.log(parseData(checkout))
+        setCheckout(parseData(checkout))
+        setDataToStorage('checkout', checkout)
+
+        // Add an item to the checkout
+        /* client.checkout.addLineItems(checkoutId, lineItemsToAdd).then((checkout) => {
+            // Do something with the updated checkout
+            console.log(checkout); 
+            
+        }); */
     }
 
     return (
@@ -113,23 +163,6 @@ export default function GTGProduct ({product, collection}) {
 
                         {multiVariants && 
                             <div className={styles.options}>
-                                {/* <FormControl variant="outlined" className={classes.formControl}>
-                                    <InputLabel id="demo-simple-select-outlined-label">Age</InputLabel>
-                                    <Select
-                                        labelId="demo-simple-select-outlined-label"
-                                        id="demo-simple-select-outlined"
-                                        value={10}
-                                        onChange={handleChange}
-                                        label="Age"
-                                    >
-                                    <MenuItem value="">
-                                        <em>None</em>
-                                    </MenuItem>
-                                    <MenuItem value={10}>Ten</MenuItem>
-                                    <MenuItem value={20}>Twenty</MenuItem>
-                                    <MenuItem value={30}>Thirty</MenuItem>
-                                    </Select>
-                                </FormControl> */}
                                 {product.options.map(option => (
                                     <div className={styles.selectField}>
                                         <label for={option.id}>{option.name}:</label>
@@ -145,10 +178,10 @@ export default function GTGProduct ({product, collection}) {
                             </div>
                         }
                         
-                        <button className={styles.addToCart}>Añadir a carrito</button>
+                        <button className={styles.addToCart} onClick={addToCart}>Añadir a carrito</button>
+                        <button onClick={activeVariant}>Muestra la Variante activa</button>
                     </div>
                 }
-                
             </div>
         </div>
     )
