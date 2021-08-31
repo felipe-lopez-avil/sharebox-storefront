@@ -6,6 +6,9 @@ import {client} from '../utils/shopify'
 import ProductsInCart from '../components/CartPage/ProductsInCart/ProductsInCart'
 import { TrendingUpTwoTone } from '@material-ui/icons'
 
+import Paper from '@material-ui/core/Paper';
+import Grow from '@material-ui/core/Grow';
+
 const getDataFromStorage = (key) => {
     const storage = window.localStorage;
     return JSON.parse(storage.getItem(key))
@@ -16,13 +19,14 @@ const setDataToStorage = (key, data) => {
     storage.setItem(key, JSON.stringify(data))
 }
 
-const Cart = () => {
+export default function Cart () {
     
     /* const [itemsInCart, setItemsInCart] = useState(0)
     const [checkoutExist, setCheckoutExist] = useState(false)
     const cart; */
     const [testState, setTestState] = useState(true)
     const [checkout, setCheckout] = useState(null)
+    const [cardModal, setCardModal] = useState(false)
     // const lineItems = checkout.lineItems;
     useEffect(() => {
         if(typeof window !== 'undefined'){
@@ -40,6 +44,7 @@ const Cart = () => {
                     <h1>Carrito de Compras</h1>   
                 </div>
                 {checkout !== null ? 
+                    <>
                     <div className={styles.content}>
                         <div className={styles.productsSummary}>
                             <div className={styles.fields}>
@@ -57,17 +62,15 @@ const Cart = () => {
                                 </div>
                             </div>
                             {checkout.lineItems.map(lineItem => (
-                                <ProductsInCart product={lineItem.title} price={`$${lineItem.variant.price}`} quantity={lineItem.quantity.toString()} total={`$${(parseFloat(lineItem.variant.price)*lineItem.quantity).toString()}.00`} />
+                                <ProductsInCart 
+                                    image={lineItem.variant.image.src}
+                                    product={lineItem.title} 
+                                    selectedOptions={lineItem.variant.selectedOptions}
+                                    price={`$${lineItem.variant.price}`} 
+                                    quantity={lineItem.quantity.toString()} 
+                                    total={`$${(parseFloat(lineItem.variant.price)*lineItem.quantity).toString()}.00`} />
                             ))} 
                             {/* <ProductsInCart product={checkout !== null ? checkout.lineItems[0].title : 'Cargando...'} price='$500' quantity='2' total='$1000' /> */}
-                            <div className={styles.subtotal}>
-                                <div className={styles.title}>
-                                    SUBTOTAL
-                                </div>
-                                <div className={styles.price}>
-                                    {checkout.totalPrice}
-                                </div>
-                            </div>
                         </div>
                         <div className={styles.cardAndDate}>
                             <div className={styles.choose}>
@@ -88,11 +91,25 @@ const Cart = () => {
                             </div>
                         </div>
                     </div>
+                    <div className={styles.subtotal}>
+                        <div className={styles.title}>
+                            SUBTOTAL
+                        </div>
+                        <div className={styles.price}>
+                            {checkout.totalPrice}
+                        </div>
+                    </div>
+                    </>
                 :
                     <h3>NO HAY PRODUCTOS EN EL CARRITO</h3>}
             </div>
+            {/* <Grow in={cardModal}>
+                <Paper elevation={4} className={classes.paper}>
+                    <svg className={classes.svg}>
+                    <polygon points="0,100 50,00, 100,100" className={classes.polygon} />
+                    </svg>
+                </Paper>
+            </Grow> */}
         </div>
     )  
 }
-
-export default Cart

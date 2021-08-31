@@ -1,22 +1,80 @@
 .fields{
     display: flex;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 600;
     align-items: center;
     padding-bottom: 40px;
 }
 
 .firstField{
-    width: 52%;
+    width: 58%;
+    display: flex;
+    align-items: center;
+}
+
+.image{
+    width: 80px;
+    height: 100px;
+    background-color: rgb(238, 238, 238);
+    margin-right: 10px;
+    position: relative;
+}
+
+.variant{
+    width: calc(100% - 80px);
+}
+
+.title{
+    font-family: 'Poppins';
+    font-weight: 600;
+}
+
+.details{
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.option{
+    margin: 5px 0;
+}
+
+.underline{
+    font-weight: 700;
 }
 
 .field{
-    width: 16%;
+    width: 14%;
     text-align: center;
 }
 
 .products{
     display: flex;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     align-items: center;
+    margin-bottom: 35px;
+}
+
+.mobile{
+    display: none;
+}
+
+@media (max-width: 600px) {
+
+    .mobile{
+        display: initial;
+    }
+
+    .firstField{
+        width: 100%;
+        align-items: flex-start;
+    }
+
+    .field{
+        display: none;
+    }
+
+    .image{
+        width: 140px;
+        height: 165px;
+    }
 }

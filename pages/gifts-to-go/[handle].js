@@ -7,6 +7,7 @@ import Image from 'next/image'
 import { makeStyles } from '@material-ui/core/styles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Collapse from '@material-ui/core/Collapse';
+import Snackbar from '@material-ui/core/Snackbar';
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -39,6 +40,15 @@ export default function GTGProduct ({product, collection}) {
     const [formData, setFormData] = useState({})
     const [windowReady, setWindowReady] = useState(false)
     const [checkout, setCheckout] = useState(null)
+    const [productAdded, setProductAdded] = useState(false)
+
+    const openSnackbar = () => {
+        setProductAdded(true)
+    }
+
+    const closeSnackbar = () => {
+        setProductAdded(false)
+    }
 
     useEffect(() => {
         console.log(product)
@@ -104,6 +114,8 @@ export default function GTGProduct ({product, collection}) {
     }
     
     const addToCart = async () => {
+
+        setProductAdded(true);
 
         // Local Storage is checked to see if a CheckoutID already exists. If not, a new one is created;
        /*  const storage = window.localStorage;
@@ -177,8 +189,13 @@ export default function GTGProduct ({product, collection}) {
                                 ))}
                             </div>
                         }
-                        
                         <button className={styles.addToCart} onClick={addToCart}>Añadir a carrito</button>
+                        <Snackbar
+                            anchorOrigin={{vertical: 'bottom', horizontal: 'right'}}
+                            open={productAdded}
+                            onClose={closeSnackbar}
+                            message={`${product.title} se añadió a tu carrito`}
+                        />
                     </div>
                 }
             </div>
