@@ -179,7 +179,6 @@ export default function GTGProduct ({product, collection}) {
                         }
                         
                         <button className={styles.addToCart} onClick={addToCart}>Añadir a carrito</button>
-                        <button onClick={activeVariant}>Muestra la Variante activa</button>
                     </div>
                 }
             </div>
