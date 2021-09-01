@@ -11,12 +11,14 @@ import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 export default function CardModal ({closeCardModal}) {
 
     const [cardPreview, setCardPreview] = useState(false);
+    const [cardImage, setCardImage] = useState('https://cdn.shopify.com/s/files/1/0456/6820/4706/files/congratulations-06.png?v=1630517306')
     const [cardFrom, setCardFrom] = useState('Quién envía');
     const [cardTo, setCardTo] = useState('Tu mensaje');
     const [cardMessage, setCardMessage] = useState('A quién envías')
 
-    const showPreview = () => {
+    function showPreview(imageLink) {
         setCardPreview(true)
+        setCardImage(imageLink)
     }
 
     const hidePreview = () => {
@@ -46,17 +48,17 @@ export default function CardModal ({closeCardModal}) {
                 </div>
             </div>
             <div className={styles.content}>
-                <div className={styles.cardBox} onClick={showPreview}>
+                <div className={styles.cardBox} onClick={() => showPreview("https://cdn.shopify.com/s/files/1/0456/6820/4706/files/happy-birthday.png?v=1630507598")}>
                     <div className={styles.iconContainer}></div>
                     <div className={styles.cardType}>Birthday</div>
                 </div>
-                <div className={styles.cardBox}>
+                <div className={styles.cardBox} onClick={() => showPreview("https://cdn.shopify.com/s/files/1/0456/6820/4706/files/aniversary-04.png?v=1630517306")}>
                     <div className={styles.iconContainer}></div>
-                    <div className={styles.cardType}>Love</div>
+                    <div className={styles.cardType}>Aniversary</div>
                 </div>
-                <div className={styles.cardBox}>
+                <div className={styles.cardBox} onClick={() => showPreview("https://cdn.shopify.com/s/files/1/0456/6820/4706/files/congratulations-06.png?v=1630517306")}>
                     <div className={styles.iconContainer}></div>
-                    <div className={styles.cardType}>Just Because</div>
+                    <div className={styles.cardType}>Congratulations</div>
                 </div>
             </div>
             <Slide direction="left" timeout={650} in={cardPreview} mountOnEnter unmountOnExit>
@@ -104,7 +106,7 @@ export default function CardModal ({closeCardModal}) {
                         <div className={styles.cardPreview}>
                             <div className={styles.cardImage}>
                                 <Image
-                                    src="https://cdn.shopify.com/s/files/1/0456/6820/4706/files/happy-birthday.png?v=1630507598"
+                                    src={cardImage}
                                     layout="fill"
                                     objectFit="cover"
                                 />
