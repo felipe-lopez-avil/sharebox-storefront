@@ -12,11 +12,12 @@ export default function CardModal ({closeCardModal}) {
 
     const [cardPreview, setCardPreview] = useState(false);
     const [cardImage, setCardImage] = useState('https://cdn.shopify.com/s/files/1/0456/6820/4706/files/congratulations-06.png?v=1630517306')
-    const [cardFrom, setCardFrom] = useState('Quién envía');
-    const [cardTo, setCardTo] = useState('Tu mensaje');
-    const [cardMessage, setCardMessage] = useState('A quién envías')
+    const [cardType, setCardType] = useState('')
+    const [cardFrom, setCardFrom] = useState('');
+    const [cardTo, setCardTo] = useState('');
+    const [cardMessage, setCardMessage] = useState('');
 
-    function showPreview(imageLink) {
+    function showPreview(cardType, imageLink) {
         setCardPreview(true)
         setCardImage(imageLink)
     }
@@ -48,15 +49,15 @@ export default function CardModal ({closeCardModal}) {
                 </div>
             </div>
             <div className={styles.content}>
-                <div className={styles.cardBox} onClick={() => showPreview("https://cdn.shopify.com/s/files/1/0456/6820/4706/files/happy-birthday.png?v=1630507598")}>
+                <div className={styles.cardBox} onClick={() => showPreview('Birthday', 'https://cdn.shopify.com/s/files/1/0456/6820/4706/files/happy-birthday.png?v=1630507598')}>
                     <div className={styles.iconContainer}></div>
                     <div className={styles.cardType}>Birthday</div>
                 </div>
-                <div className={styles.cardBox} onClick={() => showPreview("https://cdn.shopify.com/s/files/1/0456/6820/4706/files/aniversary-04.png?v=1630517306")}>
+                <div className={styles.cardBox} onClick={() => showPreview('Aniversary', 'https://cdn.shopify.com/s/files/1/0456/6820/4706/files/aniversary-04.png?v=1630517306')}>
                     <div className={styles.iconContainer}></div>
                     <div className={styles.cardType}>Aniversary</div>
                 </div>
-                <div className={styles.cardBox} onClick={() => showPreview("https://cdn.shopify.com/s/files/1/0456/6820/4706/files/congratulations-06.png?v=1630517306")}>
+                <div className={styles.cardBox} onClick={() => showPreview('Congratulations','https://cdn.shopify.com/s/files/1/0456/6820/4706/files/congratulations-06.png?v=1630517306')}>
                     <div className={styles.iconContainer}></div>
                     <div className={styles.cardType}>Congratulations</div>
                 </div>
@@ -119,7 +120,7 @@ export default function CardModal ({closeCardModal}) {
                             <div className={styles.save}>
                                 Confirmar Tarjeta
                             </div>
-                        </div>
+                        </div> 
                     </div>
                 </div>
             </Slide>

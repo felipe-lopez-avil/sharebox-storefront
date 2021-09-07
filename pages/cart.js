@@ -9,6 +9,7 @@ import { Height, TrendingUpTwoTone } from '@material-ui/icons'
 
 import { makeStyles } from '@material-ui/core/styles';
 import Grow from '@material-ui/core/Grow';
+import DatePickerModal from '../components/CartPage/DatePickerModal/DatePickerModal'
 
 
 const getDataFromStorage = (key) => {
@@ -42,6 +43,7 @@ export default function Cart () {
     const [testState, setTestState] = useState(true)
     const [checkout, setCheckout] = useState(null)
     const [cardModal, setCardModal] = useState(false)
+    const [dateModal, setDateModal] = useState(false)
     // const lineItems = checkout.lineItems;
     useEffect(() => {
         if(typeof window !== 'undefined'){
@@ -53,13 +55,20 @@ export default function Cart () {
     console.log(checkout);
 
     const openCardModal = () => {
-        setCardModal(true)
+        setCardModal(true);
     }
 
     const closeCardModal = () => {
         setCardModal(false);
     }
 
+    const openDateModal = () => {
+        setDateModal(true);
+    }
+
+    const closeDateModal = () => {
+        setDateModal(false);
+    }
 
     return (
         <div className={styles.container}>
@@ -98,8 +107,8 @@ export default function Cart () {
                         </div>
                         <div className={styles.cardAndDate}>
                             <div className={styles.choose}>
-                                <button className={styles.chooseButton} onClick={openCardModal}>SELECCIONA UNA TARJETA TARJETA</button>
-                                <button className={styles.chooseButton}>SELECCIONA LA HORA Y FECHA DE ENTREGA</button>
+                                <button className={styles.chooseButton} onClick={openCardModal}>SELECCIONA UNA TARJETA</button>
+                                <button className={styles.chooseButton} onClick={openDateModal}>SELECCIONA LA HORA Y FECHA DE ENTREGA</button>
                             </div>
                             <div className={styles.options}>
                                 <a href={checkout.webUrl} className={styles.fullWidth}>
@@ -130,6 +139,11 @@ export default function Cart () {
             <Grow in={cardModal}>
                 <div className={styles.modal}>
                     <CardModal closeCardModal={closeCardModal}/>
+                </div>
+            </Grow>
+            <Grow in={dateModal}>
+                <div className={styles.modal}>
+                    <DatePickerModal closeDateModal={closeDateModal}/>
                 </div>
             </Grow>
         </div>
