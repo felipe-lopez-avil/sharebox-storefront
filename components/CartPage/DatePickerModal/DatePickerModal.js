@@ -1,5 +1,8 @@
 import React, {useState} from 'react';
 import styles from './DatePickerModal.module.scss'
+import Local from './shippings/Local';
+
+
 import Image from 'next/image'
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -9,7 +12,6 @@ import Select from '@material-ui/core/Select';
 import { makeStyles } from '@material-ui/core/styles';
 
 import CloseIcon from '@material-ui/icons/Close';
-import SearchIcon from '@material-ui/icons/Search';
 import StorefrontIcon from '@material-ui/icons/Storefront';
 import LocalShippingOutlinedIcon from '@material-ui/icons/LocalShippingOutlined';
 import PublicIcon from '@material-ui/icons/Public';
@@ -17,6 +19,7 @@ import { PublicOutlined } from '@material-ui/icons';
 
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
+import isPast from 'date-fns/isPast'
 import {
   MuiPickersUtilsProvider,
   KeyboardTimePicker,
@@ -88,6 +91,19 @@ export default function DatePickerModal ({closeDateModal}) {
         }
     }
 
+    const showDate = () => {
+        if (isPast(new Date(2021, 10, 2))){
+            console.log("La fecha 2014, 6, 2 está en el pasado")
+        } else {
+            console.log('La fecha está en el futuro')
+        }
+    }
+
+    function shouldDisableDate(day) {
+        console.log("shouldDisableDate");
+        return day.getDay() === 0 || day.getDay() === 6;
+    }
+
     return (
         <div className={styles.container}>
             <div className={styles.header}>
@@ -127,82 +143,19 @@ export default function DatePickerModal ({closeDateModal}) {
 
                 {localActive === true &&
                     <div className={styles.deliveryInfo}>
-                        <div className={styles.cpSection}>
-                            <form noValidate autoComplete="off">
-                                <div className={styles.textField}>
-                                    <TextField 
-                                        id="from" 
-                                        label="Introduce tu C.P. para verificar que tenemos envíos locales a tu zona" 
-                                        variant="outlined" 
-                                        value={cp}
-                                        onChange={handleCP}
-                                        className={classes.textField}
-                                    />
-                                    <button className={styles.validateButton} onClick={validateCP}> 
-                                        <SearchIcon fontSize="large"/> 
-                                    </button>
-                                </div>
-                            </form>
-                            {validCP === 'valid' && 
-                                <div className={styles.selector}>
-                                    <div className={styles.confirmationBox}>{confirmationMessage}</div>
-                                    <div className={styles.pickerContainer}>
-                                        <div className={styles.date}>
-                                            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                                                <KeyboardDatePicker
-                                                disableToolbar
-                                                fullWidth="true"
-                                                variant="inline"
-                                                inputVariant="outlined"
-                                                format="MM/dd/yyyy"
-                                                minDate={new Date()}
-                                                maxDate={new Date("2021-10-07")}
-                                                margin="normal"
-                                                id="date-picker-inline"
-                                                label="Date picker inline"
-                                                value={date}
-                                                onChange={handleDateChange}
-                                                KeyboardButtonProps={{
-                                                    'aria-label': 'change date',
-                                                }}
-                                                />
-                                                {/* <KeyboardDatePicker
-                                                    autoOk
-                                                    fullWidth="true"
-                                                    variant="inline"
-                                                    inputVariant="outlined"
-                                                    label="With keyboard"
-                                                    format="MM/dd/yyyy"
-                                                    value={date}
-                                                    InputAdornmentProps={{ position: "start" }}
-                                                    onChange={handleDateChange}
-                                                /> */}
-                                            </MuiPickersUtilsProvider>
-                                        </div>
-                                        <div className={styles.time}>
-                                            <FormControl variant="outlined" className={classes.formControl} fullWidth="true">
-                                                <InputLabel id="select-date">Hora de entrega</InputLabel>
-                                                <Select
-                                                    labelId="select-date"
-                                                    id="date-select"
-                                                    value={time}
-                                                    onChange={handleTimeChange}
-                                                    label="Hora de entrega"
-                                                >
-                                                    <MenuItem value={'Por la mañana - 9:00 a 13:00'}>Por la mañana - 9:00 a 13:00</MenuItem>
-                                                    <MenuItem value={'Por la tarde - 13:00 a 18:00'}>Por la tarde - 13:00 a 18:00</MenuItem>
-                                                </Select>
-                                            </FormControl>
-                                        </div>
-                                    </div>
-                                </div>                                
-                            }
-
-                            {validCP === 'noValid' && 
-                                <div className={styles.confirmationNegativeBox}>Lo sentimos, pero no contamos con envíos en tu zona</div>
-                            }
-                            
-                        </div>
+                        <Local 
+                            cp={cp} 
+                            handleCP={handleCP} 
+                            validCP={validCP} 
+                            validateCP={validateCP} 
+                            confirmationMessage={confirmationMessage} 
+                            shouldDisableDate={shouldDisableDate}
+                            date={date}
+                            handleDateChange={handleDateChange}
+                            time={time}
+                            handleTimeChange={handleTimeChange}
+                            setValidCP={setValidCP} 
+                        />
                     </div>
                 }
 
