@@ -44,6 +44,11 @@ export default function Cart () {
     const [checkout, setCheckout] = useState(null)
     const [cardModal, setCardModal] = useState(false)
     const [dateModal, setDateModal] = useState(false)
+
+    // Date and Time Picker States
+    const [date, setDate] = useState(new Date(), 'MM/dd/yyyy');
+    const [time, setTime] = useState('Por la mañana - 9:00 a 13:00');
+
     // const lineItems = checkout.lineItems;
     useEffect(() => {
         if(typeof window !== 'undefined'){
@@ -143,7 +148,13 @@ export default function Cart () {
             </Grow>
             <Grow in={dateModal}>
                 <div className={styles.modal}>
-                    <DatePickerModal closeDateModal={closeDateModal}/>
+                    <DatePickerModal 
+                        closeDateModal={closeDateModal} 
+                        date={date} 
+                        setDate={setDate} 
+                        time={time} 
+                        setTime={setTime} 
+                    />
                 </div>
             </Grow>
         </div>

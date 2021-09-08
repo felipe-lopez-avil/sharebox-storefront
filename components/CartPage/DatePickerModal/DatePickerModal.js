@@ -1,25 +1,18 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './DatePickerModal.module.scss'
 import Local from './shippings/Local';
 
-
-import Image from 'next/image'
-import TextField from '@material-ui/core/TextField';
-import MenuItem from '@material-ui/core/MenuItem';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
 import { makeStyles } from '@material-ui/core/styles';
 
 import CloseIcon from '@material-ui/icons/Close';
 import StorefrontIcon from '@material-ui/icons/Storefront';
 import LocalShippingOutlinedIcon from '@material-ui/icons/LocalShippingOutlined';
 import PublicIcon from '@material-ui/icons/Public';
-import { PublicOutlined } from '@material-ui/icons';
 
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
-import isPast from 'date-fns/isPast'
+import add from 'date-fns/add'
+import format from 'date-fns/format'
 import {
   MuiPickersUtilsProvider,
   KeyboardTimePicker,
@@ -33,7 +26,7 @@ const useStyles = makeStyles({
     },
 });
 
-export default function DatePickerModal ({closeDateModal}) {
+export default function DatePickerModal ({closeDateModal, date, setDate, time, setTime}) {
     const classes = useStyles();
 
     const [pickAndGoActive, setPickAndGoActive] = useState(true);
@@ -44,13 +37,21 @@ export default function DatePickerModal ({closeDateModal}) {
     const [validCP, setValidCP] = useState('');
     const [confirmationMessage, setConfirmationMessage] = useState('');
 
-    const [date, setDate] = useState(new Date(), 'MM/dd/yyyy');
-    const [time, setTime] = useState('Por la mañana - 9:00 a 13:00');
+    const [minDate, setMinDate] = useState(new Date())
 
     const validCPList = ['0001', '0002', '0003', '0004', '0005']
+    
+    const resetAllStates = () => {
+        setDate(new Date(), 'MM/dd/yyyy');
+        setTime('Por la mañana - 9:00 a 13:00');
+        setCp('');
+        setValidCP('')
+        setConfirmationMessage('')
+    }
 
     const handleDateChange = (date) => {
         setDate(date);
+        console.log(date)
     };
 
     const handleTimeChange = (event) => {
@@ -61,18 +62,24 @@ export default function DatePickerModal ({closeDateModal}) {
         setPickAndGoActive(true);
         setLocalDeliverActive(false);
         setNationalActive(false);
+
+        resetAllStates()
     }
 
     const handleLocal = () => {
         setPickAndGoActive(false);
         setLocalDeliverActive(true);
         setNationalActive(false);
+
+        resetAllStates()
     }
 
     const handleNational = () => {
         setPickAndGoActive(false);
         setLocalDeliverActive(false);
         setNationalActive(true);
+
+        resetAllStates()
     }
 
     const handleCP = (event) => {
@@ -81,7 +88,17 @@ export default function DatePickerModal ({closeDateModal}) {
 
     const validateCP = (event) => {
         event.preventDefault()
+
         let cpIsValid = validCPList.indexOf(cp);
+        let today = new Date();
+        let meridiem = format(today, "aaa")
+        let newDate
+
+        if (meridiem === 'pm'){
+            newDate = add(today, {days: 1});
+            setDate(newDate, 'MM/dd/yyyy')
+            setMinDate(newDate);
+        }
 
         if (cpIsValid > -1) {
             setValidCP('valid');
@@ -92,16 +109,17 @@ export default function DatePickerModal ({closeDateModal}) {
     }
 
     const showDate = () => {
-        if (isPast(new Date(2021, 10, 2))){
+        /* if (isPast(new Date(2021, 10, 2))){
             console.log("La fecha 2014, 6, 2 está en el pasado")
         } else {
             console.log('La fecha está en el futuro')
-        }
+        } 
+        const today = new Date();
+        console.log(format(today, "'Actualmente estamos en' aaa"))*/
     }
 
     function shouldDisableDate(day) {
-        console.log("shouldDisableDate");
-        return day.getDay() === 0 || day.getDay() === 6;
+        return day.getDay() === 0;
     }
 
     return (
@@ -150,11 +168,13 @@ export default function DatePickerModal ({closeDateModal}) {
                             validateCP={validateCP} 
                             confirmationMessage={confirmationMessage} 
                             shouldDisableDate={shouldDisableDate}
+                            minDate={minDate}
                             date={date}
                             handleDateChange={handleDateChange}
                             time={time}
                             handleTimeChange={handleTimeChange}
                             setValidCP={setValidCP} 
+                            showDate={showDate}
                         />
                     </div>
                 }

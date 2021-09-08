@@ -23,7 +23,7 @@ const useStyles = makeStyles({
     },
 });
 
-export default function Local ({cp, handleCP, validCP, validateCP, confirmationMessage, shouldDisableDate, date, handleDateChange, time, handleTimeChange, setValidCP}) {
+export default function Local ({cp, handleCP, validCP, validateCP, confirmationMessage, shouldDisableDate, minDate, date, handleDateChange, time, handleTimeChange, setValidCP, showDate}) {
     const classes = useStyles();
 
     return(
@@ -56,7 +56,7 @@ export default function Local ({cp, handleCP, validCP, validateCP, confirmationM
                                     variant="inline"
                                     inputVariant="outlined"
                                     format="MM/dd/yyyy"
-                                    minDate={new Date()}
+                                    minDate={minDate}
                                     maxDate={new Date("2021-10-07")}
                                     margin="normal"
                                     id="date-picker-inline"
