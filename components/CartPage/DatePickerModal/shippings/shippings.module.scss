@@ -59,3 +59,34 @@
 .time{
     padding-top: 16px;
 }
+
+.adressBox{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 35px;
+    background-color: rgb(220, 239, 245);
+    border-radius: 5px;
+    
+    .adress{
+        margin-left: 10px;
+
+        p{
+            margin: 0;
+            margin-bottom: 5px;
+        }
+
+        a{
+            font-family: 'Nunito' ;
+
+            &:hover{
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .instructions{
+        display: flex;
+        align-items: center;
+    }
+}

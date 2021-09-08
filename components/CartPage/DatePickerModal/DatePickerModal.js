@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './DatePickerModal.module.scss'
 import Local from './shippings/Local';
+import Pickup from './shippings/Pickup';
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -47,6 +48,16 @@ export default function DatePickerModal ({closeDateModal, date, setDate, time, s
         setCp('');
         setValidCP('')
         setConfirmationMessage('')
+
+        let today = new Date();
+        let meridiem = format(today, "aaa")
+        let newDate
+
+        if (meridiem === 'pm'){
+            newDate = add(today, {days: 1});
+            setDate(newDate, 'MM/dd/yyyy')
+            setMinDate(newDate);
+        }
     }
 
     const handleDateChange = (date) => {
@@ -90,15 +101,6 @@ export default function DatePickerModal ({closeDateModal, date, setDate, time, s
         event.preventDefault()
 
         let cpIsValid = validCPList.indexOf(cp);
-        let today = new Date();
-        let meridiem = format(today, "aaa")
-        let newDate
-
-        if (meridiem === 'pm'){
-            newDate = add(today, {days: 1});
-            setDate(newDate, 'MM/dd/yyyy')
-            setMinDate(newDate);
-        }
 
         if (cpIsValid > -1) {
             setValidCP('valid');
@@ -156,7 +158,14 @@ export default function DatePickerModal ({closeDateModal, date, setDate, time, s
             <div className={styles.currentDelivery}>
 
                 {pickAndGoActive === true &&
-                    <div>Pick and Go is Active</div>
+                    <Pickup
+                        shouldDisableDate={shouldDisableDate}
+                        minDate={minDate}
+                        date={date}
+                        handleDateChange={handleDateChange}
+                        time={time}
+                        handleTimeChange={handleTimeChange}
+                    />
                 }
 
                 {localActive === true &&
