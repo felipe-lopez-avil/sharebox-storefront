@@ -64,7 +64,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px 35px;
+    padding: 20px 100px;
     background-color: rgb(220, 239, 245);
     border-radius: 5px;
     
@@ -78,6 +78,7 @@
 
         a{
             font-family: 'Nunito' ;
+            width: min-content;
 
             &:hover{
                 text-decoration: underline;
@@ -88,5 +89,11 @@
     .instructions{
         display: flex;
         align-items: center;
+        width: min-content;
     }
+}
+
+.flex{
+    display: flex;
+    align-items: center;
 }

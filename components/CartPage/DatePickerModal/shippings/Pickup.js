@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react'
 import styles from './shippings.module.scss'
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -35,12 +36,14 @@ export default function Pickup ({shouldDisableDate, minDate, date, handleDateCha
                 <LocationOnOutlinedIcon style={{ fontSize: 35 }}/>
                 <div className={styles.adress}>
                     <p>Lic. Jose Benitez 645, Centro, 64000 Monterrey, N.L.</p>
-                    <a href='https://goo.gl/maps/k32EzVf3gyspy7ZYA' target="blank">
-                        <div className={styles.instructions}>
-                            <span>Indicaciones</span>
-                            <LaunchIcon style={{ fontSize: 15, marginLeft: '5px' }}/>
-                        </div>
-                    </a>
+                    <div className={styles.instructions}>
+                        <a href="https://www.sharebox.mx/" target="blank">
+                            <div className={styles.flex}>
+                                <span>Indicaciones</span>
+                                <LaunchIcon style={{ fontSize: 15, marginLeft: '5px' }}/>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
             <div className={styles.selector}>

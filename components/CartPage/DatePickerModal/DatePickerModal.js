@@ -124,8 +124,18 @@ export default function DatePickerModal ({closeDateModal, date, setDate, time, s
         return day.getDay() === 0;
     }
 
+    const [windowReady, setWindowReady] = useState(false)
+
+    useEffect(() => {
+        if(typeof window !== 'undefined'){
+            setWindowReady(true)
+        }
+    }, [])
+
     return (
         <div className={styles.container}>
+            {windowReady &&
+            <>
             <div className={styles.header}>
                 <div className={styles.lateralBlock}></div>
                 <div className={styles.title}>
@@ -136,19 +146,19 @@ export default function DatePickerModal ({closeDateModal, date, setDate, time, s
                 </div>
             </div>
             <div className={styles.deliveryTypes}>
-                <div className={styles.deliveryType} onClick={handlePickAndGo}>
+                <div className={pickAndGoActive ? `${styles.deliveryType} ${styles.active}` : styles.deliveryType} onClick={handlePickAndGo}>
                     <div className={styles.icon}>
                         <StorefrontIcon style={{ fontSize: 35 }}/>
                     </div>
                     <div className={styles.type}>Recogida Local</div> 
                 </div>
-                <div className={styles.deliveryType} onClick={handleLocal}>
+                <div className={localActive ? `${styles.deliveryType} ${styles.active}` : styles.deliveryType} onClick={handleLocal}>
                     <div className={styles.icon}>
                         <LocalShippingOutlinedIcon style={{ fontSize: 35 }}/>
                     </div>
                     <div className={styles.type}>Envío Local</div> 
                 </div>
-                <div className={styles.deliveryType} onClick={handleNational}>
+                <div className={nationalActive ? `${styles.deliveryType} ${styles.active}` : styles.deliveryType} onClick={handleNational}>
                     <div className={styles.icon}>
                         <PublicIcon style={{ fontSize: 35 }}/>
                     </div>
@@ -193,6 +203,8 @@ export default function DatePickerModal ({closeDateModal, date, setDate, time, s
                 }
 
             </div>
+            </>
+            }           
         </div>
     )
 }
