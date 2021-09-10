@@ -47,46 +47,46 @@ export default function Pickup ({shouldDisableDate, minDate, date, handleDateCha
                 </div>
             </div>
             <div className={styles.selector}>
-                    <div className={styles.pickerContainer}>
-                        <div className={styles.date}>
-                            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                                <KeyboardDatePicker
-                                    disableToolbar
-                                    shouldDisableDate={shouldDisableDate}
-                                    fullWidth="true"
-                                    variant="inline"
-                                    inputVariant="outlined"
-                                    format="MM/dd/yyyy"
-                                    minDate={minDate}
-                                    maxDate={new Date("2021-10-07")}
-                                    margin="normal"
-                                    id="date-picker-inline"
-                                    label="Date picker inline"
-                                    value={date}
-                                    onChange={handleDateChange}
-                                    KeyboardButtonProps={{
-                                        'aria-label': 'change date',
-                                    }}
-                                />
-                            </MuiPickersUtilsProvider>
-                        </div>
-                        <div className={styles.time}>
-                            <FormControl variant="outlined" className={classes.formControl} fullWidth="true">
-                                <InputLabel id="select-date">Hora de entrega</InputLabel>
-                                <Select
-                                    labelId="select-date"
-                                    id="date-select"
-                                    value={time}
-                                    onChange={handleTimeChange}
-                                    label="Hora de entrega"
-                                >
-                                    <MenuItem value={'Por la mañana - 9:00 a 13:00'}>Por la mañana - 9:00 a 13:00</MenuItem>
-                                    <MenuItem value={'Por la tarde - 13:00 a 18:00'}>Por la tarde - 13:00 a 18:00</MenuItem>
-                                </Select>
-                            </FormControl>
-                        </div>
+                <div className={styles.pickerContainer}>
+                    <div className={styles.date}>
+                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                            <KeyboardDatePicker
+                                disableToolbar
+                                shouldDisableDate={shouldDisableDate}
+                                fullWidth="true"
+                                variant="inline"
+                                inputVariant="outlined"
+                                format="MM/dd/yyyy"
+                                minDate={minDate}
+                                maxDate={new Date("2021-10-07")}
+                                margin="normal"
+                                id="date-picker-inline"
+                                label="Date picker inline"
+                                value={date}
+                                onChange={handleDateChange}
+                                KeyboardButtonProps={{
+                                    'aria-label': 'change date',
+                                }}
+                            />
+                        </MuiPickersUtilsProvider>
+                    </div>
+                    <div className={styles.time}>
+                        <FormControl variant="outlined" className={classes.formControl} fullWidth="true">
+                            <InputLabel id="select-date">Hora de entrega</InputLabel>
+                            <Select
+                                labelId="select-date"
+                                id="date-select"
+                                value={time}
+                                onChange={handleTimeChange}
+                                label="Hora de entrega"
+                            >
+                                <MenuItem value={'Por la mañana - 9:00 a 13:00'}>Por la mañana - 9:00 a 13:00</MenuItem>
+                                <MenuItem value={'Por la tarde - 13:00 a 18:00'}>Por la tarde - 13:00 a 18:00</MenuItem>
+                            </Select>
+                        </FormControl>
                     </div>
                 </div>
+            </div>
         </div>
     )
 }

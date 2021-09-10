@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './DatePickerModal.module.scss'
 import Local from './shippings/Local';
 import Pickup from './shippings/Pickup';
+import National from './shippings/National';
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -27,7 +28,7 @@ const useStyles = makeStyles({
     },
 });
 
-export default function DatePickerModal ({closeDateModal, date, setDate, time, setTime}) {
+export default function DatePickerModal ({closeDateModal, date, setDate, minDate, setMinDate, time, setTime}) {
     const classes = useStyles();
 
     const [pickAndGoActive, setPickAndGoActive] = useState(true);
@@ -38,27 +39,7 @@ export default function DatePickerModal ({closeDateModal, date, setDate, time, s
     const [validCP, setValidCP] = useState('');
     const [confirmationMessage, setConfirmationMessage] = useState('');
 
-    const [minDate, setMinDate] = useState(new Date())
-
     const validCPList = ['0001', '0002', '0003', '0004', '0005']
-    
-    const resetAllStates = () => {
-        setDate(new Date(), 'MM/dd/yyyy');
-        setTime('Por la mañana - 9:00 a 13:00');
-        setCp('');
-        setValidCP('')
-        setConfirmationMessage('')
-
-        let today = new Date();
-        let meridiem = format(today, "aaa")
-        let newDate
-
-        if (meridiem === 'pm'){
-            newDate = add(today, {days: 1});
-            setDate(newDate, 'MM/dd/yyyy')
-            setMinDate(newDate);
-        }
-    }
 
     const handleDateChange = (date) => {
         setDate(date);
@@ -70,27 +51,71 @@ export default function DatePickerModal ({closeDateModal, date, setDate, time, s
     }
 
     const handlePickAndGo = () => {
-        setPickAndGoActive(true);
-        setLocalDeliverActive(false);
-        setNationalActive(false);
 
-        resetAllStates()
+        if (pickAndGoActive === false){
+            setPickAndGoActive(true);
+            setLocalDeliverActive(false);
+            setNationalActive(false);
+
+            setDate(new Date(), 'MM/dd/yyyy');
+            setTime('Por la mañana - 9:00 a 13:00');
+            setCp('');
+            setValidCP('')
+            setConfirmationMessage('')
+
+            let today = new Date();
+            let meridiem = format(today, "aaa")
+            let newDate
+
+            if (meridiem === 'pm'){
+                newDate = add(today, {days: 1});
+                setDate(newDate, 'MM/dd/yyyy')
+                setMinDate(newDate);
+            }
+        }
+
     }
 
     const handleLocal = () => {
-        setPickAndGoActive(false);
-        setLocalDeliverActive(true);
-        setNationalActive(false);
 
-        resetAllStates()
+        if (localActive === false){
+            setPickAndGoActive(false);
+            setLocalDeliverActive(true);
+            setNationalActive(false);
+
+            setDate(new Date(), 'MM/dd/yyyy');
+            setTime('Por la mañana - 9:00 a 13:00');
+            setCp('');
+            setValidCP('')
+            setConfirmationMessage('')
+
+            let today = new Date();
+            let meridiem = format(today, "aaa")
+            let newDate
+
+            if (meridiem === 'pm'){
+                newDate = add(today, {days: 1});
+                setDate(newDate, 'MM/dd/yyyy')
+                setMinDate(newDate);
+            }
+        }
+
     }
 
     const handleNational = () => {
-        setPickAndGoActive(false);
-        setLocalDeliverActive(false);
-        setNationalActive(true);
 
-        resetAllStates()
+        if (nationalActive === false){
+            setPickAndGoActive(false);
+            setLocalDeliverActive(false);
+            setNationalActive(true);
+
+            setDate(new Date(), 'MM/dd/yyyy')
+            setTime('');
+            setCp('');
+            setValidCP('')
+            setConfirmationMessage('')
+        }
+
     }
 
     const handleCP = (event) => {
@@ -108,16 +133,6 @@ export default function DatePickerModal ({closeDateModal, date, setDate, time, s
         } else {
             setValidCP('noValid');
         }
-    }
-
-    const showDate = () => {
-        /* if (isPast(new Date(2021, 10, 2))){
-            console.log("La fecha 2014, 6, 2 está en el pasado")
-        } else {
-            console.log('La fecha está en el futuro')
-        } 
-        const today = new Date();
-        console.log(format(today, "'Actualmente estamos en' aaa"))*/
     }
 
     function shouldDisableDate(day) {
@@ -193,13 +208,12 @@ export default function DatePickerModal ({closeDateModal, date, setDate, time, s
                             time={time}
                             handleTimeChange={handleTimeChange}
                             setValidCP={setValidCP} 
-                            showDate={showDate}
                         />
                     </div>
                 }
 
                 {nationalActive === true &&
-                    <div>National Delivery is Active</div>
+                    <National/>
                 }
 
             </div>

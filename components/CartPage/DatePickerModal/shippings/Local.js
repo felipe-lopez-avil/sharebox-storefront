@@ -23,7 +23,7 @@ const useStyles = makeStyles({
     },
 });
 
-export default function Local ({cp, handleCP, validCP, validateCP, confirmationMessage, shouldDisableDate, minDate, date, handleDateChange, time, handleTimeChange, setValidCP, showDate}) {
+export default function Local ({cp, handleCP, validCP, validateCP, confirmationMessage, shouldDisableDate, minDate, date, handleDateChange, time, handleTimeChange}) {
     const classes = useStyles();
 
     return(

@@ -11,6 +11,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grow from '@material-ui/core/Grow';
 import DatePickerModal from '../components/CartPage/DatePickerModal/DatePickerModal'
 
+import 'date-fns';
+import add from 'date-fns/add'
+import format from 'date-fns/format'
+
 
 const getDataFromStorage = (key) => {
     const storage = window.localStorage;
@@ -46,8 +50,14 @@ export default function Cart () {
     const [dateModal, setDateModal] = useState(false)
 
     // Date and Time Picker States
+
     const [date, setDate] = useState(new Date(), 'MM/dd/yyyy');
+    const [minDate, setMinDate] = useState(new Date())
     const [time, setTime] = useState('Por la mañana - 9:00 a 13:00');
+
+    let today = new Date();
+    let meridiem = format(today, "aaa")
+
 
     // const lineItems = checkout.lineItems;
     useEffect(() => {
@@ -55,6 +65,13 @@ export default function Cart () {
             const checkout = getDataFromStorage('checkout')
             setCheckout(checkout)
         }
+
+        if (meridiem === 'pm'){
+            let newDate = add(today, {days: 1});
+            setDate(newDate, 'MM/dd/yyyy')
+            setMinDate(newDate);
+        }
+        
     }, [])
     console.log('Checkout:')
     console.log(checkout);
@@ -152,6 +169,8 @@ export default function Cart () {
                         closeDateModal={closeDateModal} 
                         date={date} 
                         setDate={setDate} 
+                        minDate={minDate}
+                        setMinDate={setMinDate}
                         time={time} 
                         setTime={setTime} 
                     />
