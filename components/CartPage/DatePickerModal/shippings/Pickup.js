@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import {client} from '../../../../utils/shopify'
+
 import styles from './shippings.module.scss'
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -13,6 +15,7 @@ import LaunchIcon from '@material-ui/icons/Launch';
 
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
+import format from 'date-fns/format'
 import isPast from 'date-fns/isPast'
 import {
   MuiPickersUtilsProvider,
@@ -27,8 +30,9 @@ const useStyles = makeStyles({
 });
 
 
-export default function Pickup ({shouldDisableDate, minDate, date, handleDateChange, time, handleTimeChange}) {
+export default function Pickup ({shouldDisableDate, minDate, date, handleDateChange, time, handleTimeChange, saveAttributes}) {
     const classes = useStyles();
+
 
     return (
         <div className={styles.cpSection}>
@@ -87,6 +91,7 @@ export default function Pickup ({shouldDisableDate, minDate, date, handleDateCha
                     </div>
                 </div>
             </div>
+            <button onClick={saveAttributes}>Confirmar</button>
         </div>
     )
 }

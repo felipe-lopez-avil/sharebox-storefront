@@ -120,7 +120,7 @@ export default function GTGProduct ({product, collection}) {
         // Local Storage is checked to see if a CheckoutID already exists. If not, a new one is created;
        /*  const storage = window.localStorage;
         let checkout = storage.getItem("checkout"); */
-        let checkoutTemp = null
+        /* let checkoutTemp = null
         if (getDataFromStorage('checkout')) {
             checkoutTemp = getDataFromStorage('checkout')
         }else{
@@ -134,13 +134,34 @@ export default function GTGProduct ({product, collection}) {
             quantity: 1,
             // customAttributes: [{key: "MyKey", value: "MyValue"}]
         }
+        ]; */
+
+        // Local Storage is checked to see if a CheckoutID already exists. If not, a new one is created;
+        let checkoutId = null
+        let checkoutTemp = null
+        let checkout = null
+        if (getDataFromStorage('checkoutId')) {
+            checkoutId = getDataFromStorage('checkoutId')
+        }else{
+            checkoutTemp = await client.checkout.create()
+            checkout = parseData(checkoutTemp)
+            checkoutId = checkout.id
+            setDataToStorage('checkoutId', checkoutId)
+        }
+        
+        const lineItemsToAdd = [
+        {
+            variantId: product.variants[variantIndex].id,
+            quantity: 1,
+            // customAttributes: [{key: "MyKey", value: "MyValue"}]
+        }
         ];
 
         checkout = await client.checkout.addLineItems(checkoutId, lineItemsToAdd)
 
         console.log(parseData(checkout))
-        setCheckout(parseData(checkout))
-        setDataToStorage('checkout', checkout)
+        // setCheckout(parseData(checkout))
+        // setDataToStorage('checkout', checkout)
 
         // Add an item to the checkout
         /* client.checkout.addLineItems(checkoutId, lineItemsToAdd).then((checkout) => {

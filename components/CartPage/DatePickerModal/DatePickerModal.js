@@ -28,7 +28,7 @@ const useStyles = makeStyles({
     },
 });
 
-export default function DatePickerModal ({closeDateModal, date, setDate, minDate, setMinDate, time, setTime}) {
+export default function DatePickerModal ({closeDateModal, date, setDate, minDate, setMinDate, time, setTime, deliveryType, setDeliveryType, saveAttributes}) {
     const classes = useStyles();
 
     const [pickAndGoActive, setPickAndGoActive] = useState(true);
@@ -57,11 +57,12 @@ export default function DatePickerModal ({closeDateModal, date, setDate, minDate
             setLocalDeliverActive(false);
             setNationalActive(false);
 
-            setDate(new Date(), 'MM/dd/yyyy');
+            setDate(new Date(), 'dd/MM/yyyy');
             setTime('Por la mañana - 9:00 a 13:00');
+            setDeliveryType('Recogida Local')
             setCp('');
-            setValidCP('')
-            setConfirmationMessage('')
+            setValidCP('');
+            setConfirmationMessage('');
 
             let today = new Date();
             let meridiem = format(today, "aaa")
@@ -83,8 +84,9 @@ export default function DatePickerModal ({closeDateModal, date, setDate, minDate
             setLocalDeliverActive(true);
             setNationalActive(false);
 
-            setDate(new Date(), 'MM/dd/yyyy');
+            setDate(new Date(), 'dd/MM/yyyy');
             setTime('Por la mañana - 9:00 a 13:00');
+            setDeliveryType('Envío Local')
             setCp('');
             setValidCP('')
             setConfirmationMessage('')
@@ -95,7 +97,7 @@ export default function DatePickerModal ({closeDateModal, date, setDate, minDate
 
             if (meridiem === 'pm'){
                 newDate = add(today, {days: 1});
-                setDate(newDate, 'MM/dd/yyyy')
+                setDate(newDate, 'dd/MM/yyyy')
                 setMinDate(newDate);
             }
         }
@@ -109,8 +111,9 @@ export default function DatePickerModal ({closeDateModal, date, setDate, minDate
             setLocalDeliverActive(false);
             setNationalActive(true);
 
-            setDate(new Date(), 'MM/dd/yyyy')
+            setDate(new Date(), 'dd/MM/yyyy')
             setTime('');
+            setDeliveryType('Envío Nacional')
             setCp('');
             setValidCP('')
             setConfirmationMessage('')
@@ -190,6 +193,7 @@ export default function DatePickerModal ({closeDateModal, date, setDate, minDate
                         handleDateChange={handleDateChange}
                         time={time}
                         handleTimeChange={handleTimeChange}
+                        saveAttributes={saveAttributes}
                     />
                 }
 
@@ -207,7 +211,7 @@ export default function DatePickerModal ({closeDateModal, date, setDate, minDate
                             handleDateChange={handleDateChange}
                             time={time}
                             handleTimeChange={handleTimeChange}
-                            setValidCP={setValidCP} 
+                            saveAttributes={saveAttributes}
                         />
                     </div>
                 }

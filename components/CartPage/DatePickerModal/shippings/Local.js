@@ -23,7 +23,7 @@ const useStyles = makeStyles({
     },
 });
 
-export default function Local ({cp, handleCP, validCP, validateCP, confirmationMessage, shouldDisableDate, minDate, date, handleDateChange, time, handleTimeChange}) {
+export default function Local ({cp, handleCP, validCP, validateCP, confirmationMessage, shouldDisableDate, minDate, date, handleDateChange, time, handleTimeChange, saveAttributes}) {
     const classes = useStyles();
 
     return(
@@ -85,6 +85,7 @@ export default function Local ({cp, handleCP, validCP, validateCP, confirmationM
                             </FormControl>
                         </div>
                     </div>
+                    <button onClick={saveAttributes}>Confirmar</button>
                 </div>                                
             }
 

@@ -41,19 +41,24 @@ const useStyles = makeStyles((theme) => ({
 export default function Cart () {
     const classes = useStyles();
     
-    /* const [itemsInCart, setItemsInCart] = useState(0)
-    const [checkoutExist, setCheckoutExist] = useState(false)
-    const cart; */
-    const [testState, setTestState] = useState(true)
     const [checkout, setCheckout] = useState(null)
     const [cardModal, setCardModal] = useState(false)
     const [dateModal, setDateModal] = useState(false)
 
     // Date and Time Picker States
-
     const [date, setDate] = useState(new Date(), 'MM/dd/yyyy');
     const [minDate, setMinDate] = useState(new Date())
     const [time, setTime] = useState('Por la mañana - 9:00 a 13:00');
+
+    const [deliveryType, setDeliveryType] = useState('Recogida Local');
+
+    // States that listen if the card and delivery info were sent
+    const [cardInfo, setCardInfo] = useState(false);
+    const [deliveryInfo, setDeliveryInfo] = useState(false);
+
+    // States to storage the message that is shown instead of the selectors
+    const [cardResume, setCardResume] = useState('')
+    const [deliveryResume, setDeliveryResume] = useState('')
 
     let today = new Date();
     let meridiem = format(today, "aaa")
@@ -73,8 +78,8 @@ export default function Cart () {
         }
         
     }, [])
-    console.log('Checkout:')
-    console.log(checkout);
+    /* console.log('Checkout:')
+    console.log(checkout); */
 
     const openCardModal = () => {
         setCardModal(true);
@@ -90,6 +95,26 @@ export default function Cart () {
 
     const closeDateModal = () => {
         setDateModal(false);
+    }
+
+    const saveAttributes = () => {
+        console.log('Fecha de entrega:')
+        console.log(format(date, 'dd/MM/yyyy'))
+        console.log('Hora de entrega:')
+        console.log(time)
+
+        const formatDate = format(date, 'dd/MM/yyyy');
+        const input = {
+            customAttributes: [
+                {key: "Tipo de Envío", value: deliveryType}, 
+                {key: "Fecha de entrega", value: formatDate},
+                {key: "Hora de entrega", value: time},
+            ]
+        };
+
+        client.checkout.updateAttributes(checkout.id, input).then((checkout) => {
+            console.log(checkout);
+        })
     }
 
     return (
@@ -173,6 +198,9 @@ export default function Cart () {
                         setMinDate={setMinDate}
                         time={time} 
                         setTime={setTime} 
+                        deliveryType={deliveryType}
+                        setDeliveryType={setDeliveryType}
+                        saveAttributes={saveAttributes}
                     />
                 </div>
             </Grow>
