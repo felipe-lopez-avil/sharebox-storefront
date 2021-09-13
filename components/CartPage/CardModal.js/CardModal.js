@@ -8,18 +8,16 @@ import CloseIcon from '@material-ui/icons/Close';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
 
-export default function CardModal ({closeCardModal}) {
+export default function CardModal ({closeCardModal, selectedCard, setSelectedCard, cardFrom, setCardFrom, cardTo, setCardTo, cardMessage, setCardMessage, saveCardAttributes}) {
 
     const [cardPreview, setCardPreview] = useState(false);
     const [cardImage, setCardImage] = useState('https://cdn.shopify.com/s/files/1/0456/6820/4706/files/congratulations-06.png?v=1630517306')
     const [cardType, setCardType] = useState('')
-    const [cardFrom, setCardFrom] = useState('');
-    const [cardTo, setCardTo] = useState('');
-    const [cardMessage, setCardMessage] = useState('');
 
-    function showPreview(cardType, imageLink) {
+    function showPreview(selectedCard, imageLink) {
         setCardPreview(true)
         setCardImage(imageLink)
+        setSelectedCard(selectedCard)
     }
 
     const hidePreview = () => {
@@ -49,15 +47,15 @@ export default function CardModal ({closeCardModal}) {
                 </div>
             </div>
             <div className={styles.content}>
-                <div className={styles.cardBox} onClick={() => showPreview('Birthday', 'https://cdn.shopify.com/s/files/1/0456/6820/4706/files/happy-birthday.png?v=1630507598')}>
+                <div className={styles.cardBox} onClick={() => showPreview('Tarjeta de Cumpleaños', 'https://cdn.shopify.com/s/files/1/0456/6820/4706/files/happy-birthday.png?v=1630507598')}>
                     <div className={styles.iconContainer}></div>
                     <div className={styles.cardType}>Birthday</div>
                 </div>
-                <div className={styles.cardBox} onClick={() => showPreview('Aniversary', 'https://cdn.shopify.com/s/files/1/0456/6820/4706/files/aniversary-04.png?v=1630517306')}>
+                <div className={styles.cardBox} onClick={() => showPreview('Tarjeta de Aniversario', 'https://cdn.shopify.com/s/files/1/0456/6820/4706/files/aniversary-04.png?v=1630517306')}>
                     <div className={styles.iconContainer}></div>
                     <div className={styles.cardType}>Aniversary</div>
                 </div>
-                <div className={styles.cardBox} onClick={() => showPreview('Congratulations','https://cdn.shopify.com/s/files/1/0456/6820/4706/files/congratulations-06.png?v=1630517306')}>
+                <div className={styles.cardBox} onClick={() => showPreview('Tarjeta de Felicitaciones','https://cdn.shopify.com/s/files/1/0456/6820/4706/files/congratulations-06.png?v=1630517306')}>
                     <div className={styles.iconContainer}></div>
                     <div className={styles.cardType}>Congratulations</div>
                 </div>
@@ -117,7 +115,7 @@ export default function CardModal ({closeCardModal}) {
                                     <div className={styles.to}>{cardTo}</div>
                                 </div>
                             </div>
-                            <div className={styles.save}>
+                            <div className={styles.save} onClick={saveCardAttributes}>
                                 Confirmar Tarjeta
                             </div>
                         </div> 

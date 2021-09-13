@@ -15,6 +15,9 @@ import 'date-fns';
 import add from 'date-fns/add'
 import format from 'date-fns/format'
 
+const parseData = (data) => {
+    return JSON.parse(JSON.stringify(data))
+}
 
 const getDataFromStorage = (key) => {
     const storage = window.localStorage;
@@ -45,11 +48,16 @@ export default function Cart () {
     const [cardModal, setCardModal] = useState(false)
     const [dateModal, setDateModal] = useState(false)
 
+    // Card Info States
+    const [selectedCard, setSelectedCard] = useState('')
+    const [cardFrom, setCardFrom] = useState('')
+    const [cardTo, setCardTo] = useState('')
+    const [cardMessage, setCardMessage] = useState('')
+
     // Date and Time Picker States
     const [date, setDate] = useState(new Date(), 'MM/dd/yyyy');
     const [minDate, setMinDate] = useState(new Date())
     const [time, setTime] = useState('Por la mañana - 9:00 a 13:00');
-
     const [deliveryType, setDeliveryType] = useState('Recogida Local');
 
     // States that listen if the card and delivery info were sent
@@ -66,20 +74,40 @@ export default function Cart () {
 
     // const lineItems = checkout.lineItems;
     useEffect(() => {
-        if(typeof window !== 'undefined'){
+       /*  if(typeof window !== 'undefined'){
             const checkout = getDataFromStorage('checkout')
             setCheckout(checkout)
+        }  */
+
+        if(typeof window !== 'undefined'){
+            const checkoutId = getDataFromStorage('checkoutId')
+            if (checkoutId !== null){
+                client.checkout.fetch(checkoutId).then((checkout) => {
+                    console.log(checkout)
+                    setCheckout(checkout)
+                    if (checkout.customAttributes.length > 0){
+                        let attributes = checkout.customAttributes;
+                        let deliveryInfoExist = attributes.map(function(e) { return e.key; }).indexOf('Tipo de Envío');
+                        if(deliveryInfoExist > -1) {
+                            let deliveryMessage = `${attributes[deliveryInfoExist].value} el día ${attributes[deliveryInfoExist + 1].value} (${attributes[deliveryInfoExist + 2].value})`
+                            setDeliveryResume(deliveryMessage);
+                        }
+                        let cardInfoExist = attributes.map(function(e) { return e.key; }).indexOf('Tipo de Tarjeta');
+                        if(cardInfoExist > -1) {
+                            let cardMessage = `Seleccionaste ${attributes[cardInfoExist].value}`
+                            setCardResume(cardMessage);
+                        }
+                    }
+                });
+            }
         }
 
         if (meridiem === 'pm'){
             let newDate = add(today, {days: 1});
             setDate(newDate, 'MM/dd/yyyy')
             setMinDate(newDate);
-        }
-        
+        }    
     }, [])
-    /* console.log('Checkout:')
-    console.log(checkout); */
 
     const openCardModal = () => {
         setCardModal(true);
@@ -106,15 +134,69 @@ export default function Cart () {
         const formatDate = format(date, 'dd/MM/yyyy');
         const input = {
             customAttributes: [
+                {key: "Tipo de Tarjeta", value: selectedCard}, 
+                {key: "Remitente", value: cardFrom},
+                {key: "Destinatario", value: cardTo},
+                {key: "Mensaje", value: cardMessage},
                 {key: "Tipo de Envío", value: deliveryType}, 
                 {key: "Fecha de entrega", value: formatDate},
                 {key: "Hora de entrega", value: time},
             ]
         };
 
+        setDeliveryResume(`${deliveryType} el día ${formatDate} (${time})`)
+        setDateModal(false)
+
         client.checkout.updateAttributes(checkout.id, input).then((checkout) => {
             console.log(checkout);
         })
+    }
+
+    const saveCardAttributes = () => {
+        console.log('Tipo de Tarjeta:')
+        console.log(selectedCard)
+        console.log('De:')
+        console.log(cardFrom)
+        console.log('Para:')
+        console.log(cardTo)
+        console.log('Mensaje:')
+        console.log(cardMessage)
+
+        const formatDate = format(date, 'dd/MM/yyyy');
+        const input = {
+            customAttributes: [
+                {key: "Tipo de Tarjeta", value: selectedCard}, 
+                {key: "Remitente", value: cardFrom},
+                {key: "Destinatario", value: cardTo},
+                {key: "Mensaje", value: cardMessage},
+                {key: "Tipo de Envío", value: deliveryType}, 
+                {key: "Fecha de entrega", value: formatDate},
+                {key: "Hora de entrega", value: time},
+            ]
+        };
+
+        setCardResume(`Seleccionaste ${selectedCard}`)
+        setCardModal(false)
+
+        client.checkout.updateAttributes(checkout.id, input).then((checkout) => {
+            console.log(checkout);
+        })
+
+        /* const formatDate = format(date, 'dd/MM/yyyy');
+        const input = {
+            customAttributes: [
+                {key: "Tipo de Envío", value: deliveryType}, 
+                {key: "Fecha de entrega", value: formatDate},
+                {key: "Hora de entrega", value: time},
+            ]
+        };
+
+        setDeliveryResume(`${deliveryType} el día ${formatDate} (${time})`)
+        setDateModal(false)
+
+        client.checkout.updateAttributes(checkout.id, input).then((checkout) => {
+            console.log(checkout);
+        }) */
     }
 
     return (
@@ -154,8 +236,12 @@ export default function Cart () {
                         </div>
                         <div className={styles.cardAndDate}>
                             <div className={styles.choose}>
-                                <button className={styles.chooseButton} onClick={openCardModal}>SELECCIONA UNA TARJETA</button>
-                                <button className={styles.chooseButton} onClick={openDateModal}>SELECCIONA LA HORA Y FECHA DE ENTREGA</button>
+                                <button className={styles.chooseButton} onClick={openCardModal}>
+                                    {cardResume === '' ? 'SELECCIONA UNA TARJETA' : cardResume}
+                                </button>
+                                <button className={styles.chooseButton} onClick={openDateModal}>
+                                    {deliveryResume === '' ? 'SELECCIONA LA HORA Y FECHA DE ENTREGA' : deliveryResume}
+                                </button>
                             </div>
                             <div className={styles.options}>
                                 <a href={checkout.webUrl} className={styles.fullWidth}>
@@ -185,7 +271,18 @@ export default function Cart () {
             </div>
             <Grow in={cardModal}>
                 <div className={styles.modal}>
-                    <CardModal closeCardModal={closeCardModal}/>
+                    <CardModal 
+                        closeCardModal={closeCardModal}
+                        selectedCard={selectedCard}
+                        setSelectedCard={setSelectedCard}
+                        cardFrom={cardFrom}
+                        setCardFrom={setCardFrom}
+                        cardTo={cardTo}
+                        setCardTo={setCardTo}
+                        cardMessage={cardMessage}
+                        setCardMessage={setCardMessage}
+                        saveCardAttributes={saveCardAttributes}
+                    />
                 </div>
             </Grow>
             <Grow in={dateModal}>
@@ -200,7 +297,7 @@ export default function Cart () {
                         setTime={setTime} 
                         deliveryType={deliveryType}
                         setDeliveryType={setDeliveryType}
-                        saveAttributes={saveAttributes}
+                        saveAttributes={saveAttributes}  
                     />
                 </div>
             </Grow>
