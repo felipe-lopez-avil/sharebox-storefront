@@ -15,9 +15,6 @@ import 'date-fns';
 import add from 'date-fns/add'
 import format from 'date-fns/format'
 
-const parseData = (data) => {
-    return JSON.parse(JSON.stringify(data))
-}
 
 const getDataFromStorage = (key) => {
     const storage = window.localStorage;
@@ -56,6 +53,7 @@ export default function Cart () {
 
     // Date and Time Picker States
     const [date, setDate] = useState(new Date(), 'MM/dd/yyyy');
+    const [definitiveDate, setDefinitiveDate] = useState('')
     const [minDate, setMinDate] = useState(new Date())
     const [time, setTime] = useState('Por la mañana - 9:00 a 13:00');
     const [deliveryType, setDeliveryType] = useState('Recogida Local');
@@ -71,13 +69,7 @@ export default function Cart () {
     let today = new Date();
     let meridiem = format(today, "aaa")
 
-
-    // const lineItems = checkout.lineItems;
     useEffect(() => {
-       /*  if(typeof window !== 'undefined'){
-            const checkout = getDataFromStorage('checkout')
-            setCheckout(checkout)
-        }  */
 
         if(typeof window !== 'undefined'){
             const checkoutId = getDataFromStorage('checkoutId')
@@ -88,12 +80,12 @@ export default function Cart () {
                     if (checkout.customAttributes.length > 0){
                         let attributes = checkout.customAttributes;
                         let deliveryInfoExist = attributes.map(function(e) { return e.key; }).indexOf('Tipo de Envío');
-                        if(deliveryInfoExist > -1) {
+                        if(deliveryInfoExist > -1 & attributes[deliveryInfoExist + 1].value !== '') {
                             let deliveryMessage = `${attributes[deliveryInfoExist].value} el día ${attributes[deliveryInfoExist + 1].value} (${attributes[deliveryInfoExist + 2].value})`
                             setDeliveryResume(deliveryMessage);
                         }
                         let cardInfoExist = attributes.map(function(e) { return e.key; }).indexOf('Tipo de Tarjeta');
-                        if(cardInfoExist > -1) {
+                        if(cardInfoExist > -1 & attributes[cardInfoExist].value !== '') {
                             let cardMessage = `Seleccionaste ${attributes[cardInfoExist].value}`
                             setCardResume(cardMessage);
                         }
@@ -126,12 +118,15 @@ export default function Cart () {
     }
 
     const saveAttributes = () => {
-        console.log('Fecha de entrega:')
-        console.log(format(date, 'dd/MM/yyyy'))
-        console.log('Hora de entrega:')
-        console.log(time)
+        
+        let formatDate
+        
+        if (definitiveDate === ''){
+            formatDate = '';
+        }else{
+            formatDate = format(definitiveDate, 'dd/MM/yyyy');
+        }
 
-        const formatDate = format(date, 'dd/MM/yyyy');
         const input = {
             customAttributes: [
                 {key: "Tipo de Tarjeta", value: selectedCard}, 
@@ -153,16 +148,15 @@ export default function Cart () {
     }
 
     const saveCardAttributes = () => {
-        console.log('Tipo de Tarjeta:')
-        console.log(selectedCard)
-        console.log('De:')
-        console.log(cardFrom)
-        console.log('Para:')
-        console.log(cardTo)
-        console.log('Mensaje:')
-        console.log(cardMessage)
 
-        const formatDate = format(date, 'dd/MM/yyyy');
+        let formatDate
+
+        if (definitiveDate === ''){
+            formatDate = '';
+        }else{
+            formatDate = format(definitiveDate, 'dd/MM/yyyy');
+        }
+
         const input = {
             customAttributes: [
                 {key: "Tipo de Tarjeta", value: selectedCard}, 
@@ -181,22 +175,6 @@ export default function Cart () {
         client.checkout.updateAttributes(checkout.id, input).then((checkout) => {
             console.log(checkout);
         })
-
-        /* const formatDate = format(date, 'dd/MM/yyyy');
-        const input = {
-            customAttributes: [
-                {key: "Tipo de Envío", value: deliveryType}, 
-                {key: "Fecha de entrega", value: formatDate},
-                {key: "Hora de entrega", value: time},
-            ]
-        };
-
-        setDeliveryResume(`${deliveryType} el día ${formatDate} (${time})`)
-        setDateModal(false)
-
-        client.checkout.updateAttributes(checkout.id, input).then((checkout) => {
-            console.log(checkout);
-        }) */
     }
 
     return (
@@ -232,7 +210,6 @@ export default function Cart () {
                                     quantity={lineItem.quantity.toString()} 
                                     total={`$${(parseFloat(lineItem.variant.price)*lineItem.quantity).toString()}.00`} />
                             ))} 
-                            {/* <ProductsInCart product={checkout !== null ? checkout.lineItems[0].title : 'Cargando...'} price='$500' quantity='2' total='$1000' /> */}
                         </div>
                         <div className={styles.cardAndDate}>
                             <div className={styles.choose}>
@@ -259,12 +236,13 @@ export default function Cart () {
                     </div>
                     <div className={styles.subtotal}>
                         <div className={styles.title}>
-                            SUBTOTAL
+                            SUBTOTAL:
                         </div>
                         <div className={styles.price}>
-                            {checkout.totalPrice}
+                            ${checkout.totalPrice}
                         </div>
                     </div>
+                    <div>Los impuestos y gastos de envío se calculan en el próximo paso</div>
                     </>
                 :
                     <h3>NO HAY PRODUCTOS EN EL CARRITO</h3>}
@@ -289,6 +267,7 @@ export default function Cart () {
                 <div className={styles.modal}>
                     <DatePickerModal 
                         closeDateModal={closeDateModal} 
+                        setDefinitiveDate={setDefinitiveDate}
                         date={date} 
                         setDate={setDate} 
                         minDate={minDate}

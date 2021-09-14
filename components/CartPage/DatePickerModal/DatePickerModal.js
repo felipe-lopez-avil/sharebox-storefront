@@ -28,7 +28,7 @@ const useStyles = makeStyles({
     },
 });
 
-export default function DatePickerModal ({closeDateModal, date, setDate, minDate, setMinDate, time, setTime, deliveryType, setDeliveryType, saveAttributes}) {
+export default function DatePickerModal ({closeDateModal, setDefinitiveDate, date, setDate, minDate, setMinDate, time, setTime, deliveryType, setDeliveryType, saveAttributes}) {
     const classes = useStyles();
 
     const [pickAndGoActive, setPickAndGoActive] = useState(true);
@@ -43,7 +43,8 @@ export default function DatePickerModal ({closeDateModal, date, setDate, minDate
 
     const handleDateChange = (date) => {
         setDate(date);
-        console.log(date)
+        setDefinitiveDate(date);
+        console.log(date);
     };
 
     const handleTimeChange = (event) => {
