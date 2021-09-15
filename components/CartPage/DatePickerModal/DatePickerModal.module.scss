@@ -141,3 +141,13 @@
 .time{
     padding-top: 16px;
 }
+
+@media (max-width: 850px) {
+    .container{
+        width: 100%;
+        min-height: 100vh;
+        padding-top: 100px;
+        border-radius: 0px;
+    }
+
+}
