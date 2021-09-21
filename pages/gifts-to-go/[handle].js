@@ -112,36 +112,25 @@ export default function GTGProduct ({product, collection}) {
     const activeVariant = (event) => {
         console.log(variantIndex)
     }
-    
+
     const addToCart = async () => {
 
         setProductAdded(true);
-
-        // Local Storage is checked to see if a CheckoutID already exists. If not, a new one is created;
-       /*  const storage = window.localStorage;
-        let checkout = storage.getItem("checkout"); */
-        /* let checkoutTemp = null
-        if (getDataFromStorage('checkout')) {
-            checkoutTemp = getDataFromStorage('checkout')
-        }else{
-            checkoutTemp = await client.checkout.create()
-        }
-        let checkout = parseData(checkoutTemp)
-        const checkoutId = checkout.id
-        const lineItemsToAdd = [
-        {
-            variantId: product.variants[variantIndex].id,
-            quantity: 1,
-            // customAttributes: [{key: "MyKey", value: "MyValue"}]
-        }
-        ]; */
 
         // Local Storage is checked to see if a CheckoutID already exists. If not, a new one is created;
         let checkoutId = null
         let checkoutTemp = null
         let checkout = null
         if (getDataFromStorage('checkoutId')) {
-            checkoutId = getDataFromStorage('checkoutId')
+            checkout = await client.checkout.fetch(getDataFromStorage('checkoutId'))
+            if (checkout.completedAt === null){
+                checkoutId = getDataFromStorage('checkoutId')
+            }else{
+                checkoutTemp = await client.checkout.create()
+                checkout = parseData(checkoutTemp)
+                checkoutId = checkout.id
+                setDataToStorage('checkoutId', checkoutId)
+            }
         }else{
             checkoutTemp = await client.checkout.create()
             checkout = parseData(checkoutTemp)
@@ -160,15 +149,6 @@ export default function GTGProduct ({product, collection}) {
         checkout = await client.checkout.addLineItems(checkoutId, lineItemsToAdd)
 
         console.log(parseData(checkout))
-        // setCheckout(parseData(checkout))
-        // setDataToStorage('checkout', checkout)
-
-        // Add an item to the checkout
-        /* client.checkout.addLineItems(checkoutId, lineItemsToAdd).then((checkout) => {
-            // Do something with the updated checkout
-            console.log(checkout); 
-            
-        }); */
     }
 
     return (
@@ -233,7 +213,6 @@ export async function getServerSideProps({query}) {
     const collectionId = 'Z2lkOi8vc2hvcGlmeS9Db2xsZWN0aW9uLzIzNjk4NjkyNTIxOA==';
     const collection = await client.collection.fetchWithProducts(collectionId, {productsFirst: 4})
 
-
     // Pass data to the page via props
-    return { props: { product: JSON.parse(JSON.stringify(product)), collection: JSON.parse(JSON.stringify(collection))} }
+    return { props: { product: JSON.parse(JSON.stringify(product)), collection: JSON.parse(JSON.stringify(collection))}}
 }

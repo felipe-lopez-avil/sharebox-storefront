@@ -38,9 +38,12 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
+
 export default function Cart () {
     const classes = useStyles();
-    
+
+    const [sendableCheckoutId, setSendableCheckoutId] = useState(null)
+
     const [checkout, setCheckout] = useState(null)
     const [cardModal, setCardModal] = useState(false)
     const [dateModal, setDateModal] = useState(false)
@@ -59,8 +62,7 @@ export default function Cart () {
     const [deliveryType, setDeliveryType] = useState('Recogida Local');
 
     // States that listen if the card and delivery info were sent
-    const [cardInfo, setCardInfo] = useState(false);
-    const [deliveryInfo, setDeliveryInfo] = useState(false);
+    const [checkoutCompleted, setCheckoutCompleted] = useState(false)
 
     // States to storage the message that is shown instead of the selectors
     const [cardResume, setCardResume] = useState('')
@@ -70,13 +72,16 @@ export default function Cart () {
     let meridiem = format(today, "aaa")
 
     useEffect(() => {
-
         if(typeof window !== 'undefined'){
             const checkoutId = getDataFromStorage('checkoutId')
+            setSendableCheckoutId(checkoutId)
             if (checkoutId !== null){
                 client.checkout.fetch(checkoutId).then((checkout) => {
                     console.log(checkout)
                     setCheckout(checkout)
+                    if (checkout.completedAt !== null) {
+                        setCheckoutCompleted(true)
+                    }
                     if (checkout.customAttributes.length > 0){
                         let attributes = checkout.customAttributes;
                         let deliveryInfoExist = attributes.map(function(e) { return e.key; }).indexOf('Tipo de Envío');
@@ -183,7 +188,7 @@ export default function Cart () {
                 <div className={styles.cartHeader}>
                     <h1>Carrito de Compras</h1>   
                 </div>
-                {checkout !== null ? 
+                {checkout !== null & checkoutCompleted === false & checkout.lineItems.length > 0 ? 
                     <>
                     <div className={styles.content}>
                         <div className={styles.productsSummary}>
@@ -208,7 +213,12 @@ export default function Cart () {
                                     selectedOptions={lineItem.variant.selectedOptions}
                                     price={`$${lineItem.variant.price}`} 
                                     quantity={lineItem.quantity.toString()} 
-                                    total={`$${(parseFloat(lineItem.variant.price)*lineItem.quantity).toString()}.00`} />
+                                    total={`$${(parseFloat(lineItem.variant.price)*lineItem.quantity).toString()}.00`}
+                                    id={lineItem.id} 
+                                    sendableCheckoutId={sendableCheckoutId}
+                                    setCheckout={setCheckout}
+                                    checkout={client.checkout}
+                                />
                             ))} 
                         </div>
                         <div className={styles.cardAndDate}>

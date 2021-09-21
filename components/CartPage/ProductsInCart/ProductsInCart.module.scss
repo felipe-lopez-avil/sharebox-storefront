@@ -18,6 +18,8 @@
     background-color: rgb(238, 238, 238);
     margin-right: 10px;
     position: relative;
+    border-radius: 5px;
+    overflow: hidden;
 }
 
 .variant{
@@ -56,6 +58,14 @@
 
 .mobile{
     display: none;
+}
+
+.delete{
+    color: rgb(255, 80, 80);
+    text-decoration: underline;
+    font-family: 'Poppins';
+    margin-top: 15px;
+    cursor: pointer;
 }
 
 @media (max-width: 600px) {

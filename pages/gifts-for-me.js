@@ -119,11 +119,15 @@ export default function GiftsForMe ({collection}) {
                                     <Link href={`/gifts-for-me/${product.handle}`}>
                                         <div className={styles.productContainer}>
                                             <div className={styles.productImage}>
-                                                <Image
-                                                    src={product.images[0].src}
-                                                    layout="fill"
-                                                    objectFit="cover"
-                                                />
+                                                {product.images.length > 0 ? 
+                                                    <Image
+                                                        src={product.images[0].src !== undefined ? product.images[0].src : ''}
+                                                        layout="fill"
+                                                        objectFit="cover"
+                                                    />
+                                                    :
+                                                    ''
+                                                }
                                             </div>
                                             <div className={styles.productDescription}>
                                                 <div className={styles.productTitle}>{product.title}</div>
