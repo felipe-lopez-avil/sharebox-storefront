@@ -4,9 +4,9 @@ import client from '../../../utils/shopify'
 
 export default function ProductsInCart({image, product, selectedOptions, price, quantity, total, id, sendableCheckoutId, setCheckout, checkout}) {
 
-    const deleteElement = (id) => {
+    const deleteElement = (sendableCheckoutId, id) => {
 
-        const checkoutId = 'Z2lkOi8vc2hvcGlmeS9DaGVja291dC80N2Y0ZDc4NzdmM2JhNmJhMTYzY2NlOTUxNDUxMDkwMT9rZXk9NTYwNmYxMDFkMTJkODI5OWRmMDkyMmJhYzAwODNmODY='; // ID of an existing checkout
+        const checkoutId = sendableCheckoutId; // ID of an existing checkout
         const lineItemIdsToRemove = [
             btoa(id)
         ];
@@ -43,7 +43,7 @@ export default function ProductsInCart({image, product, selectedOptions, price, 
                                 <div>Total:</div>
                                 <div>{total}</div>
                             </div>
-                            <div className={styles.delete} onClick={() => deleteElement(id)}>Eliminar</div>
+                            <div className={styles.delete} onClick={() => deleteElement(sendableCheckoutId, id)}>Eliminar</div>
                         </div>
                     }
                 </div>

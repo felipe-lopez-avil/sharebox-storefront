@@ -6,7 +6,13 @@
 }
 
 .total{
+    font-family: 'Poppins', Helvetica, Arial, sans-serif;
+    font-weight: 600;
     font-size: 1.8rem;
+
+    .number{
+        color: #0082aa;
+    }
 }
 
 .buttons{

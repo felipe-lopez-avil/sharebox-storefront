@@ -188,74 +188,81 @@ export default function Cart () {
                 <div className={styles.cartHeader}>
                     <h1>Carrito de Compras</h1>   
                 </div>
-                {checkout !== null & checkoutCompleted === false & checkout.lineItems.length > 0 ? 
+                {checkout !== null & checkoutCompleted === false ? 
                     <>
-                    <div className={styles.content}>
-                        <div className={styles.productsSummary}>
-                            <div className={styles.fields}>
-                                <div className={styles.firstField}>
-                                    Producto
+                    {checkout.lineItems.length > 0 ?
+                        <>
+                        <div className={styles.content}>
+                            <div className={styles.productsSummary}>
+                                <div className={styles.fields}>
+                                    <div className={styles.firstField}>
+                                        Producto
+                                    </div>
+                                    <div className={styles.field}>
+                                        Precio
+                                    </div>
+                                    <div className={styles.field}>
+                                        Cantidad
+                                    </div>
+                                    <div className={styles.field}>
+                                        Total
+                                    </div>
                                 </div>
-                                <div className={styles.field}>
-                                    Precio
-                                </div>
-                                <div className={styles.field}>
-                                    Cantidad
-                                </div>
-                                <div className={styles.field}>
-                                    Total
-                                </div>
+                                {checkout.lineItems.map(lineItem => (
+                                    <ProductsInCart 
+                                        image={lineItem.variant.image.src}
+                                        product={lineItem.title} 
+                                        selectedOptions={lineItem.variant.selectedOptions}
+                                        price={`$${lineItem.variant.price}`} 
+                                        quantity={lineItem.quantity.toString()} 
+                                        total={`$${(parseFloat(lineItem.variant.price)*lineItem.quantity).toString()}.00`}
+                                        id={lineItem.id} 
+                                        sendableCheckoutId={sendableCheckoutId}
+                                        setCheckout={setCheckout}
+                                        checkout={client.checkout}
+                                    />
+                                ))} 
                             </div>
-                            {checkout.lineItems.map(lineItem => (
-                                <ProductsInCart 
-                                    image={lineItem.variant.image.src}
-                                    product={lineItem.title} 
-                                    selectedOptions={lineItem.variant.selectedOptions}
-                                    price={`$${lineItem.variant.price}`} 
-                                    quantity={lineItem.quantity.toString()} 
-                                    total={`$${(parseFloat(lineItem.variant.price)*lineItem.quantity).toString()}.00`}
-                                    id={lineItem.id} 
-                                    sendableCheckoutId={sendableCheckoutId}
-                                    setCheckout={setCheckout}
-                                    checkout={client.checkout}
-                                />
-                            ))} 
-                        </div>
-                        <div className={styles.cardAndDate}>
-                            <div className={styles.choose}>
-                                <button className={styles.chooseButton} onClick={openCardModal}>
-                                    {cardResume === '' ? 'SELECCIONA UNA TARJETA' : cardResume}
-                                </button>
-                                <button className={styles.chooseButton} onClick={openDateModal}>
-                                    {deliveryResume === '' ? 'SELECCIONA LA HORA Y FECHA DE ENTREGA' : deliveryResume}
-                                </button>
-                            </div>
-                            <div className={styles.options}>
-                                <a href={checkout.webUrl} className={styles.fullWidth}>
-                                    <button className={styles.continue}>
-                                        CONTINUAR CON EL PAGO                                    
+                            <div className={styles.cardAndDate}>
+                                <div className={styles.choose}>
+                                    <button className={styles.chooseButton} onClick={openCardModal}>
+                                        {cardResume === '' ? 'SELECCIONA UNA TARJETA' : cardResume}
                                     </button>
-                                </a>
-                                <Link href='./box-to-go' className={styles.fullWidth}>
-                                    <button className={styles.goBack}>
-                                        SEGUIR COMPRANDO 
+                                    <button className={styles.chooseButton} onClick={openDateModal}>
+                                        {deliveryResume === '' ? 'SELECCIONA LA HORA Y FECHA DE ENTREGA' : deliveryResume}
                                     </button>
-                                </Link>
+                                </div>
+                                <div className={styles.options}>
+                                    <a href={checkout.webUrl} className={styles.fullWidth}>
+                                        <button className={styles.continue}>
+                                            CONTINUAR CON EL PAGO                                    
+                                        </button>
+                                    </a>
+                                    <Link href='./box-to-go' className={styles.fullWidth}>
+                                        <button className={styles.goBack}>
+                                            SEGUIR COMPRANDO 
+                                        </button>
+                                    </Link>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className={styles.subtotal}>
-                        <div className={styles.title}>
-                            SUBTOTAL:
+                        <div className={styles.subtotal}>
+                            <div className={styles.title}>
+                                SUBTOTAL:
+                            </div>
+                            <div className={styles.price}>
+                                ${checkout.totalPrice}
+                            </div>
                         </div>
-                        <div className={styles.price}>
-                            ${checkout.totalPrice}
-                        </div>
-                    </div>
-                    <div>Los impuestos y gastos de envío se calculan en el próximo paso</div>
+                        <div>Los impuestos y gastos de envío se calculan en el próximo paso</div>
+                        </>
+                        :
+                        <h3>NO HAY PRODUCTOS EN EL CARRITO</h3>
+                    }
                     </>
                 :
-                    <h3>NO HAY PRODUCTOS EN EL CARRITO</h3>}
+                    <h3>NO HAY PRODUCTOS EN EL CARRITO</h3>
+                }
             </div>
             <Grow in={cardModal}>
                 <div className={styles.modal}>

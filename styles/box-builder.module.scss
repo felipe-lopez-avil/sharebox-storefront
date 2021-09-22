@@ -1,6 +1,7 @@
 .makeYourBox{
     width: 100%;
-    height: 100vh;
+    height: auto;
+    min-height: 100vh;
     padding-top: 80px;
     display: flex;
 }
@@ -42,9 +43,12 @@
 }
 
 .controllers{
-    padding-right: 45px;
-    padding-left: 15px;
     background-color: #fff;
+    padding: 10px 45px;
+    position: -webkit-sticky;
+    position: sticky;
+    bottom: 0px;
+    box-shadow: 0 -1px 4px (rgba($color: #000000, $alpha: 0.13));
 }
 
 @media (max-width: 768px) {

@@ -5,7 +5,7 @@ export default function Controllers({currentStep, setCurrentStep, goNext, goPrev
     return (
         <div className={styles.container}>
             <div className={styles.total}>
-                Total: $0.00
+                Total: <span className={styles.number}>$0.00</span>
             </div>
             <div className={styles.buttons}>
                 { currentStep !== 0 ? 

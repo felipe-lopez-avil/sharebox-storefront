@@ -36,6 +36,7 @@ export default function BoxBuilder() {
     }, [])
 
     return (
+        <>
         <div className={styles.makeYourBox}>
 
             {/*Columna izquierda. Sección donde se muestran los pasos del proceso así como los porductos que llevas en el proceso*/}
@@ -60,16 +61,17 @@ export default function BoxBuilder() {
                         {currentStep === 3 && <FourthStep/>}
                     </div> 
                 </form>
-                <div className={styles.controllers}>
-                    <Controllers 
-                        currentStep={currentStep} 
-                        setCurrentStep={setCurrentStep} 
-                        goNext={goNext} 
-                        goPrev={goPrev} 
-                    />
-                </div>
+                
             </div>
-
         </div>
+        <div className={styles.controllers}>
+            <Controllers 
+                currentStep={currentStep} 
+                setCurrentStep={setCurrentStep} 
+                goNext={goNext} 
+                goPrev={goPrev} 
+            />
+        </div>
+        </>
     )
 }
