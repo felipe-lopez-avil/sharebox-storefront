@@ -16,7 +16,7 @@ export default function BoxBuilder() {
     const [totalPrice, setTotalPrice] = useState(0)
     const [stepper, setStepper] = useState(false)
 
-    const [step1Items, setStep1Items] = useState([])
+    const [step1Items, setStep1Items] = useState({productID: '', quantity: 1, image: '',})
     const [step2Items, setStep2Items] = useState([])
     const [step3Items, setStep3Items] = useState([])
     const [step4Items, setStep4Items] = useState([])

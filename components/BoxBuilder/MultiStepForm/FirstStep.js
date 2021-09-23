@@ -38,9 +38,9 @@ export default function FirstStep ({step1Items, setStep1Items}) {
     const [productsMYB1, setProductsMYB1] = useState(null)
     
     useEffect(() => {
-        client.collection.fetchWithProducts(collectionMYB1, {productsFirst: 4}).then((collection) => {
+        client.collection.fetchWithProducts(collectionMYB1, {productsFirst: 10}).then((collection) => {
             // Do something with the collection
-    
+            console.log(collection)
             // Se convierte el objeto a JSON
             var parsedCollection = JSON.parse(JSON.stringify(collection));
     
@@ -50,10 +50,11 @@ export default function FirstStep ({step1Items, setStep1Items}) {
         });
     }, [])
 
+
     function addItem(id, image, e) {
         e.preventDefault();
         
-        setStep1Items([{productID: id, quantity: 1, image: image,}]);
+        setStep1Items({productID: id, quantity: 1, image: image,});
         /* var toAdd;
         var itemIndex = -1;
 
@@ -87,6 +88,12 @@ export default function FirstStep ({step1Items, setStep1Items}) {
 
     }
 
+    const handleChange = (image, e) => {
+        e.preventDefault();
+
+        setStep1Items([{productID: e.target.value, quantity: 1, image: image,}]);
+    }
+
     const removeItem = (id, e) => {
         e.preventDefault();
         const newItems = step1Items.filter(item => item.productID !== id)
@@ -100,13 +107,13 @@ export default function FirstStep ({step1Items, setStep1Items}) {
             </div>
             <div className={styles.productList}>
                 <div className={styles.scrollContainer}>
-                    <Grid container spacing={3}>
+                    <Grid container spacing={2}>
                         {productsMYB1 === null ? 
                         <h5>productsMYB1 es undefined</h5> 
                             : 
                         productsMYB1.map((product) => (
                             <Grid item xs={6} sm={3}>
-                                <Paper className={classes.paper}>
+                                {/* <Paper className={classes.paper}>
                                     <div className={styles.productCard}>
                                         <div className={styles.productImage}>
                                             <Image
@@ -125,15 +132,31 @@ export default function FirstStep ({step1Items, setStep1Items}) {
                                                 <RemoveCircleIcon className={classes.remove} onClick={(e) => removeItem(product.variants[0].id, e)}/>
                                             </div>
                                         </div>
-                                        {/* <div className={styles.productInfo}>
-                                            {product.title}
-                                        </div>
-                                        <div className={styles.actions}>
-                                            <button onClick={(e) => addItem(product.variants[0].id, product.images[0].src, e)}>Add</button>
-                                            <button onClick={(e) => removeItem(product.variants[0].id, e)}>Delete</button>
-                                        </div> */}
                                     </div>
-                                </Paper>
+                                </Paper> */}
+                                <div className={styles.productContainer} onClick={(e) => addItem(product.variants[0].id, product.images[0].src, e)}>
+                                    <input className={styles.boxInput} 
+                                        type="radio" 
+                                        name="tools" 
+                                        id={product.id}
+                                        checked={step1Items.productID === product.variants[0].id}
+                                        value={product.variants[0].id}
+                                        // onChange={(e) => addItem(product.variants[0].id, product.images[0].src, e)}
+                                    />
+                                    <label className={styles.forBoxInput} for={product.id}>
+                                        <div className={styles.firstStepImage}>
+                                            <Image
+                                                src={product.images[0].src}
+                                                layout="fill"
+                                                objectFit="cover"
+                                            />
+                                        </div>
+                                        <div className={styles.description}>
+                                            <div className={styles.productTitle}>{product.title}</div>
+                                            <div>{product.variants[0].price === "0.00" ? '¡Sin costo adicional!' : `$${product.variants[0].price}`}</div>
+                                        </div>
+                                    </label>
+                                </div>
                             </Grid>
                         ))
                         }

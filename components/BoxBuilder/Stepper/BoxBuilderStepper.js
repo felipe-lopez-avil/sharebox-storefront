@@ -58,10 +58,12 @@ const useStepIconStyles = makeStyles({
       fontSize: 18,
     },
     producImage: {
-      width: '35px',
-      height: '35px',
+      width: 'calc((19vw - 45px) / 4)',
+      height: 'calc((19vw - 45px) / 4)',
       borderRadius: '5px',
       overflow: 'hidden',
+      position: 'relative',
+      boxShadow: '0px 0px 5px 1px rgba(0, 0, 0, 0.2);',
     }
 });
 
@@ -133,9 +135,26 @@ export default function BoxBuilderStepper({currentStep, step1Items, step2Items, 
         <div>
           Storaged Items:
           <h6>Step 1:</h6>
-          {step1Items.map(item => (
+          {step1Items.productID !== '' ? 
             <div>
               {/*item.productID} - {item.quantity*/}
+              <Badge badgeContent={step1Items.quantity} color="primary">
+                <div className={classes.producImage}>
+                  <Image
+                        src={step1Items.image}
+                        layout="fill"
+                        objectFit="cover"
+                    />
+                </div>
+              </Badge>
+            </div>
+            :
+            ''
+          }
+          
+          {/* {step1Items.map(item => (
+            <div>
+              {// item.productID} - {item.quantity}
               <Badge badgeContent={item.quantity} color="primary">
                 <div className={classes.producImage}>
                   <Image
@@ -146,7 +165,7 @@ export default function BoxBuilderStepper({currentStep, step1Items, step2Items, 
                 </div>
               </Badge>
             </div>
-          ))}
+          ))} */}
           <h6>Step 2:</h6>
           {step2Items.map(item => (
             <div>{item.productID} - {item.quantity}</div>
