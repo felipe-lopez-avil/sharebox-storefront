@@ -175,7 +175,34 @@ export default function SecondStep ({step2Items, setStep2Items}) {
             <div className={styles.stepTitle}>
                 <h2>Elige los Productos dentro de tu Box</h2>
             </div>
-            <div className={styles.cardContainer}>
+            <div className={styles.cardsContainer}>
+                <div className={styles.cardGrid}>
+                    <Grid container spacing={0}>
+                        <Grid item xs={3} sm={4} md={3}>
+                            <div className={styles.categoryCard}></div>
+                        </Grid>
+                        <Grid item xs={3} sm={4} md={3}>
+                            <div className={styles.categoryCard}></div>
+                        </Grid>
+                        <Grid item xs={3} sm={4} md={3}>
+                            <div className={styles.categoryCard}></div>
+                        </Grid>
+                        <Grid item xs={3} sm={4} md={3}>
+                            <div className={styles.categoryCard}></div>
+                        </Grid>
+                        <Grid item xs={3} sm={4} md={3}>
+                            <div className={styles.categoryCard}></div>
+                        </Grid>
+                        <Grid item xs={3} sm={4} md={3}>
+                            <div className={styles.categoryCard}></div>
+                        </Grid>
+                        <Grid item xs={3} sm={4} md={3}>
+                            <div className={styles.categoryCard}></div>
+                        </Grid>
+                    </Grid>
+                </div>
+            </div>
+            {/* <div className={styles.cardContainer}>
                 <div className={styles.categories}>
                     <div className={styles.catRow}>
                         <div className={styles.category}>
@@ -242,7 +269,7 @@ export default function SecondStep ({step2Items, setStep2Items}) {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
             <Grow in={checked} className={classes.grow}>
                 <div className={styles.productsContainer}>
                     <div className={styles.categoryTitle}>

@@ -33,10 +33,30 @@
     height: 100%;
 }
 
-.cardContainer{
-    height: calc(100% - 50px);
+.cardsContainer{
+    background-color: #003360;
     width: 100%;
-    padding: 0px 20px 20px 20px;
+    min-height: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.cardGrid{
+    background-color: #028ab5;
+    width: 52vw;
+    min-height: 50px;
+}
+
+.categoryCard{
+    background-color: darkgreen;
+    height: 13vw;
+    border: 1px solid #fff;
+}
+
+.cardContainer{
+    width: 100%;
+    padding: 0px;
+    background-color: #003360;
 }
 
 .categoryContainer{
@@ -183,6 +203,25 @@
     margin: 5px;
 }
 
+@media (max-width: 1250px) {
+    .cardGrid{
+        width: 60vw;
+    }
+    
+    .categoryCard{
+        height: 15vw;
+    }
+}
+
+@media (max-width: 1050px) {
+    .cardGrid{
+        width: 64vw;
+    }
+    
+    .categoryCard{
+        height: 16vw;
+    }
+}
 
 @media (max-width: 768px) {
 
