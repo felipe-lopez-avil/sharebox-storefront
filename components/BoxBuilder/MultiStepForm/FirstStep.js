@@ -137,7 +137,7 @@ export default function FirstStep ({step1Items, setStep1Items}) {
                                 <div className={styles.productContainer} onClick={(e) => addItem(product.variants[0].id, product.images[0].src, e)}>
                                     <input className={styles.boxInput} 
                                         type="radio" 
-                                        name="tools" 
+                                        name={product.handle}
                                         id={product.id}
                                         checked={step1Items.productID === product.variants[0].id}
                                         value={product.variants[0].id}

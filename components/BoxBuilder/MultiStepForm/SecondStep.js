@@ -10,6 +10,9 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Grow from '@material-ui/core/Grow';
 
+import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
+import AddOutlinedIcon from '@material-ui/icons/AddOutlined';
+
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
 
@@ -39,7 +42,6 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
         height: '100%',
         backgroundColor: '#fff',
-        padding: '25px 30px',
     },
     logoBlue: {
         color: '#028ab5',
@@ -54,13 +56,14 @@ export default function SecondStep ({step2Items, setStep2Items}) {
 
     const [checked, setChecked] = useState(false)
     const [activeCategory, setActiveCategory] = useState(null)
-    const [catTitle, setCatTitle] = useState(null)
+    const [catTitle, setCatTitle] = useState('')
 
     const [productsMYB2, setProductsMYB2] = useState(null)
 
-    const openPopup = (category, e) => {
+    const openPopup = (category, categoryTitle, e) => {
         e.preventDefault();
         setChecked(true);
+        setCatTitle(categoryTitle)
         setActiveCategory(category)
     };
 
@@ -68,7 +71,7 @@ export default function SecondStep ({step2Items, setStep2Items}) {
         e.preventDefault();
         setChecked(false);
         setActiveCategory(null);
-        setCatTitle(null)
+        setCatTitle('')
     };
 
     useEffect(() => {
@@ -83,10 +86,15 @@ export default function SecondStep ({step2Items, setStep2Items}) {
             setProductsMYB2(parsedCollection.products);
             console.log(productsMYB2)
         });
+
+        client.product.fetchByHandle('teamo-tequila').then((product) => {
+            // Do something with the product
+            console.log(product);
+        });
         
     }, [])
 
-    function addItem(id, e) {
+    function addItem(id, image, e) {
         e.preventDefault();
 
         var toAdd;
@@ -102,6 +110,7 @@ export default function SecondStep ({step2Items, setStep2Items}) {
             toAdd = {
                 productID: id,
                 quantity: 1,
+                image: image,
             }
             setStep2Items([...step2Items, toAdd]);
         }
@@ -110,6 +119,7 @@ export default function SecondStep ({step2Items, setStep2Items}) {
             toAdd = {
                 productID: id,
                 quantity: 1,
+                image: image,
             }
             setStep2Items([...step2Items, toAdd]);
         }else{
@@ -135,7 +145,7 @@ export default function SecondStep ({step2Items, setStep2Items}) {
                     <Grid container spacing={0}>
                         <Grid item xs={6} sm={4} md={3}>
                             <div className={styles.categoryCard}>
-                                <div className={styles.categoryBox}>
+                                <div className={styles.categoryBox} onClick={(e) => {openPopup('globo', 'Bebidas & Complementos', e)}}>
                                     <div className={styles.categoryIcon}>
                                         <Image src="/drinksIcon.svg" layout="fill" objectFit="cover"/>
                                     </div>
@@ -145,7 +155,7 @@ export default function SecondStep ({step2Items, setStep2Items}) {
                         </Grid>
                         <Grid item xs={6} sm={4} md={3}>
                             <div className={styles.categoryCard}>
-                                <div className={styles.categoryBox}>
+                                <div className={styles.categoryBox} onClick={(e) => {openPopup('brides', 'Brides', e)}}>
                                     <div className={styles.categoryIcon}>
                                         <Image src="/bridesIcon.svg" layout="fill" objectFit="cover"/>
                                     </div>
@@ -155,7 +165,7 @@ export default function SecondStep ({step2Items, setStep2Items}) {
                         </Grid>
                         <Grid item xs={6} sm={4} md={3}>
                             <div className={styles.categoryCard}>
-                                <div className={styles.categoryBox}>
+                                <div className={styles.categoryBox} onClick={(e) => {openPopup('cuidado-personal', 'Cuidado Personal', e)}}>
                                     <div className={styles.categoryIcon}>
                                         <Image src="/selfCareIcon.svg" layout="fill" objectFit="cover"/>
                                     </div>
@@ -165,7 +175,7 @@ export default function SecondStep ({step2Items, setStep2Items}) {
                         </Grid>
                         <Grid item xs={6} sm={4} md={3}>
                             <div className={styles.categoryCard}>
-                                <div className={styles.categoryBox}>
+                                <div className={styles.categoryBox} onClick={(e) => {openPopup('for-him', 'For Him', e)}}>
                                     <div className={styles.categoryIcon}>
                                         <Image src="/maleIcon.svg" layout="fill" objectFit="cover"/>
                                     </div>
@@ -175,7 +185,7 @@ export default function SecondStep ({step2Items, setStep2Items}) {
                         </Grid>
                         <Grid item xs={6} sm={4} md={3}>
                             <div className={styles.categoryCard}>
-                                <div className={styles.categoryBox}>
+                                <div className={styles.categoryBox} onClick={(e) => {openPopup('home-and-pets', 'Home & Pets', e)}}>
                                     <div className={styles.categoryIcon}>
                                         <Image src="/petIcon.svg" layout="fill" objectFit="cover"/>
                                     </div>
@@ -185,7 +195,7 @@ export default function SecondStep ({step2Items, setStep2Items}) {
                         </Grid>
                         <Grid item xs={6} sm={4} md={3}>
                             <div className={styles.categoryCard}>
-                                <div className={styles.categoryBox}>
+                                <div className={styles.categoryBox} onClick={(e) => {openPopup('joyeria', 'Joyería', e)}}>
                                     <div className={styles.categoryIcon}>
                                         <Image src="/jewelIcon.svg" layout="fill" objectFit="cover"/>
                                     </div>
@@ -195,7 +205,7 @@ export default function SecondStep ({step2Items, setStep2Items}) {
                         </Grid>
                         <Grid item xs={6} sm={4} md={3}>
                             <div className={styles.categoryCard}>
-                                <div className={styles.categoryBox}>
+                                <div className={styles.categoryBox} onClick={(e) => {openPopup('moms-and-babies', 'Moms & Babies', e)}}>
                                     <div className={styles.categoryIcon}>
                                         <Image src="/momIcon.svg" layout="fill" objectFit="cover"/>
                                     </div>
@@ -205,7 +215,7 @@ export default function SecondStep ({step2Items, setStep2Items}) {
                         </Grid>
                         <Grid item xs={6} sm={4} md={3}>
                             <div className={styles.categoryCard}>
-                                <div className={styles.categoryBox}>
+                                <div className={styles.categoryBox} onClick={(e) => {openPopup('office', 'Office & Stationary', e)}}>
                                     <div className={styles.categoryIcon}>
                                         <Image src="/stationaryIcon.svg" layout="fill" objectFit="cover"/>
                                     </div>
@@ -215,7 +225,7 @@ export default function SecondStep ({step2Items, setStep2Items}) {
                         </Grid>
                         <Grid item xs={6} sm={4} md={3}>
                             <div className={styles.categoryCard}>
-                                <div className={styles.categoryBox}>
+                                <div className={styles.categoryBox} onClick={(e) => {openPopup('snacks-y-postres', 'Snacks & Postres', e)}}>
                                     <div className={styles.categoryIcon}>
                                         <Image src="/snacksIcon.svg" layout="fill" objectFit="cover"/>
                                     </div>
@@ -226,80 +236,16 @@ export default function SecondStep ({step2Items, setStep2Items}) {
                     </Grid>
                 </div>
             </div>
-            {/* <div className={styles.cardContainer}>
-                <div className={styles.categories}>
-                    <div className={styles.catRow}>
-                        <div className={styles.category}>
-                            <Paper className={classes.categoryPaper} onClick={(e) => {openPopup('globo', e)}}>
-                                <LoyaltyOutlinedIcon className={classes.icon}/>
-                                <h4>Moda & Joyería</h4>
-                            </Paper>
-                        </div>
-                        <div className={styles.category}>
-                            <Paper className={classes.categoryPaper} onClick={(e) => {openPopup('flores', e)}}>
-                                <ChildFriendlyOutlinedIcon className={classes.icon}/>
-                                <h4>Moms & Babies</h4>
-                            </Paper>
-                        </div>
-                        <div className={styles.category}>
-                            <Paper className={classes.categoryPaper} onClick={(e) => {openPopup('pastel', e)}}>
-                                <HomeWorkOutlinedIcon className={classes.icon}/>
-                                <h4>Office and Stationary</h4>
-                            </Paper>
-                        </div>
-                        <div className={styles.category}>
-                            <Paper className={classes.categoryPaper} onClick={(e) => {openPopup('globo', e)}}>
-                                <FaceOutlinedIcon className={classes.icon}/>
-                                <h4>For Him</h4>
-                            </Paper>
-                        </div>
-                        <div className={styles.category}>
-                            <Paper className={classes.categoryPaper} onClick={(e) => {openPopup('flores', e)}}>
-                                <LocalBarOutlinedIcon className={classes.icon}/>
-                                <h4>Brides</h4>
-                            </Paper>
-                        </div>
-                    </div>
-                    <div className={styles.catRow}>                        
-                        <div className={styles.category}>
-                            <Paper className={classes.categoryPaper} onClick={(e) => {openPopup('globo', e)}}>
-                                <HomeOutlinedIcon className={classes.icon}/>
-                                <h4>Home & Arts</h4>
-                            </Paper>
-                        </div>
-                        <div className={styles.category}>
-                            <Paper className={classes.categoryPaper} onClick={(e) => {openPopup('flores', e)}}>
-                                <FavoriteBorderOutlinedIcon className={classes.icon}/>
-                                <h4>Bienestar & Cuidado Personal</h4>
-                            </Paper>
-                        </div>
-                        <div className={styles.category}>
-                            <Paper className={classes.categoryPaper} onClick={(e) => {openPopup('pastel', e)}}>
-                                <FreeBreakfastOutlinedIcon className={classes.icon}/>
-                                <h4>Bebidas & complementos</h4>
-                            </Paper>
-                        </div>
-                        <div className={styles.category}>
-                            <Paper className={classes.categoryPaper} onClick={(e) => {openPopup('globo', e)}}>
-                                <FastfoodOutlinedIcon className={classes.icon}/>
-                                <h4>Snacks & Postres</h4>
-                            </Paper>
-                        </div>
-                        <div className={styles.category}>
-                            <Paper className={classes.categoryPaper} onClick={(e) => {openPopup('flores', e)}}>
-                                <CakeOutlinedIcon className={classes.icon}/>
-                                <h4>Pasteles & Festejos</h4>
-                            </Paper>
-                        </div>
-                    </div>
-                </div>
-            </div> */}
+
+            {
+                // Modal para mostrar los productos de la categoría seleccionada
+            }
             <Grow in={checked} className={classes.grow}>
                 <div className={styles.productsContainer}>
                     <div className={styles.categoryTitle}>
                         <ArrowBackIosIcon className={classes.logoBlue} onClick={(e) => {closePopup(e)}}/>
                         <div className={styles.title}>
-                            Category Title
+                            {catTitle}
                         </div>
                     </div>
                     <Grid container spacing={3}>
@@ -308,7 +254,7 @@ export default function SecondStep ({step2Items, setStep2Items}) {
                         '' :
                         productsMYB2.filter(item => item.productType === activeCategory).map(product => (
                             <Grid item xs={6} sm={3}>
-                                <Paper className={classes.paper}>
+                                {/* <Paper className={classes.paper}>
                                     <div className={styles.productCard}>
                                         <div className={styles.productInfo}>
                                             {product.title}
@@ -318,7 +264,43 @@ export default function SecondStep ({step2Items, setStep2Items}) {
                                             <button onClick={(e) => removeItem(product.variants[0].id, e)}>Delete</button>
                                         </div>
                                     </div>
-                                </Paper>
+                                </Paper> */}
+                                <div className={styles.productContainer}>
+                                    <input className={styles.boxInput}
+                                        type="checkbox"
+                                        id={product.id}
+                                        value={product.variants[0].id}
+                                        checked={(step2Items.map(function(e) { return e.productID; }).indexOf(product.variants[0].id)) > -1}
+                                    />
+                                    <label className={styles.forBoxInput} for={product.id}>
+                                        <div className={styles.productImage}>
+                                            <Image
+                                                src={product.images[0].src}
+                                                layout="fill"
+                                                objectFit="cover"
+                                            />
+                                        </div>
+                                        <div className={styles.actionButtons}>
+                                            <div className={styles.notSelected}>
+                                                <div className={styles.addButton} onClick={(e) => addItem(product.variants[0].id, product.images[0].src, e)}>
+                                                    AGREGAR
+                                                </div>
+                                            </div>
+                                            <div className={styles.selected}>
+                                                <div className={styles.trashButton} onClick={(e) => removeItem(product.variants[0].id, e)}>
+                                                    <DeleteOutlineOutlinedIcon/>
+                                                </div>
+                                                <div className={styles.plusButton} onClick={(e) => addItem(product.variants[0].id, product.images[0].src, e)}>
+                                                    <AddOutlinedIcon/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className={styles.description}>
+                                            <div className={styles.productTitle}>{product.title}</div>
+                                            <div>{product.variants[0].price === "0.00" ? '¡Sin costo adicional!' : `$${product.variants[0].price}`}</div>
+                                        </div>
+                                    </label>
+                                </div>
                             </Grid>
                             // <div>{product.title}</div>
                         ))
