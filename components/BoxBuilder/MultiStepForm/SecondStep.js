@@ -3,25 +3,14 @@ import { useState, useEffect } from 'react';
 import styles from './styles.module.scss'
 import { client } from '../../../utils/shopify'
 
+import Image from 'next/image'
+
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Grow from '@material-ui/core/Grow';
 
-import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
-import LocalFloristOutlinedIcon from '@material-ui/icons/LocalFloristOutlined';
-import CakeOutlinedIcon from '@material-ui/icons/CakeOutlined';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-import { BorderRight } from '@material-ui/icons';
-import LoyaltyOutlinedIcon from '@material-ui/icons/LoyaltyOutlined';
-import ChildFriendlyOutlinedIcon from '@material-ui/icons/ChildFriendlyOutlined';
-import HomeWorkOutlinedIcon from '@material-ui/icons/HomeWorkOutlined';
-import FaceOutlinedIcon from '@material-ui/icons/FaceOutlined';
-import LocalBarOutlinedIcon from '@material-ui/icons/LocalBarOutlined';
-import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
-import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
-import FreeBreakfastOutlinedIcon from '@material-ui/icons/FreeBreakfastOutlined';
-import FastfoodOutlinedIcon from '@material-ui/icons/FastfoodOutlined';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -44,40 +33,6 @@ const useStyles = makeStyles((theme) => ({
         '&:hover': {
             backgroundColor: '#fafafa',
         },
-    },
-    categoryPaper: {
-        padding: theme.spacing(2),
-        color: theme.palette.text.secondary,
-        textAlign: 'center',
-        height: '180px',
-        width: '180px',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        boxShadow: 'none',
-        border: '2px solid #e9e9e9',
-        borderRadius: '10px',
-        cursor: 'pointer',
-
-        '&:hover': {
-            backgroundColor: '#fafafa',
-        },
-    },
-    fullheight: {
-        marginTop: '0',
-        marginBottom: '0',
-        backgroundColor: 'royalblue',
-    },
-    categories: {
-        backgroundColor: 'red',
-        height: '100%',
-        display: 'flex',
-        overflow: 'hidden',
-    },
-    icon: {
-        fontSize: '5rem',
-        color: '#003360'
     },
     grow: {
         position: 'absolute',
@@ -178,26 +133,95 @@ export default function SecondStep ({step2Items, setStep2Items}) {
             <div className={styles.cardsContainer}>
                 <div className={styles.cardGrid}>
                     <Grid container spacing={0}>
-                        <Grid item xs={3} sm={4} md={3}>
-                            <div className={styles.categoryCard}></div>
+                        <Grid item xs={6} sm={4} md={3}>
+                            <div className={styles.categoryCard}>
+                                <div className={styles.categoryBox}>
+                                    <div className={styles.categoryIcon}>
+                                        <Image src="/drinksIcon.svg" layout="fill" objectFit="cover"/>
+                                    </div>
+                                    <h4>Bebidas & Complementos</h4>
+                                </div>
+                            </div>
                         </Grid>
-                        <Grid item xs={3} sm={4} md={3}>
-                            <div className={styles.categoryCard}></div>
+                        <Grid item xs={6} sm={4} md={3}>
+                            <div className={styles.categoryCard}>
+                                <div className={styles.categoryBox}>
+                                    <div className={styles.categoryIcon}>
+                                        <Image src="/bridesIcon.svg" layout="fill" objectFit="cover"/>
+                                    </div>
+                                    <h4>Brides</h4>
+                                </div>
+                            </div>
                         </Grid>
-                        <Grid item xs={3} sm={4} md={3}>
-                            <div className={styles.categoryCard}></div>
+                        <Grid item xs={6} sm={4} md={3}>
+                            <div className={styles.categoryCard}>
+                                <div className={styles.categoryBox}>
+                                    <div className={styles.categoryIcon}>
+                                        <Image src="/selfCareIcon.svg" layout="fill" objectFit="cover"/>
+                                    </div>
+                                    <h4>Cuidado personal</h4>
+                                </div>
+                            </div>
                         </Grid>
-                        <Grid item xs={3} sm={4} md={3}>
-                            <div className={styles.categoryCard}></div>
+                        <Grid item xs={6} sm={4} md={3}>
+                            <div className={styles.categoryCard}>
+                                <div className={styles.categoryBox}>
+                                    <div className={styles.categoryIcon}>
+                                        <Image src="/maleIcon.svg" layout="fill" objectFit="cover"/>
+                                    </div>
+                                    <h4>For Him</h4>
+                                </div>
+                            </div>
                         </Grid>
-                        <Grid item xs={3} sm={4} md={3}>
-                            <div className={styles.categoryCard}></div>
+                        <Grid item xs={6} sm={4} md={3}>
+                            <div className={styles.categoryCard}>
+                                <div className={styles.categoryBox}>
+                                    <div className={styles.categoryIcon}>
+                                        <Image src="/petIcon.svg" layout="fill" objectFit="cover"/>
+                                    </div>
+                                    <h4>Home & Pets</h4>
+                                </div>
+                            </div>
                         </Grid>
-                        <Grid item xs={3} sm={4} md={3}>
-                            <div className={styles.categoryCard}></div>
+                        <Grid item xs={6} sm={4} md={3}>
+                            <div className={styles.categoryCard}>
+                                <div className={styles.categoryBox}>
+                                    <div className={styles.categoryIcon}>
+                                        <Image src="/jewelIcon.svg" layout="fill" objectFit="cover"/>
+                                    </div>
+                                    <h4>Joyería</h4>
+                                </div>
+                            </div>
                         </Grid>
-                        <Grid item xs={3} sm={4} md={3}>
-                            <div className={styles.categoryCard}></div>
+                        <Grid item xs={6} sm={4} md={3}>
+                            <div className={styles.categoryCard}>
+                                <div className={styles.categoryBox}>
+                                    <div className={styles.categoryIcon}>
+                                        <Image src="/momIcon.svg" layout="fill" objectFit="cover"/>
+                                    </div>
+                                    <h4>Moms & Babies</h4>
+                                </div>
+                            </div>
+                        </Grid>
+                        <Grid item xs={6} sm={4} md={3}>
+                            <div className={styles.categoryCard}>
+                                <div className={styles.categoryBox}>
+                                    <div className={styles.categoryIcon}>
+                                        <Image src="/stationaryIcon.svg" layout="fill" objectFit="cover"/>
+                                    </div>
+                                    <h4>Office & Stationary</h4>
+                                </div>
+                            </div>
+                        </Grid>
+                        <Grid item xs={6} sm={4} md={3}>
+                            <div className={styles.categoryCard}>
+                                <div className={styles.categoryBox}>
+                                    <div className={styles.categoryIcon}>
+                                        <Image src="/snacksIcon.svg" layout="fill" objectFit="cover"/>
+                                    </div>
+                                    <h4>Snacks & Postres</h4>
+                                </div>
+                            </div>
                         </Grid>
                     </Grid>
                 </div>

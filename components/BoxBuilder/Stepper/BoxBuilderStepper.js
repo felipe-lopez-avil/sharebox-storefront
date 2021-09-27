@@ -43,6 +43,10 @@ const useStepIconStyles = makeStyles({
       justifyContent: 'center',
       width: 24
     },
+    noPadding: {
+      padding: 0,
+      paddingTop: '24px',
+    },
     active: {
       color: '#028ab5',
     },
@@ -98,7 +102,7 @@ export default function BoxBuilderStepper({currentStep, step1Items, step2Items, 
 
     return (
       <>
-        <Stepper activeStep={currentStep} orientation="vertical" connector={<StepperConnector />}>
+        <Stepper className={classes.noPadding} activeStep={currentStep} orientation="vertical" connector={<StepperConnector />}>
             <Step>
                 <StepLabel StepIconComponent={StepIcon}>
                     <h4 >PASO 1.</h4>

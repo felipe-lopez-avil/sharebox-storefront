@@ -17,4 +17,26 @@
 
 .buttons{
     display: flex;
+    
+    button{
+        margin-left: 10px;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .container{
+        flex-direction: column;
+    }
+
+    .total{
+        margin-bottom: 10px;
+    }
+
+    .buttons{
+        button{
+            margin: 0px 5px;
+        }
+    }
+
 }

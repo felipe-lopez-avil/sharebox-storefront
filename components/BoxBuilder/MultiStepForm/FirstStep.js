@@ -107,7 +107,7 @@ export default function FirstStep ({step1Items, setStep1Items}) {
             </div>
             <div className={styles.productList}>
                 <div className={styles.scrollContainer}>
-                    <Grid container spacing={2}>
+                    <Grid container spacing={1}>
                         {productsMYB1 === null ? 
                         <h5>productsMYB1 es undefined</h5> 
                             : 
