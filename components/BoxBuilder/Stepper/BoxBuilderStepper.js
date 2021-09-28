@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import Image from 'next/image'
 
 import { makeStyles, withStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
@@ -10,6 +11,7 @@ import StepContent from '@material-ui/core/StepContent';
 import StepConnector from '@material-ui/core/StepConnector';
 import Badge from '@material-ui/core/Badge';
 import Check from '@material-ui/icons/Check';
+import { styles } from '@material-ui/pickers/views/Calendar/Calendar';
 
 const StepperConnector = withStyles({
     alternativeLabel: {
@@ -61,14 +63,63 @@ const useStepIconStyles = makeStyles({
       zIndex: 1,
       fontSize: 18,
     },
+    storagedItems: {
+      display: 'flex',
+    },
+    productCover: {
+      width: '100%',
+      height: '100%',
+      padding: '5px',
+      backgroundColor: 'cadetblue'
+    },
     producImage: {
-      width: 'calc((19vw - 45px) / 4)',
-      height: 'calc((19vw - 45px) / 4)',
+      width: '100%',
+      height: 'calc((16vw / 4) - 5px)',
       borderRadius: '5px',
       overflow: 'hidden',
       position: 'relative',
       boxShadow: '0px 0px 5px 1px rgba(0, 0, 0, 0.2);',
-    }
+    },
+    colorRed: {
+      width: '100%',
+    },
+    productContainer: {
+      width: '100%',
+      height: 'calc(16vw / 3)',
+      paddingRight: '6px',
+      paddingBottom: '6px',
+      position: 'relative',
+    },
+    wrapper:{
+      width: '100%',
+      height: '100%',
+    },
+    productImage: {
+      width: '100%',
+      height: '100%',
+      backgroundColor: '#e9e9e9',
+      borderRadius: '5px',
+      position: 'relative',
+      overflow: 'hidden',
+    },
+    badge: {
+      position: 'absolute',
+      minWidth: '25px',
+      top: '-4px',
+      right: '3px',
+      padding: '2px 6px',
+      borderRadius: '12px',
+      backgroundColor: '#0082aa',
+      fontSize: '14px',
+      fontFamily: 'Poppins',
+      fontWeight: '600',
+      textAlign: 'center',
+      color: '#fff',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      border: '2px solid #fff'
+    },
 });
 
 function StepIcon(props) {
@@ -136,59 +187,43 @@ export default function BoxBuilderStepper({currentStep, step1Items, step2Items, 
                 </StepContent>
             </Step>
         </Stepper> 
-        <div>
-          Storaged Items:
-          <h6>Step 1:</h6>
-          {step1Items.productID !== '' ? 
-            <div>
-              {/*item.productID} - {item.quantity*/}
-              <Badge badgeContent={step1Items.quantity} color="primary">
-                <div className={classes.producImage}>
-                  <Image
+        <div className={classes.colorRed}>
+
+          <div className={styles.productsInCart}>
+            En tu carrito:
+          </div>
+
+          <Grid container spacing={0}>
+            {step1Items.productID !== '' &&
+              <Grid item xs={4}>
+                <div className={classes.productContainer}>
+                    <div className={classes.productImage}>
+                      <Image
                         src={step1Items.image}
                         layout="fill"
                         objectFit="cover"
-                    />
-                </div>
-              </Badge>
-            </div>
-            :
-            ''
-          }
-          
-          {/* {step1Items.map(item => (
-            <div>
-              {// item.productID} - {item.quantity}
-              <Badge badgeContent={item.quantity} color="primary">
-                <div className={classes.producImage}>
-                  <Image
+                      />
+                    </div>
+                    <span className={classes.badge}>{step1Items.quantity}</span>
+                </div>  
+              </Grid>
+            }
+            
+            {step2Items.map(item => (
+              <Grid item xs={4}>
+                <div className={classes.productContainer}>
+                    <div className={classes.productImage}>
+                      <Image
                         src={item.image}
                         layout="fill"
                         objectFit="cover"
-                    />
-                </div>
-              </Badge>
-            </div>
-          ))} */}
-          <h6>Step 2:</h6>
-          {step2Items.map(item => (
-            <div>{item.productID} - {item.quantity}</div>
-          ))}
-          <h6>Step 3:</h6>
-          {step3Items.map(item => (
-            <div>
-              {/*item.productID} - {item.quantity*/}
-              <Badge badgeContent={item.quantity} color="primary">
-                <div className={classes.producImage}>
-                  <Image
-                        src={item.image}
-                        layout="fill"
-                        objectFit="cover"
-                    />
-                </div>
-              </Badge>
-            </div>
-          ))}
+                      />
+                    </div>
+                    <span className={classes.badge}>{item.quantity}</span>
+                </div>  
+              </Grid>
+            ))}
+          </Grid>
         </div>
       </>
     )

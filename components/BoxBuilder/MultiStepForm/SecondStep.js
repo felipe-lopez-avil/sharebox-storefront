@@ -9,6 +9,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Grow from '@material-ui/core/Grow';
+import Badge from '@material-ui/core/Badge';
 
 import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
 import AddOutlinedIcon from '@material-ui/icons/AddOutlined';
@@ -46,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
     logoBlue: {
         color: '#028ab5',
         cursor: 'pointer',
+        marginRight: '-5px',
     }
 }));
 
@@ -59,6 +61,9 @@ export default function SecondStep ({step2Items, setStep2Items}) {
     const [catTitle, setCatTitle] = useState('')
 
     const [productsMYB2, setProductsMYB2] = useState(null)
+
+    // State to handle the custom attributes
+    const [productAttributes, setProductAttributes] = useState([])
 
     const openPopup = (category, categoryTitle, e) => {
         e.preventDefault();
@@ -111,6 +116,7 @@ export default function SecondStep ({step2Items, setStep2Items}) {
                 productID: id,
                 quantity: 1,
                 image: image,
+                customAttributes: []
             }
             setStep2Items([...step2Items, toAdd]);
         }
@@ -243,7 +249,10 @@ export default function SecondStep ({step2Items, setStep2Items}) {
             <Grow in={checked} className={classes.grow}>
                 <div className={styles.productsContainer}>
                     <div className={styles.categoryTitle}>
-                        <ArrowBackIosIcon className={classes.logoBlue} onClick={(e) => {closePopup(e)}}/>
+                        <div className={styles.goBack} onClick={(e) => {closePopup(e)}}>
+                            <ArrowBackIosIcon className={classes.logoBlue}/>
+                            <div>Volver</div>
+                        </div>
                         <div className={styles.title}>
                             {catTitle}
                         </div>
@@ -254,17 +263,6 @@ export default function SecondStep ({step2Items, setStep2Items}) {
                         '' :
                         productsMYB2.filter(item => item.productType === activeCategory).map(product => (
                             <Grid item xs={6} sm={3}>
-                                {/* <Paper className={classes.paper}>
-                                    <div className={styles.productCard}>
-                                        <div className={styles.productInfo}>
-                                            {product.title}
-                                        </div>
-                                        <div className={styles.actions}>
-                                            <button onClick={(e) => addItem(product.variants[0].id, product.images[0].src, e)}>Add</button>
-                                            <button onClick={(e) => removeItem(product.variants[0].id, e)}>Delete</button>
-                                        </div>
-                                    </div>
-                                </Paper> */}
                                 <div className={styles.productContainer}>
                                     <input className={styles.boxInput}
                                         type="checkbox"
@@ -302,7 +300,6 @@ export default function SecondStep ({step2Items, setStep2Items}) {
                                     </label>
                                 </div>
                             </Grid>
-                            // <div>{product.title}</div>
                         ))
                     }
                     </Grid>
