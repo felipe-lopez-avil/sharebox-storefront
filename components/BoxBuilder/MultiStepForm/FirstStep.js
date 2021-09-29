@@ -51,10 +51,10 @@ export default function FirstStep ({step1Items, setStep1Items}) {
     }, [])
 
 
-    function addItem(id, image, e) {
+    function addItem(id, title, price, image, e) {
         e.preventDefault();
         
-        setStep1Items({productID: id, quantity: 1, image: image,});
+        setStep1Items({productID: id, title: title, price: price, quantity: 1, image: image,});
         /* var toAdd;
         var itemIndex = -1;
 
@@ -134,7 +134,7 @@ export default function FirstStep ({step1Items, setStep1Items}) {
                                         </div>
                                     </div>
                                 </Paper> */}
-                                <div className={styles.productContainer} onClick={(e) => addItem(product.variants[0].id, product.images[0].src, e)}>
+                                <div className={styles.productContainer} onClick={(e) => addItem(product.variants[0].id, product.title, product.variants[0].price, product.images[0].src, e)}>
                                     <input className={styles.boxInput} 
                                         type="radio" 
                                         name={product.handle}

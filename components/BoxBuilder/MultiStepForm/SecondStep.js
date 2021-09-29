@@ -93,7 +93,7 @@ export default function SecondStep ({step2Items, setStep2Items}) {
         });
     }, [])
 
-    function addItem(id, image, e) {
+    function addItem(id, title, price, image, e) {
         e.preventDefault();
 
         var toAdd;
@@ -108,6 +108,8 @@ export default function SecondStep ({step2Items, setStep2Items}) {
         }else{
             toAdd = {
                 productID: id,
+                title: title,
+                price: price,
                 quantity: 1,
                 image: image,
             }
@@ -117,6 +119,8 @@ export default function SecondStep ({step2Items, setStep2Items}) {
         if (itemIndex === -1) {
             toAdd = {
                 productID: id,
+                title: title,
+                price: price,
                 quantity: 1,
                 image: image,
             }
@@ -273,7 +277,7 @@ export default function SecondStep ({step2Items, setStep2Items}) {
                                         </div>
                                         <div className={styles.actionButtons}>
                                             <div className={styles.notSelected}>
-                                                <div className={styles.addButton} onClick={(e) => addItem(product.variants[0].id, product.images[0].src, e)}>
+                                                <div className={styles.addButton} onClick={(e) => addItem(product.variants[0].id, product.title, product.variants[0].price, product.images[0].src, e)}>
                                                     AGREGAR
                                                 </div>
                                             </div>
@@ -281,7 +285,7 @@ export default function SecondStep ({step2Items, setStep2Items}) {
                                                 <div className={styles.trashButton} onClick={(e) => removeItem(product.variants[0].id, e)}>
                                                     <DeleteOutlineOutlinedIcon/>
                                                 </div>
-                                                <div className={styles.plusButton} onClick={(e) => addItem(product.variants[0].id, product.images[0].src, e)}>
+                                                <div className={styles.plusButton} onClick={(e) => addItem(product.variants[0].id, product.title, product.variants[0].price, product.images[0].src, e)}>
                                                     <AddOutlinedIcon/>
                                                 </div>
                                             </div>
