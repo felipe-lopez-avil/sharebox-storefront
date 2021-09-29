@@ -80,8 +80,12 @@ const useStepIconStyles = makeStyles({
       position: 'relative',
       boxShadow: '0px 0px 5px 1px rgba(0, 0, 0, 0.2);',
     },
-    colorRed: {
+    wrapper: {
       width: '100%',
+    },
+    productsInCart: {
+      marginTop: '20px',
+      marginBottom: '10px'
     },
     productContainer: {
       width: '100%',
@@ -89,10 +93,6 @@ const useStepIconStyles = makeStyles({
       paddingRight: '6px',
       paddingBottom: '6px',
       position: 'relative',
-    },
-    wrapper:{
-      width: '100%',
-      height: '100%',
     },
     productImage: {
       width: '100%',
@@ -187,9 +187,9 @@ export default function BoxBuilderStepper({currentStep, step1Items, step2Items, 
                 </StepContent>
             </Step>
         </Stepper> 
-        <div className={classes.colorRed}>
+        <div className={classes.wrapper}>
 
-          <div className={styles.productsInCart}>
+          <div className={classes.productsInCart}>
             En tu carrito:
           </div>
 
@@ -210,6 +210,21 @@ export default function BoxBuilderStepper({currentStep, step1Items, step2Items, 
             }
             
             {step2Items.map(item => (
+              <Grid item xs={4}>
+                <div className={classes.productContainer}>
+                    <div className={classes.productImage}>
+                      <Image
+                        src={item.image}
+                        layout="fill"
+                        objectFit="cover"
+                      />
+                    </div>
+                    <span className={classes.badge}>{item.quantity}</span>
+                </div>  
+              </Grid>
+            ))}
+
+            {step3Items.map(item => (
               <Grid item xs={4}>
                 <div className={classes.productContainer}>
                     <div className={classes.productImage}>

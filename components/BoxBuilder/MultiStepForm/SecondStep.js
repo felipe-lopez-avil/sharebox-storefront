@@ -91,12 +91,6 @@ export default function SecondStep ({step2Items, setStep2Items}) {
             setProductsMYB2(parsedCollection.products);
             console.log(productsMYB2)
         });
-
-        client.product.fetchByHandle('teamo-tequila').then((product) => {
-            // Do something with the product
-            console.log(product);
-        });
-        
     }, [])
 
     function addItem(id, image, e) {
@@ -116,7 +110,6 @@ export default function SecondStep ({step2Items, setStep2Items}) {
                 productID: id,
                 quantity: 1,
                 image: image,
-                customAttributes: []
             }
             setStep2Items([...step2Items, toAdd]);
         }

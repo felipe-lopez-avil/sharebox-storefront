@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import styles from './styles.module.scss'
 import { client } from '../../../utils/shopify'
-
+import Image from 'next/image'
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -10,6 +10,8 @@ import Grow from '@material-ui/core/Grow';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import LocalFloristOutlinedIcon from '@material-ui/icons/LocalFloristOutlined';
 import CakeOutlinedIcon from '@material-ui/icons/CakeOutlined';
+import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
+import AddOutlinedIcon from '@material-ui/icons/AddOutlined';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import { BorderRight } from '@material-ui/icons';
 
@@ -64,12 +66,14 @@ export default function ThirdStep ({step3Items, setStep3Items}) {
 
     const [checked, setChecked] = useState(false)
     const [activeCategory, setActiveCategory] = useState(null)
+    const [catTitle, setCatTitle] = useState('')
 
     const [productsMYB3, setProductsMYB3] = useState(null)
 
-    const openPopup = (category, e) => {
+    const openPopup = (category, categoryTitle, e) => {
         e.preventDefault();
         setChecked(true);
+        setCatTitle(categoryTitle)
         setActiveCategory(category)
     };
 
@@ -77,10 +81,11 @@ export default function ThirdStep ({step3Items, setStep3Items}) {
         e.preventDefault();
         setChecked(false);
         setActiveCategory(null);
+        setCatTitle('')
     };
 
     useEffect(() => {
-        client.collection.fetchWithProducts(collectionMYB3, {productsFirst: 4}).then((collection) => {
+        client.collection.fetchWithProducts(collectionMYB3, {productsFirst: 10}).then((collection) => {
             // Do something with the collection
 
             // Se convierte el objeto a JSON
@@ -139,40 +144,65 @@ export default function ThirdStep ({step3Items, setStep3Items}) {
             <div className={styles.stepTitle}>
                 <h2>Acompaña tu Box con un detalle especial</h2>
             </div>
-            <div className={styles.cardContainer}>
-                <Grid container spacing={3} className={classes.fullheight}>
-                    <Grid item xs={12} sm={4} className={classes.fullheight}>
-                        <Paper className={classes.paper} onClick={(e) => {openPopup('globo', e)}}>
-                            <div className={styles.categoryContainer}>
-                                <RadioButtonUncheckedIcon className={classes.icon}/>
-                                <h4>Globos</h4>
+            <div className={styles.cardsContainer}>
+                <div className={styles.cardGrid}>
+                    <Grid container spacing={1}>
+                        <Grid item xs={12} sm={6}>
+                            <div className={styles.categoryCard3}>
+                                <div className={styles.categoryBox} onClick={(e) => {openPopup('flores', 'Flores', e)}}>
+                                    <div className={styles.categoryIcon}>
+                                        <Image src="/flowersIcon.svg" layout="fill" objectFit="cover"/>
+                                    </div>
+                                    <h4>Flores</h4>
+                                </div>
                             </div>
-                        </Paper>
-                    </Grid>
-                    <Grid item xs={12} sm={4} className={classes.fullheight}>
-                        <Paper className={classes.paper} onClick={(e) => {openPopup('flores', e)}}>
-                            <div className={styles.categoryContainer}>
-                                <LocalFloristOutlinedIcon className={classes.icon}/>
-                                <h4>Flores</h4>
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+                            <div className={styles.categoryCard3}>
+                                <div className={styles.categoryBox} onClick={(e) => {openPopup('globo', 'Globos', e)}}>
+                                    <div className={styles.categoryIcon}>
+                                        <Image src="/balloonIcon.svg" layout="fill" objectFit="cover"/>
+                                    </div>
+                                    <h4>Globos</h4>
+                                </div>
                             </div>
-                        </Paper>
+                        </Grid>
+                        {/* <Grid item xs={12} sm={4} className={classes.fullheight}>
+                            <Paper className={classes.paper} onClick={(e) => {openPopup('globo', e)}}>
+                                <div className={styles.categoryContainer}>
+                                    <RadioButtonUncheckedIcon className={classes.icon}/>
+                                    <h4>Globos</h4>
+                                </div>
+                            </Paper>
+                        </Grid>
+                        <Grid item xs={12} sm={4} className={classes.fullheight}>
+                            <Paper className={classes.paper} onClick={(e) => {openPopup('flores', e)}}>
+                                <div className={styles.categoryContainer}>
+                                    <LocalFloristOutlinedIcon className={classes.icon}/>
+                                    <h4>Flores</h4>
+                                </div>
+                            </Paper>
+                        </Grid>
+                        <Grid item xs={12} sm={4} className={classes.fullheight}>
+                            <Paper className={classes.paper} onClick={(e) => {openPopup('pastel', e)}}>
+                                <div className={styles.categoryContainer}>
+                                    <CakeOutlinedIcon className={classes.icon}/>
+                                    <h4>Pasteles y Velas</h4>
+                                </div>
+                            </Paper>
+                        </Grid> */}
                     </Grid>
-                    <Grid item xs={12} sm={4} className={classes.fullheight}>
-                        <Paper className={classes.paper} onClick={(e) => {openPopup('pastel', e)}}>
-                            <div className={styles.categoryContainer}>
-                                <CakeOutlinedIcon className={classes.icon}/>
-                                <h4>Pasteles y Velas</h4>
-                            </div>
-                        </Paper>
-                    </Grid>
-                </Grid>
+                </div>
             </div>
             <Grow in={checked} className={classes.grow}>
                 <div className={styles.productsContainer}>
                     <div className={styles.categoryTitle}>
-                        <ArrowBackIosIcon className={classes.logoBlue} onClick={(e) => {closePopup(e)}}/>
+                        <div className={styles.goBack} onClick={(e) => {closePopup(e)}}>
+                            <ArrowBackIosIcon className={classes.logoBlue}/>
+                            <div>Volver</div>
+                        </div>
                         <div className={styles.title}>
-                            Category Title
+                            {catTitle}
                         </div>
                     </div>
                     <Grid container spacing={3}>
@@ -180,7 +210,7 @@ export default function ThirdStep ({step3Items, setStep3Items}) {
                         productsMYB3 === null ? 
                         '' :
                         productsMYB3.filter(item => item.productType === activeCategory).map(product => (
-                            <Grid item xs={6} sm={3}>
+                            /*<Grid item xs={6} sm={3}>
                                 <Paper className={classes.paper}>
                                     <div className={styles.productCard}>
                                         <div className={styles.productInfo}>
@@ -192,8 +222,46 @@ export default function ThirdStep ({step3Items, setStep3Items}) {
                                         </div>
                                     </div>
                                 </Paper>
-                            </Grid>
+                            </Grid> */
                             // <div>{product.title}</div>
+                            <Grid item xs={6} sm={3}>
+                                <div className={styles.productContainer}>
+                                    <input className={styles.boxInput}
+                                        type="checkbox"
+                                        id={product.id}
+                                        value={product.variants[0].id}
+                                        checked={(step3Items.map(function(e) { return e.productID; }).indexOf(product.variants[0].id)) > -1}
+                                    />
+                                    <label className={styles.forBoxInput} for={product.id}>
+                                        <div className={styles.productImage}>
+                                            <Image
+                                                src={product.images[0].src}
+                                                layout="fill"
+                                                objectFit="cover"
+                                            />
+                                        </div>
+                                        <div className={styles.actionButtons}>
+                                            <div className={styles.notSelected}>
+                                                <div className={styles.addButton} onClick={(e) => addItem(product.variants[0].id, product.images[0].src, e)}>
+                                                    AGREGAR
+                                                </div>
+                                            </div>
+                                            <div className={styles.selected}>
+                                                <div className={styles.trashButton} onClick={(e) => removeItem(product.variants[0].id, e)}>
+                                                    <DeleteOutlineOutlinedIcon/>
+                                                </div>
+                                                <div className={styles.plusButton} onClick={(e) => addItem(product.variants[0].id, product.images[0].src, e)}>
+                                                    <AddOutlinedIcon/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className={styles.description}>
+                                            <div className={styles.productTitle}>{product.title}</div>
+                                            <div>{product.variants[0].price === "0.00" ? '¡Sin costo adicional!' : `$${product.variants[0].price}`}</div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </Grid>
                         ))
                     }
                     </Grid>
