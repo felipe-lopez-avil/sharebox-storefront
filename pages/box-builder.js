@@ -1,3 +1,4 @@
+import {client} from '../utils/shopify'
 import styles from '../styles/box-builder.module.scss'
 import BoxBuilderStepper from '../components/BoxBuilder/Stepper/BoxBuilderStepper';
 import MobileStepper from '../components/BoxBuilder/Stepper/MobileStepper';
@@ -8,6 +9,20 @@ import FourthStep from '../components/BoxBuilder/MultiStepForm/FourthStep';
 import Controllers from '../components/BoxBuilder/Controllers/Controllers';
 
 import React, { useState, useEffect } from 'react'
+
+const getDataFromStorage = (key) => {
+    const storage = window.localStorage;
+    return JSON.parse(storage.getItem(key))
+}
+
+const setDataToStorage = (key, data) => {
+    const storage = window.localStorage;
+    storage.setItem(key, JSON.stringify(data))
+}
+
+const parseData = (data) => {
+    return JSON.parse(JSON.stringify(data))
+}
 
 export default function BoxBuilder() {
 
@@ -27,6 +42,61 @@ export default function BoxBuilder() {
 
     const goPrev = () => {
         setCurrentStep(currentStep - 1);
+    }
+
+    const addToCart = async () => {
+
+        // Local Storage is checked to see if a CheckoutID already exists. If not, a new one is created;
+        let checkoutId = null
+        let checkoutTemp = null
+        let checkout = null
+        if (getDataFromStorage('checkoutId')) {
+            checkout = await client.checkout.fetch(getDataFromStorage('checkoutId'))
+            if (checkout.completedAt === null){
+                checkoutId = getDataFromStorage('checkoutId')
+            }else{
+                checkoutTemp = await client.checkout.create()
+                checkout = parseData(checkoutTemp)
+                checkoutId = checkout.id
+                setDataToStorage('checkoutId', checkoutId)
+            }
+        }else{
+            checkoutTemp = await client.checkout.create()
+            checkout = parseData(checkoutTemp)
+            checkoutId = checkout.id
+            setDataToStorage('checkoutId', checkoutId)
+        }
+        const lineItems2 = step2Items.map((item) => (
+            {
+                variantId: item.productID,
+                quantity: item.quantity,
+                customAttributes: [{key: "Make Your Box", value: "Inside Box"}]
+            }
+        ))
+
+        const lineItems3 = step3Items.map((item) => (
+            {
+                variantId: item.productID,
+                quantity: item.quantity,
+                customAttributes: [{key: "Make Your Box", value: "Inside Box"}]
+            }
+        ))
+        
+        const lineItemsToAdd = [
+            {
+                variantId: step1Items.productID,
+                quantity: step1Items.quantity,
+                customAttributes: [{key: "Make Your Box", value: "Box"}]
+            },
+            ...lineItems2,
+            ...lineItems3,
+        ];
+
+        console.log(lineItemsToAdd)
+
+        checkout = await client.checkout.addLineItems(checkoutId, lineItemsToAdd)
+
+        console.log(parseData(checkout))
     }
 
     useEffect(() => {
@@ -70,6 +140,7 @@ export default function BoxBuilder() {
                 setCurrentStep={setCurrentStep} 
                 goNext={goNext} 
                 goPrev={goPrev} 
+                addToCart={addToCart}
             />
         </div>
         </>

@@ -1,7 +1,20 @@
+import { useEffect } from 'react'
+
 import styles from './styles.module.scss'
 import Image from 'next/image'
 
+
 export default function FourthStep ({step1Items, step2Items, step3Items}) {
+
+    useEffect(() => {
+        console.log("Step 1 items")
+        console.log(step1Items)
+        console.log("Step 2 items")
+        console.log(step2Items)
+        console.log("Step 3 items")
+        console.log(step3Items)
+    }, [])
+
     return(
         <div className = {styles.container}>
             <div className={styles.stepTitle}>
