@@ -4,6 +4,7 @@ import Link from 'next/link'
 import {client} from '../utils/shopify'
 
 import ProductsInCart from '../components/CartPage/ProductsInCart/ProductsInCart'
+import ProductsMakeYourBox from '../components/CartPage/ProductsMakeYourBox/ProductsMakeYourBox'
 import CardModal from '../components/CartPage/CardModal.js/CardModal'
 import { Height, TrendingUpTwoTone } from '@material-ui/icons'
 
@@ -38,6 +39,17 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
+function makeYourBoxFilter(lineItem) {
+    if(lineItem.customAttributes[0] !== undefined){
+        if (lineItem.customAttributes[0].key === "Make Your Box"){
+            return true;
+        }else{
+            return false;
+        }
+    }else{
+        return false;
+    }
+}
 
 export default function Cart () {
     const classes = useStyles();
@@ -103,7 +115,7 @@ export default function Cart () {
             let newDate = add(today, {days: 1});
             setDate(newDate, 'MM/dd/yyyy')
             setMinDate(newDate);
-        }    
+        }
     }, [])
 
     const openCardModal = () => {
@@ -138,7 +150,7 @@ export default function Cart () {
                 {key: "Remitente", value: cardFrom},
                 {key: "Destinatario", value: cardTo},
                 {key: "Mensaje", value: cardMessage},
-                {key: "Tipo de Envío", value: deliveryType}, 
+                {key: "Tipo de Envío", value: deliveryType},
                 {key: "Fecha de entrega", value: formatDate},
                 {key: "Hora de entrega", value: time},
             ]
@@ -168,7 +180,7 @@ export default function Cart () {
                 {key: "Remitente", value: cardFrom},
                 {key: "Destinatario", value: cardTo},
                 {key: "Mensaje", value: cardMessage},
-                {key: "Tipo de Envío", value: deliveryType}, 
+                {key: "Tipo de Envío", value: deliveryType},
                 {key: "Fecha de entrega", value: formatDate},
                 {key: "Hora de entrega", value: time},
             ]
@@ -186,9 +198,9 @@ export default function Cart () {
         <div className={styles.container}>
             <div className={styles.card}>
                 <div className={styles.cartHeader}>
-                    <h1>Carrito de Compras</h1>   
+                    <h1>Carrito de Compras</h1>
                 </div>
-                {checkout !== null & checkoutCompleted === false ? 
+                {checkout !== null & checkoutCompleted === false ?
                     <>
                     {checkout.lineItems.length > 0 ?
                         <>
@@ -208,20 +220,47 @@ export default function Cart () {
                                         Total
                                     </div>
                                 </div>
-                                {checkout.lineItems.map(lineItem => (
-                                    <ProductsInCart 
-                                        image={lineItem.variant.image.src}
-                                        product={lineItem.title} 
-                                        selectedOptions={lineItem.variant.selectedOptions}
-                                        price={`$${lineItem.variant.price}`} 
-                                        quantity={lineItem.quantity.toString()} 
-                                        total={`$${(parseFloat(lineItem.variant.price)*lineItem.quantity).toString()}.00`}
-                                        id={lineItem.id} 
-                                        sendableCheckoutId={sendableCheckoutId}
-                                        setCheckout={setCheckout}
-                                        checkout={client.checkout}
+                                {checkout.lineItems.map(function(e) { if(e.customAttributes[0] !== undefined){return e.customAttributes[0].key } else {return "No Custom Attributes"} }).indexOf('Make Your Box') > -1 &&
+                                    <ProductsMakeYourBox
+                                        items={checkout.lineItems.filter(makeYourBoxFilter)}
                                     />
-                                ))} 
+                                }
+                                {checkout.lineItems.map(lineItem => {
+                                    if(lineItem.customAttributes[0] !== undefined){
+                                        if(lineItem.customAttributes[0].key !== 'Make Your Box'){
+                                            return (
+                                                <ProductsInCart
+                                                    image={lineItem.variant.image.src}
+                                                    product={lineItem.title}
+                                                    selectedOptions={lineItem.variant.selectedOptions}
+                                                    price={`$${lineItem.variant.price}`}
+                                                    quantity={lineItem.quantity.toString()}
+                                                    total={`$${(parseFloat(lineItem.variant.price)*lineItem.quantity).toString()}.00`}
+                                                    id={lineItem.id} 
+                                                    sendableCheckoutId={sendableCheckoutId}
+                                                    setCheckout={setCheckout}
+                                                    checkout={client.checkout}
+                                                />
+                                            )
+                                        }
+                                    }else{
+                                        return (
+                                            <ProductsInCart 
+                                                image={lineItem.variant.image.src}
+                                                product={lineItem.title} 
+                                                selectedOptions={lineItem.variant.selectedOptions}
+                                                price={`$${lineItem.variant.price}`} 
+                                                quantity={lineItem.quantity.toString()} 
+                                                total={`$${(parseFloat(lineItem.variant.price)*lineItem.quantity).toString()}.00`}
+                                                id={lineItem.id} 
+                                                sendableCheckoutId={sendableCheckoutId}
+                                                setCheckout={setCheckout}
+                                                checkout={client.checkout}
+                                            />
+                                        )
+                                    }
+                                    
+                                })} 
                             </div>
                             <div className={styles.cardAndDate}>
                                 <div className={styles.choose}>

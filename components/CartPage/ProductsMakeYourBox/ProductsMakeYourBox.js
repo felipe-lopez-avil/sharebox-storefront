@@ -1,9 +1,9 @@
-import styles from './ProductsInCart.module.scss'
+import styles from './ProductsMakeYourBox.module.scss'
 import Image from 'next/image'
 
-export default function ProductsInCart({image, product, selectedOptions, price, quantity, total, id, sendableCheckoutId, setCheckout, checkout}) {
+export default function ProductsInCart({items}) {
 
-    const deleteElement = (sendableCheckoutId, id) => {
+    /* const deleteElement = (sendableCheckoutId, id) => {
 
         const checkoutId = sendableCheckoutId; // ID of an existing checkout
         const lineItemIdsToRemove = [
@@ -16,46 +16,46 @@ export default function ProductsInCart({image, product, selectedOptions, price, 
             console.log(checkout); // Checkout with line item 'Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0Lzc4NTc5ODkzODQ=' removed
             setCheckout(checkout)
         });
-    }
+    } */
 
     return (
         <div className={styles.products}>
             <div className={styles.firstField}>
                 <div className={styles.image}>
                     <Image
-                        src={image}
+                        src="https://cdn.shopify.com/s/files/1/0456/6820/4706/files/product-placeholder.png?v=1633451657"
                         layout="fill"
                         objectFit="cover"
                     />
                 </div>
                 <div className={styles.variant}>
-                    <div className={styles.title}>{product} <span className={styles.mobile}>({quantity})</span></div>
-                    {selectedOptions.length > 0 && selectedOptions[0].name !== 'Title' && 
+                    <div className={styles.title}>Make Your Box<span className={styles.mobile}> (1)</span></div>
                         <div className={styles.details}>
-                            <div className={styles.mobile}>{price}</div>
-                            {selectedOptions.map(selectedOption => (
+                            <div className={styles.mobile}>$price</div>
+                            {items.map(item => (
                                 <div className={styles.option}>
-                                    <span className={styles.underline}>{selectedOption.name}</span>: {selectedOption.value}
+                                    <span className={styles.underline}>{item.title}</span>
                                 </div>
                             ))}
                             <div className={styles.mobile}>
                                 <div>Total:</div>
-                                <div>{total}</div>
+                                <div>$Total.price</div>
                             </div>
                             
                         </div>
-                    }
-                    <div className={styles.delete} onClick={() => deleteElement(sendableCheckoutId, id)}>Eliminar</div>
+                    <div className={styles.delete} /* onClick={() => deleteElement(sendableCheckoutId, id)} */>Eliminar</div>
                 </div>
             </div>
             <div className={styles.field}>
-                {price}
+                {items.map(item => (
+                    <div>${item.variant.price}</div>
+                ))}
             </div>
             <div className={styles.field}>
-                {quantity}
+                1
             </div>
             <div className={styles.field}>
-                {total}
+                $Total.price
             </div>
         </div>
     )
