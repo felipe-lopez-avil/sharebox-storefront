@@ -17,6 +17,12 @@ export default function ProductsInCart({items}) {
             setCheckout(checkout)
         });
     } */
+    let totalPrice = 0;
+    let prices = items.map(item => (parseFloat(item.variant.price) * item.quantity))
+
+    prices.forEach(price => {
+        totalPrice += price
+    });
 
     return (
         <div className={styles.products}>
@@ -29,17 +35,16 @@ export default function ProductsInCart({items}) {
                     />
                 </div>
                 <div className={styles.variant}>
-                    <div className={styles.title}>Make Your Box<span className={styles.mobile}> (1)</span></div>
+                    <div className={styles.title}>Make Your Box</div>
                         <div className={styles.details}>
-                            <div className={styles.mobile}>$price</div>
                             {items.map(item => (
                                 <div className={styles.option}>
-                                    <span className={styles.underline}>{item.title}</span>
+                                    <span className={styles.underline}>• {item.title}</span><span className={styles.mobile}> - ${item.variant.price} ({item.quantity})</span>
                                 </div>
                             ))}
                             <div className={styles.mobile}>
                                 <div>Total:</div>
-                                <div>$Total.price</div>
+                                <div>${totalPrice}</div>
                             </div>
                             
                         </div>
@@ -48,14 +53,16 @@ export default function ProductsInCart({items}) {
             </div>
             <div className={styles.field}>
                 {items.map(item => (
-                    <div>${item.variant.price}</div>
+                    <div className={styles.eachPrice}>${item.variant.price}</div>
                 ))}
             </div>
             <div className={styles.field}>
-                1
+                {items.map(item => (
+                    <div className={styles.eachPrice}>{item.quantity}</div>
+                ))}
             </div>
             <div className={styles.field}>
-                $Total.price
+                ${totalPrice}
             </div>
         </div>
     )
