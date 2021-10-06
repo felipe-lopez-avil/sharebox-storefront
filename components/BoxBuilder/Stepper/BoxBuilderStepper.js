@@ -82,6 +82,7 @@ const useStepIconStyles = makeStyles({
     },
     wrapper: {
       width: '100%',
+      marginTop: '40px',
     },
     productsInCart: {
       marginTop: '20px',
@@ -188,10 +189,6 @@ export default function BoxBuilderStepper({currentStep, step1Items, step2Items, 
             </Step>
         </Stepper> 
         <div className={classes.wrapper}>
-
-          <div className={classes.productsInCart}>
-            En tu carrito:
-          </div>
 
           <Grid container spacing={0}>
             {step1Items.productID !== '' &&

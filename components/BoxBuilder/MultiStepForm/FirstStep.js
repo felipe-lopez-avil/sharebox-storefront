@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { client } from '../../../utils/shopify'
 import Image from 'next/image'
 
+import CircularProgress from '@mui/material/CircularProgress';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -100,7 +101,7 @@ export default function FirstStep ({step1Items, setStep1Items}) {
         setStep1Items(newItems);
     }
 
-    return(
+    return (
         <div className = {styles.container}>
             <div className={styles.stepTitle}>
                 <h2>Elige la Box que te guiñe el ojo</h2>
@@ -108,8 +109,10 @@ export default function FirstStep ({step1Items, setStep1Items}) {
             <div className={styles.productList}>
                 <div className={styles.scrollContainer}>
                     <Grid container spacing={1}>
-                        {productsMYB1 === null ? 
-                        <h5>productsMYB1 es undefined</h5> 
+                        { productsMYB1 === null   ? 
+                        <div className={styles.loader}>
+                            <CircularProgress color="inherit" />
+                        </div>
                             : 
                         productsMYB1.map((product) => (
                             <Grid item xs={6} sm={3}>

@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react'
 import {client} from '../utils/shopify'
 import styles from '../styles/box-builder.module.scss'
 import BoxBuilderStepper from '../components/BoxBuilder/Stepper/BoxBuilderStepper';
@@ -8,7 +9,8 @@ import ThirdStep from '../components/BoxBuilder/MultiStepForm/ThirdStep';
 import FourthStep from '../components/BoxBuilder/MultiStepForm/FourthStep';
 import Controllers from '../components/BoxBuilder/Controllers/Controllers';
 
-import React, { useState, useEffect } from 'react'
+import Slide from '@material-ui/core/Slide';
+
 
 const getDataFromStorage = (key) => {
     const storage = window.localStorage;
@@ -27,6 +29,10 @@ const parseData = (data) => {
 export default function BoxBuilder() {
 
     const [currentStep, setCurrentStep] = useState(0)
+    const [firstActive, setFirstActive] = useState(true)
+    const [secondActive, setSecondActive] = useState(false)
+    const [thirdActive, setThirdActive] = useState(false)
+    const [fourthActive, setFourthActive] = useState(false)
 
     const [totalPrice, setTotalPrice] = useState(0)
     const [stepper, setStepper] = useState(false)
@@ -37,10 +43,46 @@ export default function BoxBuilder() {
     const [step4Items, setStep4Items] = useState([])
 
     const goNext = () => {
+        if(currentStep + 1 === 1){
+            setFirstActive(false)
+            setSecondActive(true)
+            setThirdActive(false)
+            setFourthActive(false)
+        }
+        if(currentStep + 1 === 2){
+            setFirstActive(false)
+            setSecondActive(false)
+            setThirdActive(true)
+            setFourthActive(false)
+        }
+        if(currentStep + 1 === 3){
+            setFirstActive(false)
+            setSecondActive(false)
+            setThirdActive(false)
+            setFourthActive(true)
+        }
         setCurrentStep(currentStep + 1);
     }
 
     const goPrev = () => {
+        if(currentStep - 1 === 0){
+            setFirstActive(true)
+            setSecondActive(false)
+            setThirdActive(false)
+            setFourthActive(false)
+        }
+        if(currentStep - 1 === 1){
+            setFirstActive(false)
+            setSecondActive(true)
+            setThirdActive(false)
+            setFourthActive(false)
+        }
+        if(currentStep - 1 === 2){
+            setFirstActive(false)
+            setSecondActive(false)
+            setThirdActive(true)
+            setFourthActive(false)
+        }
         setCurrentStep(currentStep - 1);
     }
 
@@ -125,10 +167,35 @@ export default function BoxBuilder() {
             <div className={styles.choose}>
                 <form className={styles.form}>
                     <div className={styles.slides}>
-                        {currentStep === 0 && <FirstStep step1Items={step1Items} setStep1Items={setStep1Items} />}
-                        {currentStep === 1 && <SecondStep step2Items={step2Items} setStep2Items={setStep2Items}/>}
-                        {currentStep === 2 && <ThirdStep step3Items={step3Items} setStep3Items={setStep3Items}/>}
-                        {currentStep === 3 && <FourthStep step1Items={step1Items} step2Items={step2Items} step3Items={step3Items} />}
+                            {firstActive === true && 
+                                <Slide direction="left" timeout={500} in={firstActive} mountOnEnter unmountOnExit>
+                                    <div>
+                                        <FirstStep step1Items={step1Items} setStep1Items={setStep1Items} />
+                                    </div>
+                                </Slide>
+                            }
+                            {secondActive === true && 
+                                <Slide direction="left" timeout={500} in={secondActive} mountOnEnter unmountOnExit>
+                                    <div>
+                                        <SecondStep step2Items={step2Items} setStep2Items={setStep2Items}/>
+                                    </div>
+                                </Slide>
+                            }
+                            {thirdActive === true && 
+                                <Slide direction="left" timeout={500} in={thirdActive} mountOnEnter unmountOnExit>
+                                    <div>
+                                        <ThirdStep step3Items={step3Items} setStep3Items={setStep3Items}/>
+                                    </div>
+                                </Slide>
+                            }
+                            {fourthActive === true && 
+                                <Slide direction="left" timeout={500} in={fourthActive} mountOnEnter unmountOnExit>
+                                    <div>
+                                        <FourthStep step1Items={step1Items} step2Items={step2Items} step3Items={step3Items} />
+                                    </div>
+                                </Slide>
+                            }
+                            
                     </div> 
                 </form>
                 

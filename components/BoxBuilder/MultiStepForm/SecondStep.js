@@ -41,7 +41,6 @@ const useStyles = makeStyles((theme) => ({
     grow: {
         position: 'absolute',
         width: '100%',
-        height: '100%',
         backgroundColor: '#fff',
     },
     logoBlue: {

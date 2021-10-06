@@ -1,7 +1,7 @@
 import styles from './Controllers.module.scss'
 
-
 export default function Controllers({currentStep, setCurrentStep, goNext, goPrev, addToCart}) {
+
     return (
         <div className={styles.container}>
             <div className={styles.total}>
@@ -9,7 +9,7 @@ export default function Controllers({currentStep, setCurrentStep, goNext, goPrev
             </div>
             <div className={styles.buttons}>
                 { currentStep !== 0 ? 
-                    <button onClick={() => goPrev()}>REGRESAR</button> 
+                    <button onClick={() => goPrev()}>REGRESAR</button>
                 : ''}
                 
                 { currentStep !== 3 ? 
