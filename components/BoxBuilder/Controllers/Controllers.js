@@ -1,11 +1,11 @@
 import styles from './Controllers.module.scss'
 
-export default function Controllers({currentStep, setCurrentStep, goNext, goPrev, addToCart}) {
+export default function Controllers({currentStep, setCurrentStep, goNext, goPrev, addToCart, totalPrice}) {
 
     return (
         <div className={styles.container}>
             <div className={styles.total}>
-                Total: <span className={styles.number}>$0.00</span>
+                Total: <span className={styles.number}>${totalPrice}</span>
             </div>
             <div className={styles.buttons}>
                 { currentStep !== 0 ? 

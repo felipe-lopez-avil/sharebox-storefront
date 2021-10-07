@@ -34,7 +34,9 @@ export default function BoxBuilder() {
     const [thirdActive, setThirdActive] = useState(false)
     const [fourthActive, setFourthActive] = useState(false)
 
-    const [totalPrice, setTotalPrice] = useState(0)
+    const [firstStepPrice, setFirstStepPrice] = useState(0)
+    const [secondStepPrice, setSecondStepPrice] = useState(0)
+    const [totalPrice, setTotalPrice] = useState(firstStepPrice + secondStepPrice)
     const [stepper, setStepper] = useState(false)
 
     const [step1Items, setStep1Items] = useState({productID: '', title: '', price: '', quantity: 1, image: '',})
@@ -170,14 +172,14 @@ export default function BoxBuilder() {
                             {firstActive === true && 
                                 <Slide direction="left" timeout={500} in={firstActive} mountOnEnter unmountOnExit>
                                     <div>
-                                        <FirstStep step1Items={step1Items} setStep1Items={setStep1Items} />
+                                        <FirstStep step1Items={step1Items} setStep1Items={setStep1Items} setFirstStepPrice={setFirstStepPrice} />
                                     </div>
                                 </Slide>
                             }
                             {secondActive === true && 
                                 <Slide direction="left" timeout={500} in={secondActive} mountOnEnter unmountOnExit>
                                     <div>
-                                        <SecondStep step2Items={step2Items} setStep2Items={setStep2Items}/>
+                                        <SecondStep step2Items={step2Items} setStep2Items={setStep2Items} secondStepPrice={secondStepPrice} setSecondStepPrice={setSecondStepPrice} />
                                     </div>
                                 </Slide>
                             }
@@ -208,6 +210,7 @@ export default function BoxBuilder() {
                 goNext={goNext} 
                 goPrev={goPrev} 
                 addToCart={addToCart}
+                totalPrice={firstStepPrice + secondStepPrice}
             />
         </div>
         </>

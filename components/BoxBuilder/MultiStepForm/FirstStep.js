@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function FirstStep ({step1Items, setStep1Items}) {
+export default function FirstStep ({step1Items, setStep1Items, setFirstStepPrice}) {
     const classes = useStyles();
 
     const collectionMYB1 = 'Z2lkOi8vc2hvcGlmeS9Db2xsZWN0aW9uLzI3MjA2NDg3MjYxMA==';
@@ -56,37 +56,7 @@ export default function FirstStep ({step1Items, setStep1Items}) {
         e.preventDefault();
         
         setStep1Items({productID: id, title: title, price: price, quantity: 1, image: image,});
-        /* var toAdd;
-        var itemIndex = -1;
-
-        if (step1Items.length > 0) {
-            step1Items.map((item, index) => {
-                if (item.productID === id) {
-                    itemIndex = index
-                }
-            })
-        }else{
-            toAdd = {
-                productID: id,
-                quantity: 1,
-                image: image,
-            }
-            setStep1Items([...step1Items, toAdd]);
-        }
-        
-        if (itemIndex === -1) {
-            toAdd = {
-                productID: id,
-                quantity: 1,
-                image: image,
-            }
-            setStep1Items([...step1Items, toAdd]);
-        }else{
-            var newItems = [...step1Items];
-            newItems[itemIndex].quantity = newItems[itemIndex].quantity + 1;
-            setStep1Items(newItems);
-        } */
-
+        setFirstStepPrice(parseFloat(price))
     }
 
     const handleChange = (image, e) => {

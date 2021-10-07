@@ -41,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
     grow: {
         position: 'absolute',
         width: '100%',
+        height: '100%',
         backgroundColor: '#fff',
     },
     logoBlue: {
@@ -50,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function SecondStep ({step2Items, setStep2Items}) {
+export default function SecondStep ({step2Items, setStep2Items, secondStepPrice, setSecondStepPrice}) {
 
     const collectionMYB2 = 'Z2lkOi8vc2hvcGlmeS9Db2xsZWN0aW9uLzI3Mjc5NTI3MTMzMA=='
     const classes = useStyles();
@@ -129,12 +130,17 @@ export default function SecondStep ({step2Items, setStep2Items}) {
             newItems[itemIndex].quantity = newItems[itemIndex].quantity + 1;
             setStep2Items(newItems);
         }
+
+        setSecondStepPrice(secondStepPrice + parseFloat(price))
     }
 
     const removeItem = (id, e) => {
         e.preventDefault();
         const newItems = step2Items.filter(item => item.productID !== id)
+        const removedItems = step2Items.filter(item => item.productID === id)
+        const removedItem = removedItems[0]
         setStep2Items(newItems);
+        setSecondStepPrice(secondStepPrice - (parseFloat(removedItem.price) * removedItem.quantity))
     }
 
     return(
