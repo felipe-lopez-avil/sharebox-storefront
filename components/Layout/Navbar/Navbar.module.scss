@@ -1,12 +1,13 @@
 .desktopNavbar{
     position: fixed;
     width: 100%;
-    background: #fff;
+    background-color: transparent;
     height: 85px;
     display: flex;
     padding: 0 3rem;
-    border-bottom: 2px solid #ECECEC;
+    border-bottom: 2px solid transparent;
     z-index: 9998;
+    transition: all 0.3s ease;
 
     @media (max-width: 985px) {
         padding: 0px 15px;
@@ -17,11 +18,36 @@
     }
 }
 
+.desktopNavbar.active{
+    background-color: #fff;
+    border-bottom: 2px solid #ECECEC;
+}
+
+.background{
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
 .logo{
     width: 200px;
     display: flex;
     align-items: center;
     cursor: pointer;
+    svg{
+        width: 100%;
+        height: auto;
+        fill: #fff;
+        transition: all 0.3s ease;
+    }
+    
+    svg.active{
+        fill: #028ab5;
+    }
 
     img{
         width: 100%;
@@ -31,6 +57,10 @@
     @media (max-width: 985px) {
         width: 175px;
     }
+}
+
+.svg{
+    fill: #fff;
 }
 
 .navigation{
@@ -43,12 +73,12 @@
         margin: 0 8px;
         font-size: 0.9rem;
         font-weight: 500;
-        color: #59748b;
+        color: #fff;
         height: 100%;
         display: flex;
         align-items: center;
         position: relative;
-        
+        transition: all 0.3s ease;
 
         span{
             display: flex;
@@ -60,6 +90,10 @@
         @media (max-width: 985px) {
             margin: 0px 7px;
         }
+    }
+
+    .navItem.active{
+        color: #59748b;
     }
 
     @media (max-width: 985px) {
@@ -77,6 +111,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    color: #59748b;
 
     .gtgImage{
         width: 250px;
@@ -121,6 +156,7 @@
     display: flex;
     flex-direction: column;
     margin-left: 20px;
+    color: #59748b;
 
     p{
         font-weight: 600;
@@ -137,6 +173,7 @@
     flex-direction: column;
     width: 150px;
     margin-left: 20px;
+    color: #59748b;
 
     .categoryLink{
         min-height: 30px;
@@ -151,6 +188,10 @@
             background-color: #ececec;
         }
     }
+
+    .categoryLink.active{
+        transition: all 0.3s ease;
+    }
 }
 
 .icons{
@@ -162,6 +203,12 @@
 
 .icon{
     cursor: pointer;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+.icon.active{
+    color: #003360;
 }
 
 .mobileNavbar{
