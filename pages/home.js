@@ -1,6 +1,7 @@
 import styles from '../styles/home.module.scss'
 
-import Slider from "react-slick";
+import Hero from '../components/HomePage/Hero/Hero'
+import Onboarding from '../components/HomePage/Onboarding/Onboarding'
 
 export default function Home() {
 
@@ -17,21 +18,8 @@ export default function Home() {
 
     return (
         <div className={styles.container}>
-            {/* <video src="https://cdn.shopify.com/s/files/1/0456/6820/4706/files/pexels-rodnae-productions-6529560.mp4?v=1632248218" autoPlay loop muted poster="https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Fondo.png?v=1627590003"></video>
-            <div className={styles.heroSection}>
-                <div className={styles.heroContent}></div>
-            </div> */}
-            <Slider {...settings}>
-                <div className={styles.slide}>
-                    <video src="https://cdn.shopify.com/s/files/1/0456/6820/4706/files/pexels-rodnae-productions-6529560.mp4?v=1632248218" autoPlay loop muted poster="https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Fondo.png?v=1627590003"></video>
-                </div>
-                <div className={styles.slide}>
-                    Slide 2
-                </div>
-                <div className={styles.slide}>
-                    Slide 2
-                </div>
-            </Slider>
+            <Hero/>
+            <Onboarding/>
         </div>
     )
   }
