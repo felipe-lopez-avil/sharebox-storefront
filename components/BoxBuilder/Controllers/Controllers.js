@@ -1,7 +1,9 @@
 import styles from './Controllers.module.scss'
 
-export default function Controllers({currentStep, setCurrentStep, goNext, goPrev, addToCart, totalPrice}) {
+export default function Controllers({currentStep, setCurrentStep, goNext, goPrev, addToCart, totalPrice, step1Items, step2Items, step3Items}) {
 
+    const initialStep1Items = {productID: '', title: '', price: '', quantity: 1, image: '',}
+    
     return (
         <div className={styles.container}>
             <div className={styles.total}>
@@ -13,7 +15,23 @@ export default function Controllers({currentStep, setCurrentStep, goNext, goPrev
                 : ''}
                 
                 { currentStep !== 3 ? 
-                    <button onClick={() => goNext()}>CONTINUAR</button>
+                    <button 
+                        onClick={() => goNext()}
+                        disabled={
+                            ((currentStep === 0) & (step1Items.productID === '')) 
+                            || ((currentStep === 1) & (step2Items.length === 0))
+                            || ((currentStep === 2) & (step3Items.length === 0))
+                            ? true : false
+                        }
+                        className={
+                            ((currentStep === 0) & (step1Items.productID === '')) 
+                            || ((currentStep === 1) & (step2Items.length === 0))
+                            || ((currentStep === 2) & (step3Items.length === 0))
+                            ? styles.disabled : ''
+                        }
+                    >
+                        CONTINUAR
+                    </button>
                 : ''}
 
                 { currentStep === 3 ? 

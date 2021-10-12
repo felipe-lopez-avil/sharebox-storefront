@@ -211,6 +211,9 @@ export default function BoxBuilder() {
                 goPrev={goPrev} 
                 addToCart={addToCart}
                 totalPrice={firstStepPrice + secondStepPrice}
+                step1Items={step1Items}
+                step2Items={step2Items}
+                step3Items={step3Items}
             />
         </div>
         </>

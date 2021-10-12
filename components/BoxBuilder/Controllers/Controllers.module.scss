@@ -21,6 +21,11 @@
     button{
         margin-left: 10px;
     }
+
+    .disabled{
+        background-color: #cfcfcf;
+        border-color: #cfcfcf;
+    }
 }
 
 @media (max-width: 500px) {
