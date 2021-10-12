@@ -9,6 +9,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
+import CircularProgress from '@mui/material/CircularProgress';
 
 import Slider from '@material-ui/core/Slider';
 import Grid from '@material-ui/core/Grid';
@@ -34,8 +35,12 @@ function valuetext(value) {
     return `${value}°C`;
 }
 
-export default function GiftsToGo ({collection}) {
+export default function GiftsToGo () {
     const classes = useStyles();
+
+    const collectionId = 'Z2lkOi8vc2hvcGlmeS9Db2xsZWN0aW9uLzIxMjM4MTEzOTEwNg==';
+    const [collection, setCollection] = useState(null)
+    const [products, setProducts] = useState(null)
 
     // Checks if the window is ready so the functional components can render.
     const [windowReady, setWindowReady] = useState(false)
@@ -44,7 +49,13 @@ export default function GiftsToGo ({collection}) {
             setWindowReady(true);
         }
 
-        console.log(collection.products)
+        client.collection.fetchWithProducts(collectionId, {productsFirst: 50}).then((collection) => {
+            // Do something with the collection
+            console.log(collection.products);
+            setCollection(JSON.parse(JSON.stringify(collection)))
+            setProducts(collection.products)
+        });
+        //console.log(collection.products)
     }, [])
 
     // State of the Active Filter
@@ -119,9 +130,6 @@ export default function GiftsToGo ({collection}) {
         }
     };
 
-
-    const [products, setProducts] = useState(collection.products)
-
     return (
         <div className={styles.container}>
             <div className={styles.title}>
@@ -129,87 +137,72 @@ export default function GiftsToGo ({collection}) {
             </div>
             {windowReady === true &&             
                 <div className={styles.content}>
-                    <div className={styles.filters}>
-                        <h4>Filtrar por:</h4>
-                        <div className={styles.filter}>
-                            <h5>Tipo de producto</h5>
-                            <FormControl component="fieldset">
-                                <RadioGroup aria-label="productType" name="productType" value={typeFilter} onChange={handleTypeFilter}>
-                                    <FormControlLabel value="all" control={<Radio />} label="Cualquiera" />
-                                    <FormControlLabel value="boxes" control={<Radio />} label="Boxes" />
-                                    <FormControlLabel value="kits armados" control={<Radio />} label="Kits Armados" />
-                                    <FormControlLabel value="globos y flores" control={<Radio />} label="Globos y Flores" />
-                                    <FormControlLabel value="snacks y postres" control={<Radio />} label="Snacks y Postres" />
-                                </RadioGroup>
-                            </FormControl>
+                    
+                    {collection !== null && products !== null ? 
+                    <>
+                        <div className={styles.filters}>
+                            <h4>Filtrar por:</h4>
+                            <div className={styles.filter}>
+                                <h5>Tipo de producto</h5>
+                                <FormControl component="fieldset">
+                                    <RadioGroup aria-label="productType" name="productType" value={typeFilter} onChange={handleTypeFilter}>
+                                        <FormControlLabel value="all" control={<Radio />} label="Cualquiera" />
+                                        <FormControlLabel value="boxes" control={<Radio />} label="Boxes" />
+                                        <FormControlLabel value="kits armados" control={<Radio />} label="Kits Armados" />
+                                        <FormControlLabel value="globos y flores" control={<Radio />} label="Globos y Flores" />
+                                        <FormControlLabel value="snacks y postres" control={<Radio />} label="Snacks y Postres" />
+                                    </RadioGroup>
+                                </FormControl>
+                            </div>
+                            <div className={styles.filter}>
+                                <h5>Ocasiones</h5>
+                                <FormControl component="fieldset">
+                                    <RadioGroup aria-label="gender" name="gender1" value={ocassionFilter} onChange={handleOcassionFilter}>
+                                        <FormControlLabel value="all" control={<Radio />} label="Todas" />
+                                        <FormControlLabel value="aniversario" control={<Radio />} label="Aniversario" />
+                                        <FormControlLabel value="cumpleaños" control={<Radio />} label="Cumpleaños" />
+                                        <FormControlLabel value="just because" control={<Radio />} label="Just Because" />
+                                    </RadioGroup>
+                                </FormControl>
+                            </div>
                         </div>
-                        <div className={styles.filter}>
-                            <h5>Ocasiones</h5>
-                            <FormControl component="fieldset">
-                                <RadioGroup aria-label="gender" name="gender1" value={ocassionFilter} onChange={handleOcassionFilter}>
-                                    <FormControlLabel value="all" control={<Radio />} label="Todas" />
-                                    <FormControlLabel value="aniversario" control={<Radio />} label="Aniversario" />
-                                    <FormControlLabel value="cumpleaños" control={<Radio />} label="Cumpleaños" />
-                                    <FormControlLabel value="just because" control={<Radio />} label="Just Because" />
-                                    {/* <FormControlLabel value="anillos y compromisos" control={<Radio />} label="Anillos y Compromisos" />
-                                    <FormControlLabel value="for a long day" control={<Radio />} label="For a Long Day" /> */}
-                                </RadioGroup>
-                            </FormControl>
+                        <div className={styles.products}>
+                            <Grid container spacing={0}>
+
+                                {products.map(product => (
+
+                                    <Grid item xs={6} sm={4} md={3} className={classes.grid}>
+                                        <Link href={`/gifts-to-go/${product.handle}`}>
+                                            <div className={styles.productContainer}>
+                                                <div className={styles.productImage}>
+                                                    <Image
+                                                        src={product.images[0].src}
+                                                        layout="fill"
+                                                        objectFit="cover"
+                                                    />
+                                                </div>
+                                                <div className={styles.productDescription}>
+                                                    <div className={styles.productTitle}>{product.title}</div>
+                                                    <div className={styles.price}>${product.variants[0].price}</div>
+                                                </div>
+                                            </div>
+                                        </Link>
+                                    </Grid>
+                                ))}
+                            </Grid>
                         </div>
+                    </>
+                    :
+                    <div className={styles.loaderContainer}>
+                        <CircularProgress color="inherit" />
                     </div>
-                    <div className={styles.products}>
-                        <Grid container spacing={0}>
-
-                            {products.map(product => (
-
-                                <Grid item xs={6} sm={4} md={3} className={classes.grid}>
-                                    <Link href={`/gifts-to-go/${product.handle}`}>
-                                        <div className={styles.productContainer}>
-                                            <div className={styles.productImage}>
-                                                <Image
-                                                    src={product.images[0].src}
-                                                    layout="fill"
-                                                    objectFit="cover"
-                                                />
-                                            </div>
-                                            <div className={styles.productDescription}>
-                                                <div className={styles.productTitle}>{product.title}</div>
-                                                <div className={styles.price}>${product.variants[0].price}</div>
-                                            </div>
-                                        </div>
-                                    </Link>
-                                </Grid>
-                        
-                                /* <Link href={`/${link}/${product.handle}`}>
-                                    <div className={styles.productContainer}>
-                                        <div className={styles.productImg}>
-                                            <Image
-                                                src={product.images[0].src}
-                                                layout="fill"
-                                                objectFit="cover"
-                                            />
-                                            
-                                            <div className={styles.overlay}>
-                                                <a href="#" className={styles.buyNow}>Comprar Ahora</a>
-                                            </div>
-                                        </div>
-                                        <div className={styles.productInfo}>
-                                            <div className={styles.type}>
-                                                <a href="#"><h4>{product.title}</h4></a>
-                                                <span>${product.variants[0].price}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </Link> */
-                            ))}
-                        </Grid>
-                    </div>
+                    }
                 </div>
             }     
         </div>
     )
 }
-
+/* 
 export async function getServerSideProps() {
     // Fetch data from external API
 
@@ -221,4 +214,4 @@ export async function getServerSideProps() {
     console.log({ collection })
     // Pass data to the page via props
     return { props: { collection: JSON.parse(JSON.stringify(collection))} }
-}
+} */

@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { makeStyles } from '@material-ui/core/styles';
 import styles from './Navbar.module.scss'
+import { useRouter } from 'next/router'
 
 import Grow from '@material-ui/core/Grow';
 import Slide from '@material-ui/core/Slide';
@@ -41,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 export default function Navbar () {
+    const router = useRouter();
     const classes = useStyles();
     
     const [navBackgroung, setNavBackgroung] = useState(false)
@@ -90,11 +92,11 @@ export default function Navbar () {
 
     return (
         <>
-            <div className={`${styles.desktopNavbar} ${navBackgroung ? styles.active : ''}`}>
+            <div className={`${styles.desktopNavbar} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`}>
                 {/* <div className={styles.background}></div> */}
                 <div className={styles.logo}>
                     <Link href="/">
-                        <svg version="1.0" xmlns="http://www.w3.org/2000/svg" className={navBackgroung ? styles.active : ''}
+                        <svg version="1.0" xmlns="http://www.w3.org/2000/svg" className={navBackgroung || router.pathname !== '/' ? styles.active : ''}
                             width="3557.000000pt" height="400.000000pt" viewBox="0 0 3557.000000 400.000000"
                             preserveAspectRatio="xMidYMid meet">
                             <metadata>
@@ -158,7 +160,7 @@ export default function Navbar () {
                 {windowReady === true && 
                 <div className={styles.navigation}>
                     
-                    <div className={`${styles.navItem} ${navBackgroung ? styles.active : ''}`} onMouseEnter={handleGTG} onMouseLeave={handleGTG}>
+                    <div className={`${styles.navItem} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`} onMouseEnter={handleGTG} onMouseLeave={handleGTG}>
                         <span>Gifts To Go! <ExpandMoreIcon/></span>
 
                         <Grow in={gtg} className={classes.collapse} style={{ transformOrigin: '0 0 0' }}>
@@ -183,7 +185,7 @@ export default function Navbar () {
                             </div>
                         </Grow>
                     </div>
-                    <div className={`${styles.navItem} ${navBackgroung ? styles.active : ''}`} onMouseEnter={handleMYB} onMouseLeave={handleMYB}>
+                    <div className={`${styles.navItem} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`} onMouseEnter={handleMYB} onMouseLeave={handleMYB}>
                         <span>Make Your Box</span>
 
                         <Grow in={myb} className={classes.collapse} style={{ transformOrigin: '0 0 0' }}>
@@ -205,7 +207,7 @@ export default function Navbar () {
                             </div>
                         </Grow>
                     </div>
-                    <div className={`${styles.navItem} ${navBackgroung ? styles.active : ''}`} onMouseEnter={handleGFM} onMouseLeave={handleGFM}>
+                    <div className={`${styles.navItem} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`} onMouseEnter={handleGFM} onMouseLeave={handleGFM}>
                         <span>Gifts For Me</span>
 
                         <Grow in={gfm} className={classes.collapse} style={{ transformOrigin: '0 0 0' }}>
@@ -227,7 +229,7 @@ export default function Navbar () {
                             </div>
                         </Grow>
                     </div>
-                    <div className={`${styles.navItem} ${navBackgroung ? styles.active : ''}`}>
+                    <div className={`${styles.navItem} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`}>
                         <Link href="/corporate">
                             <span>Sharebox Corporate</span>
                         </Link>
@@ -235,7 +237,7 @@ export default function Navbar () {
                 </div>
                 }
                 <div className={styles.icons}>
-                    <div className={`${styles.icon} ${navBackgroung ? styles.active : ''}`}>
+                    <div className={`${styles.icon} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`}>
                         <Link href="/cart">                    
                             <FiShoppingBag style={{ fontSize: 27 }}/>
                         </Link>
