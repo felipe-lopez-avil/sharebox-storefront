@@ -9,6 +9,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
+import CircularProgress from '@mui/material/CircularProgress';
 
 import Slider from '@material-ui/core/Slider';
 import Grid from '@material-ui/core/Grid';
@@ -34,8 +35,12 @@ function valuetext(value) {
     return `${value}°C`;
 }
 
-export default function GiftsForMe ({collection}) {
+export default function GiftsForMe () {
     const classes = useStyles();
+
+    const collectionId = 'Z2lkOi8vc2hvcGlmeS9Db2xsZWN0aW9uLzI3NTY0MTYzMDg4Mg==';
+    const [collection, setCollection] = useState(null)
+    const [products, setProducts] = useState(null)
 
     // Checks if the window is ready so the functional components can render.
     const [windowReady, setWindowReady] = useState(false)
@@ -44,7 +49,13 @@ export default function GiftsForMe ({collection}) {
             setWindowReady(true);
         }
 
-        console.log(collection.products)
+        client.collection.fetchWithProducts(collectionId, {productsFirst: 50}).then((collection) => {
+            // Do something with the collection
+            console.log(collection.products);
+            setCollection(JSON.parse(JSON.stringify(collection)))
+            setProducts(collection.products)
+        });
+        // console.log(collection.products)
     }, [])
 
     // State of the Active Filter
@@ -72,9 +83,6 @@ export default function GiftsForMe ({collection}) {
         }
     };
 
-
-    const [products, setProducts] = useState(collection.products)
-
     return (
         <div className={styles.container}>
             <div className={styles.title}>
@@ -83,18 +91,11 @@ export default function GiftsForMe ({collection}) {
             <div className={styles.publicity}></div>
             {windowReady === true &&             
                 <div className={styles.content}>
+                    
+                    {collection !== null && products !== null ? 
+                    <>
                     <div className={styles.filters}>
                         <h4>Filtrar por:</h4>
-                        {/* <div className={styles.filter}>
-                            <h5>Rango de precio</h5>
-                            <Slider
-                                value={value}
-                                onChange={handleChange}
-                                valueLabelDisplay="auto"
-                                aria-labelledby="range-slider"
-                                getAriaValueText={valuetext}
-                            />
-                        </div> */}
                         <div className={styles.filter}>
                             <h5>Categorías*</h5>
                             
@@ -136,31 +137,15 @@ export default function GiftsForMe ({collection}) {
                                         </div>
                                     </Link>
                                 </Grid>
-                        
-                                /* <Link href={`/${link}/${product.handle}`}>
-                                    <div className={styles.productContainer}>
-                                        <div className={styles.productImg}>
-                                            <Image
-                                                src={product.images[0].src}
-                                                layout="fill"
-                                                objectFit="cover"
-                                            />
-                                            
-                                            <div className={styles.overlay}>
-                                                <a href="#" className={styles.buyNow}>Comprar Ahora</a>
-                                            </div>
-                                        </div>
-                                        <div className={styles.productInfo}>
-                                            <div className={styles.type}>
-                                                <a href="#"><h4>{product.title}</h4></a>
-                                                <span>${product.variants[0].price}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </Link> */
                             ))}
                         </Grid>
                     </div>
+                    </>
+                    :
+                    <div className={styles.loaderContainer}>
+                        <CircularProgress color="inherit" />
+                    </div>
+                    }
                 </div>
             }     
         </div>
