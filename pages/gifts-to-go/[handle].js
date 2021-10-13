@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import styles from '../../styles/product.module.scss'
 import {client} from '../../utils/shopify'
-import { useRouter } from 'next/router'
 import Image from 'next/image'
 
 import { makeStyles } from '@material-ui/core/styles';
