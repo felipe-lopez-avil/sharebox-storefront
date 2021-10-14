@@ -10,12 +10,9 @@ SwiperCore.use([Navigation, Autoplay]);
 export default function Home() {
     return (
         <>
-        {/* <Swiper 
+        <Swiper 
             navigation={true}
-            cssMode={true}
             slidesPerView={1}
-            onSlideChange={() => console.log('slide change')}
-            onSwiper={(swiper) => console.log(swiper)}
             autoplay={{
                 "delay": 5000,
                 "disableOnInteraction": false
@@ -72,22 +69,7 @@ export default function Home() {
                     </div>
                 </div>
             </SwiperSlide>
-        </Swiper> */}
-        <div className={`${styles.slide} ${styles.alignCenter}`}>
-            <video 
-                src="https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Video_2.mp4?v=1633726286" 
-                poster="https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Fondo.png?v=1627590003"
-                autoPlay 
-                loop 
-                muted
-            >
-            </video>
-            <div className={styles.heroContent}>
-                <h2>Box To Go</h2>
-                <div>Para cualquier ocasión</div>
-                <button>¡Escoge tu Box!</button>
-            </div>
-        </div>
+        </Swiper> 
         </>
     )
 }

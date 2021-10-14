@@ -9,7 +9,7 @@ export default function SmallDetails () {
             </div>
             <div className={styles.banner}>
                 <Image
-                    src="https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Pequenos_Detalles_Se_va_a_cambiar_la_foto.png?v=1633968444"
+                    src="/small-details.png"
                     layout="fill"
                     objectFit="cover"
                 />

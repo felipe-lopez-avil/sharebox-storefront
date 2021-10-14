@@ -13,12 +13,10 @@ export default function Onboarding() {
     return(
         <div className={styles.container}>
             <Swiper 
-                pagination={{
-                    "clickable": true
-                }}
+                navigation={true}
                 slidesPerView={1}
                 autoplay={{
-                    "delay": 50000,
+                    "delay": 5000,
                     "disableOnInteraction": false
                 }}
             >
@@ -78,7 +76,7 @@ export default function Onboarding() {
                         </div>
                         <div className={styles.image}>
                             <Image
-                                src="https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Gifts_for_me_1.png?v=1633965789"
+                                src="https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Gifts_for_me_junto.png?v=1634247537"
                                 layout="fill"
                                 objectFit="contain"
                             />

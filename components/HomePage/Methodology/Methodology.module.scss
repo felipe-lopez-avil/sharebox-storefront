@@ -3,6 +3,7 @@
     height: 550px;
     background-color: violet;
     display: flex;
+
 }
 
 .row{
@@ -15,6 +16,19 @@
     width: 50%;
     height: 100%;
     position: relative;
+
+    &:hover{
+
+        .icon{
+            width: 14vw;
+            height: 14vw;
+        }
+
+        h5{
+            color: #fff;
+        }
+
+    }
 }
 
 .flexContainer{
@@ -47,16 +61,4 @@
         transition: all 0.3s ease;
     }
 
-    &:hover{
-
-        .icon{
-            width: 14vw;
-            height: 14vw;
-        }
-
-        h5{
-            color: #fff;
-        }
-
-    }
 }

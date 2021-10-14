@@ -26,7 +26,7 @@ export default function Methodology () {
                 </div>
                 <div className={styles.column}>
                     <Image
-                        src="https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Enviar_img.png?v=1633971253"
+                        src="/enviar.png"
                         layout="fill"
                         objectFit="cover"
                     />
@@ -39,7 +39,7 @@ export default function Methodology () {
                                     objectFit="cover"
                                 />
                             </div>
-                            <h5>2. Selecciona otro regalo</h5>
+                            <h5>2. Personaliza tu mensaje</h5>
                         </div>
                     </div>
                 </div>
@@ -47,7 +47,7 @@ export default function Methodology () {
             <div className={styles.row}>
                 <div className={styles.column}>
                     <Image
-                        src="https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Paper_plane_img.png?v=1633971299"
+                        src="/paperplane.png"
                         layout="fill"
                         objectFit="cover"
                     />
@@ -60,7 +60,7 @@ export default function Methodology () {
                                     objectFit="cover"
                                 />
                             </div>
-                            <h5>3. Selecciona un regalo más</h5>
+                            <h5>3. Envía y comparte felicidad</h5>
                         </div>
                     </div>
                 </div>
@@ -79,7 +79,7 @@ export default function Methodology () {
                                     objectFit="cover"
                                 />
                             </div>
-                            <h5>4. Selecciona otro regalo</h5>
+                            <h5>4. Vive la experiencia Sharebox</h5>
                         </div>
                     </div>
                 </div>

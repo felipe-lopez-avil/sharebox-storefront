@@ -49,6 +49,21 @@
     }
 }
 
+.hidden{
+    position: absolute;
+    left: -50000px;
+}
+
+.inputText{
+    width: 100%;
+    padding: 0.4em 0.5em;
+    font-size: 1rem;
+}
+
+.displayNone{
+    display: none;
+}
+
 .newsletter{
     width: 500px;
     height: 150px;
@@ -58,6 +73,36 @@
         font-size: 1.2rem;
         color: #b3dbe5;
         margin-bottom: 25px;
+    }
+
+    .form{
+        input{
+            width: 100%;
+            padding: 0.5em;
+            font-size: 1rem;
+            border-radius: 5px;
+            border: 2px solid #fff;
+        }
+
+        button{
+            font-size: 1rem;
+            width: 100%;
+            margin: 0.5em 0;
+        }
+    }
+
+    .confirmationMessage{
+        padding: 1em;
+        border-radius: 5px;
+        border: 2px solid #b3dbe5;
+        text-align: center;
+        color: #b3dbe5;
+        font-weight: 600;
+
+        &.error{
+            border-color: tomato;
+            color: tomato;
+        }
     }
 
     .input{
@@ -79,6 +124,38 @@
             padding: 8px 15px;
             text-align: center;
             color: #fff;
+        }
+    }
+
+    .input{
+        width: 100%;
+        padding: 0.5em 0.5em;
+        font-size: 1rem;
+        border-radius: 5px;
+    }
+
+    .suscribe{
+        width: 100%;
+        margin-top: 5px;
+        background-color: #b3dbe5;
+        border-color: #b3dbe5;
+        color: #003360;
+    }
+
+    .confirmation{
+        width: 100%;
+        color: #b3dbe5;
+        display: flex;
+        font-weight: 600;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 10px 5px;
+        border: 2px solid #b3dbe5;
+        border-radius: 5px;
+
+        span{
+            margin-right: 5px;
         }
     }
 
@@ -109,6 +186,7 @@
         margin-bottom: 35px;
     }
 }
+
 
 .contact{
     width: 300px;
