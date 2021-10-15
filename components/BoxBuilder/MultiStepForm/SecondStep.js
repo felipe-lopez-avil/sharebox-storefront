@@ -203,7 +203,7 @@ export default function SecondStep ({step2Items, setStep2Items, secondStepPrice,
                         </Grid>
                         <Grid item xs={6} sm={4} md={3}>
                             <div className={styles.categoryCard}>
-                                <div className={styles.categoryBox} onClick={(e) => {openPopup('Moda y Joyería', 'Moda y Joyería', e)}}>
+                                <div className={styles.categoryBox} onClick={(e) => {openPopup('Moda & Joyería', 'Moda y Joyería', e)}}>
                                     <div className={styles.categoryIcon}>
                                         <Image src="/jewelIcon.svg" layout="fill" objectFit="cover"/>
                                     </div>
