@@ -80,7 +80,7 @@ export default function SecondStep ({step2Items, setStep2Items, secondStepPrice,
     };
 
     useEffect(() => {
-        client.collection.fetchWithProducts(collectionMYB2, {productsFirst: 20}).then((collection) => {
+        client.collection.fetchWithProducts(collectionMYB2, {productsFirst: 250}).then((collection) => {
             // Do something with the collection
 
             // Se convierte el objeto a JSON
@@ -89,7 +89,7 @@ export default function SecondStep ({step2Items, setStep2Items, secondStepPrice,
             // Se guarda el objeto
             // productsMYB1 = parsedCollection.products;
             setProductsMYB2(parsedCollection.products);
-            console.log(productsMYB2)
+            //console.log(productsMYB2)
         });
     }, [])
 
@@ -163,7 +163,17 @@ export default function SecondStep ({step2Items, setStep2Items, secondStepPrice,
                         </Grid>
                         <Grid item xs={6} sm={4} md={3}>
                             <div className={styles.categoryCard}>
-                                <div className={styles.categoryBox} onClick={(e) => {openPopup('brides', 'Brides', e)}}>
+                                <div className={styles.categoryBox} onClick={(e) => {openPopup('Bienestar y Cuidado Personal', 'Bienestar y Cuidado Personal', e)}}>
+                                    <div className={styles.categoryIcon}>
+                                        <Image src="/selfCareIcon.svg" layout="fill" objectFit="cover"/>
+                                    </div>
+                                    <h4>Bienestar y Cuidado Personal</h4>
+                                </div>
+                            </div>
+                        </Grid>
+                        <Grid item xs={6} sm={4} md={3}>
+                            <div className={styles.categoryCard}>
+                                <div className={styles.categoryBox} onClick={(e) => {openPopup('Brides', 'Brides', e)}}>
                                     <div className={styles.categoryIcon}>
                                         <Image src="/bridesIcon.svg" layout="fill" objectFit="cover"/>
                                     </div>
@@ -173,17 +183,7 @@ export default function SecondStep ({step2Items, setStep2Items, secondStepPrice,
                         </Grid>
                         <Grid item xs={6} sm={4} md={3}>
                             <div className={styles.categoryCard}>
-                                <div className={styles.categoryBox} onClick={(e) => {openPopup('cuidado-personal', 'Cuidado Personal', e)}}>
-                                    <div className={styles.categoryIcon}>
-                                        <Image src="/selfCareIcon.svg" layout="fill" objectFit="cover"/>
-                                    </div>
-                                    <h4>Cuidado personal</h4>
-                                </div>
-                            </div>
-                        </Grid>
-                        <Grid item xs={6} sm={4} md={3}>
-                            <div className={styles.categoryCard}>
-                                <div className={styles.categoryBox} onClick={(e) => {openPopup('for-him', 'For Him', e)}}>
+                                <div className={styles.categoryBox} onClick={(e) => {openPopup('For Him', 'For Him', e)}}>
                                     <div className={styles.categoryIcon}>
                                         <Image src="/maleIcon.svg" layout="fill" objectFit="cover"/>
                                     </div>
@@ -193,27 +193,27 @@ export default function SecondStep ({step2Items, setStep2Items, secondStepPrice,
                         </Grid>
                         <Grid item xs={6} sm={4} md={3}>
                             <div className={styles.categoryCard}>
-                                <div className={styles.categoryBox} onClick={(e) => {openPopup('home-and-pets', 'Home & Pets', e)}}>
+                                <div className={styles.categoryBox} onClick={(e) => {openPopup('Home & Art', 'Home & Art', e)}}>
                                     <div className={styles.categoryIcon}>
                                         <Image src="/petIcon.svg" layout="fill" objectFit="cover"/>
                                     </div>
-                                    <h4>Home & Pets</h4>
+                                    <h4>Home & Art</h4>
                                 </div>
                             </div>
                         </Grid>
                         <Grid item xs={6} sm={4} md={3}>
                             <div className={styles.categoryCard}>
-                                <div className={styles.categoryBox} onClick={(e) => {openPopup('joyeria', 'Joyería', e)}}>
+                                <div className={styles.categoryBox} onClick={(e) => {openPopup('Moda y Joyería', 'Moda y Joyería', e)}}>
                                     <div className={styles.categoryIcon}>
                                         <Image src="/jewelIcon.svg" layout="fill" objectFit="cover"/>
                                     </div>
-                                    <h4>Joyería</h4>
+                                    <h4>Moda y Joyería</h4>
                                 </div>
                             </div>
                         </Grid>
                         <Grid item xs={6} sm={4} md={3}>
                             <div className={styles.categoryCard}>
-                                <div className={styles.categoryBox} onClick={(e) => {openPopup('moms-and-babies', 'Moms & Babies', e)}}>
+                                <div className={styles.categoryBox} onClick={(e) => {openPopup('Moms & Babies', 'Moms & Babies', e)}}>
                                     <div className={styles.categoryIcon}>
                                         <Image src="/momIcon.svg" layout="fill" objectFit="cover"/>
                                     </div>
@@ -223,7 +223,7 @@ export default function SecondStep ({step2Items, setStep2Items, secondStepPrice,
                         </Grid>
                         <Grid item xs={6} sm={4} md={3}>
                             <div className={styles.categoryCard}>
-                                <div className={styles.categoryBox} onClick={(e) => {openPopup('office', 'Office & Stationary', e)}}>
+                                <div className={styles.categoryBox} onClick={(e) => {openPopup('Office & Stationary', 'Office & Stationary', e)}}>
                                     <div className={styles.categoryIcon}>
                                         <Image src="/stationaryIcon.svg" layout="fill" objectFit="cover"/>
                                     </div>
@@ -233,7 +233,27 @@ export default function SecondStep ({step2Items, setStep2Items, secondStepPrice,
                         </Grid>
                         <Grid item xs={6} sm={4} md={3}>
                             <div className={styles.categoryCard}>
-                                <div className={styles.categoryBox} onClick={(e) => {openPopup('snacks-y-postres', 'Snacks & Postres', e)}}>
+                                <div className={styles.categoryBox} onClick={(e) => {openPopup('Pets', 'Pets', e)}}>
+                                    <div className={styles.categoryIcon}>
+                                        <Image src="/petIcon.svg" layout="fill" objectFit="cover"/>
+                                    </div>
+                                    <h4>Pets</h4>
+                                </div>
+                            </div>
+                        </Grid>
+                        <Grid item xs={6} sm={4} md={3}>
+                            <div className={styles.categoryCard}>
+                                <div className={styles.categoryBox} onClick={(e) => {openPopup('Pasteles y festejos', 'Pasteles & Festejos', e)}}>
+                                    <div className={styles.categoryIcon}>
+                                        <Image src="/snacksIcon.svg" layout="fill" objectFit="cover"/>
+                                    </div>
+                                    <h4>Pasteles y Festejos</h4>
+                                </div>
+                            </div>
+                        </Grid>
+                        <Grid item xs={6} sm={4} md={3}>
+                            <div className={styles.categoryCard}>
+                                <div className={styles.categoryBox} onClick={(e) => {openPopup('Snacks & postres', 'Snacks & Postres', e)}}>
                                     <div className={styles.categoryIcon}>
                                         <Image src="/snacksIcon.svg" layout="fill" objectFit="cover"/>
                                     </div>
@@ -275,7 +295,7 @@ export default function SecondStep ({step2Items, setStep2Items, secondStepPrice,
                                     <label className={styles.forBoxInput} for={product.id}>
                                         <div className={styles.productImage}>
                                             <Image
-                                                src={product.images[0].src}
+                                                src={product.images[0] !== undefined ? product.images[0].src : 'https://cdn.shopify.com/s/files/1/0456/6820/4706/files/product-placeholder.png?v=1633451657'}
                                                 layout="fill"
                                                 objectFit="cover"
                                             />

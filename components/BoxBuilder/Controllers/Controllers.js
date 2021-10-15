@@ -21,7 +21,7 @@ export default function Controllers({currentStep, setCurrentStep, goNext, goPrev
                             ((currentStep === 0) & (step1Items.productID === '')) 
                             || ((currentStep === 1) & (step2Items.length === 0))
                             || ((currentStep === 2) & (step3Items.length === 0))
-                            ? true : false
+                            ? true : true
                         }
                         className={
                             ((currentStep === 0) & (step1Items.productID === '')) 
