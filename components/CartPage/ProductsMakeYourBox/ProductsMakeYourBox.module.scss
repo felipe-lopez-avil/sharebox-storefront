@@ -27,8 +27,7 @@
 }
 
 .title{
-    font-family: 'Poppins';
-    font-weight: 600;
+    font-family: 'Simula-Book';
 }
 
 .details{
@@ -42,12 +41,11 @@
 
 .underline{
     font-size: 0.9rem;
-    font-weight: 600;
+    font-weight: 400;
 }
 
 .eachPrice{
     font-size: 0.9rem;
-    font-weight: 600;
     margin: 5px 0;
 }
 
@@ -70,11 +68,10 @@
 .delete{
     color: rgb(255, 80, 80);
     text-decoration: underline;
-    font-family: 'Poppins';
     margin-top: 15px;
     cursor: pointer;
     font-size: 0.9rem;
-    font-weight: 600;
+    font-weight: 500;
 }
 
 @media (max-width: 600px) {

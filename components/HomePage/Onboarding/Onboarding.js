@@ -26,8 +26,8 @@ export default function Onboarding() {
                             <div className={styles.content}>
                                 <h3>Gifts To Go!</h3>
                                 <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam bibendum enim et scelerisque bibendum. 
-                                    Phasellus nec metus fringilla.
+                                    ¡Sorpresas listas para llevar! Regala a tus personas queridas una caja acorde a la ocasión que se esté 
+                                    celebrando. 
                                 </p>
                                 <button className={styles.gtgBtn}>Gifts To Go</button>
                             </div>
@@ -47,8 +47,8 @@ export default function Onboarding() {
                             <div className={styles.content}>
                                 <h3>Make Your Own Box!</h3>
                                 <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam bibendum enim et scelerisque bibendum. 
-                                    Phasellus nec metus fringilla.
+                                    ¡Tú sabes lo que le gusta! Arma una caja desde cero con los productos que más le gusten a la persona 
+                                    especial que quieras sorprender. Tú lo conoces mejor que nadie.
                                 </p>
                                 <button className={styles.mybBtn}>Make Your Box</button>
                             </div>
@@ -68,8 +68,7 @@ export default function Onboarding() {
                             <div className={styles.content}>
                                 <h3>Gifts For Me!</h3>
                                 <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam bibendum enim et scelerisque bibendum. 
-                                    Phasellus nec metus fringilla.
+                                    ¿Viste algún producto que te haya gustado personalmente? No te quedes con las ganas y cómpralo para ti.
                                 </p>
                                 <button className={styles.gfmBtn}>Gifts For Me</button>
                             </div>

@@ -11,7 +11,7 @@ export default function Controllers({currentStep, setCurrentStep, goNext, goPrev
             </div>
             <div className={styles.buttons}>
                 { currentStep !== 0 ? 
-                    <button onClick={() => goPrev()}>REGRESAR</button>
+                    <button onClick={() => goPrev()}>Regresar</button>
                 : ''}
                 
                 { currentStep !== 3 ? 
@@ -30,12 +30,12 @@ export default function Controllers({currentStep, setCurrentStep, goNext, goPrev
                             ? styles.disabled : ''
                         }
                     >
-                        CONTINUAR
+                        Continuar
                     </button>
                 : ''}
 
                 { currentStep === 3 ? 
-                    <button onClick={() => addToCart()}>COMPLETAR</button>
+                    <button onClick={() => addToCart()}>Completar</button>
                 : ''}
             </div>
         </div>

@@ -1,5 +1,6 @@
 import styles from './Moments.module.scss'
 import Slider from "react-slick";
+import Image from 'next/image'
 
 export default function Moments () {
 
@@ -70,7 +71,13 @@ export default function Moments () {
                     </Slider>
                 </div>
                 <div className={styles.imageCarousel}>
-                    <div className={styles.imagesContainer}></div>
+                    <div className={styles.imagesContainer}>
+                        <Image
+                            src="https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Img_1.png?v=1627574000"
+                            layout="fill"
+                            objectFit="cover"
+                        />
+                    </div>
                 </div>
             </div>
         </div>

@@ -18,8 +18,7 @@
 
 .title{
     font-size: 1.5rem;
-    font-family: 'Poppins', Helvetica, Arial, sans-serif;
-    font-weight: 600;
+    font-family: 'Simula-Book', Helvetica, Arial, sans-serif;
 }
 
 .lateralBlock{
@@ -63,7 +62,7 @@
 
 .cardType{
     font-size: 1.2rem;
-    font-family: 'Poppins', Helvetica, Arial, sans-serif;
+    font-family: 'Prompt', Helvetica, Arial, sans-serif;
     font-weight: 500;
 }
 
@@ -126,9 +125,14 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    
+    .from, .message, .to {
+        font-family: 'Simula-Book';
+    }
 
     .to{
         align-self: flex-end;
+        
     }
 }
 

@@ -35,7 +35,7 @@
 .fields{
     display: flex;
     font-size: 1rem;
-    font-weight: 600;
+    font-weight: 500;
     align-items: center;
     padding-bottom: 40px;
 }
@@ -58,7 +58,6 @@
     .title{
         width: 86%;
         font-weight: 600;
-        font-family: 'Poppins', Helvetica, Arial, sans-serif;
     }
 
     .price{
@@ -91,6 +90,8 @@
     background-color: #fff;
     margin-bottom: 10px;
     min-height: 60px;
+    font-weight: 500;
+    font-size: 1rem;
 
     &:hover{
         box-shadow: none;
@@ -109,10 +110,12 @@
     background-color: #003360;
     border-color: #003360;
     min-height: 60px;
+    font-size: 1rem;
+    font-weight: 500;
     &:hover{
         box-shadow: none;
         border-color: #003360;
-        color:#003360;
+        background-color:#003360;
     }
 }
 
@@ -120,6 +123,8 @@
     margin-top: 10px;
     min-height: 60px;
     width: 100%;
+    font-size: 1rem;
+    font-weight: 500;
 }
 
 .modal{

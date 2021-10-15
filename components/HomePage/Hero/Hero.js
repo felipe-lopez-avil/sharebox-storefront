@@ -14,7 +14,7 @@ export default function Home() {
             navigation={true}
             slidesPerView={1}
             autoplay={{
-                "delay": 5000,
+                "delay": 5000000,
                 "disableOnInteraction": false
             }}
         >
@@ -22,15 +22,17 @@ export default function Home() {
                 <div className={`${styles.slide} ${styles.alignCenter}`}>
                     <video 
                         src="https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Video_2.mp4?v=1633726286" 
-                        poster="https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Fondo.png?v=1627590003"
+                        poster="/gtg-placeholder.png"
                         autoPlay 
                         loop 
                         muted
                     >
                     </video>
                     <div className={styles.heroContent}>
-                        <h2>Box To Go</h2>
-                        <div>Para cualquier ocasión</div>
+                        <h2>Gifts To Go</h2>
+                        <div>
+                            Sorpresas listas para llevar, ¡perfectas para cualquier ocasión!
+                        </div>
                         <button>¡Escoge tu Box!</button>
                     </div>
                 </div>
@@ -39,7 +41,7 @@ export default function Home() {
                 <div className={`${styles.slide} ${styles.alignLeft}`}>
                     <video 
                         src="https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Video_1.mp4?v=1633726286" 
-                        poster="https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Fondo.png?v=1627590003"
+                        poster="/myb-placeholder.png"
                         autoPlay 
                         loop 
                         muted
@@ -47,7 +49,9 @@ export default function Home() {
                     </video>
                     <div className={styles.heroContent}>
                         <h2>Make Your Box</h2>
-                        <div>Lorem Ipsum dolor sit amet Make Your Box</div>
+                        <div>
+                            Arma tu caja desde cero y personalízala como tú quieras.
+                        </div>
                         <button>¡Crea tu Box!</button>
                     </div>
                 </div>
@@ -56,16 +60,18 @@ export default function Home() {
                 <div className={`${styles.slide} ${styles.aligRight}`}>
                     <video 
                         src="https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Video_2b_Trim.mp4?v=1633726287" 
-                        poster="https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Fondo.png?v=1627590003"
+                        poster="/gfm-placeholder.png"
                         autoPlay 
                         loop 
                         muted
                     >
                     </video>
                     <div className={styles.heroContent}>
-                        <h2>Gifts For Me</h2>
-                        <div>Descripción Gifts For Me Lorem ipsum dolor sit amet</div>
-                        <button>¡Give Yourself a Treat!</button>
+                        <h2>Market</h2>
+                        <div>
+                            Cómprate ese producto que siempre te encantó.
+                        </div>
+                        <button>¡Consiéntete!</button>
                     </div>
                 </div>
             </SwiperSlide>

@@ -18,9 +18,9 @@ export default function InstaFeed() {
 
     return (
         <div className={styles.container}>
-            <div className={styles.header}>
+            <h3 className={styles.header}>
                 Síguenos en @shareboxmx
-            </div>
+            </h3>
             <div className={styles.gridContainer}>
                 <div className={styles.grid}>
                     <Grid container spacing={0}>

@@ -265,21 +265,21 @@ export default function Cart () {
                             <div className={styles.cardAndDate}>
                                 <div className={styles.choose}>
                                     <button className={styles.chooseButton} onClick={openCardModal}>
-                                        {cardResume === '' ? 'SELECCIONA UNA TARJETA' : cardResume}
+                                        {cardResume === '' ? 'Selecciona una tarjeta' : cardResume}
                                     </button>
                                     <button className={styles.chooseButton} onClick={openDateModal}>
-                                        {deliveryResume === '' ? 'SELECCIONA LA HORA Y FECHA DE ENTREGA' : deliveryResume}
+                                        {deliveryResume === '' ? 'Selecciona la fecha y hora de entrega' : deliveryResume}
                                     </button>
                                 </div>
                                 <div className={styles.options}>
                                     <a href={checkout.webUrl} className={styles.fullWidth}>
                                         <button className={styles.continue}>
-                                            CONTINUAR CON EL PAGO                                    
+                                            Continuar con el pago                                  
                                         </button>
                                     </a>
                                     <Link href='./box-to-go' className={styles.fullWidth}>
                                         <button className={styles.goBack}>
-                                            SEGUIR COMPRANDO 
+                                            Seguir comprando
                                         </button>
                                     </Link>
                                 </div>

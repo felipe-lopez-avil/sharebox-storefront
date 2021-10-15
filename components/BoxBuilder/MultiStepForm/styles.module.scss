@@ -92,6 +92,10 @@
     &:hover{
         background-color: #e9e9e9;
     }
+
+    h4{
+        font-family: 'Prompt';
+    }
 }
 
 .categoryIcon{
@@ -146,7 +150,7 @@
 
 .title{
     font-size: 1.8rem;
-    font-weight: 700;
+    font-family: 'Simula-Book';
 }
 
 .productContainer{
@@ -213,7 +217,6 @@
     border-radius: 5px;
     cursor: pointer;
     margin-top: 10px;
-    font-family: 'Poppins', Helvetica, Arial, sans-serif;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -277,11 +280,9 @@
 }
 
 .description{
-    font-family: 'Poppins', Helvetica, Arial, sans-serif;
     margin-top: 10px;
 
     .productTitle{
-        font-family: 'Poppins', Helvetica, Arial, sans-serif;
         font-weight: 600;
         margin-bottom: 5px;
     }
@@ -384,7 +385,6 @@
     justify-content: center;
 
     .productName{
-        font-family: 'Poppins', Helvetica, Arial, sans-serif;
         font-weight: 600;
         font-size: 1.1rem;
     }
@@ -399,7 +399,6 @@
     text-align: right;
     font-size: 1.1rem;
     font-weight: 600;
-    font-family: 'Poppins', Helvetica, Arial, sans-serif;
 }
 
 @media (max-width: 1250px) {

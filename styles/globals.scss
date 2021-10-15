@@ -4,6 +4,62 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap');
 
+@font-face {
+  font-family: "Simula-Book";
+  src: url("/fonts/Simula-Book/Simula-Book.otf");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Prompt";
+  src: url("/fonts/Prompt/Prompt-Thin.ttf");
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Prompt";
+  src: url("/fonts/Prompt/Prompt-Light.ttf");
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Prompt";
+  src: url("/fonts/Prompt/Prompt-Regular.ttf");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Prompt";
+  src: url("/fonts/Prompt/Prompt-Medium.ttf");
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Prompt";
+  src: url("/fonts/Prompt/Prompt-SemiBold.ttf");
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Prompt";
+  src: url("/fonts/Prompt/Prompt-Bold.ttf");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
 html,
 body {
   padding: 0 !important;
@@ -18,18 +74,18 @@ h1, h2, h3, h4, h5, h6 {
   color: #003360;
   padding: 0;
   margin: 0;
-  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif ;
+  font-weight: 500;
+  font-family: 'Simula-Book', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif ;
 }
 
 a {
   color: inherit;
   text-decoration: none;
-  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif ;
 }
 
 * {
   box-sizing: border-box;
-  font-family: 'Nunito', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  font-family: 'Prompt', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
@@ -50,7 +106,6 @@ button{
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.2s ease;
-  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif ;
 }
 
 button:hover{
@@ -151,4 +206,8 @@ select::-ms-expand {
 
 :root{
   --swiper-theme-color: #86d5ece1 !important;
+}
+
+.MuiTypography-body1{
+  font-family: 'Prompt' !important;
 }

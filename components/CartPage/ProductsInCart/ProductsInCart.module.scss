@@ -27,13 +27,11 @@
 }
 
 .title{
-    font-family: 'Poppins';
-    font-weight: 600;
+    font-family: 'Simula-Book';
 }
 
 .details{
     font-size: 0.9rem;
-    font-weight: 600;
 }
 
 .option{
@@ -41,7 +39,7 @@
 }
 
 .underline{
-    font-weight: 700;
+    font-weight: 400;
 }
 
 .field{
@@ -63,11 +61,10 @@
 .delete{
     color: rgb(255, 80, 80);
     text-decoration: underline;
-    font-family: 'Poppins';
     margin-top: 15px;
     cursor: pointer;
     font-size: 0.9rem;
-    font-weight: 600;
+    font-weight: 500;
 }
 
 @media (max-width: 600px) {

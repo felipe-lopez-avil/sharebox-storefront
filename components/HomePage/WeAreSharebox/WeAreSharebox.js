@@ -16,8 +16,11 @@ export default function WeAreSharebox () {
                 <div className={styles.content}>
                     <h3>Somos Sharebox</h3>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam bibendum enim et scelerisque bibendum. 
-                        Phasellus nec metus fringilla.
+                        Sharebox busca dar felicidad a través de cajas personalizadas para toda ocasión,  
+                        más allá de lo material, buscamos regalar una experiencia.
+                    </p>
+                    <p>
+                        Además, apoyamos a negocios y emprendimientos locales y mexicanos.
                     </p>
                 </div>
             </div>

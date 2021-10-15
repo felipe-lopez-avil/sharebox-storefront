@@ -121,6 +121,9 @@ const useStepIconStyles = makeStyles({
       justifyContent: 'center',
       border: '2px solid #fff'
     },
+    step: {
+      fontFamily: '"Prompt"',
+    }
 });
 
 function StepIcon(props) {
@@ -157,7 +160,7 @@ export default function BoxBuilderStepper({currentStep, step1Items, step2Items, 
         <Stepper className={classes.noPadding} activeStep={currentStep} orientation="vertical" connector={<StepperConnector />}>
             <Step>
                 <StepLabel StepIconComponent={StepIcon}>
-                    <h4 >PASO 1.</h4>
+                    <h4 className={classes.step} >PASO 1.</h4>
                 </StepLabel>
                 <StepContent>
                     <h3 >Let the Magic Begin.</h3>
@@ -165,7 +168,7 @@ export default function BoxBuilderStepper({currentStep, step1Items, step2Items, 
             </Step>
             <Step>
                 <StepLabel StepIconComponent={StepIcon}>
-                    <h4 >PASO 2.</h4>
+                    <h4 className={classes.step} >PASO 2.</h4>
                 </StepLabel>
                 <StepContent>
                     <h3 >Something Special.</h3>
@@ -173,7 +176,7 @@ export default function BoxBuilderStepper({currentStep, step1Items, step2Items, 
             </Step>
             <Step>
                 <StepLabel StepIconComponent={StepIcon}>
-                    <h4 >PASO 3.</h4>
+                    <h4 className={classes.step} >PASO 3.</h4>
                 </StepLabel>
                 <StepContent>
                     <h3 >Go Extra.</h3>
@@ -181,7 +184,7 @@ export default function BoxBuilderStepper({currentStep, step1Items, step2Items, 
             </Step>
             <Step>
                 <StepLabel StepIconComponent={StepIcon}>
-                    <h4 >PASO 4.</h4>
+                    <h4 className={classes.step} >PASO 4.</h4>
                 </StepLabel>
                 <StepContent>
                     <h3 >Share Happiness!</h3>

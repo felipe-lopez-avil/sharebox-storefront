@@ -75,7 +75,9 @@
 .imagesContainer{
     width: 25vw;
     height: 25vw;
-    background-color: cadetblue;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
 
     @media (max-width: 1050px) {
         width: 35vw;

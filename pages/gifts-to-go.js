@@ -29,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
       textAlign: 'center',
       color: theme.palette.text.secondary,
     },
+    
 }));
 
 function valuetext(value) {
@@ -146,7 +147,7 @@ export default function GiftsToGo () {
                                 <h5>Tipo de producto</h5>
                                 <FormControl component="fieldset">
                                     <RadioGroup aria-label="productType" name="productType" value={typeFilter} onChange={handleTypeFilter}>
-                                        <FormControlLabel value="all" control={<Radio />} label="Cualquiera" />
+                                        <FormControlLabel value="all" control={<Radio />} label="Cualquiera"/>
                                         <FormControlLabel value="boxes" control={<Radio />} label="Boxes" />
                                         <FormControlLabel value="kits armados" control={<Radio />} label="Kits Armados" />
                                         <FormControlLabel value="globos y flores" control={<Radio />} label="Globos y Flores" />
