@@ -214,14 +214,19 @@
 
     @media (max-width: 890px) {
         display: flex;
-        background-color: #fff;
+        background-color: transparent;
         height: 70px;
         position: fixed;
         width: 100%;
         padding: 0px 20px;
         z-index: 10000;
         justify-content: space-between;
-        border-bottom: 2px solid #ECECEC;
+        border-bottom: 2px solid transparent;
+        transition: all 0.3s ease;
+
+        &.active{
+            background-color: #fff;
+        }
     }
 
     @media (max-width: 400px) {
@@ -234,6 +239,15 @@
     display: flex;
     align-items: center;
     cursor: pointer;
+
+    svg{
+        fill: #fff;
+        transition: all 0.3s ease;
+    }
+
+    svg.active{
+        fill: #028ab5;
+    }
 
     img{
         width: 100%;
@@ -251,6 +265,12 @@
 
     .mobileIcon{
         margin-left: 15px;
+        color: #fff;
+        transition: all 0.3s ease;
+    }
+
+    .mobileIcon.active{
+        color: #003360;
     }
 }
 

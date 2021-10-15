@@ -27,6 +27,7 @@
     align-items: center;
     justify-content: center;
     text-align: center;
+    padding: 5%;
 
     h3{
         color: #fff;
@@ -37,5 +38,17 @@
     button{
         background-color: #f474bf;
         border-color: #f474bf;
+    }
+}
+
+@media (max-width: 500px) {
+    .caption{
+    
+        h3{
+            color: #fff;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+        }
+
     }
 }

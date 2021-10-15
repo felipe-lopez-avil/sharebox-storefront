@@ -19,7 +19,7 @@ export default function Home() {
             }}
         >
             <SwiperSlide>
-                <div className={`${styles.slide} ${styles.alignCenter}`}>
+                <div className={`${styles.slide} ${styles.alignLeft}`}>
                     <video 
                         src="https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Video_2.mp4?v=1633726286" 
                         poster="/gtg-placeholder.png"
@@ -38,7 +38,7 @@ export default function Home() {
                 </div>
             </SwiperSlide>
             <SwiperSlide>
-                <div className={`${styles.slide} ${styles.alignLeft}`}>
+                <div className={`${styles.slide} ${styles.alignCenter}`}>
                     <video 
                         src="https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Video_1.mp4?v=1633726286" 
                         poster="/myb-placeholder.png"
