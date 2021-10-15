@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styles from './shippings.module.scss'
 
-
 export default function National () {
 
     return (

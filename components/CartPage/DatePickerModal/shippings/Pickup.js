@@ -17,6 +17,7 @@ import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 import format from 'date-fns/format'
 import isPast from 'date-fns/isPast'
+import add from 'date-fns/add'
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
@@ -29,10 +30,18 @@ const useStyles = makeStyles({
     },
 });
 
-
 export default function Pickup ({shouldDisableDate, minDate, date, handleDateChange, time, handleTimeChange, saveAttributes}) {
     const classes = useStyles();
 
+    const limit = add(new Date(), {
+        years: 0,
+        months: 4,
+        weeks: 0,
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+    })
 
     return (
         <div className={styles.cpSection}>
@@ -62,7 +71,7 @@ export default function Pickup ({shouldDisableDate, minDate, date, handleDateCha
                                 inputVariant="outlined"
                                 format="MM/dd/yyyy"
                                 minDate={minDate}
-                                maxDate={new Date("2021-10-07")}
+                                maxDate={limit}
                                 margin="normal"
                                 id="date-picker-inline"
                                 label="Date picker inline"
