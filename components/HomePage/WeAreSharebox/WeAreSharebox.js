@@ -11,6 +11,7 @@ export default function WeAreSharebox () {
                     objectFit="cover"
                 />
                 <img src="https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Somos_Sharebox.png?v=1633969578" className={styles.curves}/>
+                <img src="https://cdn.shopify.com/s/files/1/0456/6820/4706/files/horizontal-curves.png?v=1634363869" className={styles.mobileCurves} />
             </div>
             <div className={styles.flexContainer}>
                 <div className={styles.content}>

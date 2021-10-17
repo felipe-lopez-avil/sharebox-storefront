@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react'
 import styles from './Bestsellers.module.scss'
 import Image from 'next/image'
 
@@ -43,20 +44,56 @@ const products = [
 ]
 
 export default function Bestsellers() {
+
+    const [windowReady, setWindowReady] = useState(false)
+    const [slides, setSlides] = useState(4)
+
+    useEffect(() => {
+        if(typeof window !== 'undefined'){
+            setWindowReady(true)
+        }
+
+        if(window.innerWidth >= 890){
+            setSlides(4)
+        }else if(window.innerWidth >= 650){
+            setSlides(3)
+        }else if(window.innerWidth >= 350){
+            setSlides(2)
+        }else{
+            setSlides(1)
+        }
+    }, [])
+
+    if(windowReady){
+        const changeSlidesPerView = () => {
+            if(window.innerWidth >= 890){
+                setSlides(4)
+            }else if(window.innerWidth >= 650) {
+                setSlides(3)
+            }else if(window.innerWidth >= 350){
+                setSlides(2)
+            }else{
+                setSlides(1)
+            }
+        }
+
+        window.addEventListener('resize', changeSlidesPerView)
+    }
+
     return (
         <div className={styles.container}>
             <div className={styles.header}>
-                <h3>Our Bests Sellers</h3>
+                <h3>Our Best Sellers</h3>
             </div>
             <div className={styles.products}>
                 <Swiper 
                     freeMode={true}
-                    slidesPerView={4}
+                    slidesPerView={slides}
                     pagination={{
                         "clickable": true
                     }}
                     autoplay={{
-                        "delay": 3000,
+                        "delay": 4000000,
                         "disableOnInteraction": false
                     }}
                 >

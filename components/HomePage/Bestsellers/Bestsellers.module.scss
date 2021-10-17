@@ -1,6 +1,6 @@
 .container{
     background-color: #0188b3;
-    min-height: 500px;
+    min-height: 200px;
     padding: 30px 5%;
 }
 
@@ -33,8 +33,8 @@
 }
 
 .productImage{
-    width: 18vw;
-    height: 24vw;
+    width: 19vw;
+    height: 25vw;
     background-color: #0188b3;
     border-radius: 5px;
     margin-bottom: 10px;
@@ -55,4 +55,41 @@
     color: #fff;
 
     padding-left: 2px;
+}
+
+@media (max-width: 890px) {
+    .productImage{
+        width: 25vw;
+        height: 32vw;
+    }
+}
+
+@media (max-width: 750px) {
+    
+    .container{
+        padding: 30px 3%;
+    }
+
+}
+
+@media (max-width: 650px) {
+
+    .header{
+        h3{
+            font-size: 2.5rem;
+        }
+    }
+
+    .productImage{
+        width: 40vw;
+        height: 52vw;
+    }
+
+}
+
+@media (max-width: 350px) {
+    .productImage{
+        width: 75vw;
+        height: 100vw;
+    }
 }

@@ -249,7 +249,7 @@ export default function Navbar () {
                 <div className={styles.mobileLogo}>
                     <Link href="/">
                         <svg version="1.0" xmlns="http://www.w3.org/2000/svg" className={navBackgroung || router.pathname !== '/' ? styles.active : ''}
-                            width="3557.000000pt" height="400.000000pt" viewBox="0 0 3557.000000 400.000000"
+                            width="3557.000000pt"  viewBox="0 0 3557.000000 400.000000"
                             preserveAspectRatio="xMidYMid meet">
                             <metadata>
                             Created by potrace 1.16, written by Peter Selinger 2001-2019

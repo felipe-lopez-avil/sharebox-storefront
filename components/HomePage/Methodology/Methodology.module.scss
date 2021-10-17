@@ -1,9 +1,8 @@
 .container{
     width: 100%;
-    height: 550px;
+    height: 500px;
     background-color: violet;
     display: flex;
-
 }
 
 .row{
@@ -67,4 +66,79 @@
         font-family: 'Prompt';
     }
 
+}
+
+@media (max-width: 1200px) {
+    .column{
+        &:hover{
+            .icon{
+                width: 18vw;
+                height: 18vw;
+            }
+        }
+    }
+
+    .content{
+        .icon{
+            width: 17vw;
+            height: 17vw;
+        }
+    }
+    
+}
+
+@media (max-width: 800px) {
+    .container{
+        flex-direction: column;
+        height: 100vw;
+    }
+    .row{
+        width: 100%;
+        height: 50%;
+    }
+
+    .column{
+        &:hover{
+            .icon{
+                width: 28vw;
+                height: 28vw;
+            }
+        }
+    }
+
+    .content{
+        .icon{
+            width: 25vw;
+            height: 25vw;
+        }
+    }
+}
+
+@media (max-width: 530px) {
+    .container{
+        height: 1000px;
+    }
+
+    .row{
+        flex-direction: column;
+    }
+
+    .column{
+        width: 100%;
+        height: 50%;
+
+        &:hover{
+            .icon{
+                width: 35vw;
+                height: 35vw;
+            }
+        }
+    }
+
+    .content{
+        .icon{
+            width: 30vw;
+            height: 30vw;
+        }
+    }
 }

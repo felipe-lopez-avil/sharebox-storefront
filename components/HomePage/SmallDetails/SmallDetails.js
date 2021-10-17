@@ -5,7 +5,7 @@ export default function SmallDetails () {
     return (
         <>
             <div className={styles.stripe}>
-                Sharing Is Caring • Envíos Gratis / Free Share • Síguenos en @shareboxmx
+                Sharing Is Caring • Síguenos en @shareboxmx
             </div>
             <div className={styles.banner}>
                 <Image
