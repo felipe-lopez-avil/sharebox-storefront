@@ -6,8 +6,92 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding-top: 50px;
+    padding-bottom: 100px;
 
     h2{
         color: #f1d433;
+        font-weight: 700;
+        font-size: 2.5rem;
+        margin-bottom: 25px;
+        text-align: center;
     }
 }
+
+.formContainer{
+    width: 600px;
+
+    button{
+        width: 100%;
+        background-color: #f1d433;
+        border-color: #f1d433;
+        color: #004c6e;
+        transition: all 0.2s ease;
+
+        &:hover{
+            background-color: #e1c52a;
+            border-color: #e1c52a;
+        }
+    }
+}
+
+.inputRow{
+    margin-bottom: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.inputContainer{
+    display: flex;
+    flex-direction: column;
+    width: calc(50% - 10px);
+
+    label{
+        margin-bottom: 5px;
+    }
+
+    input{
+        width: 100%;
+        padding: 0.5em 0.7em;
+        font-size: 1rem;
+        border-radius: 5px;
+        border: 0px;
+        border: 2px solid #0a5f87;
+        background-color: #0a5f87;
+        color: #fff;
+        transition: all 0.2s ease;
+
+        &:focus{
+            border: 2px solid #f1d433;
+            outline: none;
+        }
+
+        &::placeholder{
+            color: rgba(255, 255, 255, 0.5);
+        }
+    }
+}
+
+@media (max-width: 750px) {
+    .formContainer{
+        width: 90%;
+    }
+}
+
+@media (max-width: 550px) {
+    
+    .inputRow{
+        margin-bottom: 0;
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .inputContainer{
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    
+
+}
+

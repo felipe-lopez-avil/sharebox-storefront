@@ -6,65 +6,116 @@ import MailchimpSubscribe from "react-mailchimp-subscribe"
 const url = "https://sharebox.us5.list-manage.com/subscribe/post?u=e3cd0b50aa0b11ff7170a7545&amp;id=65b9fe8c05";
 
 const CustomForm = ({ status, message, onValidated }) => {
-    let email;
-    const submit = () => {
+    let email, fname, company, city, ocassion, boxes, idealDate, budget, phoneNumber;
+    const submit = () => 
         email &&
         fname &&
+        company &&
+        city &&
+        ocassion &&
+        boxes &&
+        idealDate &&
+        budget &&
+        phoneNumber &&
         email.value.indexOf("@") > -1 &&
         onValidated({
+            FNAME: fname.value,
+            COMPANY: company.value,
+            CITY: city.value,
             EMAIL: email.value,
+            PHONE: phoneNumber.value,
+            OCASSION: ocassion.value,
+            BOXES: boxes.value,
+            IDEALDATE: idealDate.value,
+            BUDGET: budget.value,
         });
   
         return (
-            <div>
-                <input
-                    ref={node => (fname = node)}
-                    type="text"
-                    placeholder="Tu Nombre"
-                />
-                <input
-                    ref={node => (company = node)}
-                    type="text"
-                    placeholder="Tu Compañía"
-                />
-                <input
-                    ref={node => (city = node)}
-                    type="text"
-                    placeholder="Ciudad"
-                />
-                <input
-                    ref={node => (ocassion = node)}
-                    type="text"
-                    placeholder="Ocasión de regalo"
-                />
-                <input
-                    ref={node => (boxes = node)}
-                    type="text"
-                    placeholder="Cantidad de Boxes"
-                />
-                <input
-                    ref={node => (idealDate = node)}
-                    type="text"
-                    placeholder="Fecha ideal de entrega"
-                />
-                <input
-                    ref={node => (budget = node)}
-                    type="text"
-                    placeholder="Presupuesto por Box"
-                />
-                <input
-                    ref={node => (email = node)}
-                    type="email"
-                    placeholder="Your email"
-                />
-                <input
-                    ref={node => (phoneNumber = node)}
-                    type="text"
-                    placeholder="Número de Teléfono"
-                />
-                <br />
+            <div className={styles.formContainer}>
+                <div className={styles.inputRow}>
+                    <div className={styles.inputContainer}>
+                        <label>Nombre</label>
+                        <input
+                            ref={node => (fname = node)}
+                            type="text"
+                            placeholder="Nombre"
+                        />
+                    </div>
+                    <div className={styles.inputContainer}>
+                        <label>Compañía</label>
+                        <input
+                            ref={node => (company = node)}
+                            type="text"
+                            placeholder="Compañía"
+                        />
+                    </div>
+                </div>
+                <div className={styles.inputRow}>
+                    <div className={styles.inputContainer}>
+                        <label>Ciudad</label>
+                        <input
+                            ref={node => (city = node)}
+                            type="text"
+                            placeholder="Ciudad"
+                        />
+                    </div>
+                    <div className={styles.inputContainer}>
+                        <label>Motivo de Regalo</label>
+                        <input
+                            ref={node => (ocassion = node)}
+                            type="text"
+                            placeholder="Motivo"
+                        />
+                    </div>
+                </div>
+                <div className={styles.inputRow}>
+                    <div className={styles.inputContainer}>
+                        <label>Cantidad de Boxes</label>
+                        <input
+                            ref={node => (boxes = node)}
+                            type="text"
+                            placeholder="Cantidad"
+                        />
+                    </div>
+                    <div className={styles.inputContainer}>
+                        <label>Fecha ideal de entrega</label>
+                        <input
+                            ref={node => (idealDate = node)}
+                            type="text"
+                            placeholder="Fecha"
+                        />
+                    </div>
+                </div>
+                <div className={styles.inputRow}>
+                    <div className={styles.inputContainer}>
+                        <label>Presupuesto por Box</label>
+                        <input
+                            ref={node => (budget = node)}
+                            type="text"
+                            placeholder="Presupuesto"
+                        />
+                    </div>
+                    <div className={styles.inputContainer}>
+                        <label>Email</label>
+                        <input
+                            ref={node => (email = node)}
+                            type="email"
+                            placeholder="Email"
+                        />
+                    </div>
+                </div>
+                <div className={styles.inputRow}>
+                    <div className={styles.inputContainer}>
+                        <label>Número de Teléfono</label>
+                        <input
+                            ref={node => (phoneNumber = node)}
+                            type="text"
+                            placeholder="Número"
+                        />
+                    </div>
+                </div>
                 <button onClick={submit}>
-                    Submit
+                    Enviar formulario
                 </button>
                 {status === "sending" && 
                 <div >sending...</div>
@@ -83,7 +134,7 @@ const CustomForm = ({ status, message, onValidated }) => {
                 )}
             </div>
         );
-    }
+    
 };
 
 export default function Form () {
@@ -100,7 +151,17 @@ export default function Form () {
     return (
         <>
         <div className={styles.formSection}>
-            <MailchimpSubscribe url={url}/>
+            <h2>¡Cotiza con nosotros!</h2>
+            <MailchimpSubscribe
+                url={url}
+                render={({ subscribe, status, message }) => (
+                    <CustomForm
+                    status={status}
+                    message={message}
+                    onValidated={formData => subscribe(formData)}
+                    />
+                )}
+            />
         </div>
 
         {/* {formSent ?
