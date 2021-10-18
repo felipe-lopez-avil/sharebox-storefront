@@ -174,7 +174,7 @@ export default function Navbar () {
                                         />
                                     </div>
                                     <h3>GIFTS TO GO</h3>
-                                    <p>Descripción de Gifts To Go! Lorem Ipsum dolor sit amet</p>
+                                    <p>Sorpresas listas para llevar, ¡perfectas para cualquier ocasión!</p>
                                 </div>
                                 <div className={styles.gtgCategories}>
                                     <Link href="/gifts-to-go"><div className={ styles.categoryLink}>Boxes</div></Link>
@@ -200,15 +200,15 @@ export default function Navbar () {
                                     </div>
                                 </div>
                                 <div className={styles.itemDescription}>
-                                    <h3>Make Your Box</h3>
-                                    <p>Descripción de Make Your Box Lorem Ipsum dolor sit amet</p>
+                                    <h3>MAKE YOUR BOX</h3>
+                                    <p>Arma tu caja desde cero y personalízala como tú quieras.</p>
                                     <Link href="/box-builder"><div className="button">¡Empieza a Crear!</div></Link>
                                 </div>
                             </div>
                         </Grow>
                     </div>
                     <div className={`${styles.navItem} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`} onMouseEnter={handleGFM} onMouseLeave={handleGFM}>
-                        <span>Gifts For Me</span>
+                        <span>Market</span>
 
                         <Grow in={gfm} className={classes.collapse} style={{ transformOrigin: '0 0 0' }}>
                             <div className={styles.navItemContent}>
@@ -222,9 +222,9 @@ export default function Navbar () {
                                     </div>
                                 </div>
                                 <div className={styles.itemDescription}>
-                                    <h3>GIFTS FOR ME</h3>
-                                    <p>Descripción de Gifts For Me Lorem Ipsum dolor sit amet</p>
-                                    <Link href="/gifts-for-me"><div className="button">¡Ver productos!</div></Link>
+                                    <h3>MARKET</h3>
+                                    <p>Cómprate ese producto que siempre te encantó.</p>
+                                    <Link href="/market"><div className="button">¡Ver productos!</div></Link>
                                 </div>
                             </div>
                         </Grow>

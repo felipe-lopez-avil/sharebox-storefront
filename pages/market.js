@@ -86,9 +86,14 @@ export default function GiftsForMe () {
     return (
         <div className={styles.container}>
             <div className={styles.title}>
-                <h1>GIFTS FOR ME</h1>
+                <h1>MARKET</h1>
             </div>
-            <div className={styles.publicity}></div>
+            {/* 
+            
+            // Banner for publicity
+            <div className={styles.publicity}></div> 
+
+            */}
             {windowReady === true &&             
                 <div className={styles.content}>
                     
