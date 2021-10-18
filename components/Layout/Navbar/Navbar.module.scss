@@ -65,8 +65,9 @@
 }
 
 .navigation{
-    width: calc(100% - 240px);
+    width: calc(100% - 400px);
     display: flex;
+    justify-content: center;
     align-items: center;
     padding: 0 20px;
 
@@ -102,6 +103,21 @@
 
 }
 
+.dropdownWrapper{
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 20px;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+}
+
+.dropdownWrapper.active{
+    background-color: #fff
+}
+
 .navItemContent{
     display: flex;
 }
@@ -114,7 +130,7 @@
     color: #59748b;
 
     .gtgImage{
-        width: 250px;
+        width: 200px;
         height: 120px;
         position: relative;
         align-self: center;
@@ -144,6 +160,9 @@
         height: 120px;
         position: relative;
         align-self: center;
+        border-radius: 5px;
+        overflow: hidden;
+        box-shadow: 0px 0px 3px 2px rgba(0, 0, 0, 0.2);
     }
 
     @media (max-width: 985px) {
@@ -156,11 +175,19 @@
     display: flex;
     flex-direction: column;
     margin-left: 20px;
-    color: #59748b;
+    color: #fff;
+    transition: all 0.3s ease;
+
+    h3{
+        color: #fff;
+        font-family: 'Prompt';
+        transition: all 0.3s ease;
+    }
 
     p{
         font-weight: 400;
         font-size: 0.95rem;
+        font-weight: 300;
     }
 
     @media (max-width: 985px) {
@@ -168,12 +195,41 @@
     }
 }
 
+.itemDescription.active{
+    color: #59748b;
+
+    h3{
+        color: #003360;
+    }
+}
+
+.gtgCopy{
+    width: 200px;
+    margin-left: 5px;
+
+    h3{
+        font-family: 'Prompt';
+        color: #fff;
+        transition: all 0.3s ease;
+    }
+
+    p{
+        font-weight: 400;
+    }
+}
+
+.gtgCopy.active{
+    h3{
+        color: #003360;
+    }
+}
+
 .gtgCategories{
     display: flex;
     flex-direction: column;
     width: 150px;
-    margin-left: 20px;
-    color: #59748b;
+    margin-left: 15px;
+    color: #fff;
 
     .categoryLink{
         min-height: 30px;
@@ -182,19 +238,27 @@
         padding: 2px 10px;
         border-radius: 5px;
         cursor: pointer;
+        transition: all 0.3s ease;
 
         &:hover{
-            background-color: #ececec;
+            background-color: #ffffff5a;
         }
     }
 
     .categoryLink.active{
-        transition: all 0.3s ease;
+        
+        &:hover{
+            background-color: #ececec;
+        }
     }
 }
 
+.gtgCategories.active{
+    color: #59748b;
+}
+
 .icons{
-    width: 40px;
+    width: 200px;
     display: flex;
     justify-content: flex-end;
     align-items: center;

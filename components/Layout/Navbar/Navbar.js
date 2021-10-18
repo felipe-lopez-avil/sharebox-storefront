@@ -18,16 +18,11 @@ const useStyles = makeStyles((theme) => ({
         height: 180,
     },
     collapse: {
-        position: 'absolute',
+        position: 'fixed',
         top: '85px',
-        left: '-20px',
-        backgroundColor: '#fff',
-        padding: '20px',
+        width: '100%',
+        left: '0px',
         zIndex: '1',
-        border: '2px solid #ececec',
-        borderTop: '0px',
-        borderRadius: '0px 0px 10px 10px',
-        display: 'flex',
     },
     slide: {
         position: 'fixed',
@@ -164,45 +159,55 @@ export default function Navbar () {
                         <span>Gifts To Go! <ExpandMoreIcon/></span>
 
                         <Grow in={gtg} className={classes.collapse} style={{ transformOrigin: '0 0 0' }}>
-                            <div className={styles.navItemContent}>
-                                <div className={styles.gtgDescription}>
-                                    <div className={styles.gtgImage}>
-                                        <Image
-                                            src='https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Sharebox_logo-07_3_c1b560e7-f0ea-4c54-bef4-1c85437b2f66.png?v=1626198008'
-                                            layout='fill'
-                                            objectFit='cover'
-                                        />
+                            <div>
+                                <div className={`${styles.dropdownWrapper} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`}>
+                                    <div className={styles.navItemContent}>
+                                        <div className={styles.gtgDescription}>
+                                            <div className={styles.gtgImage}>
+                                                <Image
+                                                    src='https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Gifts_to_Go_Boxes_sin.png?v=1634595214'
+                                                    layout='fill'
+                                                    objectFit='cover'
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className={`${styles.gtgCopy} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`}>
+                                            <h3>GIFTS TO GO</h3>
+                                            <p>Sorpresas listas para llevar, ¡perfectas para cualquier ocasión!</p>
+                                        </div>
+                                        <div className={`${styles.gtgCategories} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`}>
+                                            <Link href="/gifts-to-go"><div className={ styles.categoryLink}>Boxes</div></Link>
+                                            <Link href="/gifts-to-go"><div className={styles.categoryLink}>Kits Armados</div></Link>
+                                            <Link href="/gifts-to-go"><div className={styles.categoryLink}>Globos y Flores</div></Link>
+                                            <Link href="/gifts-to-go"><div className={styles.categoryLink}>Snacks y Postres</div></Link>
+                                        </div>
                                     </div>
-                                    <h3>GIFTS TO GO</h3>
-                                    <p>Sorpresas listas para llevar, ¡perfectas para cualquier ocasión!</p>
                                 </div>
-                                <div className={styles.gtgCategories}>
-                                    <Link href="/gifts-to-go"><div className={ styles.categoryLink}>Boxes</div></Link>
-                                    <Link href="/gifts-to-go"><div className={styles.categoryLink}>Kits Armados</div></Link>
-                                    <Link href="/gifts-to-go"><div className={styles.categoryLink}>Globos y Flores</div></Link>
-                                    <Link href="/gifts-to-go"><div className={styles.categoryLink}>Snacks y Postres</div></Link>
-                                </div>
-                            </div>
+                            </div>                            
                         </Grow>
                     </div>
                     <div className={`${styles.navItem} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`} onMouseEnter={handleMYB} onMouseLeave={handleMYB}>
                         <span>Make Your Box</span>
 
                         <Grow in={myb} className={classes.collapse} style={{ transformOrigin: '0 0 0' }}>
-                            <div className={styles.navItemContent}>
-                                <div className={styles.itemImage}>
-                                    <div className={styles.image}>
-                                        <Image
-                                            src='https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Sharebox_logo-07_3_c1b560e7-f0ea-4c54-bef4-1c85437b2f66.png?v=1626198008'
-                                            layout='fill'
-                                            objectFit='cover'
-                                        />
+                            <div>
+                                <div className={`${styles.dropdownWrapper} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`}>
+                                    <div className={styles.navItemContent}>
+                                        <div className={styles.itemImage}>
+                                            <div className={styles.image}>
+                                                <Image
+                                                    src='https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Make_your_box_sin.png?v=1634595213'
+                                                    layout='fill'
+                                                    objectFit='cover'
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className={`${styles.itemDescription} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`}>
+                                            <h3>MAKE YOUR BOX</h3>
+                                            <p>Arma tu caja desde cero y personalízala como tú quieras.</p>
+                                            <Link href="/box-builder"><div className="button">¡Empieza a Crear!</div></Link>
+                                        </div>
                                     </div>
-                                </div>
-                                <div className={styles.itemDescription}>
-                                    <h3>MAKE YOUR BOX</h3>
-                                    <p>Arma tu caja desde cero y personalízala como tú quieras.</p>
-                                    <Link href="/box-builder"><div className="button">¡Empieza a Crear!</div></Link>
                                 </div>
                             </div>
                         </Grow>
@@ -211,20 +216,24 @@ export default function Navbar () {
                         <span>Market</span>
 
                         <Grow in={gfm} className={classes.collapse} style={{ transformOrigin: '0 0 0' }}>
-                            <div className={styles.navItemContent}>
-                                <div className={styles.itemImage}>
-                                    <div className={styles.image}>
-                                        <Image
-                                            src='https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Sharebox_logo-07_3_c1b560e7-f0ea-4c54-bef4-1c85437b2f66.png?v=1626198008'
-                                            layout='fill'
-                                            objectFit='cover'
-                                        />
+                            <div>
+                                <div className={`${styles.dropdownWrapper} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`}>
+                                    <div className={styles.navItemContent}>
+                                        <div className={styles.itemImage}>
+                                            <div className={styles.image}>
+                                                <Image
+                                                    src='https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Gifts_for_me_sin.png?v=1634595214'
+                                                    layout='fill'
+                                                    objectFit='cover'
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className={`${styles.itemDescription} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`}>
+                                            <h3>MARKET</h3>
+                                            <p>Cómprate ese producto que siempre te encantó.</p>
+                                            <Link href="/market"><div className="button">¡Ver productos!</div></Link>
+                                        </div>
                                     </div>
-                                </div>
-                                <div className={styles.itemDescription}>
-                                    <h3>MARKET</h3>
-                                    <p>Cómprate ese producto que siempre te encantó.</p>
-                                    <Link href="/market"><div className="button">¡Ver productos!</div></Link>
                                 </div>
                             </div>
                         </Grow>
