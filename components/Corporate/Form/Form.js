@@ -3,7 +3,88 @@ import styles from './Form.module.scss'
 
 import MailchimpSubscribe from "react-mailchimp-subscribe"
 
-const url = "https://sharebox.us2.list-manage.com/subscribe/post?u=4d7b381e967db5d4820bb8e94&amp;id=a75229ef2c";
+const url = "https://sharebox.us5.list-manage.com/subscribe/post?u=e3cd0b50aa0b11ff7170a7545&amp;id=65b9fe8c05";
+
+const CustomForm = ({ status, message, onValidated }) => {
+    let email;
+    const submit = () => {
+        email &&
+        fname &&
+        email.value.indexOf("@") > -1 &&
+        onValidated({
+            EMAIL: email.value,
+        });
+  
+        return (
+            <div>
+                <input
+                    ref={node => (fname = node)}
+                    type="text"
+                    placeholder="Tu Nombre"
+                />
+                <input
+                    ref={node => (company = node)}
+                    type="text"
+                    placeholder="Tu Compañía"
+                />
+                <input
+                    ref={node => (city = node)}
+                    type="text"
+                    placeholder="Ciudad"
+                />
+                <input
+                    ref={node => (ocassion = node)}
+                    type="text"
+                    placeholder="Ocasión de regalo"
+                />
+                <input
+                    ref={node => (boxes = node)}
+                    type="text"
+                    placeholder="Cantidad de Boxes"
+                />
+                <input
+                    ref={node => (idealDate = node)}
+                    type="text"
+                    placeholder="Fecha ideal de entrega"
+                />
+                <input
+                    ref={node => (budget = node)}
+                    type="text"
+                    placeholder="Presupuesto por Box"
+                />
+                <input
+                    ref={node => (email = node)}
+                    type="email"
+                    placeholder="Your email"
+                />
+                <input
+                    ref={node => (phoneNumber = node)}
+                    type="text"
+                    placeholder="Número de Teléfono"
+                />
+                <br />
+                <button onClick={submit}>
+                    Submit
+                </button>
+                {status === "sending" && 
+                <div >sending...</div>
+                }
+                {status === "error" && (
+                <div
+                    dangerouslySetInnerHTML={{ __html: 'Ups, algo salió mal. Puede que el correo que ingresaste ya esté inscrito en nuestro boletín.' }}
+                    className={`${styles.confirmationMessage} ${styles.error}`}
+                />
+                )}
+                {status === "success" && (
+                <div
+                    dangerouslySetInnerHTML={{ __html: '¡Gracias por suscribirte!' }}
+                    className={`${styles.confirmationMessage} ${styles.success}`}
+                />
+                )}
+            </div>
+        );
+    }
+};
 
 export default function Form () {
 
@@ -19,7 +100,7 @@ export default function Form () {
     return (
         <>
         <div className={styles.formSection}>
-        <MailchimpSubscribe url={url}/>
+            <MailchimpSubscribe url={url}/>
         </div>
 
         {/* {formSent ?
