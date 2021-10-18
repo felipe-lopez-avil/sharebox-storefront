@@ -1,5 +1,6 @@
 import styles from './Onboarding.module.scss'
 import Image from 'next/image'
+import Link from 'next/link'
 
 import {Swiper, SwiperSlide} from 'swiper/react';
 import SwiperCore, { Navigation, Pagination, Autoplay } from 'swiper/core';
@@ -29,7 +30,9 @@ export default function Onboarding() {
                                     ¡Sorpresas listas para llevar! Regala a tus personas queridas una caja acorde a la ocasión que se esté 
                                     celebrando. 
                                 </p>
-                                <button className={styles.gtgBtn}>Gifts To Go</button>
+                                <Link href="/gifts-to-go">
+                                    <button className={styles.gtgBtn}>Gifts To Go</button>
+                                </Link>
                             </div>
                         </div>
                         <div className={styles.image}>
@@ -50,7 +53,9 @@ export default function Onboarding() {
                                     ¡Tú sabes lo que le gusta! Arma una caja desde cero con los productos que más le gusten a la persona 
                                     especial que quieras sorprender. Tú lo conoces mejor que nadie.
                                 </p>
-                                <button className={styles.mybBtn}>Make Your Box</button>
+                                <Link href="/box-builder">
+                                    <button className={styles.mybBtn}>Make Your Box</button>
+                                </Link>
                             </div>
                         </div>
                         <div className={styles.image}>
@@ -70,7 +75,9 @@ export default function Onboarding() {
                                 <p>
                                     ¿Viste algún producto que te haya gustado personalmente? No te quedes con las ganas y cómpralo para ti.
                                 </p>
-                                <button className={styles.gfmBtn}>Gifts For Me</button>
+                                <Link href="/gifts-for-me">
+                                    <button className={styles.gfmBtn}>Gifts For Me</button>
+                                </Link>
                             </div>
                         </div>
                         <div className={styles.image}>

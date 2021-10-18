@@ -1,4 +1,5 @@
 import styles from './Hero.module.scss'
+import Link from 'next/link'
 
 import {Swiper, SwiperSlide} from 'swiper/react';
 import SwiperCore, { Navigation, Autoplay } from 'swiper/core';
@@ -33,7 +34,9 @@ export default function Home() {
                         <div>
                             Sorpresas listas para llevar, ¡perfectas para cualquier ocasión!
                         </div>
-                        <button>¡Escoge tu Box!</button>
+                        <Link href="/gifts-to-go">
+                            <button>¡Escoge tu Box!</button>
+                        </Link>
                     </div>
                 </div>
             </SwiperSlide>
@@ -52,7 +55,9 @@ export default function Home() {
                         <div>
                             Arma tu caja desde cero y personalízala como tú quieras.
                         </div>
-                        <button>¡Crea tu Box!</button>
+                        <Link href="/box-builder">
+                            <button>¡Crea tu Box!</button>
+                        </Link>
                     </div>
                 </div>
             </SwiperSlide>
@@ -71,7 +76,9 @@ export default function Home() {
                         <div>
                             Cómprate ese producto que siempre te encantó.
                         </div>
-                        <button>¡Consiéntete!</button>
+                        <Link href="/gifts-for-me">
+                            <button>¡Consiéntete!</button>
+                        </Link>
                     </div>
                 </div>
             </SwiperSlide>

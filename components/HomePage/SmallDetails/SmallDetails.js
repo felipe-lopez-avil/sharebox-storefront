@@ -1,5 +1,6 @@
 import styles from './SmallDetails.module.scss'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function SmallDetails () {
     return (
@@ -15,7 +16,9 @@ export default function SmallDetails () {
                 />
                 <div className={styles.caption}>
                     <h3>Pequeños detalles  <br/> para demostrar tu afecto</h3>
-                    <button>Out Of The Box</button>
+                    <Link href="/gifts-to-go">
+                        <button>Out Of The Box</button>
+                    </Link>
                 </div>
             </div>
         </>
