@@ -38,6 +38,7 @@ export default function GTGProduct ({product, collection}) {
     const [multiVariants, setMultiVariants] = useState(false)
     const [formData, setFormData] = useState({})
     const [windowReady, setWindowReady] = useState(false)
+    const [attributes, setAttributes] = useState([])
     const [checkout, setCheckout] = useState(null)
     const [productAdded, setProductAdded] = useState(false)
 
@@ -108,6 +109,24 @@ export default function GTGProduct ({product, collection}) {
         })
     }
 
+    const handleAttributesChange = (event) => {
+        /* console.log(event.target.name)
+        console.log(event.target.value) */
+
+        let attributeIndex = attributes.map(function(e) { return e.key; }).indexOf(event.target.name);
+
+        if(attributeIndex <= -1){
+            let newAttributes = [...attributes, {key: event.target.name, value: event.target.value}]
+            setAttributes(newAttributes)
+            console.log(newAttributes)
+        }else{
+            const attributesTemp = attributes
+            attributesTemp[attributeIndex] = {key: event.target.name, value: event.target.value}
+            setAttributes(attributesTemp)
+            console.log(attributesTemp)
+        }
+    }
+
     const activeVariant = (event) => {
         console.log(variantIndex)
     }
@@ -175,16 +194,31 @@ export default function GTGProduct ({product, collection}) {
 
                         {multiVariants && 
                             <div className={styles.options}>
-                                {product.options.map(option => (
-                                    <div className={styles.selectField}>
-                                        <label for={option.id}>{option.name}:</label>
-                                        <div>
-                                            <select name={option.name} id={option.id} onChange={handleChange}>
-                                                {option.values.map(value => (
-                                                    <option value={value.value}>{value.value}</option>
-                                                ))}
-                                            </select>
+                                {product.options.map((option, index) => (
+                                    <div className={styles.inputs}>
+                                        <div className={styles.selectField}>
+                                            <label for={option.id}>{option.name}:</label>
+                                            <div>
+                                                <select name={option.name} id={option.id} onChange={handleChange}>
+                                                    {option.values.map(value => (
+                                                        <option value={value.value}>{value.value}</option>
+                                                    ))}
+                                                </select>
+                                            </div>
                                         </div>
+                                        {option.values.map(value => (
+                                            <>
+                                                {value.value === 'Personalizada' && formData[option.name] === 'Personalizada' &&
+                                                    <input 
+                                                        className={styles.inputText} 
+                                                        type="text" 
+                                                        name={`${option.name} Personzalido`} 
+                                                        onChange={handleAttributesChange}
+                                                        placeholder="Escribe aquí tu texto personalizado"
+                                                    />
+                                                }
+                                            </>
+                                        ))}
                                     </div>
                                 ))}
                             </div>

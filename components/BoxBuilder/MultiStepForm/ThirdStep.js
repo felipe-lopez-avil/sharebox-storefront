@@ -84,7 +84,7 @@ export default function ThirdStep ({step3Items, setStep3Items}) {
     };
 
     useEffect(() => {
-        client.collection.fetchWithProducts(collectionMYB3, {productsFirst: 10}).then((collection) => {
+        client.collection.fetchWithProducts(collectionMYB3, {productsFirst: 250}).then((collection) => {
             // Do something with the collection
 
             // Se convierte el objeto a JSON

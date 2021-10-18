@@ -50,7 +50,7 @@ export default function GiftsToGo () {
             setWindowReady(true);
         }
 
-        client.collection.fetchWithProducts(collectionId, {productsFirst: 50}).then((collection) => {
+        client.collection.fetchWithProducts(collectionId, {productsFirst: 250}).then((collection) => {
             // Do something with the collection
             console.log(collection.products);
             setCollection(JSON.parse(JSON.stringify(collection)))
