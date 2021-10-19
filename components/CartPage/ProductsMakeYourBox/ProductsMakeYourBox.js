@@ -1,22 +1,23 @@
 import styles from './ProductsMakeYourBox.module.scss'
 import Image from 'next/image'
 
-export default function ProductsInCart({items}) {
+export default function ProductsInCart({items, sendableCheckoutId, setCheckout, checkout}) {
 
-    /* const deleteElement = (sendableCheckoutId, id) => {
+    const deleteElements = (sendableCheckoutId, id) => {
 
         const checkoutId = sendableCheckoutId; // ID of an existing checkout
-        const lineItemIdsToRemove = [
-            btoa(id)
-        ];
+
+        const lineItemIdsToRemove = items.map(function(item){
+            return btoa(item.id)
+        })
     
         // Remove an item from the checkout
         checkout.removeLineItems(checkoutId, lineItemIdsToRemove).then((checkout) => {
             // Do something with the updated checkout
             console.log(checkout); // Checkout with line item 'Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0Lzc4NTc5ODkzODQ=' removed
             setCheckout(checkout)
-        });
-    } */
+        }); 
+    } 
     let totalPrice = 0;
     let prices = items.map(item => (parseFloat(item.variant.price) * item.quantity))
 
@@ -48,7 +49,7 @@ export default function ProductsInCart({items}) {
                             </div>
                             
                         </div>
-                    <div className={styles.delete} /* onClick={() => deleteElement(sendableCheckoutId, id)} */>Eliminar</div>
+                    <div className={styles.delete} onClick={() => deleteElements(sendableCheckoutId)} >Eliminar</div>
                 </div>
             </div>
             <div className={styles.field}>

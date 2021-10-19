@@ -192,7 +192,7 @@ export default function GTGProduct ({product, collection}) {
         {
             variantId: product.variants[variantIndex].id,
             quantity: 1,
-            // customAttributes: [{key: "MyKey", value: "MyValue"}]
+            customAttributes: attributes
         }
         ];
 

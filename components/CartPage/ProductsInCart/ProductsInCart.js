@@ -1,7 +1,7 @@
 import styles from './ProductsInCart.module.scss'
 import Image from 'next/image'
 
-export default function ProductsInCart({image, product, selectedOptions, price, quantity, total, id, sendableCheckoutId, setCheckout, checkout}) {
+export default function ProductsInCart({image, product, selectedOptions, price, quantity, total, id, sendableCheckoutId, setCheckout, checkout, customAttributes}) {
 
     const deleteElement = (sendableCheckoutId, id) => {
 
@@ -36,6 +36,11 @@ export default function ProductsInCart({image, product, selectedOptions, price, 
                             {selectedOptions.map(selectedOption => (
                                 <div className={styles.option}>
                                     <span className={styles.underline}>{selectedOption.name}</span>: {selectedOption.value}
+                                </div>
+                            ))}
+                            {customAttributes.map(attribute => (
+                                <div className={styles.option}>
+                                    <span className={styles.underline}>{attribute.key}</span>: {attribute.value}
                                 </div>
                             ))}
                             <div className={styles.mobile}>

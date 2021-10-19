@@ -223,6 +223,9 @@ export default function Cart () {
                                 {checkout.lineItems.map(function(e) { if(e.customAttributes[0] !== undefined){return e.customAttributes[0].key } else {return "No Custom Attributes"} }).indexOf('Make Your Box') > -1 &&
                                     <ProductsMakeYourBox
                                         items={checkout.lineItems.filter(makeYourBoxFilter)}
+                                        sendableCheckoutId={sendableCheckoutId}
+                                        setCheckout={setCheckout}
+                                        checkout={client.checkout}
                                     />
                                 }
                                 {checkout.lineItems.map(lineItem => {
@@ -240,6 +243,7 @@ export default function Cart () {
                                                     sendableCheckoutId={sendableCheckoutId}
                                                     setCheckout={setCheckout}
                                                     checkout={client.checkout}
+                                                    customAttributes={lineItem.customAttributes}
                                                 />
                                             )
                                         }
@@ -256,6 +260,7 @@ export default function Cart () {
                                                 sendableCheckoutId={sendableCheckoutId}
                                                 setCheckout={setCheckout}
                                                 checkout={client.checkout}
+                                                customAttributes={lineItem.customAttributes}
                                             />
                                         )
                                     }
