@@ -4,12 +4,17 @@ import styles from '../styles/gifts-to-go.module.scss'
 import Image from 'next/image';
 import Link from 'next/link'
 
+import Grow from '@mui/material/Grow';
+import Collapse from '@mui/material/Collapse';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import CircularProgress from '@mui/material/CircularProgress';
+import FilterListIcon from '@material-ui/icons/FilterList';
+import Chip from '@mui/material/Chip';
+import Stack from '@mui/material/Stack';
 
 import Slider from '@material-ui/core/Slider';
 import Grid from '@material-ui/core/Grid';
@@ -29,7 +34,9 @@ const useStyles = makeStyles((theme) => ({
       textAlign: 'center',
       color: theme.palette.text.secondary,
     },
-    
+    font: {
+        fontSize: '0.5rem'
+    }
 }));
 
 function valuetext(value) {
@@ -39,9 +46,10 @@ function valuetext(value) {
 export default function GiftsToGo () {
     const classes = useStyles();
 
-    const collectionId = 'Z2lkOi8vc2hvcGlmeS9Db2xsZWN0aW9uLzIxMjM4MTEzOTEwNg==';
+    const collectionId = 'Z2lkOi8vc2hvcGlmeS9Db2xsZWN0aW9uLzI3NTY0MjE4NzkzOA==';
     const [collection, setCollection] = useState(null)
     const [products, setProducts] = useState(null)
+    const [mobileFiltersActive, setMobileFiltersActive] = useState(false)
 
     // Checks if the window is ready so the functional components can render.
     const [windowReady, setWindowReady] = useState(false)
@@ -69,6 +77,14 @@ export default function GiftsToGo () {
         }else{
             return false;
         }
+    }
+ 
+    const openMobileFilters = () => {
+        setMobileFiltersActive(true)
+    }
+
+    const closeMobileFilters = () => {
+        setMobileFiltersActive(false)
     }
 
     const handleTypeFilter = (event) => {
@@ -141,17 +157,17 @@ export default function GiftsToGo () {
                     
                     {collection !== null && products !== null ? 
                     <>
-                        <div className={styles.filters}>
+                        <div className={`${styles.filters} ${styles.hidden}`}>
                             <h4>Filtrar por:</h4>
                             <div className={styles.filter}>
                                 <h5>Tipo de producto</h5>
                                 <FormControl component="fieldset">
                                     <RadioGroup aria-label="productType" name="productType" value={typeFilter} onChange={handleTypeFilter}>
-                                        <FormControlLabel value="all" control={<Radio />} label="Cualquiera"/>
-                                        <FormControlLabel value="boxes" control={<Radio />} label="Boxes" />
-                                        <FormControlLabel value="kits armados" control={<Radio />} label="Kits Armados" />
-                                        <FormControlLabel value="globos y flores" control={<Radio />} label="Globos y Flores" />
-                                        <FormControlLabel value="snacks y postres" control={<Radio />} label="Snacks y Postres" />
+                                        <FormControlLabel value="all" control={<Radio />} label="Todos"/>
+                                        <FormControlLabel value="Boxes" control={<Radio />} label="Boxes" />
+                                        {/* <FormControlLabel value="kits armados" control={<Radio />} label="Kits Armados" /> */}
+                                        <FormControlLabel value="Globos y Flores" control={<Radio />} label="Globos y Flores" />
+                                        <FormControlLabel value="Snacks y Postres" control={<Radio />} label="Snacks y Postres" />
                                     </RadioGroup>
                                 </FormControl>
                             </div>
@@ -160,13 +176,75 @@ export default function GiftsToGo () {
                                 <FormControl component="fieldset">
                                     <RadioGroup aria-label="gender" name="gender1" value={ocassionFilter} onChange={handleOcassionFilter}>
                                         <FormControlLabel value="all" control={<Radio />} label="Todas" />
-                                        <FormControlLabel value="aniversario" control={<Radio />} label="Aniversario" />
-                                        <FormControlLabel value="cumpleaños" control={<Radio />} label="Cumpleaños" />
-                                        <FormControlLabel value="just because" control={<Radio />} label="Just Because" />
+                                        <FormControlLabel value="Anillos y compromisos" control={<Radio />} label="Anillos y compromisos" />
+                                        <FormControlLabel value="Aniversario" control={<Radio />} label="Aniversario" />
+                                        <FormControlLabel value="Condolencias" control={<Radio />} label="Condolencias" />
+                                        <FormControlLabel value="Cumpleaños" control={<Radio />} label="Cumpleaños" />
+                                        <FormControlLabel value="For a long day" control={<Radio />} label="For a Long Day" />
+                                        <FormControlLabel value="Graduaciones y logros" control={<Radio />} label="Graduaciones y logros" />
+                                        <FormControlLabel value="New born & padrinos" control={<Radio />} label="New Born & Padrinos" />
+                                        <FormControlLabel value="Pets" control={<Radio />} label="Pets" />
                                     </RadioGroup>
                                 </FormControl>
                             </div>
                         </div>
+
+                        <div className={styles.mobileFilters}>
+                            <div className={styles.trigger} onClick={openMobileFilters}>
+                                <FilterListIcon fontSize="medium"/>
+                                <span>Filtrar productos</span>
+                            </div>
+                            {typeFilter !== 'all' || ocassionFilter !== "all" ?
+                                <div className={styles.activeFilters}>
+                                    <Stack direction="row" spacing={1}>
+                                        {typeFilter !== 'all' && <Chip label={typeFilter} variant="outlined"/>}
+                                        {ocassionFilter !== 'all' && <Chip label={ocassionFilter} variant="outlined"/>}
+                                    </Stack>
+                                </div>
+                                :
+                                ''
+                            }
+                        </div>
+                        
+                        <Grow in={mobileFiltersActive}>
+                            <div className={styles.filtersModal}>
+                                <div className={styles.filtersContainer}>
+                                    <div className={`${styles.filters}`}>
+                                        <h4>Filtrar por:</h4>
+                                        <div className={styles.filter}>
+                                            <h5>Tipo de producto</h5>
+                                            <FormControl component="fieldset">
+                                                <RadioGroup aria-label="productType" name="productType" value={typeFilter} onChange={handleTypeFilter}>
+                                                    <FormControlLabel value="all" control={<Radio />} label="Todos los productos"/>
+                                                    <FormControlLabel value="Boxes" control={<Radio />} label="Boxes" />
+                                                    {/* <FormControlLabel value="kits armados" control={<Radio />} label="Kits Armados" /> */}
+                                                    <FormControlLabel value="Globos y Flores" control={<Radio />} label="Globos y Flores" />
+                                                    <FormControlLabel value="Snacks y Postres" control={<Radio />} label="Snacks y Postres" />
+                                                </RadioGroup>
+                                            </FormControl>
+                                        </div>
+                                        <div className={styles.filter}>
+                                            <h5>Ocasiones</h5>
+                                            <FormControl component="fieldset">
+                                                <RadioGroup aria-label="gender" name="gender1" value={ocassionFilter} onChange={handleOcassionFilter}>
+                                                    <FormControlLabel value="all" control={<Radio />} label="Cualquier Ocasión" />
+                                                    <FormControlLabel value="Anillos y compromisos" control={<Radio />} label="Anillos y compromisos" />
+                                                    <FormControlLabel value="Aniversario" control={<Radio />} label="Aniversario" />
+                                                    <FormControlLabel value="Condolencias" control={<Radio />} label="Condolencias" />
+                                                    <FormControlLabel value="Cumpleaños" control={<Radio />} label="Cumpleaños" />
+                                                    <FormControlLabel value="For a long day" control={<Radio />} label="For a Long Day" />
+                                                    <FormControlLabel value="Graduaciones y logros" control={<Radio />} label="Graduaciones y logros" />
+                                                    <FormControlLabel value="New born & padrinos" control={<Radio />} label="New Born & Padrinos" />
+                                                    <FormControlLabel value="Pets" control={<Radio />} label="Pets" />
+                                                </RadioGroup>
+                                            </FormControl>
+                                        </div>
+                                    </div>
+                                    <div className={styles.confirm} onClick={closeMobileFilters}>Confirmar filtros</div>
+                                </div>
+                            </div>
+                        </Grow>
+
                         <div className={styles.products}>
                             <Grid container spacing={0}>
 
@@ -177,7 +255,7 @@ export default function GiftsToGo () {
                                             <div className={styles.productContainer}>
                                                 <div className={styles.productImage}>
                                                     <Image
-                                                        src={product.images[0].src}
+                                                        src={product.images[0] !== undefined ? product.images[0].src : 'https://cdn.shopify.com/s/files/1/0456/6820/4706/files/product-placeholder.png?v=1633451657'}
                                                         layout="fill"
                                                         objectFit="cover"
                                                     />
