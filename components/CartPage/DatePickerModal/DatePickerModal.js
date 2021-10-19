@@ -221,7 +221,9 @@ export default function DatePickerModal ({closeDateModal, setDefinitiveDate, dat
                 }
 
                 {nationalActive === true &&
-                    <National/>
+                    <National
+                        saveAttributes={saveAttributes}
+                    />
                 }
 
             </div>

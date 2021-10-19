@@ -157,12 +157,30 @@ export default function Cart () {
             ]
         };
 
-        setDeliveryResume(`${deliveryType} el día ${formatDate} (${time})`)
+        if(formatDate === ''){
+            setDeliveryResume("Seleccionaste envío Nacional")
+        }else{
+            setDeliveryResume(`${deliveryType} el día ${formatDate} (${time})`)
+        }
         setDateModal(false)
 
         client.checkout.updateAttributes(checkout.id, input).then((checkout) => {
             console.log(checkout);
         })
+    }
+
+    const saveNationalAttributes = () => {
+        const input = {
+            customAttributes: [
+                {key: "Tipo de Tarjeta", value: selectedCard}, 
+                {key: "Remitente", value: cardFrom},
+                {key: "Destinatario", value: cardTo},
+                {key: "Mensaje", value: cardMessage},
+                {key: "Tipo de Envío", value: deliveryType},
+                {key: "Fecha de entrega", value: "-----"},
+                {key: "Hora de entrega", value: "-----"},
+            ]
+        };
     }
 
     const saveCardAttributes = () => {
@@ -270,16 +288,16 @@ export default function Cart () {
                             </div>
                             <div className={styles.cardAndDate}>
                                 <div className={styles.choose}>
-                                    <button className={styles.chooseButton} onClick={openCardModal}>
+                                    <button className={`${styles.chooseButton} ${cardResume !== '' ? styles.completedField : ''}`} onClick={openCardModal}>
                                         {cardResume === '' ? 'Selecciona una tarjeta' : cardResume}
                                     </button>
-                                    <button className={styles.chooseButton} onClick={openDateModal}>
+                                    <button className={`${styles.chooseButton} ${deliveryResume !== '' ? styles.completedField : ''}`} onClick={openDateModal}>
                                         {deliveryResume === '' ? 'Selecciona la fecha y hora de entrega' : deliveryResume}
                                     </button>
                                 </div>
                                 <div className={styles.options}>
                                     <a href={checkout.webUrl} className={styles.fullWidth}>
-                                        <button className={styles.continue}>
+                                        <button className={`${styles.continue} ${deliveryResume === '' ? styles.disabledButton : ''}`} disabled={deliveryResume === ''}>
                                             Continuar con el pago                                  
                                         </button>
                                     </a>

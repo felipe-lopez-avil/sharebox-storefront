@@ -77,7 +77,7 @@ export default function CardModal ({closeCardModal, selectedCard, setSelectedCar
                     </div>
                     <div className={styles.cardType}>Congratulations</div>
                 </div>
-                <div className={styles.cardBox} onClick={() => showPreview('To My Special Someone','https://cdn.shopify.com/s/files/1/0456/6820/4706/files/congratulations-06.png?v=1630517306')}>
+                <div className={styles.cardBox} onClick={() => showPreview('To My Special Someone','/cards/specialCard.png')}>
                     <div className={styles.iconContainer}>
                         <Image
                             src="/cartModalIcons/specialIcon.png"

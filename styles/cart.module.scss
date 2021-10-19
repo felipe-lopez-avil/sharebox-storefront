@@ -100,6 +100,12 @@
     }
 }
 
+.chooseButton.completedField{
+    background-color: #028ab5;
+    border-color: #028ab5;
+    color: #fff;
+}
+
 .fullWidth, .buttonText{
     width: 100%;
 }
@@ -117,6 +123,11 @@
         border-color: #003360;
         background-color:#003360;
     }
+}
+
+.continue.disabledButton{
+    background-color: #ababab;
+    border-color: #ababab;
 }
 
 .goBack{
