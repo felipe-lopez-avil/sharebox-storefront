@@ -1,17 +1,20 @@
 .container{
     width: 800px;
-    height: 450px;
+    min-height: 450px;
+    max-height: 500px;
+    height: min-content;
     background-color: #fff;
     padding: 25px;
     border-radius: 8px;
     box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.20);
     position: relative;
-    overflow: hidden;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .header{
     width: 100%;
-    height: 50px;
+    min-height: 50px;
     display: flex;
     justify-content: space-between;
 }
@@ -19,6 +22,7 @@
 .title{
     font-size: 1.5rem;
     font-family: 'Simula-Book', Helvetica, Arial, sans-serif;
+    text-align: center;
 }
 
 .lateralBlock{
@@ -29,15 +33,14 @@
 
 .content{
     width: 100%;
-    height: calc(100% - 50px);
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
 .cardBox{
-    width: 32%;
-    height: 100%;
+    width: 24%;
+    height: 250px;
     border-radius: 8px;
     text-align: center;
     display: flex;
@@ -94,7 +97,7 @@
 
 .cardForm{
     width: calc(100% - 450px);
-    height: 100%;
+    height: auto;
 }
 
 .textField{
@@ -114,6 +117,7 @@
     height: calc(100% - 60px);
     background-color: rgb(250, 250, 250);
     position: relative;
+    border: 1px solid black;
 }
 
 .textPreview{
@@ -150,3 +154,91 @@
     cursor: pointer;
 }
 
+.hidden{
+    display: none;
+}
+
+@media (max-width: 900px) {
+    .container{
+        width: 95%;
+        max-height: 96%;
+        height: 96%;
+    }
+
+    .cardBox{
+        text-align: left;
+    }
+
+    .cardType{
+        width: calc(100% - 125px);
+    }
+
+    .playground{
+        flex-direction: column;
+        justify-content: unset;
+    }
+
+    .cardForm{
+        width: 100%;
+        height: auto;
+        max-width: 500px;
+    }
+
+    .cardContent{
+        max-height: calc(100% - 15px);
+    }
+
+    .cardPreview{
+        width: 100%;
+        height: auto;
+        max-width: 500px;
+    }
+
+    .cardImage{
+        height: calc((96vw - 50px) * 0.75);
+        margin-bottom: 15px;
+        max-height: calc(500px * 0.75);
+    }
+
+    .save{
+        margin-bottom: 25px;
+    }    
+
+}
+
+@media (max-width: 750px) {
+    .content{
+        flex-direction: column;
+    }
+
+    .header{
+        margin-bottom: 15px;
+    }
+
+    .container{
+        padding: 15px;
+    }
+
+    .cardBox{
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        width: 100%;
+        height: 150px;
+        border: 2px solid #ececec;
+        padding: 0 25px;
+        margin-bottom: 20px;
+    }
+
+    .cardType{
+        font-size: 1rem;
+    }
+
+    .iconContainer{
+        margin-bottom: 0;
+        margin-right: 15px;
+        width: 85px;
+        height: 85px;
+    }
+
+}

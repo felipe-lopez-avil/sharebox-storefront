@@ -46,7 +46,7 @@ export default function CardModal ({closeCardModal, selectedCard, setSelectedCar
                     <CloseIcon style={{ fontSize: 30, cursor: 'pointer' }} onClick={closeCardModal} />
                 </div>
             </div>
-            <div className={styles.content}>
+            <div className={`${styles.content} ${cardPreview ? styles.hidden : ''}`}>
                 <div className={styles.cardBox} onClick={() => showPreview('Tarjeta de Cumpleaños', 'https://cdn.shopify.com/s/files/1/0456/6820/4706/files/happy-birthday.png?v=1630507598')}>
                     <div className={styles.iconContainer}></div>
                     <div className={styles.cardType}>Birthday</div>
@@ -58,6 +58,28 @@ export default function CardModal ({closeCardModal, selectedCard, setSelectedCar
                 <div className={styles.cardBox} onClick={() => showPreview('Tarjeta de Felicitaciones','https://cdn.shopify.com/s/files/1/0456/6820/4706/files/congratulations-06.png?v=1630517306')}>
                     <div className={styles.iconContainer}></div>
                     <div className={styles.cardType}>Congratulations</div>
+                </div>
+                <div className={styles.cardBox} onClick={() => showPreview('Tarjeta de Felicitaciones','https://cdn.shopify.com/s/files/1/0456/6820/4706/files/congratulations-06.png?v=1630517306')}>
+                    <div className={styles.iconContainer}></div>
+                    <div className={styles.cardType}>To My Special Someone</div>
+                </div>
+            </div>
+            <div className={`${styles.content} ${cardPreview ? styles.hidden : ''}`}>
+                <div className={styles.cardBox} onClick={() => showPreview('Tarjeta de Cumpleaños', 'https://cdn.shopify.com/s/files/1/0456/6820/4706/files/happy-birthday.png?v=1630507598')}>
+                    <div className={styles.iconContainer}></div>
+                    <div className={styles.cardType}>She Said Yes</div>
+                </div>
+                <div className={styles.cardBox} onClick={() => showPreview('Tarjeta de Aniversario', 'https://cdn.shopify.com/s/files/1/0456/6820/4706/files/aniversary-04.png?v=1630517306')}>
+                    <div className={styles.iconContainer}></div>
+                    <div className={styles.cardType}>Thank You</div>
+                </div>
+                <div className={styles.cardBox} onClick={() => showPreview('Tarjeta de Felicitaciones','https://cdn.shopify.com/s/files/1/0456/6820/4706/files/congratulations-06.png?v=1630517306')}>
+                    <div className={styles.iconContainer}></div>
+                    <div className={styles.cardType}>With deepest simpaty</div>
+                </div>
+                <div className={styles.cardBox} onClick={() => showPreview('Tarjeta de Felicitaciones','https://cdn.shopify.com/s/files/1/0456/6820/4706/files/congratulations-06.png?v=1630517306')}>
+                    <div className={styles.iconContainer}></div>
+                    <div className={styles.cardType}>Happy Mothers Day</div>
                 </div>
             </div>
             <Slide direction="left" timeout={650} in={cardPreview} mountOnEnter unmountOnExit>

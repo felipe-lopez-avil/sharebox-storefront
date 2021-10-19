@@ -39,11 +39,12 @@ export default function Local ({cp, handleCP, validCP, validateCP, confirmationM
 
     return(
         <div className={styles.cpSection}>
+            <div className={styles.label}>Introduce tu código postal para verificar que tenemos envíos en tu zona:</div>
             <form noValidate autoComplete="off">
                 <div className={styles.textField}>
                     <TextField 
                         id="from" 
-                        label="Introduce tu C.P. para verificar que tenemos envíos locales a tu zona" 
+                        label="C.P." 
                         variant="outlined" 
                         value={cp}
                         onChange={handleCP}
@@ -56,7 +57,7 @@ export default function Local ({cp, handleCP, validCP, validateCP, confirmationM
             </form>
             {validCP === 'valid' && 
                 <div className={styles.selector}>
-                    <div className={styles.confirmationBox}>{confirmationMessage}</div>
+                    <div className={styles.confirmationBox}>¡Tenemos envíos en tu zona!</div>
                     <div className={styles.pickerContainer}>
                         <div className={styles.date}>
                             <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -96,12 +97,12 @@ export default function Local ({cp, handleCP, validCP, validateCP, confirmationM
                             </FormControl>
                         </div>
                     </div>
-                    <button onClick={saveAttributes}>Confirmar</button>
+                    <button onClick={saveAttributes} className={styles.confirm}>Confirmar</button>
                 </div>                                
             }
 
             {validCP === 'noValid' && 
-                <div className={styles.confirmationNegativeBox}>Lo sentimos, pero no contamos con envíos en tu zona</div>
+                <div className={styles.confirmationNegativeBox}>Lo sentimos, no contamos con envíos en tu zona</div>
             }
             
             {/* <button onClick={showDate}>Date</button> */}

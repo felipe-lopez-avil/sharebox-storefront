@@ -100,7 +100,7 @@ export default function Pickup ({shouldDisableDate, minDate, date, handleDateCha
                     </div>
                 </div>
             </div>
-            <button onClick={saveAttributes}>Confirmar</button>
+            <button onClick={saveAttributes} className={styles.confirm}>Confirmar</button>
         </div>
     )
 }

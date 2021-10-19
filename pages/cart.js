@@ -36,7 +36,8 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: 'red',
       top: '50%',
       left: '50%'
-    }
+    },
+
 }));
 
 function makeYourBoxFilter(lineItem) {

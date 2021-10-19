@@ -2,6 +2,10 @@
     margin-top: 30px;
 }
 
+.label{
+    margin-bottom: 15px;
+}
+
 .textField{
     display: flex;
     justify-content: space-between;
@@ -33,7 +37,8 @@
     text-align: center;
     padding: 15px 25px;
     border-radius: 5px;
-    background-color: rgb(174, 253, 174);
+    background-color: #b3dbe5;
+    color: #004376;
 }
 
 .confirmationNegativeBox{
@@ -143,8 +148,37 @@
         font-size: 1.1rem;
         margin-bottom: 10px;
     }
+}
 
-    .shippingDescription{
+.confirm{
+    margin-top: 10px;
+}
 
+
+@media (max-width: 650px) {
+    .adressBox{
+        padding: 20px 5%;
+    }
+
+    .pickerContainer{
+        width: 100%;
+        margin-top: 15px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .date, .time{
+        width: 100%;
+    }
+
+    .confirm{
+        margin-top: 20px;
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .card{
+        padding: 15px;
     }
 }

@@ -169,13 +169,16 @@ export default function DatePickerModal ({closeDateModal, setDefinitiveDate, dat
                     <div className={styles.icon}>
                         <StorefrontIcon style={{ fontSize: 35 }}/>
                     </div>
-                    <div className={styles.type}>Recogida Local</div> 
+                    <div className={styles.type}>Recogida Local Sin Costo</div> 
                 </div>
                 <div className={localActive ? `${styles.deliveryType} ${styles.active}` : styles.deliveryType} onClick={handleLocal}>
                     <div className={styles.icon}>
                         <LocalShippingOutlinedIcon style={{ fontSize: 35 }}/>
                     </div>
-                    <div className={styles.type}>Envío Local</div> 
+                    <div>
+                        <div className={styles.type}>Envío Local</div> 
+                        <div className={styles.mty}>(Monterrey y zona metropolitana)</div>
+                    </div>
                 </div>
                 <div className={nationalActive ? `${styles.deliveryType} ${styles.active}` : styles.deliveryType} onClick={handleNational}>
                     <div className={styles.icon}>
