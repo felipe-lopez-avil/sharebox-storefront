@@ -55,9 +55,46 @@ export default function Navbar () {
         }
     }, [])
 
+    const openGTG = () => {
+        if(gtg){
+            setGtg(false)
+        }else{
+            setGtg(true)
+        }
+    }
+
+    const closeGTG = () => {
+        setGtg(false)
+    }
+
+    const openMYB = () => {
+        if(myb){
+            setMyb(false)
+        }else{
+            setMyb(true)
+        }
+    }
+
+    const closeMYB = () => {
+        setMyb(false)
+    }
+
+    const openGFM = () => {
+        if(gfm){
+            setGfm(false)
+        }else{
+            setGfm(true)
+        }
+    }
+
+    const closeGFM = () => {
+        setGfm(false)
+    }
+
     const handleGTG = () => {
         setGtg(!gtg);
     };
+
     const handleMYB = () => {
         setMyb(!myb);
     };
@@ -155,7 +192,7 @@ export default function Navbar () {
                 {windowReady === true && 
                 <div className={styles.navigation}>
                     
-                    <div className={`${styles.navItem} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`} onMouseEnter={handleGTG} onMouseLeave={handleGTG}>
+                    <div className={`${styles.navItem} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`} onClick={openGTG} onMouseLeave={closeGTG}>
                         <span>Gifts To Go! <ExpandMoreIcon/></span>
 
                         <Grow in={gtg} className={classes.collapse} style={{ transformOrigin: '0 0 0' }}>
@@ -176,17 +213,17 @@ export default function Navbar () {
                                             <p>Sorpresas listas para llevar, ¡perfectas para cualquier ocasión!</p>
                                         </div>
                                         <div className={`${styles.gtgCategories} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`}>
-                                            <Link href="/gifts-to-go"><div className={ styles.categoryLink}>Boxes</div></Link>
-                                            <Link href="/gifts-to-go"><div className={styles.categoryLink}>Kits Armados</div></Link>
-                                            <Link href="/gifts-to-go"><div className={styles.categoryLink}>Globos y Flores</div></Link>
-                                            <Link href="/gifts-to-go"><div className={styles.categoryLink}>Snacks y Postres</div></Link>
+                                            <Link href="/gifts-to-go"><div className={`${styles.categoryLink} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`}>Boxes</div></Link>
+                                            <Link href="/gifts-to-go"><div className={`${styles.categoryLink} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`}>Kits Armados</div></Link>
+                                            <Link href="/gifts-to-go"><div className={`${styles.categoryLink} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`}>Globos y Flores</div></Link>
+                                            <Link href="/gifts-to-go"><div className={`${styles.categoryLink} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`}>Snacks y Postres</div></Link>
                                         </div>
                                     </div>
                                 </div>
                             </div>                            
                         </Grow>
                     </div>
-                    <div className={`${styles.navItem} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`} onMouseEnter={handleMYB} onMouseLeave={handleMYB}>
+                    <div className={`${styles.navItem} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`} onClick={openMYB} onMouseLeave={closeMYB}>
                         <span>Make Your Box</span>
 
                         <Grow in={myb} className={classes.collapse} style={{ transformOrigin: '0 0 0' }}>
@@ -212,7 +249,7 @@ export default function Navbar () {
                             </div>
                         </Grow>
                     </div>
-                    <div className={`${styles.navItem} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`} onMouseEnter={handleGFM} onMouseLeave={handleGFM}>
+                    <div className={`${styles.navItem} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`} onClick={openGFM} onMouseLeave={closeGFM}>
                         <span>Market</span>
 
                         <Grow in={gfm} className={classes.collapse} style={{ transformOrigin: '0 0 0' }}>
