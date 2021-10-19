@@ -5,7 +5,6 @@ import Image from 'next/image';
 import Link from 'next/link'
 
 import Grow from '@mui/material/Grow';
-import Collapse from '@mui/material/Collapse';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
