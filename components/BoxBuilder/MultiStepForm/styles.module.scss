@@ -405,6 +405,10 @@
     .cardGrid{
         width: 60vw;
     }
+
+    .categoryCard3{
+        height: 30vw;
+    }
     
     .categoryCard{
         height: 15vw;
@@ -415,20 +419,34 @@
     .cardGrid{
         width: 72vw;
     }
+
+    .categoryCard3{
+        height: 36vw;
+    }
     
     .categoryCard{
         height: 18vw;
     }
 }
 
-@media (max-width: 960px) {
+@media (max-width: 950px) {
     .cardGrid{
         width: 78vw;
+    }
+
+    .categoryCard3{
+        height: 39vw;
     }
     
     .categoryCard{
         height: 25vw;
     }
+
+    .productList{
+        padding: 0px 3%;
+    }
+
+    
 }
 
 @media (max-width: 768px) {
@@ -448,15 +466,36 @@
     .scrollContainer{
         overflow-y: inherit;
     }
+
+    .categoryTitle{
+        margin-top: 20px;
+        padding: 0px 3%;
+
+        .title{
+            font-size: 1.3rem;
+        }
+    }
 }
 
 @media (max-width: 600px) {
     .cardGrid{
         width: 80vw;
     }
+
+    .categoryCard3{
+        height: 50vw;
+    }
     
     .categoryCard{
         height: 40vw;
+    }
+
+    .firstStepImage{
+        height: 60vw;
+    }
+
+    .productImage{
+        height: 60vw;
     }
 }
 

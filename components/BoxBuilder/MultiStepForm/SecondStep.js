@@ -48,6 +48,9 @@ const useStyles = makeStyles((theme) => ({
         color: '#028ab5',
         cursor: 'pointer',
         marginRight: '-5px',
+    },
+    padding: {
+        padding: '0px 3%'
     }
 }));
 
@@ -279,7 +282,7 @@ export default function SecondStep ({step2Items, setStep2Items, secondStepPrice,
                             {catTitle}
                         </div>
                     </div>
-                    <Grid container spacing={3}>
+                    <Grid container spacing={3} className={classes.padding}>
                     {
                         productsMYB2 === null ? 
                         '' :

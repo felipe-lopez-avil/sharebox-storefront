@@ -367,7 +367,7 @@ export default function Navbar () {
                                     Gifts To Go
                                 </div>
                             </Link>
-                            <Link href="/make-your-box">
+                            <Link href="/box-builder">
                                 <div className={styles.mobileNavItem} onClick={closeMobileMenu}>
                                     Make Your Box
                                 </div>

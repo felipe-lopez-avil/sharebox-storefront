@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import router, { useRouter } from 'next/router'
 import {client} from '../utils/shopify'
 import styles from '../styles/box-builder.module.scss'
 import BoxBuilderStepper from '../components/BoxBuilder/Stepper/BoxBuilderStepper';
@@ -27,6 +28,9 @@ const parseData = (data) => {
 }
 
 export default function BoxBuilder() {
+    const router = useRouter()
+
+    const [orderSent, setOrderSent] = useState(false)
 
     const [currentStep, setCurrentStep] = useState(0)
     const [firstActive, setFirstActive] = useState(true)
@@ -36,6 +40,7 @@ export default function BoxBuilder() {
 
     const [firstStepPrice, setFirstStepPrice] = useState(0)
     const [secondStepPrice, setSecondStepPrice] = useState(0)
+    const [thirdStepPrice, setThirdStepPrice] = useState(0)
     const [totalPrice, setTotalPrice] = useState(firstStepPrice + secondStepPrice)
     const [stepper, setStepper] = useState(false)
 
@@ -87,8 +92,11 @@ export default function BoxBuilder() {
         }
         setCurrentStep(currentStep - 1);
     }
+ 
 
     const addToCart = async () => {
+
+        setOrderSent(true)
 
         // Local Storage is checked to see if a CheckoutID already exists. If not, a new one is created;
         let checkoutId = null
@@ -141,6 +149,9 @@ export default function BoxBuilder() {
         checkout = await client.checkout.addLineItems(checkoutId, lineItemsToAdd)
 
         console.log(parseData(checkout))
+
+        router.push('cart')
+
     }
 
     useEffect(() => {
@@ -186,7 +197,7 @@ export default function BoxBuilder() {
                             {thirdActive === true && 
                                 <Slide direction="left" timeout={500} in={thirdActive} mountOnEnter unmountOnExit>
                                     <div>
-                                        <ThirdStep step3Items={step3Items} setStep3Items={setStep3Items}/>
+                                        <ThirdStep step3Items={step3Items} setStep3Items={setStep3Items} thirdStepPrice={thirdStepPrice} setThirdStepPrice={setThirdStepPrice} />
                                     </div>
                                 </Slide>
                             }
@@ -210,10 +221,11 @@ export default function BoxBuilder() {
                 goNext={goNext} 
                 goPrev={goPrev} 
                 addToCart={addToCart}
-                totalPrice={firstStepPrice + secondStepPrice}
+                totalPrice={firstStepPrice + secondStepPrice + thirdStepPrice}
                 step1Items={step1Items}
                 step2Items={step2Items}
                 step3Items={step3Items}
+                orderSent={orderSent}
             />
         </div>
         </>

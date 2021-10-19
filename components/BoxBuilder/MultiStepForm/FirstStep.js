@@ -86,27 +86,6 @@ export default function FirstStep ({step1Items, setStep1Items, setFirstStepPrice
                             : 
                         productsMYB1.map((product) => (
                             <Grid item xs={6} sm={3}>
-                                {/* <Paper className={classes.paper}>
-                                    <div className={styles.productCard}>
-                                        <div className={styles.productImage}>
-                                            <Image
-                                                src={product.images[0].src}
-                                                layout="fill"
-                                                objectFit="cover"
-                                            />
-                                        </div>
-                                        <div className={styles.productActions}>
-                                            <div className={styles.productInfo}>
-                                                <div className={styles.productTitle}>{product.title}</div>
-                                                <div className={styles.price}>${product.variants[0].price}</div>
-                                            </div>
-                                            <div className={styles.addRemove}>
-                                                <AddCircleOutlinedIcon className={classes.add} onClick={(e) => addItem(product.variants[0].id, product.images[0].src, e)}/>
-                                                <RemoveCircleIcon className={classes.remove} onClick={(e) => removeItem(product.variants[0].id, e)}/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </Paper> */}
                                 <div className={styles.productContainer} onClick={(e) => addItem(product.variants[0].id, product.title, product.variants[0].price, product.images[0].src, e)}>
                                     <input className={styles.boxInput} 
                                         type="radio" 

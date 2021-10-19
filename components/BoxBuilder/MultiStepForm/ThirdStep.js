@@ -36,21 +36,10 @@ const useStyles = makeStyles((theme) => ({
             backgroundColor: '#fafafa',
         },
     },
-    fullheight: {
-        height: '100%',
-        marginTop: '0',
-        marginBottom: '0',
-        padding: '0px 50px',
-    },
-    icon: {
-        fontSize: '8rem',
-        color: '#003360'
-    },
     grow: {
         position: 'absolute',
         width: '100%',
         backgroundColor: '#fff',
-        padding: '25px 30px',
     },
     logoBlue: {
         color: '#028ab5',
@@ -58,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
     
-export default function ThirdStep ({step3Items, setStep3Items}) {
+export default function ThirdStep ({step3Items, setStep3Items, thirdStepPrice, setThirdStepPrice}) {
 
     const collectionMYB3 = 'Z2lkOi8vc2hvcGlmeS9Db2xsZWN0aW9uLzI3Mjc5NTMzNjg2Ng=='
     const classes = useStyles();
@@ -134,12 +123,17 @@ export default function ThirdStep ({step3Items, setStep3Items}) {
             newItems[itemIndex].quantity = newItems[itemIndex].quantity + 1;
             setStep3Items(newItems);
         }
+
+        setThirdStepPrice(thirdStepPrice + parseFloat(price))
     }
 
     const removeItem = (id, e) => {
         e.preventDefault();
         const newItems = step3Items.filter(item => item.productID !== id)
+        const removedItems = step3Items.filter(item => item.productID === id)
+        const removedItem = removedItems[0]
         setStep3Items(newItems);
+        setThirdStepPrice(thirdStepPrice - (parseFloat(removedItem.price) * removedItem.quantity))
     }
 
     return(
@@ -152,9 +146,9 @@ export default function ThirdStep ({step3Items, setStep3Items}) {
                     <Grid container spacing={1}>
                         <Grid item xs={12} sm={6}>
                             <div className={styles.categoryCard3}>
-                                <div className={styles.categoryBox} onClick={(e) => {openPopup('flores', 'Flores', e)}}>
+                                <div className={styles.categoryBox} onClick={(e) => {openPopup('Flores', 'Flores', e)}}>
                                     <div className={styles.categoryIcon}>
-                                        <Image src="/flowersIcon.svg" layout="fill" objectFit="cover"/>
+                                        <Image src="/flowersIcon.svg" layout="fill" objectFit="contain"/>
                                     </div>
                                     <h4>Flores</h4>
                                 </div>
@@ -162,38 +156,14 @@ export default function ThirdStep ({step3Items, setStep3Items}) {
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <div className={styles.categoryCard3}>
-                                <div className={styles.categoryBox} onClick={(e) => {openPopup('globo', 'Globos', e)}}>
+                                <div className={styles.categoryBox} onClick={(e) => {openPopup('Globos', 'Globos', e)}}>
                                     <div className={styles.categoryIcon}>
-                                        <Image src="/balloonIcon.svg" layout="fill" objectFit="cover"/>
+                                        <Image src="/balloonIcon.svg" layout="fill" objectFit="contain"/>
                                     </div>
                                     <h4>Globos</h4>
                                 </div>
                             </div>
                         </Grid>
-                        {/* <Grid item xs={12} sm={4} className={classes.fullheight}>
-                            <Paper className={classes.paper} onClick={(e) => {openPopup('globo', e)}}>
-                                <div className={styles.categoryContainer}>
-                                    <RadioButtonUncheckedIcon className={classes.icon}/>
-                                    <h4>Globos</h4>
-                                </div>
-                            </Paper>
-                        </Grid>
-                        <Grid item xs={12} sm={4} className={classes.fullheight}>
-                            <Paper className={classes.paper} onClick={(e) => {openPopup('flores', e)}}>
-                                <div className={styles.categoryContainer}>
-                                    <LocalFloristOutlinedIcon className={classes.icon}/>
-                                    <h4>Flores</h4>
-                                </div>
-                            </Paper>
-                        </Grid>
-                        <Grid item xs={12} sm={4} className={classes.fullheight}>
-                            <Paper className={classes.paper} onClick={(e) => {openPopup('pastel', e)}}>
-                                <div className={styles.categoryContainer}>
-                                    <CakeOutlinedIcon className={classes.icon}/>
-                                    <h4>Pasteles y Velas</h4>
-                                </div>
-                            </Paper>
-                        </Grid> */}
                     </Grid>
                 </div>
             </div>
@@ -213,20 +183,6 @@ export default function ThirdStep ({step3Items, setStep3Items}) {
                         productsMYB3 === null ? 
                         '' :
                         productsMYB3.filter(item => item.productType === activeCategory).map(product => (
-                            /*<Grid item xs={6} sm={3}>
-                                <Paper className={classes.paper}>
-                                    <div className={styles.productCard}>
-                                        <div className={styles.productInfo}>
-                                            {product.title}
-                                        </div>
-                                        <div className={styles.actions}>
-                                            <button onClick={(e) => addItem(product.variants[0].id, product.images[0].src, e)}>Add</button>
-                                            <button onClick={(e) => removeItem(product.variants[0].id, e)}>Delete</button>
-                                        </div>
-                                    </div>
-                                </Paper>
-                            </Grid> */
-                            // <div>{product.title}</div>
                             <Grid item xs={6} sm={3}>
                                 <div className={styles.productContainer}>
                                     <input className={styles.boxInput}
@@ -238,7 +194,7 @@ export default function ThirdStep ({step3Items, setStep3Items}) {
                                     <label className={styles.forBoxInput} for={product.id}>
                                         <div className={styles.productImage}>
                                             <Image
-                                                src={product.images[0].src}
+                                                src={product.images[0] !== undefined ? product.images[0].src : 'https://cdn.shopify.com/s/files/1/0456/6820/4706/files/product-placeholder.png?v=1633451657'}
                                                 layout="fill"
                                                 objectFit="cover"
                                             />

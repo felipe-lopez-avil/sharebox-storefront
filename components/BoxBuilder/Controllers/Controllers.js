@@ -1,6 +1,7 @@
 import styles from './Controllers.module.scss'
+import CircularProgress from '@mui/material/CircularProgress';
 
-export default function Controllers({currentStep, setCurrentStep, goNext, goPrev, addToCart, totalPrice, step1Items, step2Items, step3Items}) {
+export default function Controllers({currentStep, setCurrentStep, goNext, goPrev, addToCart, totalPrice, step1Items, step2Items, step3Items, orderSent}) {
 
     const initialStep1Items = {productID: '', title: '', price: '', quantity: 1, image: '',}
     
@@ -20,13 +21,11 @@ export default function Controllers({currentStep, setCurrentStep, goNext, goPrev
                         disabled={
                             ((currentStep === 0) & (step1Items.productID === '')) 
                             || ((currentStep === 1) & (step2Items.length === 0))
-                            || ((currentStep === 2) & (step3Items.length === 0))
                             ? true : false
                         }
                         className={
                             ((currentStep === 0) & (step1Items.productID === '')) 
                             || ((currentStep === 1) & (step2Items.length === 0))
-                            || ((currentStep === 2) & (step3Items.length === 0))
                             ? styles.disabled : ''
                         }
                     >
@@ -35,7 +34,13 @@ export default function Controllers({currentStep, setCurrentStep, goNext, goPrev
                 : ''}
 
                 { currentStep === 3 ? 
-                    <button onClick={() => addToCart()}>Completar</button>
+                    <button onClick={() => addToCart()} className={styles.progressButton}>
+                        {orderSent ? 
+                            <CircularProgress color="inherit" size={20}/>
+                            :
+                            'Completar'
+                        }
+                    </button>
                 : ''}
             </div>
         </div>
