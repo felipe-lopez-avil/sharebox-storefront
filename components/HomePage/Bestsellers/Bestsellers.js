@@ -10,7 +10,7 @@ import "swiper/components/pagination/pagination.min.css"
 
 SwiperCore.use([Navigation, Pagination, Autoplay]);
 
-const products = [
+/* const products = [
     {
         productTitle: "Test Product",
         price: "400.00",
@@ -41,9 +41,9 @@ const products = [
         price: "650.00",
         image: "https://cdn.shopify.com/s/files/1/0456/6820/4706/products/SKINCARE-box-3.jpg?v=1626978872",
     },
-]
+] */
 
-export default function Bestsellers() {
+export default function Bestsellers({products}) {
 
     const [windowReady, setWindowReady] = useState(false)
     const [slides, setSlides] = useState(4)
@@ -103,13 +103,13 @@ export default function Bestsellers() {
                                 <div className={styles.productCard}>
                                     <div className={styles.productImage}>
                                         <Image
-                                            src={product.image}
+                                            src={product.images[0].src}
                                             layout="fill"
                                             objectFit="cover"
                                         />
                                     </div>
-                                    <div className={styles.productTitle}>{product.productTitle}</div>
-                                    <div className={styles.productPrice}>${product.price}</div>
+                                    <div className={styles.productTitle}>{product.title}</div>
+                                    <div className={styles.productPrice}>${product.variants[0].price}</div>
                                 </div>
                             </div>
                         </SwiperSlide>

@@ -17,7 +17,7 @@ export default function SmallDetails () {
                 <div className={styles.caption}>
                     <h3>Pequeños detalles  <br/> para demostrar tu afecto</h3>
                     <Link href="/gifts-to-go">
-                        <button>Out Of The Box</button>
+                        <button>Gifts To Go</button>
                     </Link>
                 </div>
             </div>

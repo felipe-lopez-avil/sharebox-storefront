@@ -76,7 +76,7 @@ export default function Home() {
                         <div>
                             Cómprate ese producto que siempre te encantó.
                         </div>
-                        <Link href="/gifts-for-me">
+                        <Link href="/market">
                             <button>¡Consiéntete!</button>
                         </Link>
                     </div>

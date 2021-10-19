@@ -1,4 +1,6 @@
+import React, { useEffect, useState } from 'react'
 import styles from '../styles/home.module.scss'
+import { client } from '../utils/shopify'
 
 import Hero from '../components/HomePage/Hero/Hero'
 import Onboarding from '../components/HomePage/Onboarding/Onboarding'
@@ -9,6 +11,24 @@ import Methodology from '../components/HomePage/Methodology/Methodology'
 import InstaFeed from '../components/HomePage/InstaFeed/InstaFeed'
 
 export default function Home() {
+    
+    const collectionId = "Z2lkOi8vc2hvcGlmeS9Db2xsZWN0aW9uLzI3ODkwODMzODMzOA=="
+    const [products, setProducts] = useState([])
+    const [windowReady, setWindowReady] = useState(false)
+
+    useEffect(() => {
+
+        if(typeof window !== 'undefined'){
+            setWindowReady(true);
+        }
+
+        client.collection.fetchWithProducts(collectionId, {productsFirst: 6}).then((collection) => {
+            // Do something with the collection
+            setProducts(JSON.parse(JSON.stringify(collection.products)))
+        });
+
+    }, [])
+
 
     const settings = {
         dots: true,
@@ -25,7 +45,7 @@ export default function Home() {
         <div className={styles.container}>
             <Hero/>
             <Onboarding/>
-            <Bestsellers/>
+            <Bestsellers products={products}/>
             <SmallDetails/>
             <WeAreSharebox/>
             <Methodology/>
