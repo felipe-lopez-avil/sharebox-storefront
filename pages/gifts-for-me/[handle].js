@@ -2,10 +2,19 @@ import React, {useState, useEffect} from 'react'
 import styles from '../../styles/product.module.scss'
 import {client} from '../../utils/shopify'
 import Image from 'next/image'
+import Link from 'next/link'
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Collapse from '@material-ui/core/Collapse';
 import Snackbar from '@material-ui/core/Snackbar';
+
+import {Swiper, SwiperSlide} from 'swiper/react';
+import SwiperCore, { Navigation, Pagination, Autoplay } from 'swiper/core';
+import "swiper/swiper.min.css";
+import "swiper/components/navigation/navigation.min.css"
+import "swiper/components/pagination/pagination.min.css"
+
+SwiperCore.use([Navigation, Pagination, Autoplay]);
 
 const getDataFromStorage = (key) => {
     const storage = window.localStorage;
@@ -22,6 +31,10 @@ const parseData = (data) => {
 }
 
 export default function GFMProduct ({product, collection}) {
+
+    const collectionBS = "Z2lkOi8vc2hvcGlmeS9Db2xsZWN0aW9uLzI3ODkwODMzODMzOA=="
+    const [products, setProducts] = useState([])
+    const [slides, setSlides] = useState(4)
 
     const [multiVariants, setMultiVariants] = useState(false)
     const [formData, setFormData] = useState({})
@@ -57,6 +70,22 @@ export default function GFMProduct ({product, collection}) {
             })
             setFormData(firstFormData);
         }
+
+        if(window.innerWidth >= 890){
+            setSlides(4)
+        }else if(window.innerWidth >= 650){
+            setSlides(3)
+        }else if(window.innerWidth >= 350){
+            setSlides(2)
+        }else{
+            setSlides(1)
+        }
+
+        client.collection.fetchWithProducts(collectionBS, {productsFirst: 6}).then((collection) => {
+            // Do something with the collection
+            setProducts(JSON.parse(JSON.stringify(collection.products)))
+        });
+
     }, [])
 
     // Accordion Controller
@@ -159,7 +188,24 @@ export default function GFMProduct ({product, collection}) {
         console.log(parseData(checkout))
     }
 
+    if(windowReady){
+        const changeSlidesPerView = () => {
+            if(window.innerWidth >= 890){
+                setSlides(4)
+            }else if(window.innerWidth >= 650) {
+                setSlides(3)
+            }else if(window.innerWidth >= 350){
+                setSlides(2)
+            }else{
+                setSlides(1)
+            }
+        }
+
+        window.addEventListener('resize', changeSlidesPerView)
+    }
+
     return (
+        <>
         <div className={styles.container}>
             <div className={styles.product}>
                 <div className={styles.productImages}>
@@ -224,6 +270,45 @@ export default function GFMProduct ({product, collection}) {
                 }
             </div>
         </div>
+        <div className={styles.recommended}>
+            <div className={styles.header}>
+                <h3>Te recomendamos</h3>
+            </div>
+            <div className={styles.products}>
+                <Swiper 
+                    freeMode={true}
+                    slidesPerView={slides}
+                    pagination={{
+                        "clickable": true
+                    }}
+                    autoplay={{
+                        "delay": 3500,
+                        "disableOnInteraction": false
+                    }}
+                >
+                    {products.map(product => (
+                        <SwiperSlide>
+                            <div className={styles.centerCard}>
+                                <Link href={`/gifts-to-go/${product.handle}`}>
+                                    <div className={styles.productCard}>
+                                        <div className={styles.recomendedProductImage}>
+                                            <Image
+                                                src={product.images[0].src}
+                                                layout="fill"
+                                                objectFit="cover"
+                                            />
+                                        </div>
+                                        <div className={styles.productTitle}>{product.title}</div>
+                                        <div className={styles.productPrice}>${product.variants[0].price}</div>
+                                    </div>
+                                </Link>
+                            </div>
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
+            </div>
+        </div>
+        </>
     )
 }
 

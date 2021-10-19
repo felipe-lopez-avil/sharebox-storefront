@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styles from './Bestsellers.module.scss'
 import Image from 'next/image'
+import Link from 'next/link'
 
 import {Swiper, SwiperSlide} from 'swiper/react';
 import SwiperCore, { Navigation, Pagination, Autoplay } from 'swiper/core';
@@ -100,65 +101,20 @@ export default function Bestsellers({products}) {
                     {products.map(product => (
                         <SwiperSlide>
                             <div className={styles.centerCard}>
-                                <div className={styles.productCard}>
-                                    <div className={styles.productImage}>
-                                        <Image
-                                            src={product.images[0].src}
-                                            layout="fill"
-                                            objectFit="cover"
-                                        />
+                                    <div className={styles.productCard}>
+                                        <div className={styles.productImage}>
+                                            <Image
+                                                src={product.images[0].src}
+                                                layout="fill"
+                                                objectFit="cover"
+                                            />
+                                        </div>
+                                        <div className={styles.productTitle}>{product.title}</div>
+                                        <div className={styles.productPrice}>${product.variants[0].price}</div>
                                     </div>
-                                    <div className={styles.productTitle}>{product.title}</div>
-                                    <div className={styles.productPrice}>${product.variants[0].price}</div>
-                                </div>
                             </div>
                         </SwiperSlide>
                     ))}
-                    {/* <SwiperSlide>
-                        <div className={styles.centerCard}>
-                            <div className={styles.productCard}>
-                                <div className={styles.productImage}></div>
-                                <div className={styles.productTitle}>Product Title</div>
-                                <div className={styles.productPrice}>$250.00</div>
-                            </div>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div className={styles.centerCard}>
-                            <div className={styles.productCard}>
-                                <div className={styles.productImage}></div>
-                                <div className={styles.productTitle}>Product Title</div>
-                                <div className={styles.productPrice}>$250.00</div>
-                            </div>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div className={styles.centerCard}>
-                            <div className={styles.productCard}>
-                                <div className={styles.productImage}></div>
-                                <div className={styles.productTitle}>Product Title</div>
-                                <div className={styles.productPrice}>$250.00</div>
-                            </div>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div className={styles.centerCard}>
-                            <div className={styles.productCard}>
-                                <div className={styles.productImage}></div>
-                                <div className={styles.productTitle}>Product Title</div>
-                                <div className={styles.productPrice}>$250.00</div>
-                            </div>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div className={styles.centerCard}>
-                            <div className={styles.productCard}>
-                                <div className={styles.productImage}></div>
-                                <div className={styles.productTitle}>Product Title</div>
-                                <div className={styles.productPrice}>$250.00</div>
-                            </div>
-                        </div>
-                    </SwiperSlide> */}
                 </Swiper>
             </div>
         </div>

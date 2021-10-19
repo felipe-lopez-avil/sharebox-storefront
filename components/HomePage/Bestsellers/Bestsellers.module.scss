@@ -46,6 +46,7 @@
     font-size: 1.2rem;
     font-weight: 600;
     color: #fff;
+    width: 19vw;
     
     padding-left: 2px;
 }
@@ -61,6 +62,10 @@
     .productImage{
         width: 25vw;
         height: 32vw;
+    }
+
+    .productTitle{
+        width: 25vw;
     }
 }
 
@@ -85,11 +90,19 @@
         height: 52vw;
     }
 
+    .productTitle{
+        width: 40vw;
+    }
+
 }
 
 @media (max-width: 350px) {
     .productImage{
         width: 75vw;
         height: 100vw;
+    }
+
+    .productTitle{
+        width: 75vw;
     }
 }
