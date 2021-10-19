@@ -91,17 +91,6 @@ export default function Navbar () {
         setGfm(false)
     }
 
-    const handleGTG = () => {
-        setGtg(!gtg);
-    };
-
-    const handleMYB = () => {
-        setMyb(!myb);
-    };
-    const handleGFM = () => {
-        setGfm(!gfm);
-    }; 
-
     const openMobileMenu = () => {
         setMobileMenu(true)
     }
@@ -383,9 +372,9 @@ export default function Navbar () {
                                     Make Your Box
                                 </div>
                             </Link>
-                            <Link href="/gifts-for-me">
+                            <Link href="/market">
                                 <div className={styles.mobileNavItem} onClick={closeMobileMenu}>
-                                    Gifts For Me
+                                    Market
                                 </div>
                             </Link>
                             <Link href="/corporate">
