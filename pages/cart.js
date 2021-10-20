@@ -7,10 +7,12 @@ import ProductsInCart from '../components/CartPage/ProductsInCart/ProductsInCart
 import ProductsMakeYourBox from '../components/CartPage/ProductsMakeYourBox/ProductsMakeYourBox'
 import CardModal from '../components/CartPage/CardModal.js/CardModal'
 import { Height, TrendingUpTwoTone } from '@material-ui/icons'
+import RemoveShoppingCartOutlinedIcon from '@material-ui/icons/RemoveShoppingCartOutlined';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Grow from '@material-ui/core/Grow';
 import DatePickerModal from '../components/CartPage/DatePickerModal/DatePickerModal'
+import CircularProgress from '@mui/material/CircularProgress';
 
 import 'date-fns';
 import add from 'date-fns/add'
@@ -58,6 +60,7 @@ export default function Cart () {
     const [sendableCheckoutId, setSendableCheckoutId] = useState(null)
 
     const [checkout, setCheckout] = useState(null)
+    const [confirmationEmptyCart, setConfirmationEmptyCart] = useState(false)
     const [cardModal, setCardModal] = useState(false)
     const [dateModal, setDateModal] = useState(false)
 
@@ -109,6 +112,8 @@ export default function Cart () {
                         }
                     }
                 });
+            }else{
+                setConfirmationEmptyCart(true)
             }
         }
 
@@ -301,7 +306,7 @@ export default function Cart () {
                                             Continuar con el pago                                  
                                         </button>
                                     </a>
-                                    <Link href='./box-to-go' className={styles.fullWidth}>
+                                    <Link href='./gifts-to-go' className={styles.fullWidth}>
                                         <button className={styles.goBack}>
                                             Seguir comprando
                                         </button>
@@ -320,11 +325,16 @@ export default function Cart () {
                         <div>Los impuestos y gastos de envío se calculan en el próximo paso</div>
                         </>
                         :
-                        <h3>NO HAY PRODUCTOS EN EL CARRITO</h3>
+                        <div className={styles.noProducts}>
+                            <RemoveShoppingCartOutlinedIcon style={{ fontSize: 60, marginBottom: '20px' }}/>
+                            <div>No tienes productos en el carrito</div>
+                        </div>
                     }
                     </>
                 :
-                    <h3>NO HAY PRODUCTOS EN EL CARRITO</h3>
+                    <div className={styles.progressContainer}>
+                        <CircularProgress color="inherit" />
+                    </div>
                 }
             </div>
             <Grow in={cardModal}>

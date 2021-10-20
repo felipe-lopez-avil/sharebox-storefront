@@ -181,11 +181,11 @@ export default function Navbar () {
                 {windowReady === true && 
                 <div className={styles.navigation}>
                     
-                    <div className={`${styles.navItem} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`} onClick={openGTG} onMouseLeave={closeGTG}>
+                    <div className={`${styles.navItem} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`} onClick={openGTG}>
                         <span>Gifts To Go! <ExpandMoreIcon/></span>
 
                         <Grow in={gtg} className={classes.collapse} style={{ transformOrigin: '0 0 0' }}>
-                            <div>
+                            <div onMouseLeave={closeGTG}>
                                 <div className={`${styles.dropdownWrapper} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`}>
                                     <div className={styles.navItemContent}>
                                         <div className={styles.gtgDescription}>
@@ -212,11 +212,11 @@ export default function Navbar () {
                             </div>                            
                         </Grow>
                     </div>
-                    <div className={`${styles.navItem} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`} onClick={openMYB} onMouseLeave={closeMYB}>
+                    <div className={`${styles.navItem} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`} onClick={openMYB}>
                         <span>Make Your Box</span>
 
                         <Grow in={myb} className={classes.collapse} style={{ transformOrigin: '0 0 0' }}>
-                            <div>
+                            <div onMouseLeave={closeMYB}>
                                 <div className={`${styles.dropdownWrapper} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`}>
                                     <div className={styles.navItemContent}>
                                         <div className={styles.itemImage}>
@@ -238,11 +238,11 @@ export default function Navbar () {
                             </div>
                         </Grow>
                     </div>
-                    <div className={`${styles.navItem} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`} onClick={openGFM} onMouseLeave={closeGFM}>
+                    <div className={`${styles.navItem} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`} onClick={openGFM}>
                         <span>Market</span>
 
                         <Grow in={gfm} className={classes.collapse} style={{ transformOrigin: '0 0 0' }}>
-                            <div>
+                            <div onMouseLeave={closeGFM}>
                                 <div className={`${styles.dropdownWrapper} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`}>
                                     <div className={styles.navItemContent}>
                                         <div className={styles.itemImage}>
