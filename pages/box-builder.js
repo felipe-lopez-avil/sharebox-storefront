@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import router, { useRouter } from 'next/router'
+import Link from 'next/link'
 import {client} from '../utils/shopify'
 import styles from '../styles/box-builder.module.scss'
 import BoxBuilderStepper from '../components/BoxBuilder/Stepper/BoxBuilderStepper';
@@ -11,6 +12,7 @@ import FourthStep from '../components/BoxBuilder/MultiStepForm/FourthStep';
 import Controllers from '../components/BoxBuilder/Controllers/Controllers';
 
 import Slide from '@material-ui/core/Slide';
+import CircularProgress from '@mui/material/CircularProgress';
 
 
 const getDataFromStorage = (key) => {
@@ -27,10 +29,27 @@ const parseData = (data) => {
     return JSON.parse(JSON.stringify(data))
 }
 
+function makeYourBoxFilter(lineItem) {
+    if(lineItem.customAttributes[0] !== undefined){
+        if (lineItem.customAttributes[0].key === "Make Your Box"){
+            return true;
+        }else{
+            return false;
+        }
+    }else{
+        return false;
+    }
+}
+
 export default function BoxBuilder() {
     const router = useRouter()
 
+    const [currentCheckoutId, setcurrentCheckoutId] = useState('')
+
     const [orderSent, setOrderSent] = useState(false)
+    const [ableToBuild, setAbleToBuild] = useState(false)
+    const [mybProductInCheckout, setMybProductInCheckout] = useState(false)
+    const [mybLineItems, setMybLineItems] = useState([])
 
     const [currentStep, setCurrentStep] = useState(0)
     const [firstActive, setFirstActive] = useState(true)
@@ -92,6 +111,29 @@ export default function BoxBuilder() {
         }
         setCurrentStep(currentStep - 1);
     }
+
+
+    useEffect(() => {
+        if(typeof window !== 'undefined'){
+            const checkoutId = getDataFromStorage('checkoutId')
+            if (checkoutId !== null){
+                setcurrentCheckoutId(checkoutId)
+                client.checkout.fetch(checkoutId).then((checkout) => {
+                    const lineItems = checkout.lineItems
+                    setMybLineItems(lineItems.filter(makeYourBoxFilter))
+
+                    console.log(lineItems.filter(makeYourBoxFilter))
+
+                    const mybProductExist = lineItems.map(function(e){ if(e.customAttributes[0] !== undefined){return e.customAttributes[0].key} else{return "No Custom Attributes"} }).indexOf('Make Your Box')
+                    if(mybProductExist <= -1){
+                        setAbleToBuild(true)    
+                    }else{
+                        setMybProductInCheckout(true)
+                    }
+                });
+            }
+        }
+    }, [])
  
 
     const addToCart = async () => {
@@ -101,20 +143,20 @@ export default function BoxBuilder() {
         // Local Storage is checked to see if a CheckoutID already exists. If not, a new one is created;
         let checkoutId = null
         let checkoutTemp = null
-        let checkout = null
+        let newCheckout = null
         if (getDataFromStorage('checkoutId')) {
-            checkout = await client.checkout.fetch(getDataFromStorage('checkoutId'))
-            if (checkout.completedAt === null){
+            newCheckout = await client.checkout.fetch(getDataFromStorage('checkoutId'))
+            if (newCheckout.completedAt === null){
                 checkoutId = getDataFromStorage('checkoutId')
             }else{
                 checkoutTemp = await client.checkout.create()
-                checkout = parseData(checkoutTemp)
-                checkoutId = checkout.id
+                newCheckout = parseData(checkoutTemp)
+                checkoutId = newCheckout.id
                 setDataToStorage('checkoutId', checkoutId)
             }
         }else{
             checkoutTemp = await client.checkout.create()
-            checkout = parseData(checkoutTemp)
+            newCheckout = parseData(checkoutTemp)
             checkoutId = checkout.id
             setDataToStorage('checkoutId', checkoutId)
         }
@@ -144,13 +186,30 @@ export default function BoxBuilder() {
             ...lineItems3,
         ];
 
-        console.log(lineItemsToAdd)
+        // console.log(lineItemsToAdd)
 
-        checkout = await client.checkout.addLineItems(checkoutId, lineItemsToAdd)
+        if (mybProductInCheckout){
+            const checkoutId = currentCheckoutId; // ID of an existing checkout
+            const lineItemIdsToRemove = mybLineItems.map(function(item){
+                return btoa(item.id)
+            })
+        
+            // Remove an item from the checkout
+            client.checkout.removeLineItems(checkoutId, lineItemIdsToRemove).then((checkout) => {
 
-        console.log(parseData(checkout))
+                client.checkout.addLineItems(checkoutId, lineItemsToAdd).then((checkout) => {
+                    router.push('cart') 
+                });
+                
+            });  
 
-        router.push('cart')
+        }else{
+            newCheckout = await client.checkout.addLineItems(checkoutId, lineItemsToAdd)
+
+            console.log(parseData(newCheckout))
+
+            router.push('cart')
+        }
 
     }
 
@@ -160,9 +219,13 @@ export default function BoxBuilder() {
         }
     }, [])
 
+
     return (
         <>
-        <div className={styles.makeYourBox}>
+        {
+            ableToBuild ?
+            <>
+            <div className={styles.makeYourBox}>
 
             {/*Columna izquierda. Sección donde se muestran los pasos del proceso así como los porductos que llevas en el proceso*/}
             <div className={styles.summary}>
@@ -228,6 +291,30 @@ export default function BoxBuilder() {
                 orderSent={orderSent}
             />
         </div>
+        </>
+        :
+        <div className={styles.prevContainer}>
+            {mybProductInCheckout ?
+                <div className={styles.newBox}>
+                    <div className={styles.question}>
+                        Parece que ya tienes una box personalizada en tu carrito. ¿Quieres empezar otra?
+                    </div>
+                    <div className={styles.warning}>
+                        Ten en cuenta que la Box que armaste previamente será reemplazada por la nueva Box
+                    </div>
+                    <div className={styles.actionButtons}>
+                        <button onClick={() => {setAbleToBuild(true)}}>Empezar nueva Box</button>
+                        <Link href='/'>
+                            <button>Volver a Inicio</button>
+                        </Link>
+                    </div>
+                </div>
+                :
+                <CircularProgress/>
+            }
+        </div>
+        }
+        
         </>
     )
 }

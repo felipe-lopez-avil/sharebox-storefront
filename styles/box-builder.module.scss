@@ -51,6 +51,42 @@
     box-shadow: 0 -1px 4px (rgba($color: #000000, $alpha: 0.13));
 }
 
+.prevContainer{
+    width: 100%;
+    min-height: 100vh;
+    padding-top: 85px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.newBox{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    padding: 0 5%;
+
+    .question{
+        font-size: 1.2rem;
+        font-weight: 500;
+    }
+
+    .warning{
+        font-size: 1.1rem;
+        margin: 10px 0px;
+    }
+
+    .actionButtons{
+        margin-top: 15px;
+
+        button{
+            margin: 0px 5px;
+        }
+    }
+}
+
 @media (max-width: 950px) {
     .makeYourBox{
         flex-direction: column;
