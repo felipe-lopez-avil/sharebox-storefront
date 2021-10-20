@@ -205,7 +205,7 @@ export default function SecondStep ({step2Items, setStep2Items, secondStepPrice,
                             <div className={styles.categoryCard}>
                                 <div className={styles.categoryBox} onClick={(e) => {openPopup('Home & Art', 'Home & Art', e)}}>
                                     <div className={styles.categoryIcon}>
-                                        <Image src="/petIcon.svg" layout="fill" objectFit="cover"/>
+                                        <Image src="/homeIcon.png" layout="fill" objectFit="cover"/>
                                     </div>
                                     <h4>Home & Art</h4>
                                 </div>
