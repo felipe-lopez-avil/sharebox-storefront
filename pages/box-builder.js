@@ -230,7 +230,18 @@ export default function BoxBuilder() {
             {/*Columna izquierda. Sección donde se muestran los pasos del proceso así como los porductos que llevas en el proceso*/}
             <div className={styles.summary}>
                 {stepper ?
-                    <BoxBuilderStepper currentStep={currentStep} step1Items={step1Items} step2Items={step2Items} step3Items={step3Items} />   
+                    <BoxBuilderStepper 
+                        currentStep={currentStep} 
+                        step1Items={step1Items}
+                        step2Items={step2Items} 
+                        setStep2Items={setStep2Items}
+                        secondStepPrice={secondStepPrice}
+                        setSecondStepPrice={setSecondStepPrice}
+                        step3Items={step3Items} 
+                        setStep3Items={setStep3Items}
+                        thirdStepPrice={thirdStepPrice}
+                        setThirdStepPrice={setThirdStepPrice}
+                    />   
                 : ''}
             </div>
             <div className={styles.mobileSummary}>

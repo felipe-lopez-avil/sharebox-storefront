@@ -56,6 +56,8 @@ export default function Navbar () {
     }, [])
 
     const openGTG = () => {
+        setMyb(false)
+        setGfm(false)
         if(gtg){
             setGtg(false)
         }else{
@@ -68,6 +70,8 @@ export default function Navbar () {
     }
 
     const openMYB = () => {
+        setGtg(false)
+        setGfm(false)
         if(myb){
             setMyb(false)
         }else{
@@ -80,6 +84,8 @@ export default function Navbar () {
     }
 
     const openGFM = () => {
+        setGtg(false)
+        setMyb(false)
         if(gfm){
             setGfm(false)
         }else{
@@ -231,7 +237,7 @@ export default function Navbar () {
                                         <div className={`${styles.itemDescription} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`}>
                                             <h3>MAKE YOUR BOX</h3>
                                             <p>Arma tu caja desde cero y personalízala como tú quieras.</p>
-                                            <Link href="/box-builder"><div className="button">¡Empieza a Crear!</div></Link>
+                                            <Link href="/box-builder"><div className={`${styles.button} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`}>¡Empieza a Crear!</div></Link>
                                         </div>
                                     </div>
                                 </div>
@@ -257,7 +263,7 @@ export default function Navbar () {
                                         <div className={`${styles.itemDescription} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`}>
                                             <h3>MARKET</h3>
                                             <p>Cómprate ese producto que siempre te encantó.</p>
-                                            <Link href="/market"><div className="button">¡Ver productos!</div></Link>
+                                            <Link href="/market"><div className={`${styles.button} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`}>¡Ver productos!</div></Link>
                                         </div>
                                     </div>
                                 </div>

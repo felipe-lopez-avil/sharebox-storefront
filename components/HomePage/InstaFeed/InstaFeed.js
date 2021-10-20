@@ -19,7 +19,9 @@ export default function InstaFeed() {
     return (
         <div className={styles.container}>
             <h3 className={styles.header}>
-                Síguenos en @shareboxmx
+                <a href="https://www.instagram.com/shareboxmx/" target="blank">
+                    Síguenos en @shareboxmx
+                </a>
             </h3>
             <div className={styles.gridContainer}>
                 <div className={styles.grid}>

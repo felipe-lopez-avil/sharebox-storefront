@@ -106,10 +106,10 @@ const useStepIconStyles = makeStyles({
     badge: {
       position: 'absolute',
       minWidth: '25px',
-      top: '-4px',
-      right: '3px',
+      top: '-5px',
+      right: '25px',
       padding: '2px 6px',
-      borderRadius: '12px',
+      borderRadius: '1px',
       backgroundColor: '#0082aa',
       fontSize: '14px',
       fontFamily: 'Poppins',
@@ -120,6 +120,25 @@ const useStepIconStyles = makeStyles({
       alignItems: 'center',
       justifyContent: 'center',
       border: '2px solid #fff'
+    },
+    deleteBadge: {
+      position: 'absolute',
+      minWidth: '25px',
+      top: '-5px',
+      right: '1px',
+      padding: '2px 6px',
+      borderRadius: '1px',
+      backgroundColor: 'tomato',
+      fontSize: '14px',
+      fontFamily: 'Poppins',
+      fontWeight: '600',
+      textAlign: 'center',
+      color: '#fff',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      border: '2px solid #fff',
+      cursor: 'pointer'
     },
     step: {
       fontFamily: '"Prompt"',
@@ -152,94 +171,113 @@ StepIcon.propTypes = {
     completed: PropTypes.bool,
   }; 
 
-export default function BoxBuilderStepper({currentStep, step1Items, step2Items, step3Items}) {
+export default function BoxBuilderStepper({currentStep, step1Items, step2Items, setStep2Items, secondStepPrice, setSecondStepPrice, step3Items, setStep3Items, thirdStepPrice, setThirdStepPrice}) {
   const classes = useStepIconStyles();
 
-    return (
-      <>
-        <Stepper className={classes.noPadding} activeStep={currentStep} orientation="vertical" connector={<StepperConnector />}>
-            <Step>
-                <StepLabel StepIconComponent={StepIcon}>
-                    <h4 className={classes.step} >PASO 1.</h4>
-                </StepLabel>
-                <StepContent>
-                    <h3 >Let the Magic Begin.</h3>
-                </StepContent> 
-            </Step>
-            <Step>
-                <StepLabel StepIconComponent={StepIcon}>
-                    <h4 className={classes.step} >PASO 2.</h4>
-                </StepLabel>
-                <StepContent>
-                    <h3 >Something Special.</h3>
-                </StepContent>
-            </Step>
-            <Step>
-                <StepLabel StepIconComponent={StepIcon}>
-                    <h4 className={classes.step} >PASO 3.</h4>
-                </StepLabel>
-                <StepContent>
-                    <h3 >Go Extra.</h3>
-                </StepContent>
-            </Step>
-            <Step>
-                <StepLabel StepIconComponent={StepIcon}>
-                    <h4 className={classes.step} >PASO 4.</h4>
-                </StepLabel>
-                <StepContent>
-                    <h3 >Share Happiness!</h3>
-                </StepContent>
-            </Step>
-        </Stepper> 
-        <div className={classes.wrapper}>
+  const removeStep2Item = (id, e) => {
+    e.preventDefault();
+    const newItems = step2Items.filter(item => item.productID !== id)
+    const removedItems = step2Items.filter(item => item.productID === id)
+    const removedItem = removedItems[0]
+    setStep2Items(newItems);
+    setSecondStepPrice(secondStepPrice - (parseFloat(removedItem.price) * removedItem.quantity))
+  }
 
-          <Grid container spacing={0}>
-            {step1Items.productID !== '' &&
-              <Grid item xs={4}>
-                <div className={classes.productContainer}>
-                    <div className={classes.productImage}>
-                      <Image
-                        src={step1Items.image}
-                        layout="fill"
-                        objectFit="cover"
-                      />
-                    </div>
-                    <span className={classes.badge}>{step1Items.quantity}</span>
-                </div>  
-              </Grid>
-            }
-            
-            {step2Items.map(item => (
-              <Grid item xs={4}>
-                <div className={classes.productContainer}>
-                    <div className={classes.productImage}>
-                      <Image
-                        src={item.image}
-                        layout="fill"
-                        objectFit="cover"
-                      />
-                    </div>
-                    <span className={classes.badge}>{item.quantity}</span>
-                </div>  
-              </Grid>
-            ))}
+  const removeStep3Item = (id, e) => {
+    e.preventDefault();
+    const newItems = step3Items.filter(item => item.productID !== id)
+    const removedItems = step3Items.filter(item => item.productID === id)
+    const removedItem = removedItems[0]
+    setStep3Items(newItems);
+    setThirdStepPrice(thirdStepPrice - (parseFloat(removedItem.price) * removedItem.quantity))
+  }
 
-            {step3Items.map(item => (
-              <Grid item xs={4}>
-                <div className={classes.productContainer}>
-                    <div className={classes.productImage}>
-                      <Image
-                        src={item.image}
-                        layout="fill"
-                        objectFit="cover"
-                      />
-                    </div>
-                    <span className={classes.badge}>{item.quantity}</span>
-                </div>  
-              </Grid>
-            ))}
-          </Grid>
-        </div>
-      </>
-    )
+  return (
+    <>
+      <Stepper className={classes.noPadding} activeStep={currentStep} orientation="vertical" connector={<StepperConnector />}>
+          <Step>
+              <StepLabel StepIconComponent={StepIcon}>
+                  <h4 className={classes.step} >PASO 1.</h4>
+              </StepLabel>
+              <StepContent>
+                  <h3 >Let the Magic Begin.</h3>
+              </StepContent> 
+          </Step>
+          <Step>
+              <StepLabel StepIconComponent={StepIcon}>
+                  <h4 className={classes.step} >PASO 2.</h4>
+              </StepLabel>
+              <StepContent>
+                  <h3 >Something Special.</h3>
+              </StepContent>
+          </Step>
+          <Step>
+              <StepLabel StepIconComponent={StepIcon}>
+                  <h4 className={classes.step} >PASO 3.</h4>
+              </StepLabel>
+              <StepContent>
+                  <h3 >Go Extra.</h3>
+              </StepContent>
+          </Step>
+          <Step>
+              <StepLabel StepIconComponent={StepIcon}>
+                  <h4 className={classes.step} >PASO 4.</h4>
+              </StepLabel>
+              <StepContent>
+                  <h3 >Share Happiness!</h3>
+              </StepContent>
+          </Step>
+      </Stepper> 
+      <div className={classes.wrapper}>
+
+        <Grid container spacing={0}>
+          {step1Items.productID !== '' &&
+            <Grid item xs={4}>
+              <div className={classes.productContainer}>
+                  <div className={classes.productImage}>
+                    <Image
+                      src={step1Items.image}
+                      layout="fill"
+                      objectFit="cover"
+                    />
+                  </div>
+              </div>  
+            </Grid>
+          }
+          
+          {step2Items.map(item => (
+            <Grid item xs={4}>
+              <div className={classes.productContainer}>
+                  <div className={classes.productImage}>
+                    <Image
+                      src={item.image}
+                      layout="fill"
+                      objectFit="cover"
+                    />
+                  </div>
+                  <span className={classes.badge}>{item.quantity}</span>
+                  <span className={classes.deleteBadge} onClick={(e) => removeStep2Item(item.productID, e)}>x</span>
+              </div>  
+            </Grid>
+          ))}
+
+          {step3Items.map(item => (
+            <Grid item xs={4}>
+              <div className={classes.productContainer}>
+                  <div className={classes.productImage}>
+                    <Image
+                      src={item.image}
+                      layout="fill"
+                      objectFit="cover"
+                    />
+                  </div>
+                  <span className={classes.badge}>{item.quantity}</span>
+                  <span className={classes.deleteBadge} onClick={(e) => removeStep3Item(item.productID, e)}>x</span>
+              </div>  
+            </Grid>
+          ))}
+        </Grid>
+      </div>
+    </>
+  )
 }

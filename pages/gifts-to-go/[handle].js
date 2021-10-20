@@ -257,7 +257,7 @@ export default function GTGProduct ({product, collection}) {
                                         </div>
                                         {option.values.map(value => (
                                             <>
-                                                {value.value === 'Personalizada' && formData[option.name] === 'Personalizada' &&
+                                                {(value.value === 'Personalizado' || value.value === 'Personalizada') && (formData[option.name] === 'Personalizado' || formData[option.name] === 'Personalizada') &&
                                                     <input 
                                                         className={styles.inputText} 
                                                         type="text" 

@@ -100,7 +100,7 @@ export default function GiftsToGo () {
                     (product) => product.vendor === ocassionFilter
                 )
             )
-        } else if (ocassionFilter === 'all') {
+        } else if (ocassionFilter === 'all' || event.target.value === 'Globos y Flores' || event.target.value === 'Snacks y Postres'){
             setProducts(
                 collection.products.filter(
                     (product) => product.productType === event.target.value
@@ -170,22 +170,26 @@ export default function GiftsToGo () {
                                     </RadioGroup>
                                 </FormControl>
                             </div>
-                            <div className={styles.filter}>
-                                <h5>Ocasiones</h5>
-                                <FormControl component="fieldset">
-                                    <RadioGroup aria-label="gender" name="gender1" value={ocassionFilter} onChange={handleOcassionFilter}>
-                                        <FormControlLabel value="all" control={<Radio />} label="Todas" />
-                                        <FormControlLabel value="Anillos y compromisos" control={<Radio />} label="Anillos y compromisos" />
-                                        <FormControlLabel value="Aniversario" control={<Radio />} label="Aniversario" />
-                                        <FormControlLabel value="Condolencias" control={<Radio />} label="Condolencias" />
-                                        <FormControlLabel value="Cumpleaños" control={<Radio />} label="Cumpleaños" />
-                                        <FormControlLabel value="For a long day" control={<Radio />} label="For a Long Day" />
-                                        <FormControlLabel value="Graduaciones y logros" control={<Radio />} label="Graduaciones y logros" />
-                                        <FormControlLabel value="New born & padrinos" control={<Radio />} label="New Born & Padrinos" />
-                                        <FormControlLabel value="Pets" control={<Radio />} label="Pets" />
-                                    </RadioGroup>
-                                </FormControl>
-                            </div>
+                            {typeFilter !== 'Globos y Flores' & typeFilter !== 'Snacks y Postres' ?
+                                <div className={styles.filter}>
+                                    <h5>Ocasiones</h5>
+                                    <FormControl component="fieldset">
+                                        <RadioGroup aria-label="gender" name="gender1" value={ocassionFilter} onChange={handleOcassionFilter}>
+                                            <FormControlLabel value="all" control={<Radio />} label="Todas" />
+                                            <FormControlLabel value="Anillos y compromisos" control={<Radio />} label="Anillos y compromisos" />
+                                            <FormControlLabel value="Aniversario" control={<Radio />} label="Aniversario" />
+                                            <FormControlLabel value="Condolencias" control={<Radio />} label="Condolencias" />
+                                            <FormControlLabel value="Cumpleaños" control={<Radio />} label="Cumpleaños" />
+                                            <FormControlLabel value="For a long day" control={<Radio />} label="For a Long Day" />
+                                            <FormControlLabel value="Graduaciones y logros" control={<Radio />} label="Graduaciones y logros" />
+                                            <FormControlLabel value="New born & padrinos" control={<Radio />} label="New Born & Padrinos" />
+                                            <FormControlLabel value="Pets" control={<Radio />} label="Pets" />
+                                        </RadioGroup>
+                                    </FormControl>
+                                </div>
+                                :
+                                ''
+                            }
                         </div>
 
                         <div className={styles.mobileFilters}>
