@@ -86,8 +86,16 @@ export default function ThirdStep ({step3Items, setStep3Items, thirdStepPrice, s
         });
     }, [])
 
-    function addItem(id, title, price, image, e) {
+    function addItem(id, title, price, images, e) {
         e.preventDefault();
+
+        let imageToAdd 
+
+        if(images[0] === undefined){
+            imageToAdd = "https://cdn.shopify.com/s/files/1/0456/6820/4706/files/product-placeholder.png?v=1633451657"
+        }else{
+            imageToAdd = images[0].src
+        }
 
         var toAdd;
         var itemIndex = -1;
@@ -104,7 +112,7 @@ export default function ThirdStep ({step3Items, setStep3Items, thirdStepPrice, s
                 title: title,
                 price: price,
                 quantity: 1,
-                image: image,
+                image: imageToAdd,
             }
             setStep3Items([...step3Items, toAdd]);
         }
@@ -115,7 +123,7 @@ export default function ThirdStep ({step3Items, setStep3Items, thirdStepPrice, s
                 title: title,
                 price: price,
                 quantity: 1,
-                image: image,
+                image: imageToAdd,
             }
             setStep3Items([...step3Items, toAdd]);
         }else{
@@ -201,7 +209,7 @@ export default function ThirdStep ({step3Items, setStep3Items, thirdStepPrice, s
                                         </div>
                                         <div className={styles.actionButtons}>
                                             <div className={styles.notSelected}>
-                                                <div className={styles.addButton} onClick={(e) => addItem(product.variants[0].id, product.title, product.variants[0].price, product.images[0].src, e)}>
+                                                <div className={styles.addButton} onClick={(e) => addItem(product.variants[0].id, product.title, product.variants[0].price, product.images, e)}>
                                                     AGREGAR
                                                 </div>
                                             </div>
@@ -209,7 +217,7 @@ export default function ThirdStep ({step3Items, setStep3Items, thirdStepPrice, s
                                                 <div className={styles.trashButton} onClick={(e) => removeItem(product.variants[0].id, e)}>
                                                     <DeleteOutlineOutlinedIcon/>
                                                 </div>
-                                                <div className={styles.plusButton} onClick={(e) => addItem(product.variants[0].id, product.title, product.variants[0].price, product.images[0].src, e)}>
+                                                <div className={styles.plusButton} onClick={(e) => addItem(product.variants[0].id, product.title, product.variants[0].price, product.images, e)}>
                                                     <AddOutlinedIcon/>
                                                 </div>
                                             </div>

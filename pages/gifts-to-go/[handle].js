@@ -229,7 +229,7 @@ export default function GTGProduct ({product, collection}) {
             <div className={styles.product}>
                 <div className={styles.productImages}>
                     <Image
-                        src={product.images[0].src}
+                        src={product.images[0] !== undefined ? product.images[0].src : 'https://cdn.shopify.com/s/files/1/0456/6820/4706/files/product-placeholder.png?v=1633451657'}
                         layout="fill"
                         objectFit="cover"
                     />

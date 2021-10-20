@@ -272,13 +272,35 @@ export default function Cart () {
                                 {checkout.lineItems.map(lineItem => {
                                     if(lineItem.customAttributes[0] !== undefined){
                                         if(lineItem.customAttributes[0].key !== 'Make Your Box'){
+                                            if(lineItem.variant !== null){
+                                                return (
+                                                    <ProductsInCart
+                                                        image={lineItem.variant.image !== null ? lineItem.variant.image.src : 'https://cdn.shopify.com/s/files/1/0456/6820/4706/files/product-placeholder.png?v=1633451657'}
+                                                        product={lineItem.title}
+                                                        selectedOptions={lineItem.variant.selectedOptions}
+                                                        price={`$${lineItem.variant.price}`}
+                                                        quantity={lineItem.quantity.toString()}
+                                                        total={`$${(parseFloat(lineItem.variant.price)*lineItem.quantity).toString()}.00`}
+                                                        id={lineItem.id} 
+                                                        sendableCheckoutId={sendableCheckoutId}
+                                                        setCheckout={setCheckout}
+                                                        checkout={client.checkout}
+                                                        customAttributes={lineItem.customAttributes}
+                                                    />
+                                                )
+                                            }else{
+                                                return
+                                            }
+                                        }
+                                    }else {
+                                        if(lineItem.variant !== null){
                                             return (
-                                                <ProductsInCart
-                                                    image={lineItem.variant.image.src}
-                                                    product={lineItem.title}
+                                                <ProductsInCart 
+                                                    image={lineItem.variant.image !== null ? lineItem.variant.image.src : 'https://cdn.shopify.com/s/files/1/0456/6820/4706/files/product-placeholder.png?v=1633451657'}
+                                                    product={lineItem.title} 
                                                     selectedOptions={lineItem.variant.selectedOptions}
-                                                    price={`$${lineItem.variant.price}`}
-                                                    quantity={lineItem.quantity.toString()}
+                                                    price={`$${lineItem.variant.price}`} 
+                                                    quantity={lineItem.quantity.toString()} 
                                                     total={`$${(parseFloat(lineItem.variant.price)*lineItem.quantity).toString()}.00`}
                                                     id={lineItem.id} 
                                                     sendableCheckoutId={sendableCheckoutId}
@@ -287,23 +309,9 @@ export default function Cart () {
                                                     customAttributes={lineItem.customAttributes}
                                                 />
                                             )
+                                        }else{
+                                            return
                                         }
-                                    }else{
-                                        return (
-                                            <ProductsInCart 
-                                                image={lineItem.variant.image.src}
-                                                product={lineItem.title} 
-                                                selectedOptions={lineItem.variant.selectedOptions}
-                                                price={`$${lineItem.variant.price}`} 
-                                                quantity={lineItem.quantity.toString()} 
-                                                total={`$${(parseFloat(lineItem.variant.price)*lineItem.quantity).toString()}.00`}
-                                                id={lineItem.id} 
-                                                sendableCheckoutId={sendableCheckoutId}
-                                                setCheckout={setCheckout}
-                                                checkout={client.checkout}
-                                                customAttributes={lineItem.customAttributes}
-                                            />
-                                        )
                                     }
                                     
                                 })} 

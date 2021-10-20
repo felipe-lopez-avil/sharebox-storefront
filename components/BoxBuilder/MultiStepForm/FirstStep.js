@@ -52,10 +52,16 @@ export default function FirstStep ({step1Items, setStep1Items, setFirstStepPrice
     }, [])
 
 
-    function addItem(id, title, price, image, e) {
+    function addItem(id, title, price, images, e) {
         e.preventDefault();
-        
-        setStep1Items({productID: id, title: title, price: price, quantity: 1, image: image,});
+        let imageToAdd 
+
+        if(images[0] === undefined){
+            imageToAdd = "https://cdn.shopify.com/s/files/1/0456/6820/4706/files/product-placeholder.png?v=1633451657"
+        }else{
+            imageToAdd = images[0].src
+        }
+        setStep1Items({productID: id, title: title, price: price, quantity: 1, image: imageToAdd,});
         setFirstStepPrice(parseFloat(price))
     }
 
@@ -86,7 +92,7 @@ export default function FirstStep ({step1Items, setStep1Items, setFirstStepPrice
                             : 
                         productsMYB1.map((product) => (
                             <Grid item xs={6} sm={3}>
-                                <div className={styles.productContainer} onClick={(e) => addItem(product.variants[0].id, product.title, product.variants[0].price, product.images[0].src, e)}>
+                                <div className={styles.productContainer} onClick={(e) => addItem(product.variants[0].id, product.title, product.variants[0].price, product.images, e)}>
                                     <input className={styles.boxInput} 
                                         type="radio" 
                                         name={product.handle}
@@ -98,7 +104,7 @@ export default function FirstStep ({step1Items, setStep1Items, setFirstStepPrice
                                     <label className={styles.forBoxInput} for={product.id}>
                                         <div className={styles.firstStepImage}>
                                             <Image
-                                                src={product.images[0].src}
+                                                src={product.images[0] !== undefined ? product.images[0].src : 'https://cdn.shopify.com/s/files/1/0456/6820/4706/files/product-placeholder.png?v=1633451657'}
                                                 layout="fill"
                                                 objectFit="cover"
                                             />
