@@ -46,7 +46,6 @@ export default function Home() {
         <div className={styles.container}>
             <Head>
                 <title>Sharebox</title>
-                <link rel="icon" href="/favicon.png" />
             </Head>
             <Hero/>
             <Onboarding/>
