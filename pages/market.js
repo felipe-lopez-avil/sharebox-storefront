@@ -100,10 +100,7 @@ export default function GiftsForMe () {
 
     return (
         <div className={styles.container}>
-            <Head>
-                <title>Market</title>
-                <link rel="icon" href="/favicon.png" />
-            </Head>
+            
             <div className={styles.title}>
                 <h1>MARKET</h1>
             </div>

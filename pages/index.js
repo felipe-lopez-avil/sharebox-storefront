@@ -44,10 +44,7 @@ export default function Home() {
 
     return (
         <div className={styles.container}>
-            <Head>
-                <title>Sharebox</title>
-                <link rel="icon" href="/favicon.png" />
-            </Head>
+            
             <Hero/>
             <Onboarding/>
             <Bestsellers products={products}/>

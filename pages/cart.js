@@ -232,11 +232,7 @@ export default function Cart () {
     return (
         <div className={styles.container}>
 
-            <Head>
-                <title>Tu Carrito</title>
-                <link rel="icon" href="/favicon.png" />
-            </Head>
-
+            
             <div className={styles.card}>
                 <div className={styles.cartHeader}>
                     <h1>Carrito de Compras</h1>
