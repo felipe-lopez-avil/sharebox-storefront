@@ -94,13 +94,14 @@ export default function Bestsellers({products}) {
                         "clickable": true
                     }}
                     autoplay={{
-                        "delay": 4000000,
+                        "delay": 3500,
                         "disableOnInteraction": false
                     }}
                 >
                     {products.map(product => (
                         <SwiperSlide>
                             <div className={styles.centerCard}>
+                                <Link href={`/gifts-to-go/${product.handle}`}>
                                     <div className={styles.productCard}>
                                         <div className={styles.productImage}>
                                             <Image
@@ -112,6 +113,7 @@ export default function Bestsellers({products}) {
                                         <div className={styles.productTitle}>{product.title}</div>
                                         <div className={styles.productPrice}>${product.variants[0].price}</div>
                                     </div>
+                                </Link>
                             </div>
                         </SwiperSlide>
                     ))}

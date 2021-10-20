@@ -131,6 +131,7 @@ export default function GiftsForMe () {
                                     {/* <FormControlLabel value="Arte & hogar" control={<Radio />} label="Arte y Hogar" /> */}
                                     {/* <FormControlLabel value="Papelería" control={<Radio />} label="Papelería" /> */}
                                     <FormControlLabel value="Diversión" control={<Radio />} label="Diversión" />
+                                    <FormControlLabel value="Pets" control={<Radio />} label="Pets" />
                                 </RadioGroup>
                             </FormControl>
                         </div>
@@ -168,6 +169,7 @@ export default function GiftsForMe () {
                                                 {/* <FormControlLabel value="Arte & hogar" control={<Radio />} label="Arte y Hogar" /> */}
                                                 {/* <FormControlLabel value="Papelería" control={<Radio />} label="Papelería" /> */}
                                                 <FormControlLabel value="Diversión" control={<Radio />} label="Diversión" />
+                                                <FormControlLabel value="Pets" control={<Radio />} label="Pets" />
                                             </RadioGroup>
                                         </FormControl>
                                     </div>
