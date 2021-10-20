@@ -65,7 +65,7 @@ export default function CardModal ({closeCardModal, selectedCard, setSelectedCar
                             objectFit="contain"
                         />
                     </div>
-                    <div className={styles.cardType}>Aniversary</div>
+                    <div className={styles.cardType}>Anniversary</div>
                 </div>
                 <div className={styles.cardBox} onClick={() => showPreview('Congratulations','/cards/congratsCard.png')}>
                     <div className={styles.iconContainer}>

@@ -186,7 +186,7 @@ export default function DatePickerModal ({closeDateModal, setDefinitiveDate, dat
                     <div className={styles.icon}>
                         <StorefrontIcon style={{ fontSize: 35 }}/>
                     </div>
-                    <div className={styles.type}>Recogida Local Sin Costo</div> 
+                    <div className={styles.type}>Pickup Sin Costo</div> 
                 </div>
                 <div className={localActive ? `${styles.deliveryType} ${styles.active}` : styles.deliveryType} onClick={handleLocal}>
                     <div className={styles.icon}>
