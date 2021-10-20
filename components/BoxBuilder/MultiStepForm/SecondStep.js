@@ -243,19 +243,9 @@ export default function SecondStep ({step2Items, setStep2Items, secondStepPrice,
                         </Grid>
                         <Grid item xs={6} sm={4} md={3}>
                             <div className={styles.categoryCard}>
-                                <div className={styles.categoryBox} onClick={(e) => {openPopup('Pets', 'Pets', e)}}>
-                                    <div className={styles.categoryIcon}>
-                                        <Image src="/petIcon.svg" layout="fill" objectFit="cover"/>
-                                    </div>
-                                    <h4>Pets</h4>
-                                </div>
-                            </div>
-                        </Grid>
-                        <Grid item xs={6} sm={4} md={3}>
-                            <div className={styles.categoryCard}>
                                 <div className={styles.categoryBox} onClick={(e) => {openPopup('Pasteles y festejos', 'Pasteles & Festejos', e)}}>
                                     <div className={styles.categoryIcon}>
-                                        <Image src="/snacksIcon.svg" layout="fill" objectFit="cover"/>
+                                        <Image src="/cartModalIcons/bdayIcon.png" layout="fill" objectFit="cover"/>
                                     </div>
                                     <h4>Pasteles y Festejos</h4>
                                 </div>
@@ -263,7 +253,7 @@ export default function SecondStep ({step2Items, setStep2Items, secondStepPrice,
                         </Grid>
                         <Grid item xs={6} sm={4} md={3}>
                             <div className={styles.categoryCard}>
-                                <div className={styles.categoryBox} onClick={(e) => {openPopup('Snacks & postres', 'Snacks & Postres', e)}}>
+                                <div className={styles.categoryBox} onClick={(e) => {openPopup('Snacks y postres', 'Snacks y postres', e)}}>
                                     <div className={styles.categoryIcon}>
                                         <Image src="/snacksIcon.svg" layout="fill" objectFit="cover"/>
                                     </div>
