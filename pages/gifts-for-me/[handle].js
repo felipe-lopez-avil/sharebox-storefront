@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import styles from '../../styles/product.module.scss'
+import Head from 'next/head'
 import {client} from '../../utils/shopify'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -206,6 +207,10 @@ export default function GFMProduct ({product, collection}) {
 
     return (
         <>
+        <Head>
+            <title>{product.title}</title>
+            <link rel="icon" href="/favicon.png" />
+        </Head>
         <div className={styles.container}>
             <div className={styles.product}>
                 <div className={styles.productImages}>

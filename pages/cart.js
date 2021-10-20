@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import styles from '../styles/cart.module.scss'
+import Head from 'next/head'
 import Link from 'next/link'
 import {client} from '../utils/shopify'
 
@@ -55,6 +56,7 @@ function makeYourBoxFilter(lineItem) {
 }
 
 export default function Cart () {
+
     const classes = useStyles();
 
     const [sendableCheckoutId, setSendableCheckoutId] = useState(null)
@@ -229,6 +231,12 @@ export default function Cart () {
 
     return (
         <div className={styles.container}>
+
+            <Head>
+                <title>Tu Carrito</title>
+                <link rel="icon" href="/favicon.png" />
+            </Head>
+
             <div className={styles.card}>
                 <div className={styles.cartHeader}>
                     <h1>Carrito de Compras</h1>

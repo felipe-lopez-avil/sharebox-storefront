@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import router, { useRouter } from 'next/router'
+import Head from 'next/head'
 import Link from 'next/link'
 import {client} from '../utils/shopify'
 import styles from '../styles/box-builder.module.scss'
@@ -122,7 +123,7 @@ export default function BoxBuilder() {
                     const lineItems = checkout.lineItems
                     setMybLineItems(lineItems.filter(makeYourBoxFilter))
 
-                    console.log(lineItems.filter(makeYourBoxFilter))
+                    // console.log(lineItems.filter(makeYourBoxFilter))
 
                     const mybProductExist = lineItems.map(function(e){ if(e.customAttributes[0] !== undefined){return e.customAttributes[0].key} else{return "No Custom Attributes"} }).indexOf('Make Your Box')
                     if(mybProductExist <= -1){
@@ -206,7 +207,7 @@ export default function BoxBuilder() {
         }else{
             newCheckout = await client.checkout.addLineItems(checkoutId, lineItemsToAdd)
 
-            console.log(parseData(newCheckout))
+            // console.log(parseData(newCheckout))
 
             router.push('cart')
         }
@@ -222,6 +223,10 @@ export default function BoxBuilder() {
 
     return (
         <>
+        <Head>
+            <title>Make Your Box</title>
+            <link rel="icon" href="/favicon.png" />
+        </Head>
         {
             ableToBuild ?
             <>

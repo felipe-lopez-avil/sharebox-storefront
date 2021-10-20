@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { client } from '../utils/shopify'
+import Head from 'next/head'
 import styles from '../styles/gifts-to-go.module.scss'
 import Image from 'next/image';
 import Link from 'next/link'
@@ -57,7 +58,7 @@ export default function GiftsForMe () {
 
         client.collection.fetchWithProducts(collectionId, {productsFirst: 250}).then((collection) => {
             // Do something with the collection
-            console.log(collection.products);
+            // console.log(collection.products);
             setCollection(JSON.parse(JSON.stringify(collection)))
             setProducts(collection.products)
         });
@@ -84,7 +85,7 @@ export default function GiftsForMe () {
 
     const handleActiveFilter = (event) => {
         setActiveFilter(event.target.value);
-        console.log(event.target.value);
+        // console.log(event.target.value);
 
         if(event.target.value === "all"){
             setProducts(collection.products)
@@ -99,6 +100,10 @@ export default function GiftsForMe () {
 
     return (
         <div className={styles.container}>
+            <Head>
+                <title>Market</title>
+                <link rel="icon" href="/favicon.png" />
+            </Head>
             <div className={styles.title}>
                 <h1>MARKET</h1>
             </div>
@@ -221,7 +226,7 @@ export async function getServerSideProps() {
     const collection = await client.collection.fetchWithProducts(collectionId, {productsFirst: 8})
     
     
-    console.log({ collection })
+    // console.log({ collection })
     // Pass data to the page via props
     return { props: { collection: JSON.parse(JSON.stringify(collection))} }
 }

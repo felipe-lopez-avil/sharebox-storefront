@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import styles from '../../styles/product.module.scss'
+import Head from 'next/head'
 import {client} from '../../utils/shopify'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -45,6 +46,7 @@ const parseData = (data) => {
 }
 
 export default function GTGProduct ({product, collection}) {
+
     const classes = useStyles();
 
     const collectionBS = "Z2lkOi8vc2hvcGlmeS9Db2xsZWN0aW9uLzI3ODkwODMzODMzOA=="
@@ -219,6 +221,10 @@ export default function GTGProduct ({product, collection}) {
 
     return (
         <>
+        <Head>
+            <title>{product.title}</title>
+            <link rel="icon" href="/favicon.png" />
+        </Head>
         <div className={styles.container}>
             <div className={styles.product}>
                 <div className={styles.productImages}>

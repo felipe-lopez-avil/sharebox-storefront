@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { client } from '../utils/shopify'
+
 import styles from '../styles/gifts-to-go.module.scss'
+import Head from 'next/head'
 import Image from 'next/image';
 import Link from 'next/link'
 
@@ -59,11 +61,9 @@ export default function GiftsToGo () {
 
         client.collection.fetchWithProducts(collectionId, {productsFirst: 250}).then((collection) => {
             // Do something with the collection
-            console.log(collection.products);
             setCollection(JSON.parse(JSON.stringify(collection)))
             setProducts(collection.products)
         });
-        //console.log(collection.products)
     }, [])
 
     // State of the Active Filter
@@ -90,7 +90,6 @@ export default function GiftsToGo () {
 
         setTypeFilter(event.target.value);
 
-        // console.log(event.target.value);
 
         if(event.target.value === "all" && ocassionFilter === 'all'){
             setProducts(collection.products)
@@ -120,7 +119,6 @@ export default function GiftsToGo () {
 
         setOcassionFilter(event.target.value);
 
-        // console.log(event.target.value);
 
         if(event.target.value === "all" && typeFilter === 'all'){
             setProducts(collection.products)
@@ -148,6 +146,12 @@ export default function GiftsToGo () {
 
     return (
         <div className={styles.container}>
+
+            <Head>
+                <title>Gifts To Go!</title>
+                <link rel="icon" href="/favicon.png" />
+            </Head>
+
             <div className={styles.title}>
                 <h1>GIFTS TO GO</h1>
             </div>

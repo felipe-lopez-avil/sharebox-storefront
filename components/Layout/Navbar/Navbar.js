@@ -237,7 +237,7 @@ export default function Navbar () {
                                         <div className={`${styles.itemDescription} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`}>
                                             <h3>MAKE YOUR BOX</h3>
                                             <p>Arma tu caja desde cero y personalízala como tú quieras.</p>
-                                            <Link href="/box-builder"><div className={`${styles.button} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`}>¡Empieza a Crear!</div></Link>
+                                            <Link href="/make-your-box"><div className={`${styles.button} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`}>¡Empieza a Crear!</div></Link>
                                         </div>
                                     </div>
                                 </div>
@@ -373,7 +373,7 @@ export default function Navbar () {
                                     Gifts To Go
                                 </div>
                             </Link>
-                            <Link href="/box-builder">
+                            <Link href="/make-your-box">
                                 <div className={styles.mobileNavItem} onClick={closeMobileMenu}>
                                     Make Your Box
                                 </div>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styles from '../styles/home.module.scss'
 import { client } from '../utils/shopify'
+import Head from 'next/head'
 
 import Hero from '../components/HomePage/Hero/Hero'
 import Onboarding from '../components/HomePage/Onboarding/Onboarding'
@@ -43,6 +44,10 @@ export default function Home() {
 
     return (
         <div className={styles.container}>
+            <Head>
+                <title>Sharebox</title>
+                <link rel="icon" href="/favicon.png" />
+            </Head>
             <Hero/>
             <Onboarding/>
             <Bestsellers products={products}/>

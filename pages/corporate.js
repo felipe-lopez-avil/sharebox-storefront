@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import Head from 'next/head'
 
 import styles from '../styles/corporate.module.scss'
 import Hero from '../components/Corporate/Hero/Hero'
@@ -8,20 +8,16 @@ import Form from '../components/Corporate/Form/Form';
 import Urgent from '../components/Corporate/Urgent/Urgent';
 
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import MuiAccordion from '@material-ui/core/Accordion';
-import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
-import MuiAccordionDetails from '@material-ui/core/AccordionDetails';
-import Typography from '@material-ui/core/Typography';
-
-import { MdKeyboardArrowDown } from 'react-icons/md'
-import { faFileExcel } from '@fortawesome/free-solid-svg-icons';
 
 
 export default function Corporate() {
 
     return(
         <div className={styles.corporate}>
+            <Head>
+                <title>Sharebox Corporate</title>
+                <link rel="icon" href="/favicon.png" />
+            </Head>
             <Hero/>
             <Moments/>
             <HowItWorks/>
