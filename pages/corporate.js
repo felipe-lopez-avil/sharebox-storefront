@@ -14,7 +14,10 @@ export default function Corporate() {
 
     return(
         <div className={styles.corporate}>
-            
+            <Head>
+                <title>Sharebox Corporate</title>
+                <link rel="icon" href="/favicon.png" />
+            </Head>
             <Hero/>
             <Moments/>
             <HowItWorks/>

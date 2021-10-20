@@ -221,7 +221,10 @@ export default function GTGProduct ({product, collection}) {
 
     return (
         <>
-        
+        <Head>
+            <title>{product.title}</title>
+            <link rel="icon" href="/favicon.png" />
+        </Head>
         <div className={styles.container}>
             <div className={styles.product}>
                 <div className={styles.productImages}>

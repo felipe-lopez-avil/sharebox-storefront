@@ -225,7 +225,10 @@ export default function BoxBuilder() {
 
     return (
         <>
-        
+            <Head>
+                <title>Make Your Box</title>
+                <link rel="icon" href="/favicon.png" />
+            </Head>
         {
             ableToBuild ?
             <>

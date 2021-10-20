@@ -56,7 +56,7 @@ function makeYourBoxFilter(lineItem) {
 }
 
 export default function Cart () {
-
+    
     const classes = useStyles();
 
     const [sendableCheckoutId, setSendableCheckoutId] = useState(null)

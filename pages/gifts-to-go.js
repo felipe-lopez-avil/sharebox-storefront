@@ -147,7 +147,10 @@ export default function GiftsToGo () {
     return (
         <div className={styles.container}>
 
-            
+            <Head>
+                <title>Gifts To Go!</title>
+                <link rel="icon" href="/favicon.png" />
+            </Head>
 
             <div className={styles.title}>
                 <h1>GIFTS TO GO</h1>
