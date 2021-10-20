@@ -28,7 +28,7 @@ const useStyles = makeStyles({
     },
 });
 
-export default function DatePickerModal ({closeDateModal, setDefinitiveDate, date, setDate, minDate, setMinDate, time, setTime, deliveryType, setDeliveryType, saveAttributes}) {
+export default function DatePickerModal ({closeDateModal, setDefinitiveDate, date, setDate, minDate, setMinDate, time, setTime, deliveryType, setDeliveryType, saveAttributes, saveNationalAttributes}) {
     const classes = useStyles();
 
     const [pickAndGoActive, setPickAndGoActive] = useState(true);
@@ -222,7 +222,7 @@ export default function DatePickerModal ({closeDateModal, setDefinitiveDate, dat
 
                 {nationalActive === true &&
                     <National
-                        saveAttributes={saveAttributes}
+                        saveNationalAttributes={saveNationalAttributes}
                     />
                 }
 

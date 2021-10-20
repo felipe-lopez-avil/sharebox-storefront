@@ -102,8 +102,13 @@ export default function Cart () {
                         let attributes = checkout.customAttributes;
                         let deliveryInfoExist = attributes.map(function(e) { return e.key; }).indexOf('Tipo de Envío');
                         if(deliveryInfoExist > -1 & attributes[deliveryInfoExist + 1].value !== '') {
-                            let deliveryMessage = `${attributes[deliveryInfoExist].value} el día ${attributes[deliveryInfoExist + 1].value} (${attributes[deliveryInfoExist + 2].value})`
-                            setDeliveryResume(deliveryMessage);
+                            if(attributes[deliveryInfoExist].value === "Envío Nacional"){
+                                let deliveryMessage = `Seleccionaste envío Nacional ${attributes[deliveryInfoExist + 1].value}`
+                                setDeliveryResume(deliveryMessage);
+                            }else{
+                                let deliveryMessage = `${attributes[deliveryInfoExist].value} el día ${attributes[deliveryInfoExist + 1].value} (${attributes[deliveryInfoExist + 2].value})`
+                                setDeliveryResume(deliveryMessage);
+                            }
                         }
                         let cardInfoExist = attributes.map(function(e) { return e.key; }).indexOf('Tipo de Tarjeta');
                         if(cardInfoExist > -1 & attributes[cardInfoExist].value !== '') {
@@ -162,11 +167,7 @@ export default function Cart () {
             ]
         };
 
-        if(formatDate === ''){
-            setDeliveryResume("Seleccionaste envío Nacional")
-        }else{
-            setDeliveryResume(`${deliveryType} el día ${formatDate} (${time})`)
-        }
+        setDeliveryResume(`${deliveryType} el día ${formatDate} (${time})`)
         setDateModal(false)
 
         client.checkout.updateAttributes(checkout.id, input).then((checkout) => {
@@ -174,7 +175,8 @@ export default function Cart () {
         })
     }
 
-    const saveNationalAttributes = () => {
+    const saveNationalAttributes = (type, e) => {
+        e.preventDefault();
         const input = {
             customAttributes: [
                 {key: "Tipo de Tarjeta", value: selectedCard}, 
@@ -182,10 +184,17 @@ export default function Cart () {
                 {key: "Destinatario", value: cardTo},
                 {key: "Mensaje", value: cardMessage},
                 {key: "Tipo de Envío", value: deliveryType},
-                {key: "Fecha de entrega", value: "-----"},
+                {key: "Fecha de entrega", value: type},
                 {key: "Hora de entrega", value: "-----"},
             ]
         };
+
+        setDeliveryResume(`Seleccionaste envío Nacional ${type}`)
+        setDateModal(false)
+
+        client.checkout.updateAttributes(checkout.id, input).then((checkout) => {
+            console.log(checkout);
+        })
     }
 
     const saveCardAttributes = () => {
@@ -367,6 +376,7 @@ export default function Cart () {
                         deliveryType={deliveryType}
                         setDeliveryType={setDeliveryType}
                         saveAttributes={saveAttributes}  
+                        saveNationalAttributes={saveNationalAttributes}
                     />
                 </div>
             </Grow>
