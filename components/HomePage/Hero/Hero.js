@@ -55,7 +55,7 @@ export default function Home() {
                         <div>
                             Arma tu caja desde cero y personalízala como tú quieras.
                         </div>
-                        <Link href="/box-builder">
+                        <Link href="/make-your-box">
                             <button>¡Crea tu Box!</button>
                         </Link>
                     </div>

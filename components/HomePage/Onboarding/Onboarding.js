@@ -53,7 +53,7 @@ export default function Onboarding() {
                                     ¡Tú sabes lo que le gusta! Arma una caja desde cero con los productos que más le gusten a la persona 
                                     especial que quieras sorprender. Tú lo conoces mejor que nadie.
                                 </p>
-                                <Link href="/box-builder">
+                                <Link href="/make-your-box">
                                     <button className={styles.mybBtn}>Make Your Box</button>
                                 </Link>
                             </div>
