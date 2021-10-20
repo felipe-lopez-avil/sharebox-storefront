@@ -232,12 +232,16 @@ export default function Cart () {
     return (
         <div className={styles.container}>
 
-            
+            <Head>
+                <title>Tu Carrito</title>
+                <link rel="icon" href="/favicon.png" />
+            </Head>
+
             <div className={styles.card}>
                 <div className={styles.cartHeader}>
                     <h1>Carrito de Compras</h1>
                 </div>
-                {checkout !== null & checkoutCompleted === false ?
+                {checkout !== null && checkoutCompleted === false ?
                     <>
                     {checkout.lineItems.length > 0 ?
                         <>
@@ -344,10 +348,19 @@ export default function Cart () {
                         </div>
                     }
                     </>
-                :
-                    <div className={styles.progressContainer}>
-                        <CircularProgress color="inherit" />
-                    </div>
+                :   
+                    <>
+                    {confirmationEmptyCart ?
+                        <div className={styles.noProducts}>
+                            <RemoveShoppingCartOutlinedIcon style={{ fontSize: 60, marginBottom: '20px' }}/>
+                            <div>No tienes productos en el carrito</div>
+                        </div>
+                        :
+                        <div className={styles.progressContainer}>
+                            <CircularProgress color="inherit" />
+                        </div>
+                    }
+                    </>
                 }
             </div>
             <Grow in={cardModal}>

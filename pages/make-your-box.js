@@ -132,6 +132,8 @@ export default function BoxBuilder() {
                         setMybProductInCheckout(true)
                     }
                 });
+            }else{
+                setAbleToBuild(true)
             }
         }
     }, [])
@@ -158,7 +160,7 @@ export default function BoxBuilder() {
         }else{
             checkoutTemp = await client.checkout.create()
             newCheckout = parseData(checkoutTemp)
-            checkoutId = checkout.id
+            checkoutId = newCheckout.id
             setDataToStorage('checkoutId', checkoutId)
         }
         const lineItems2 = step2Items.map((item) => (
