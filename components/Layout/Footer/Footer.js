@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import styles from './Footer.module.scss'
+import Link from 'next/link'
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 
 import MailchimpSubscribe from "react-mailchimp-subscribe"
@@ -60,10 +61,19 @@ export default function Footer() {
         <div className={styles.footer}>
             <div className={styles.links}>
                 <h5 className={styles.sectionTitle}>Enlaces Rápidos</h5>
-                <p className={styles.link}>Términos y condiciones</p>
-                <p className={styles.link}>Aviso de Privacidad</p>
-                <p className={styles.link}>Términos de Servicio</p>
-                <p className={styles.link}>Política de Devoluciones</p>
+                <Link href="terminos-y-condiciones">
+                    <p className={styles.link}>Términos y condiciones</p>
+                </Link>
+                <Link href="aviso-de-privacidad">
+                    <p className={styles.link}>Aviso de Privacidad</p>
+                </Link>
+                <Link href="">
+                    <p className={styles.link}>Términos de Servicio</p>
+                </Link>
+                <Link href="">
+                    <p className={styles.link}>Política de Devoluciones</p>
+                </Link>
+
             </div>
             <div className={styles.contact}>
                 <h5 className={styles.sectionTitle}>Contacto</h5>
