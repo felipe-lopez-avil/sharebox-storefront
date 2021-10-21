@@ -93,15 +93,11 @@ export default function Cart () {
     let currrentHour = parseInt(format(today, "H"))
 
     useEffect(() => {
-
-        console.log("Hora actual:")
-        console.log(currrentHour)
         if(typeof window !== 'undefined'){
             const checkoutId = getDataFromStorage('checkoutId')
             setSendableCheckoutId(checkoutId)
             if (checkoutId !== null){
                 client.checkout.fetch(checkoutId).then((checkout) => {
-                    console.log(checkout)
                     setCheckout(checkout)
                     if (checkout.completedAt !== null) {
                         setCheckoutCompleted(true)
