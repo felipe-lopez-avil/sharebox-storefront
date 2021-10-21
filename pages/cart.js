@@ -74,7 +74,7 @@ export default function Cart () {
 
     // Date and Time Picker States
     const [date, setDate] = useState(add(new Date(), {days: 1}), 'dd/MM/yyyy');
-    const [definitiveDate, setDefinitiveDate] = useState('')
+    const [definitiveDate, setDefinitiveDate] = useState(add(new Date(), {days: 1}), 'dd/MM/yyyy')
     const [minDate, setMinDate] = useState(add(new Date(), {days: 1}))
     const [nextDayOnly, setNextDayOnly] = useState(false)
     const [time, setTime] = useState('Por la mañana - 9:00 a 13:00');
@@ -101,7 +101,7 @@ export default function Cart () {
             setSendableCheckoutId(checkoutId)
             if (checkoutId !== null){
                 client.checkout.fetch(checkoutId).then((checkout) => {
-                    // console.log(checkout)
+                    console.log(checkout)
                     setCheckout(checkout)
                     if (checkout.completedAt !== null) {
                         setCheckoutCompleted(true)
@@ -130,7 +130,7 @@ export default function Cart () {
             }
         }
 
-        if (currrentHour > 13){
+        if (currrentHour > 15){
             let newDate = add(today, {days: 2});
             setDate(newDate, 'dd/MM/yyyy')
             setMinDate(newDate);

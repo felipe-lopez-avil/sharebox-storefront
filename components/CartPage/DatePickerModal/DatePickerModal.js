@@ -75,8 +75,9 @@ export default function DatePickerModal ({closeDateModal, setDefinitiveDate, dat
             setLocalDeliverActive(false);
             setNationalActive(false);
 
-            setDate(new Date(), 'dd/MM/yyyy');
-            setTime('Por la tarde - 13:00 a 18:00');
+            setDate(add(new Date(), {days: 1}), 'dd/MM/yyyy');
+            setDefinitiveDate(add(new Date(), {days: 1}), 'dd/MM/yyyy');
+            setTime('Por la mañana - 9:00 a 13:00');
             setDeliveryType('Recogida Local')
             setCp('');
             setValidCP('');
@@ -85,15 +86,12 @@ export default function DatePickerModal ({closeDateModal, setDefinitiveDate, dat
             let today = new Date();
             let meridiem = format(today, "aaa")
             let newDate
+            let currrentHour = parseInt(format(today, "H"))
 
-            if (meridiem === 'pm'){
-                newDate = add(today, {days: 1});
+            if (currrentHour > 15){
+                newDate = add(today, {days: 2});
                 setDate(newDate, 'dd/MM/yyyy')
                 setMinDate(newDate);
-                setTime('Por la mañana - 9:00 a 13:00');
-            }
-            if (afternoonOnly){
-                setTime('Por la tarde - 13:00 a 18:00');
             }
         }
 
@@ -106,8 +104,10 @@ export default function DatePickerModal ({closeDateModal, setDefinitiveDate, dat
             setLocalDeliverActive(true);
             setNationalActive(false);
 
-            setDate(new Date(), 'dd/MM/yyyy');
-            setTime('Por la tarde - 13:00 a 18:00');
+            //console.log(format(add(new Date(), {days: 1}), 'dd/MM/yyyy'))
+            setDate(add(new Date(), {days: 1}), 'dd/MM/yyyy');
+            setDefinitiveDate(add(new Date(), {days: 1}), 'dd/MM/yyyy');
+            setTime('Por la mañana - 9:00 a 13:00');
             setDeliveryType('Envío Local')
             setCp('');
             setValidCP('')
@@ -116,15 +116,12 @@ export default function DatePickerModal ({closeDateModal, setDefinitiveDate, dat
             let today = new Date();
             let meridiem = format(today, "aaa")
             let newDate
+            let currrentHour = parseInt(format(today, "H"))
 
-            if (meridiem === 'pm'){
-                newDate = add(today, {days: 1});
+            if (currrentHour > 15){
+                newDate = add(today, {days: 2});
                 setDate(newDate, 'dd/MM/yyyy')
                 setMinDate(newDate);
-                setTime('Por la mañana - 9:00 a 13:00');
-            }
-            if (afternoonOnly){
-                setTime('Por la tarde - 13:00 a 18:00');
             }
         }
 
@@ -137,7 +134,7 @@ export default function DatePickerModal ({closeDateModal, setDefinitiveDate, dat
             setLocalDeliverActive(false);
             setNationalActive(true);
 
-            setDate(new Date(), 'dd/MM/yyyy')
+            setDate(add(new Date(), {days: 1}), 'dd/MM/yyyy')
             setTime('');
             setDeliveryType('Envío Nacional')
             setCp('');
