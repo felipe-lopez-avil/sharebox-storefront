@@ -67,7 +67,7 @@ export default function Local ({cp, handleCP, validCP, validateCP, confirmationM
                                     fullWidth="true"
                                     variant="inline"
                                     inputVariant="outlined"
-                                    format="MM/dd/yyyy"
+                                    format="dd/MM/yyyy"
                                     minDate={minDate}
                                     maxDate={limit}
                                     margin="normal"

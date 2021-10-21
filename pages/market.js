@@ -125,13 +125,17 @@ export default function GiftsForMe () {
                             <FormControl component="fieldset">
                                 <RadioGroup aria-label="gender" name="gender1" value={activeFilter} onChange={handleActiveFilter}>
                                     <FormControlLabel value="all" control={<Radio />} label="Todo" />
-                                    <FormControlLabel value="Cuidado personal" control={<Radio />} label="Cuidado Personal" />
+                                    <FormControlLabel value="Accesorios y complementos" control={<Radio />} label="Accesorios y complementos" />
+                                    <FormControlLabel value="Arte & hogar" control={<Radio />} label="Arte & hogar" />
                                     <FormControlLabel value="Bebés y niños" control={<Radio />} label="Bebés y niños" />
+                                    <FormControlLabel value="Bebidas y Complementos" control={<Radio />} label="Bebidas y complementos" />
+                                    <FormControlLabel value="Bienestar" control={<Radio />} label="Bienestar" />
+                                    <FormControlLabel value="Cuidado personal" control={<Radio />} label="Cuidado Personal" />
+                                    <FormControlLabel value="Diversión" control={<Radio />} label="Diversión" />
                                     <FormControlLabel value="Joyería" control={<Radio />} label="Joyería" />
                                     {/* <FormControlLabel value="Arte & hogar" control={<Radio />} label="Arte y Hogar" /> */}
-                                    {/* <FormControlLabel value="Papelería" control={<Radio />} label="Papelería" /> */}
-                                    <FormControlLabel value="Diversión" control={<Radio />} label="Diversión" />
                                     <FormControlLabel value="Pets" control={<Radio />} label="Pets" />
+                                    <FormControlLabel value="Papelería" control={<Radio />} label="Papelería" />
                                 </RadioGroup>
                             </FormControl>
                         </div>
@@ -163,13 +167,17 @@ export default function GiftsForMe () {
                                         <FormControl component="fieldset">
                                             <RadioGroup aria-label="gender" name="gender1" value={activeFilter} onChange={handleActiveFilter}>
                                                 <FormControlLabel value="all" control={<Radio />} label="Todo" />
-                                                <FormControlLabel value="Cuidado personal" control={<Radio />} label="Cuidado Personal" />
+                                                <FormControlLabel value="Accesorios y complementos" control={<Radio />} label="Accesorios y complementos" />
+                                                <FormControlLabel value="Arte & hogar" control={<Radio />} label="Arte & hogar" />
                                                 <FormControlLabel value="Bebés y niños" control={<Radio />} label="Bebés y niños" />
+                                                <FormControlLabel value="Bebidas y complementos" control={<Radio />} label="Bebidas y complementos" />
+                                                <FormControlLabel value="Bienestar" control={<Radio />} label="Bienestar" />
+                                                <FormControlLabel value="Cuidado personal" control={<Radio />} label="Cuidado Personal" />
+                                                <FormControlLabel value="Diversión" control={<Radio />} label="Diversión" />
                                                 <FormControlLabel value="Joyería" control={<Radio />} label="Joyería" />
                                                 {/* <FormControlLabel value="Arte & hogar" control={<Radio />} label="Arte y Hogar" /> */}
-                                                {/* <FormControlLabel value="Papelería" control={<Radio />} label="Papelería" /> */}
-                                                <FormControlLabel value="Diversión" control={<Radio />} label="Diversión" />
                                                 <FormControlLabel value="Pets" control={<Radio />} label="Pets" />
+                                                <FormControlLabel value="Papelería" control={<Radio />} label="Papelería" />
                                             </RadioGroup>
                                         </FormControl>
                                     </div>

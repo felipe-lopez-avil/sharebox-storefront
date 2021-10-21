@@ -41,7 +41,7 @@ export default function FirstStep ({step1Items, setStep1Items, setFirstStepPrice
     useEffect(() => {
         client.collection.fetchWithProducts(collectionMYB1, {productsFirst: 10}).then((collection) => {
             // Do something with the collection
-            console.log(collection)
+            //console.log(collection)
             // Se convierte el objeto a JSON
             var parsedCollection = JSON.parse(JSON.stringify(collection));
     

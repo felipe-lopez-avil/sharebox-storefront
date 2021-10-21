@@ -5,6 +5,7 @@ import {client} from '../../utils/shopify'
 import Image from 'next/image'
 import Link from 'next/link'
 
+import { makeStyles } from '@material-ui/core/styles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Collapse from '@material-ui/core/Collapse';
 import Snackbar from '@material-ui/core/Snackbar';
@@ -16,6 +17,19 @@ import "swiper/components/navigation/navigation.min.css"
 import "swiper/components/pagination/pagination.min.css"
 
 SwiperCore.use([Navigation, Pagination, Autoplay]);
+
+const useStyles = makeStyles((theme) => ({
+    formControl: {
+      margin: theme.spacing(1),
+      minWidth: 120,
+    },
+    selectEmpty: {
+      marginTop: theme.spacing(2),
+    },
+    background: {
+        backgroundColor: '#0188b3'
+    }
+}));
 
 const getDataFromStorage = (key) => {
     const storage = window.localStorage;
@@ -31,7 +45,9 @@ const parseData = (data) => {
     return JSON.parse(JSON.stringify(data))
 }
 
-export default function GFMProduct ({product, collection}) {
+export default function Product ({product, collection}) {
+
+    const classes = useStyles();
 
     const collectionBS = "Z2lkOi8vc2hvcGlmeS9Db2xsZWN0aW9uLzI3ODkwODMzODMzOA=="
     const [products, setProducts] = useState([])
@@ -53,6 +69,7 @@ export default function GFMProduct ({product, collection}) {
     }
 
     useEffect(() => {
+        //console.log(product)
         if(typeof window !== 'undefined'){
             setWindowReady(true)
         }
@@ -119,22 +136,28 @@ export default function GFMProduct ({product, collection}) {
 
             if(match === true){
                 setVariantIndex(index);
+                /* console.log("La variante activa es:")
+                console.log(index) */
             }
 
         })
     }
 
     const handleAttributesChange = (event) => {
+        /* console.log(event.target.name)
+        console.log(event.target.value) */
 
         let attributeIndex = attributes.map(function(e) { return e.key; }).indexOf(event.target.name);
 
         if(attributeIndex <= -1){
             let newAttributes = [...attributes, {key: event.target.name, value: event.target.value}]
             setAttributes(newAttributes)
+            //console.log(newAttributes)
         }else{
             const attributesTemp = attributes
             attributesTemp[attributeIndex] = {key: event.target.name, value: event.target.value}
             setAttributes(attributesTemp)
+            //console.log(attributesTemp)
         }
     }
 
@@ -172,7 +195,6 @@ export default function GFMProduct ({product, collection}) {
         ];
 
         checkout = await client.checkout.addLineItems(checkoutId, lineItemsToAdd)
-
     }
 
     if(windowReady){
@@ -256,6 +278,7 @@ export default function GFMProduct ({product, collection}) {
                             open={productAdded}
                             onClose={closeSnackbar}
                             message={`${product.title} se añadió a tu carrito`}
+                            className={classes.background}
                         />
                     </div>
                 }
@@ -312,7 +335,6 @@ export async function getServerSideProps({query}) {
     const collectionId = 'Z2lkOi8vc2hvcGlmeS9Db2xsZWN0aW9uLzIzNjk4NjkyNTIxOA==';
     const collection = await client.collection.fetchWithProducts(collectionId, {productsFirst: 4})
 
-
     // Pass data to the page via props
-    return { props: { product: JSON.parse(JSON.stringify(product)), collection: JSON.parse(JSON.stringify(collection))} }
+    return { props: { product: JSON.parse(JSON.stringify(product)), collection: JSON.parse(JSON.stringify(collection))}}
 }

@@ -82,7 +82,7 @@ export default function ThirdStep ({step3Items, setStep3Items, thirdStepPrice, s
             // Se guarda el objeto
             // productsMYB1 = parsedCollection.products;
             setProductsMYB3(parsedCollection.products);
-            console.log(productsMYB3)
+            //console.log(productsMYB3)
         });
     }, [])
 

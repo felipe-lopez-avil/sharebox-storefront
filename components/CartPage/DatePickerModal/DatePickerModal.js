@@ -28,7 +28,7 @@ const useStyles = makeStyles({
     },
 });
 
-export default function DatePickerModal ({closeDateModal, setDefinitiveDate, date, setDate, minDate, setMinDate, time, setTime, deliveryType, setDeliveryType, saveAttributes, saveNationalAttributes}) {
+export default function DatePickerModal ({closeDateModal, setDefinitiveDate, date, setDate, minDate, setMinDate, time, setTime, deliveryType, setDeliveryType, saveAttributes, saveNationalAttributes, nextDayOnly, afternoonOnly}) {
     const classes = useStyles();
 
     const [pickAndGoActive, setPickAndGoActive] = useState(true);
@@ -61,7 +61,7 @@ export default function DatePickerModal ({closeDateModal, setDefinitiveDate, dat
     const handleDateChange = (date) => {
         setDate(date);
         setDefinitiveDate(date);
-        console.log(date);
+        // console.log(date);
     };
 
     const handleTimeChange = (event) => {
@@ -76,7 +76,7 @@ export default function DatePickerModal ({closeDateModal, setDefinitiveDate, dat
             setNationalActive(false);
 
             setDate(new Date(), 'dd/MM/yyyy');
-            setTime('Por la mañana - 9:00 a 13:00');
+            setTime('Por la tarde - 13:00 a 18:00');
             setDeliveryType('Recogida Local')
             setCp('');
             setValidCP('');
@@ -88,8 +88,12 @@ export default function DatePickerModal ({closeDateModal, setDefinitiveDate, dat
 
             if (meridiem === 'pm'){
                 newDate = add(today, {days: 1});
-                setDate(newDate, 'MM/dd/yyyy')
+                setDate(newDate, 'dd/MM/yyyy')
                 setMinDate(newDate);
+                setTime('Por la mañana - 9:00 a 13:00');
+            }
+            if (afternoonOnly){
+                setTime('Por la tarde - 13:00 a 18:00');
             }
         }
 
@@ -103,7 +107,7 @@ export default function DatePickerModal ({closeDateModal, setDefinitiveDate, dat
             setNationalActive(false);
 
             setDate(new Date(), 'dd/MM/yyyy');
-            setTime('Por la mañana - 9:00 a 13:00');
+            setTime('Por la tarde - 13:00 a 18:00');
             setDeliveryType('Envío Local')
             setCp('');
             setValidCP('')
@@ -117,6 +121,10 @@ export default function DatePickerModal ({closeDateModal, setDefinitiveDate, dat
                 newDate = add(today, {days: 1});
                 setDate(newDate, 'dd/MM/yyyy')
                 setMinDate(newDate);
+                setTime('Por la mañana - 9:00 a 13:00');
+            }
+            if (afternoonOnly){
+                setTime('Por la tarde - 13:00 a 18:00');
             }
         }
 
@@ -213,6 +221,7 @@ export default function DatePickerModal ({closeDateModal, setDefinitiveDate, dat
                         date={date}
                         handleDateChange={handleDateChange}
                         time={time}
+                        afternoonOnly={afternoonOnly}
                         handleTimeChange={handleTimeChange}
                         saveAttributes={saveAttributes}
                     />

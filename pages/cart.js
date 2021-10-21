@@ -73,10 +73,12 @@ export default function Cart () {
     const [cardMessage, setCardMessage] = useState('')
 
     // Date and Time Picker States
-    const [date, setDate] = useState(new Date(), 'MM/dd/yyyy');
+    const [date, setDate] = useState(add(new Date(), {days: 1}), 'dd/MM/yyyy');
     const [definitiveDate, setDefinitiveDate] = useState('')
-    const [minDate, setMinDate] = useState(new Date())
+    const [minDate, setMinDate] = useState(add(new Date(), {days: 1}))
+    const [nextDayOnly, setNextDayOnly] = useState(false)
     const [time, setTime] = useState('Por la mañana - 9:00 a 13:00');
+    const [afternoonOnly, setAfternoonOnly] = useState(true)
     const [deliveryType, setDeliveryType] = useState('Recogida Local');
 
     // States that listen if the card and delivery info were sent
@@ -88,14 +90,18 @@ export default function Cart () {
 
     let today = new Date();
     let meridiem = format(today, "aaa")
+    let currrentHour = parseInt(format(today, "H"))
 
     useEffect(() => {
+
+        console.log("Hora actual:")
+        console.log(currrentHour)
         if(typeof window !== 'undefined'){
             const checkoutId = getDataFromStorage('checkoutId')
             setSendableCheckoutId(checkoutId)
             if (checkoutId !== null){
                 client.checkout.fetch(checkoutId).then((checkout) => {
-                    console.log(checkout)
+                    // console.log(checkout)
                     setCheckout(checkout)
                     if (checkout.completedAt !== null) {
                         setCheckoutCompleted(true)
@@ -124,11 +130,16 @@ export default function Cart () {
             }
         }
 
-        if (meridiem === 'pm'){
-            let newDate = add(today, {days: 1});
-            setDate(newDate, 'MM/dd/yyyy')
+        if (currrentHour > 13){
+            let newDate = add(today, {days: 2});
+            setDate(newDate, 'dd/MM/yyyy')
             setMinDate(newDate);
+            setNextDayOnly(true)
+            setAfternoonOnly(false)
         }
+        /* if (currrentHour >= 4){
+            setAfternoonOnly(true)
+        } */
     }, [])
 
     const openCardModal = () => {
@@ -172,9 +183,7 @@ export default function Cart () {
         setDeliveryResume(`${deliveryType} el día ${formatDate} (${time})`)
         setDateModal(false)
 
-        client.checkout.updateAttributes(checkout.id, input).then((checkout) => {
-            console.log(checkout);
-        })
+        client.checkout.updateAttributes(checkout.id, input)
     }
 
     const saveNationalAttributes = (type, e) => {
@@ -194,9 +203,7 @@ export default function Cart () {
         setDeliveryResume(`Seleccionaste envío Nacional ${type}`)
         setDateModal(false)
 
-        client.checkout.updateAttributes(checkout.id, input).then((checkout) => {
-            console.log(checkout);
-        })
+        client.checkout.updateAttributes(checkout.id, input)
     }
 
     const saveCardAttributes = () => {
@@ -224,9 +231,7 @@ export default function Cart () {
         setCardResume(`Seleccionaste ${selectedCard}`)
         setCardModal(false)
 
-        client.checkout.updateAttributes(checkout.id, input).then((checkout) => {
-            console.log(checkout);
-        })
+        client.checkout.updateAttributes(checkout.id, input)
     }
 
     return (
@@ -402,6 +407,8 @@ export default function Cart () {
                         setDeliveryType={setDeliveryType}
                         saveAttributes={saveAttributes}  
                         saveNationalAttributes={saveNationalAttributes}
+                        nextDayOnly={nextDayOnly}
+                        afternoonOnly={afternoonOnly}
                     />
                 </div>
             </Grow>

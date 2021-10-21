@@ -14,7 +14,7 @@ export default function ProductsInCart({items, sendableCheckoutId, setCheckout, 
         // Remove an item from the checkout
         checkout.removeLineItems(checkoutId, lineItemIdsToRemove).then((checkout) => {
             // Do something with the updated checkout
-            console.log(checkout); // Checkout with line item 'Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0Lzc4NTc5ODkzODQ=' removed
+            //console.log(checkout); // Checkout with line item 'Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0Lzc4NTc5ODkzODQ=' removed
             setCheckout(checkout)
         }); 
     } 

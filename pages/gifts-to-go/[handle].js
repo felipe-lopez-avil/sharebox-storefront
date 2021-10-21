@@ -69,7 +69,7 @@ export default function GTGProduct ({product, collection}) {
     }
 
     useEffect(() => {
-        console.log(product)
+        //console.log(product)
         if(typeof window !== 'undefined'){
             setWindowReady(true)
         }
@@ -136,8 +136,8 @@ export default function GTGProduct ({product, collection}) {
 
             if(match === true){
                 setVariantIndex(index);
-                console.log("La variante activa es:")
-                console.log(index)
+                /* console.log("La variante activa es:")
+                console.log(index) */
             }
 
         })
@@ -152,17 +152,11 @@ export default function GTGProduct ({product, collection}) {
         if(attributeIndex <= -1){
             let newAttributes = [...attributes, {key: event.target.name, value: event.target.value}]
             setAttributes(newAttributes)
-            console.log(newAttributes)
         }else{
             const attributesTemp = attributes
             attributesTemp[attributeIndex] = {key: event.target.name, value: event.target.value}
             setAttributes(attributesTemp)
-            console.log(attributesTemp)
         }
-    }
-
-    const activeVariant = (event) => {
-        console.log(variantIndex)
     }
 
     const addToCart = async () => {
@@ -200,7 +194,6 @@ export default function GTGProduct ({product, collection}) {
 
         checkout = await client.checkout.addLineItems(checkoutId, lineItemsToAdd)
 
-        console.log(parseData(checkout))
     }
 
     if(windowReady){

@@ -30,7 +30,7 @@ const useStyles = makeStyles({
     },
 });
 
-export default function Pickup ({shouldDisableDate, minDate, date, handleDateChange, time, handleTimeChange, saveAttributes}) {
+export default function Pickup ({shouldDisableDate, minDate, date, handleDateChange, time, afternoonOnly, handleTimeChange, saveAttributes}) {
     const classes = useStyles();
 
     const limit = add(new Date(), {
@@ -69,7 +69,7 @@ export default function Pickup ({shouldDisableDate, minDate, date, handleDateCha
                                 fullWidth="true"
                                 variant="inline"
                                 inputVariant="outlined"
-                                format="MM/dd/yyyy"
+                                format="dd/MM/yyyy"
                                 minDate={minDate}
                                 maxDate={limit}
                                 margin="normal"
