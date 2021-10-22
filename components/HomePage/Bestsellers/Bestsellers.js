@@ -87,37 +87,41 @@ export default function Bestsellers({products}) {
                 <h3>Our Best Sellers</h3>
             </div>
             <div className={styles.products}>
-                <Swiper 
-                    freeMode={true}
-                    slidesPerView={slides}
-                    pagination={{
-                        "clickable": true
-                    }}
-                    autoplay={{
-                        "delay": 3500,
-                        "disableOnInteraction": false
-                    }}
-                >
-                    {products.map(product => (
-                        <SwiperSlide>
-                            <div className={styles.centerCard}>
-                                <Link href={`/gifts-to-go/${product.handle}`}>
-                                    <div className={styles.productCard}>
-                                        <div className={styles.productImage}>
-                                            <Image
-                                                src={product.images[0].src}
-                                                layout="fill"
-                                                objectFit="cover"
-                                            />
+                {windowReady ?
+                    <Swiper 
+                        freeMode={true}
+                        slidesPerView={slides}
+                        pagination={{
+                            "clickable": true
+                        }}
+                        autoplay={{
+                            "delay": 3500,
+                            "disableOnInteraction": false
+                        }}
+                    >
+                        {products.map(product => (
+                            <SwiperSlide>
+                                <div className={styles.centerCard}>
+                                    <Link href={`/gifts-to-go/${product.handle}`}>
+                                        <div className={styles.productCard}>
+                                            <div className={styles.productImage}>
+                                                <Image
+                                                    src={product.images[0].src}
+                                                    layout="fill"
+                                                    objectFit="cover"
+                                                />
+                                            </div>
+                                            <div className={styles.productTitle}>{product.title}</div>
+                                            <div className={styles.productPrice}>${product.variants[0].price}</div>
                                         </div>
-                                        <div className={styles.productTitle}>{product.title}</div>
-                                        <div className={styles.productPrice}>${product.variants[0].price}</div>
-                                    </div>
-                                </Link>
-                            </div>
-                        </SwiperSlide>
-                    ))}
-                </Swiper>
+                                    </Link>
+                                </div>
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
+                    :
+                    ''
+                }
             </div>
         </div>
     )
