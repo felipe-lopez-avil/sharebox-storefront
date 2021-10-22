@@ -4,11 +4,13 @@ import Head from 'next/head'
 import {client} from '../../utils/shopify'
 import Image from 'next/image'
 import Link from 'next/link'
+import parse from 'html-react-parser';
 
 import { makeStyles } from '@material-ui/core/styles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Collapse from '@material-ui/core/Collapse';
 import Snackbar from '@material-ui/core/Snackbar';
+import Grid from '@material-ui/core/Grid';
 
 import {Swiper, SwiperSlide} from 'swiper/react';
 import SwiperCore, { Navigation, Pagination, Autoplay } from 'swiper/core';
@@ -48,11 +50,22 @@ const parseData = (data) => {
 export default function GTGProduct ({product, collection}) {
 
     const classes = useStyles();
+    //console.log(product)
+    let multipleImages = false
+    let activeImageTemp
+    
+    if(product.images.length > 0){
+        multipleImages = true;
+        activeImageTemp = product.images[0].src
+    }else{
+        activeImageTemp = "https://cdn.shopify.com/s/files/1/0456/6820/4706/files/product-placeholder.png?v=1633451657"
+    }
 
     const collectionBS = "Z2lkOi8vc2hvcGlmeS9Db2xsZWN0aW9uLzI3ODkwODMzODMzOA=="
     const [products, setProducts] = useState([])
     const [slides, setSlides] = useState(4)
 
+    const [activeImage, setActiveImage] = useState(activeImageTemp)
     const [multiVariants, setMultiVariants] = useState(false)
     const [formData, setFormData] = useState({})
     const [windowReady, setWindowReady] = useState(false)
@@ -69,7 +82,7 @@ export default function GTGProduct ({product, collection}) {
     }
 
     useEffect(() => {
-        //console.log(product)
+        // console.log(product)
         if(typeof window !== 'undefined'){
             setWindowReady(true)
         }
@@ -136,6 +149,11 @@ export default function GTGProduct ({product, collection}) {
 
             if(match === true){
                 setVariantIndex(index);
+                
+
+                if(product.variants[index].image !== null & product.variants[index].image !== ''){
+                    setActiveImage(product.variants[index].image.src)
+                } 
                 /* console.log("La variante activa es:")
                 console.log(index) */
             }
@@ -220,16 +238,31 @@ export default function GTGProduct ({product, collection}) {
         </Head>
         <div className={styles.container}>
             <div className={styles.product}>
-                <div className={styles.productImages}>
+                {multipleImages &&
+                    <div className={styles.productGalery}>
+                        <Grid container spacing={0}>
+                            {product.images.map(image => (
+                                <div className={styles.singleImage} onClick={() => setActiveImage(image.src)}>
+                                    <Image
+                                        src={image.src}
+                                        layout="fill"
+                                        objectFit="cover"
+                                    />
+                                </div>
+                            ))}
+                        </Grid>
+                    </div>
+                }
+                <div className={`${styles.productImages} ${multipleImages ? '' : styles.noGallery}`}>
                     <Image
-                        src={product.images[0] !== undefined ? product.images[0].src : 'https://cdn.shopify.com/s/files/1/0456/6820/4706/files/product-placeholder.png?v=1633451657'}
+                        src={activeImage}
                         layout="fill"
                         objectFit="cover"
                     />
                 </div>
                 {
                     windowReady && 
-                    <div className={styles.productInfo}>
+                    <div className={`${styles.productInfo} ${multipleImages ? '' : styles.noGallery}`}>
                         <h3 className={styles.title}>{product.title}</h3>
                         <div className={styles.price}>${product.variants[variantIndex].price}</div>
 
@@ -237,7 +270,9 @@ export default function GTGProduct ({product, collection}) {
                             ¿Qué incluye? <ExpandMoreIcon/>
                         </div>
                         <Collapse in={dropActive}>
-                            <p className={styles.description}>{product.description}</p>
+                            <div className={styles.description}>
+                                {parse(product.descriptionHtml)}
+                            </div>
                         </Collapse>
 
                         {multiVariants && 
