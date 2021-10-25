@@ -41,6 +41,40 @@
     padding-left: 10px;
 }
 
+.filter{
+
+    .searchBar{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    input{
+        width: 84%;
+        height: 35px;
+        padding: 0 10px;
+        border: 2px solid #ececec;
+        border-radius: 3px;
+    }
+
+    
+    input:focus{
+        border: 2px solid #028ab5 !important;
+    }
+
+    .searchBtn{
+        width: 15%;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #028ab5;
+        border: 2px solid #028ab5;
+        color: #fff;
+        border-radius: 3px;
+    }
+}
+
 .mobileFilters{
     display: none;
 }

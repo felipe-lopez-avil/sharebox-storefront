@@ -14,6 +14,7 @@ import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import CircularProgress from '@mui/material/CircularProgress';
 import FilterListIcon from '@material-ui/icons/FilterList';
+import SearchIcon from '@material-ui/icons/Search';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 
@@ -52,6 +53,11 @@ export default function GiftsToGo () {
     const [products, setProducts] = useState(null)
     const [mobileFiltersActive, setMobileFiltersActive] = useState(false)
 
+    const [searchQuery, setSearchQuery] = useState('')
+    const handleQueryChange =(event) => {
+        setSearchQuery(event.target.value)
+    }
+
     // Checks if the window is ready so the functional components can render.
     const [windowReady, setWindowReady] = useState(false)
     useEffect(() => {
@@ -84,6 +90,21 @@ export default function GiftsToGo () {
 
     const closeMobileFilters = () => {
         setMobileFiltersActive(false)
+    }
+
+    const FilterByQuery = (e) => {
+        e.preventDefault();
+
+        if(searchQuery === ''){
+            setProducts(collection.products)
+        }else{
+            const query = searchQuery.toLowerCase();
+            setProducts(
+                collection.products.filter(
+                    (product) => product.title.toLowerCase().includes(query)
+                )
+            )
+        }
     }
 
     const handleTypeFilter = (event) => {
@@ -162,6 +183,23 @@ export default function GiftsToGo () {
                     <>
                         <div className={`${styles.filters} ${styles.hidden}`}>
                             <h4>Filtrar por:</h4>
+                            <div className={styles.filter}>
+                                <form onSubmit={FilterByQuery}>
+                                    <div className={styles.searchBar}>
+                                        <input 
+                                            value={searchQuery} 
+                                            onChange={handleQueryChange}
+                                            type="text" 
+                                            id="search-product" 
+                                            name="search-product" 
+                                            placeholder="Buscar producto"
+                                        />
+                                        <div className={styles.searchBtn} onClick={FilterByQuery}>
+                                            <SearchIcon/>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                             <div className={styles.filter}>
                                 <h5>Tipo de producto</h5>
                                 <FormControl component="fieldset">

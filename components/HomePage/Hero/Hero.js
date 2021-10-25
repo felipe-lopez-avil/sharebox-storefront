@@ -25,6 +25,7 @@ export default function Home() {
                 <Swiper 
                     navigation={true}
                     slidesPerView={1}
+                    observer={true} 
                     autoplay={{
                         "delay": 5000,
                         "disableOnInteraction": false
@@ -38,6 +39,7 @@ export default function Home() {
                                 autoPlay 
                                 loop 
                                 muted
+                                playsinline
                             >
                             </video>
                             <div className={styles.heroContent}>
@@ -59,6 +61,7 @@ export default function Home() {
                                 autoPlay 
                                 loop 
                                 muted
+                                playsinline
                             >
                             </video>
                             <div className={styles.heroContent}>
@@ -80,6 +83,7 @@ export default function Home() {
                                 autoPlay 
                                 loop 
                                 muted
+                                playsinline
                             >
                             </video>
                             <div className={styles.heroContent}>
