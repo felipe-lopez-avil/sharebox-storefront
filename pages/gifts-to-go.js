@@ -104,6 +104,7 @@ export default function GiftsToGo () {
                     (product) => product.title.toLowerCase().includes(query)
                 )
             )
+            
         }
     }
 
