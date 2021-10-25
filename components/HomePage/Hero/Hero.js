@@ -40,6 +40,7 @@ export default function Home() {
                                 loop 
                                 muted
                                 playsinline
+                                preload
                             >
                             </video>
                             <div className={styles.heroContent}>
@@ -62,6 +63,7 @@ export default function Home() {
                                 loop 
                                 muted
                                 playsinline
+                                preload
                             >
                             </video>
                             <div className={styles.heroContent}>
@@ -84,6 +86,7 @@ export default function Home() {
                                 loop 
                                 muted
                                 playsinline
+                                preload
                             >
                             </video>
                             <div className={styles.heroContent}>
