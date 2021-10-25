@@ -36,9 +36,9 @@ export default function Home() {
                             <video 
                                 src="https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Video_2.mp4?v=1633726286" 
                                 poster="/gtg-placeholder.png"
+                                muted
                                 autoPlay 
                                 loop 
-                                muted
                                 playsinline
                                 preload
                             >
@@ -59,9 +59,9 @@ export default function Home() {
                             <video 
                                 src="https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Video_1.mp4?v=1633726286" 
                                 poster="/myb-placeholder.png"
+                                muted
                                 autoPlay 
                                 loop 
-                                muted
                                 playsinline
                                 preload
                             >
@@ -82,9 +82,9 @@ export default function Home() {
                             <video 
                                 src="https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Video_2b_Trim.mp4?v=1633726287" 
                                 poster="/gfm-placeholder.png"
+                                muted
                                 autoPlay 
                                 loop 
-                                muted
                                 playsinline
                                 preload
                             >
