@@ -50,7 +50,7 @@ export default function Pickup ({shouldDisableDate, minDate, date, handleDateCha
                 <div className={styles.adress}>
                     <p>Lic. Jose Benitez 645, Centro, 64000 Monterrey, N.L.</p>
                     <div className={styles.instructions}>
-                        <a href="https://www.sharebox.mx/" target="blank">
+                        <a href="https://goo.gl/maps/xKC5YeRgEW4poFXv7" target="blank">
                             <div className={styles.flex}>
                                 <span>Indicaciones</span>
                                 <LaunchIcon style={{ fontSize: 15, marginLeft: '5px' }}/>

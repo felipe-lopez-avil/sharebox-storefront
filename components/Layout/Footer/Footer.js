@@ -67,10 +67,10 @@ export default function Footer() {
                 <Link href="aviso-de-privacidad">
                     <p className={styles.link}>Aviso de Privacidad</p>
                 </Link>
-                <Link href="">
+                <Link href="terminos-de-servicio">
                     <p className={styles.link}>Términos de Servicio</p>
                 </Link>
-                <Link href="">
+                <Link href="politica-de-devoluciones">
                     <p className={styles.link}>Política de Devoluciones</p>
                 </Link>
 

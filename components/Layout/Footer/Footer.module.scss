@@ -23,8 +23,13 @@
     }
     
     .link{
-        margin: 5px 0;
+        margin: 10px 0;
         font-weight: 600;
+        cursor: pointer;
+
+        &:hover{
+            text-decoration: underline;
+        }
     }
 
     @media (max-width: 1050px) {
