@@ -166,13 +166,13 @@ export default function Cart () {
 
         const input = {
             customAttributes: [
-                {key: "Tipo de Tarjeta", value: selectedCard}, 
+                {key: "Tipo-de-Tarjeta", value: selectedCard}, 
                 {key: "Remitente", value: cardFrom},
                 {key: "Destinatario", value: cardTo},
                 {key: "Mensaje", value: cardMessage},
-                {key: "Tipo de Envío", value: deliveryType},
-                {key: "Fecha de entrega", value: formatDate},
-                {key: "Hora de entrega", value: time},
+                {key: "Tipo-de-Envío", value: deliveryType},
+                {key: "Fecha-de-entrega", value: formatDate},
+                {key: "Hora-de-entrega", value: time},
             ]
         };
 
@@ -186,13 +186,13 @@ export default function Cart () {
         e.preventDefault();
         const input = {
             customAttributes: [
-                {key: "Tipo de Tarjeta", value: selectedCard}, 
+                {key: "Tipo-de-Tarjeta", value: selectedCard}, 
                 {key: "Remitente", value: cardFrom},
                 {key: "Destinatario", value: cardTo},
                 {key: "Mensaje", value: cardMessage},
-                {key: "Tipo de Envío", value: deliveryType},
-                {key: "Fecha de entrega", value: type},
-                {key: "Hora de entrega", value: "-----"},
+                {key: "Tipo-de-Envío", value: deliveryType},
+                {key: "Fecha-de-entrega", value: type},
+                {key: "Hora-de-entrega", value: "-----"},
             ]
         };
 
@@ -214,13 +214,13 @@ export default function Cart () {
 
         const input = {
             customAttributes: [
-                {key: "Tipo de Tarjeta", value: selectedCard}, 
+                {key: "Tipo-de-Tarjeta", value: selectedCard}, 
                 {key: "Remitente", value: cardFrom},
                 {key: "Destinatario", value: cardTo},
                 {key: "Mensaje", value: cardMessage},
-                {key: "Tipo de Envío", value: deliveryType},
-                {key: "Fecha de entrega", value: formatDate},
-                {key: "Hora de entrega", value: time},
+                {key: "Tipo-de-Envío", value: deliveryType},
+                {key: "Fecha-de-entrega", value: formatDate},
+                {key: "Hora-de-entrega", value: time},
             ]
         };
 

@@ -27,6 +27,9 @@ export default function Onboarding() {
                 <Swiper 
                     navigation={true}
                     slidesPerView={1}
+                    centeredSlides={true}
+                    observer={true} 
+                    cssMode={true}
                     autoplay={{
                         "delay": 5000,
                         "disableOnInteraction": false
