@@ -1,111 +1,133 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import styles from './Hero.module.scss'
 import Link from 'next/link'
 
-import {Swiper, SwiperSlide} from 'swiper/react';
-import SwiperCore, { Navigation, Autoplay } from 'swiper/core';
-import "swiper/swiper.min.css";
-import "swiper/components/navigation/navigation.min.css"
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
-SwiperCore.use([Navigation, Autoplay]);
+const slidesContent = [
+    {
+        title: "Gifts To Go",
+        copy: "Sorpresas listas para llevar, ¡perfectas para cualquier ocasión!", 
+        button: "¡Escoge tu Box!",
+        link: "/gifts-to-go",
+        videoUrl: "https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Video_2.mp4?v=1633726286",
+        poster: "/gtg-placeholder.png",
+        backgroundColor: "#ececec"
+    },
+    {
+        title: "Make Your Box", 
+        copy: "Arma tu caja desde cero y personalízala como tú quieras.",
+        button: "¡Crea tu Box!",
+        link: "/make-your-box",
+        videoUrl: "https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Video_1.mp4?v=1633726286",
+        poster: "/myb-placeholder.png",
+        backgroundColor: "#ececec"
+    },
+    {
+        title: "Market", 
+        copy: "Cómprate ese producto que siempre te encantó.",
+        button: "¡Consiéntete!",
+        link: "/market",
+        videoUrl: "https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Video_2b_Trim.mp4?v=1633726287",
+        poster: "/gfm-placeholder.png",
+        backgroundColor: "#ececec"
+    },
+]
+
+const delay =250000000000;
 
 export default function Home() {
     
-    const [windowReady, setWindowReady] = useState(false)
+    const [index, setIndex] = useState(0)
+    const timeoutRef = useRef(null);
+
+    function resetTimeout() {
+        if (timeoutRef.current) {
+          clearTimeout(timeoutRef.current);
+        }
+    }
+
+    const goPrev = () => {
+        const lastIndex = slidesContent.length - 1;
+
+        if(index <= 0){
+            setIndex(lastIndex)
+        }else{
+            setIndex(index - 1)
+        }
+    }
+
+    const goNext = () => {
+        const lastIndex = slidesContent.length - 1;
+
+        if(index >= lastIndex){
+            setIndex(0)
+        }else{
+            setIndex(index + 1)
+        }
+    }
 
     useEffect(() => {
-        if(typeof window !== 'undefined'){
-            setWindowReady(true)
-        }
-    }, [])
+        resetTimeout();
+        timeoutRef.current = setTimeout(
+          () =>
+            setIndex((prevIndex) =>
+              prevIndex === slidesContent.length - 1 ? 0 : prevIndex + 1
+            ),
+          delay
+        );
+        return () => {
+            resetTimeout();
+        };
+    }, [index]);
 
     return (
         <div className={styles.heroSection}>
-            {windowReady ?
-                <Swiper 
-                    navigation={true}
-                    slidesPerView={1}
-                    centeredSlides={true}
-                    observer={true} 
-                    cssMode={true}
-                    autoplay={{
-                        "delay": 5000,
-                        "disableOnInteraction": false
-                    }}
-                >
-                    <SwiperSlide>
-                        <div className={`${styles.slide} ${styles.alignLeft}`}>
+            <div className={styles.slideshowSlider} style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }}>
+                {slidesContent.map((currentSlide, index) => (
+                    <div className={styles.slide} key={index} style={{ backgroundColor: currentSlide.backgroundColor }}>
+                        <div className={styles.slideContainer}>
                             <video 
-                                src="https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Video_2.mp4?v=1633726286" 
-                                poster="/gtg-placeholder.png"
+                                src={currentSlide.videoUrl}
+                                poster={currentSlide.poster}
                                 muted
                                 autoPlay 
                                 loop 
                                 playsinline
+                                playsInline
                                 preload
                             >
                             </video>
                             <div className={styles.heroContent}>
-                                <h2>Gifts To Go</h2>
+                                <h2>{currentSlide.title}</h2>
                                 <div>
-                                    Sorpresas listas para llevar, ¡perfectas para cualquier ocasión!
+                                    {currentSlide.copy}
                                 </div>
-                                <Link href="/gifts-to-go">
-                                    <button>¡Escoge tu Box!</button>
+                                <Link href={currentSlide.link}>
+                                    <button>{currentSlide.button}</button>
                                 </Link>
                             </div>
                         </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div className={`${styles.slide} ${styles.alignCenter}`}>
-                            <video 
-                                src="https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Video_1.mp4?v=1633726286" 
-                                poster="/myb-placeholder.png"
-                                muted
-                                autoPlay 
-                                loop 
-                                playsinline
-                                preload
-                            >
-                            </video>
-                            <div className={styles.heroContent}>
-                                <h2>Make Your Box</h2>
-                                <div>
-                                    Arma tu caja desde cero y personalízala como tú quieras.
-                                </div>
-                                <Link href="/make-your-box">
-                                    <button>¡Crea tu Box!</button>
-                                </Link>
-                            </div>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div className={`${styles.slide} ${styles.aligRight}`}>
-                            <video 
-                                src="https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Video_2b_Trim.mp4?v=1633726287" 
-                                poster="/gfm-placeholder.png"
-                                muted
-                                autoPlay 
-                                loop 
-                                playsinline
-                                preload
-                            >
-                            </video>
-                            <div className={styles.heroContent}>
-                                <h2>Market</h2>
-                                <div>
-                                    Cómprate ese producto que siempre te encantó.
-                                </div>
-                                <Link href="/market">
-                                    <button>¡Consiéntete!</button>
-                                </Link>
-                            </div>
-                        </div>
-                    </SwiperSlide>
-                </Swiper>
-            :
-                ''
-            }
+                    </div>
+                ))}
+            </div>
+
+            <div className={styles.slideshowDots}>
+                {slidesContent.map((_, idx) => (
+                    <div 
+                        key={idx} 
+                        className={`${styles.slideshowDot} ${index === idx ? styles.active : ''}`}
+                        onClick={() => setIndex(idx)}
+                    ></div>
+                ))}
+            </div>
+
+            <div className={styles.leftArrow}>
+                <ArrowBackIosIcon style={{ fontSize: 50, cursor: 'pointer' }} onClick={goPrev}/>
+            </div>
+            <div className={styles.rightArrow} >
+                <ArrowBackIosIcon style={{ fontSize: 50, transform: 'rotate(180deg)', cursor: 'pointer' }} onClick={goNext} />
+            </div>
         </div>
     )
 }
