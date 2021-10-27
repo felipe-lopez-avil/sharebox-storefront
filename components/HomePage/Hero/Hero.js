@@ -34,7 +34,7 @@ const slidesContent = [
     },
 ]
 
-const delay =250000000000;
+const delay =5000;
 
 export default function Home() {
     

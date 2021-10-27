@@ -48,12 +48,12 @@ export default function Home() {
                 <title>Sharebox</title>
             </Head>
             <Hero/>
-            {/* <Onboarding/>
+            <Onboarding/>
             <Bestsellers products={products}/>
             <SmallDetails/>
             <WeAreSharebox/>
             <Methodology/>
-            <InstaFeed/> */}
+            <InstaFeed/>
         </div>
     )
   }
