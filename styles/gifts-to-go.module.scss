@@ -1,5 +1,5 @@
 .container{
-    padding: 85px 0px;
+    padding: 145px 0px;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -53,7 +53,7 @@
         width: 84%;
         height: 35px;
         padding: 0 10px;
-        border: 2px solid #ececec;
+        border: 2px solid #b2d0da;
         border-radius: 3px;
     }
 
@@ -73,6 +73,10 @@
         color: #fff;
         border-radius: 3px;
     }
+}
+
+.mobileFilter{
+    margin-bottom: 15px;
 }
 
 .mobileFilters{
@@ -185,16 +189,22 @@
 
     .mobileFilters{
         display: block;
+        width: 94%;
+    }
+
+    .filterAndSearch{
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
     }
 
     .trigger{
-        padding: 15px 25px;
-        margin-bottom: 20px;
+        padding: 10px 18px;
         display: flex;
         align-items: center;
         justify-content: center;
         border-radius: 5px;
-        border: 1px solid #bdbdbd;
+        background-color: #dcf3fa;
         cursor: pointer;
 
         span{
@@ -202,11 +212,19 @@
         }
     }
 
+    .searchButton{
+        padding: 10px 18px;
+        background-color: #dcf3fa;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+    }
+
     .activeFilters{
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-bottom: 20px;
+        margin-bottom: 15px;
     }
 
     .filtersModal{
@@ -227,8 +245,15 @@
         height: 90%;
         background-color: #fff;
         border-radius: 5px;
-        padding: 10%;
+        padding: 40px 10%;
         overflow-y: scroll;
+        position: relative;
+    }
+
+    .closeIcon{
+        position: absolute;
+        top: 20px;
+        right: 20px;
     }
 
     .confirm{

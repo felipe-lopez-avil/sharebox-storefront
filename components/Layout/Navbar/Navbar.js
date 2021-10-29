@@ -12,6 +12,8 @@ import { FaBars } from 'react-icons/fa'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import CloseIcon from '@material-ui/icons/Close';
 
+import 'date-fns';
+import format from 'date-fns/format'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -19,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     },
     collapse: {
         position: 'fixed',
-        top: '85px',
+        top: '145px',
         width: '100%',
         left: '0px',
         zIndex: '1',
@@ -36,11 +38,64 @@ const useStyles = makeStyles((theme) => ({
     }
   }));
 
+const daysContent = [
+    {
+        firstPartCopy: "Hoy lunes usa el descuento",
+        code: "SHAREBOXLUN",
+        secondPartCopy: "para un descuento",
+        background: "",
+        codeBackground: "",
+    },
+    {
+        firstPartCopy: "Hoy martes usa el descuento",
+        code: "SHAREBOXMAR",
+        secondPartCopy: "para descuento",
+        background: "",
+        codeBackground: "",
+    },
+    {
+        firstPartCopy: "Hoy miercoles usa el descuento",
+        code: "SHAREBOXMIE",
+        secondPartCopy: "para descuento",
+        background: "",
+        codeBackground: "",
+    },
+    {
+        firstPartCopy: "Hoy jueves usa el descuento",
+        code: "SHAREBOXJUE",
+        secondPartCopy: "para un descuento",
+        background: "",
+        codeBackground: "",
+    },
+    {
+        firstPartCopy: "Hoy viernes usa el descuento",
+        code: "SHAREBOXVIE",
+        secondPartCopy: "",
+        background: "",
+        codeBackground: "",
+    },
+    {
+        firstPartCopy: "",
+        code: "",
+        secondPartCopy: "",
+        background: "",
+        codeBackground: "",
+    },
+    {
+        firstPartCopy: "",
+        code: "",
+        secondPartCopy: "",
+        background: "",
+        codeBackground: "",
+    }
+]
+
 export default function Navbar () {
     const router = useRouter();
     const classes = useStyles();
     
     const [navBackgroung, setNavBackgroung] = useState(false)
+    const [dayOfWeek, setDayOfWeek] = useState(1)
     
     const [windowReady, setWindowReady] = useState(false)
     const [gtg, setGtg] = useState(false);
@@ -53,6 +108,9 @@ export default function Navbar () {
         if(typeof window !== 'undefined'){
             setWindowReady(true);
         }
+
+        const today = new Date();
+        setDayOfWeek(parseInt(format(today, 'i')))
     }, [])
 
     const openGTG = () => {
@@ -119,6 +177,11 @@ export default function Navbar () {
 
     return (
         <>
+            <div className={styles.banner}>
+                <div className={styles.bannerContent}>
+                    {daysContent[dayOfWeek - 1].firstPartCopy} <span>{daysContent[dayOfWeek - 1].code}</span> {daysContent[dayOfWeek - 1].secondPartCopy}
+                </div>
+            </div>
             <div className={`${styles.desktopNavbar} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`}>
                 {/* <div className={styles.background}></div> */}
                 <div className={styles.logo}>

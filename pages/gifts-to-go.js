@@ -6,6 +6,7 @@ import Head from 'next/head'
 import Image from 'next/image';
 import Link from 'next/link'
 
+import Collapse from '@mui/material/Collapse';
 import Grow from '@mui/material/Grow';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
@@ -17,6 +18,8 @@ import FilterListIcon from '@material-ui/icons/FilterList';
 import SearchIcon from '@material-ui/icons/Search';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
+import CloseIcon from '@material-ui/icons/Close';
+
 
 import Slider from '@material-ui/core/Slider';
 import Grid from '@material-ui/core/Grid';
@@ -52,11 +55,10 @@ export default function GiftsToGo () {
     const [collection, setCollection] = useState(null)
     const [products, setProducts] = useState(null)
     const [mobileFiltersActive, setMobileFiltersActive] = useState(false)
+    const [mobileSearchBarActive, setmobileSearchBarActive] = useState(false)
 
     const [searchQuery, setSearchQuery] = useState('')
-    const handleQueryChange =(event) => {
-        setSearchQuery(event.target.value)
-    }
+    
 
     // Checks if the window is ready so the functional components can render.
     const [windowReady, setWindowReady] = useState(false)
@@ -86,10 +88,27 @@ export default function GiftsToGo () {
  
     const openMobileFilters = () => {
         setMobileFiltersActive(true)
+        setmobileSearchBarActive(false)
+        setSearchQuery('')
     }
 
     const closeMobileFilters = () => {
         setMobileFiltersActive(false)
+    }
+
+    const handleQueryChange = (event) => {
+        setSearchQuery(event.target.value)
+
+        if (event.target.value === ''){
+            setProducts(collection.products)
+        }else{
+            const query = event.target.value.toLowerCase();
+            setProducts(
+                collection.products.filter(
+                    (product) => product.title.toLowerCase().includes(query)
+                )
+            )
+        }
     }
 
     const FilterByQuery = (e) => {
@@ -106,6 +125,17 @@ export default function GiftsToGo () {
             )
             
         }
+    }
+
+    const OpenMobileSearchBar = () => {
+        setTypeFilter('all')
+        setOcassionFilter('all')
+        setmobileSearchBarActive(true)
+    }
+ 
+    const closeMobileSearchbar = () => {
+        setSearchQuery('')
+        setmobileSearchBarActive(false)
     }
 
     const handleTypeFilter = (event) => {
@@ -236,11 +266,16 @@ export default function GiftsToGo () {
                         </div>
 
                         <div className={styles.mobileFilters}>
-                            <div className={styles.trigger} onClick={openMobileFilters}>
-                                <FilterListIcon fontSize="medium"/>
-                                <span>Filtrar productos</span>
+                            <div className={styles.filterAndSearch}>
+                                <div className={styles.trigger} onClick={openMobileFilters}>
+                                    <FilterListIcon style={{fontSize: '25px'}}/>
+                                    <span>Filtrar productos</span>
+                                </div>
+                                <div className={styles.searchButton} onClick={OpenMobileSearchBar}>
+                                    <SearchIcon style={{fontSize: '25px'}}/>
+                                </div>
                             </div>
-                            {typeFilter !== 'all' || ocassionFilter !== "all" ?
+                            {(typeFilter !== 'all' || ocassionFilter !== "all") & mobileSearchBarActive === false ?
                                 <div className={styles.activeFilters}>
                                     <Stack direction="row" spacing={1}>
                                         {typeFilter !== 'all' && <Chip label={typeFilter} variant="outlined"/>}
@@ -250,6 +285,26 @@ export default function GiftsToGo () {
                                 :
                                 ''
                             }
+
+                            <Collapse in={mobileSearchBarActive}>
+                                <div className={`${styles.filter} ${styles.mobileFilter}`}>
+                                    <form onSubmit={FilterByQuery}>
+                                        <div className={styles.searchBar}>
+                                            <input 
+                                                value={searchQuery} 
+                                                onChange={handleQueryChange}
+                                                type="text" 
+                                                id="search-product" 
+                                                name="search-product" 
+                                                placeholder="Buscar producto"
+                                            />
+                                            <div className={styles.searchBtn} onClick={closeMobileSearchbar}>
+                                                <CloseIcon/>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </Collapse>
                         </div>
                         
                         <Grow in={mobileFiltersActive}>
@@ -287,6 +342,10 @@ export default function GiftsToGo () {
                                         </div>
                                     </div>
                                     <div className={styles.confirm} onClick={closeMobileFilters}>Confirmar filtros</div>
+
+                                    <div className={styles.closeIcon} onClick={closeMobileFilters}>
+                                        <CloseIcon style={{ fontSize: '30px' }}/>
+                                    </div>
                                 </div>
                             </div>
                         </Grow>
