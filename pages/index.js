@@ -89,7 +89,7 @@ export default function Home() {
     const [products, setProducts] = useState([])
     const [windowReady, setWindowReady] = useState(false)
 
-    const [subModal, setSubModal] = useState(true)
+    const [subModal, setSubModal] = useState(false)
 
     const CloseSubModal = () => {
         setSubModal(false)
