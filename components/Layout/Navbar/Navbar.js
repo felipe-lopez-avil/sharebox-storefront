@@ -183,23 +183,24 @@ export default function Navbar () {
     return (
         <>
             {windowReady === true &&
-                <div className={styles.banner} style={{ backgroundColor: daysContent[dayOfWeek - 1].background }}>
-                    <div className={styles.bannerContent}>
-                        {daysContent[dayOfWeek - 1].firstPartCopy} 
-                        <span 
-                            style={{ backgroundColor: daysContent[dayOfWeek - 1].codeBackground }} 
-                            onClick={() => copyCode(daysContent[dayOfWeek - 1].code)}>
-                            {daysContent[dayOfWeek - 1].code}
-                        </span> 
-                        {daysContent[dayOfWeek - 1].secondPartCopy}
+                <>
+                    <div className={styles.banner} style={{ backgroundColor: daysContent[dayOfWeek - 1].background }}>
+                        <div className={styles.bannerContent}>
+                            {daysContent[dayOfWeek - 1].firstPartCopy} 
+                            <span 
+                                style={{ backgroundColor: daysContent[dayOfWeek - 1].codeBackground }} 
+                                onClick={() => copyCode(daysContent[dayOfWeek - 1].code)}>
+                                {daysContent[dayOfWeek - 1].code}
+                            </span> 
+                            {daysContent[dayOfWeek - 1].secondPartCopy}
+                        </div>
                     </div>
-
                     <Grow in={codeCopied}>
                         <div className={styles.copiedSnackbar}>
                             Copiado al portapapeles
                         </div>
                     </Grow>
-                </div>
+                </>
             }
             <div className={`${styles.desktopNavbar} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`}>
                 {/* <div className={styles.background}></div> */}
