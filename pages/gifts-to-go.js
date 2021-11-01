@@ -20,11 +20,8 @@ import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import CloseIcon from '@material-ui/icons/Close';
 
-
-import Slider from '@material-ui/core/Slider';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -44,10 +41,6 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function valuetext(value) {
-    return `${value}°C`;
-}
-
 export default function GiftsToGo () {
     const classes = useStyles();
 
@@ -59,7 +52,6 @@ export default function GiftsToGo () {
 
     const [searchQuery, setSearchQuery] = useState('')
     
-
     // Checks if the window is ready so the functional components can render.
     const [windowReady, setWindowReady] = useState(false)
     useEffect(() => {
@@ -68,7 +60,6 @@ export default function GiftsToGo () {
         }
 
         client.collection.fetchWithProducts(collectionId, {productsFirst: 250}).then((collection) => {
-            // Do something with the collection
             setCollection(JSON.parse(JSON.stringify(collection)))
             setProducts(collection.products)
         });
@@ -77,14 +68,6 @@ export default function GiftsToGo () {
     // State of the Active Filter
     const [typeFilter, setTypeFilter] = useState("all")
     const [ocassionFilter, setOcassionFilter] = useState('all')
-
-    function filterProducts(product) {
-        if (product.productType === typeFilter && product.vendor === ocassionFilter){
-            return true;
-        }else{
-            return false;
-        }
-    }
  
     const openMobileFilters = () => {
         setMobileFiltersActive(true)
@@ -97,6 +80,8 @@ export default function GiftsToGo () {
     }
 
     const handleQueryChange = (event) => {
+        setTypeFilter('all')
+        setOcassionFilter('all')
         setSearchQuery(event.target.value)
 
         if (event.target.value === ''){
@@ -105,7 +90,7 @@ export default function GiftsToGo () {
             const query = event.target.value.toLowerCase();
             setProducts(
                 collection.products.filter(
-                    (product) => product.title.toLowerCase().includes(query)
+                    (product) => product.title.toLowerCase().includes(query) || product.description.toLowerCase().includes(query)
                 )
             )
         }
@@ -165,6 +150,8 @@ export default function GiftsToGo () {
                 )
             )
         }
+
+        setSearchQuery('')
     };
 
     const handleOcassionFilter = (event) => {
@@ -194,6 +181,8 @@ export default function GiftsToGo () {
                 )
             )
         }
+
+        setSearchQuery('')
     };
 
     return (

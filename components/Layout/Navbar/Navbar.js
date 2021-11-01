@@ -7,6 +7,7 @@ import { useRouter } from 'next/router'
 
 import Grow from '@material-ui/core/Grow';
 import Slide from '@material-ui/core/Slide';
+import Fade from '@mui/material/Fade';
 import { FiShoppingBag } from 'react-icons/fi'
 import { FaBars } from 'react-icons/fa'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -32,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
         right: '0',
         width: '100%',
         height: '100%',
-        zIndex: '100000',
+        zIndex: '1000000',
         display: 'flex',
         justifyContent: 'flex-end',
     }
@@ -40,53 +41,46 @@ const useStyles = makeStyles((theme) => ({
 
 const daysContent = [
     {
-        firstPartCopy: "Hoy lunes usa el descuento",
-        code: "SHAREBOXLUN",
-        secondPartCopy: "para un descuento",
-        background: "",
-        codeBackground: "",
+        firstPartCopy: "Hoy 15% OFF en Boxes de cumpleaños con el código",
+        code: "HappyShareDay",
+        background: "#dd786b",
+        codeBackground: "#e79b91",
     },
     {
-        firstPartCopy: "Hoy martes usa el descuento",
-        code: "SHAREBOXMAR",
-        secondPartCopy: "para descuento",
-        background: "",
-        codeBackground: "",
+        firstPartCopy: "Gasta HOY más de $700 y recibe 15%OFF en Make Your Box con código",
+        code: "MYB2021",
+        background: "#408a94",
+        codeBackground: "#63a6af",
     },
     {
-        firstPartCopy: "Hoy miercoles usa el descuento",
-        code: "SHAREBOXMIE",
-        secondPartCopy: "para descuento",
-        background: "",
-        codeBackground: "",
+        firstPartCopy: "Envios gratis HOY utilizando el codigo",
+        code: "FreeShare",
+        background: "#f474bf",
+        codeBackground: "#dda7f0",
     },
     {
-        firstPartCopy: "Hoy jueves usa el descuento",
-        code: "SHAREBOXJUE",
-        secondPartCopy: "para un descuento",
-        background: "",
-        codeBackground: "",
+        firstPartCopy: "Gasta HOY arriba de 200, recibe 15% en Market con el código",
+        code: "MyMarket",
+        background: "#4b3187",
+        codeBackground: "#dda7f0",
     },
     {
-        firstPartCopy: "Hoy viernes usa el descuento",
-        code: "SHAREBOXVIE",
-        secondPartCopy: "",
-        background: "",
-        codeBackground: "",
+        firstPartCopy: "Fin de semana 10% OFF en toda la tienda con el codigo",
+        code: "Shareabox",
+        background: "#0188b3",
+        codeBackground: "#4da9c5",
     },
     {
-        firstPartCopy: "",
-        code: "",
-        secondPartCopy: "",
-        background: "",
-        codeBackground: "",
+        firstPartCopy: "Fin de semana 10% OFF en toda la tienda con el codigo",
+        code: "Shareabox",
+        background: "#0188b3",
+        codeBackground: "#4da9c5",
     },
     {
-        firstPartCopy: "",
-        code: "",
-        secondPartCopy: "",
-        background: "",
-        codeBackground: "",
+        firstPartCopy: "Fin de semana 10% OFF en toda la tienda con el codigo",
+        code: "Shareabox",
+        background: "#0188b3",
+        codeBackground: "4da9c5",
     }
 ]
 
@@ -103,6 +97,8 @@ export default function Navbar () {
     const [gfm, setGfm] = useState(false);
 
     const [mobileMenu, setMobileMenu] = useState(false);
+
+    const [codeCopied, setCodeCopied] = useState(false)
 
     useEffect(() => {
         if(typeof window !== 'undefined'){
@@ -175,13 +171,36 @@ export default function Navbar () {
         window.addEventListener('scroll', changeBackground)
     }
 
+    const copyCode = (codeToCopy) => {
+        navigator.clipboard.writeText(codeToCopy)
+        setCodeCopied(true)
+
+        setTimeout(() => {
+            setCodeCopied(false)
+        }, 1700)
+    }
+
     return (
         <>
-            <div className={styles.banner}>
-                <div className={styles.bannerContent}>
-                    {daysContent[dayOfWeek - 1].firstPartCopy} <span>{daysContent[dayOfWeek - 1].code}</span> {daysContent[dayOfWeek - 1].secondPartCopy}
+            {windowReady === true &&
+                <div className={styles.banner} style={{ backgroundColor: daysContent[dayOfWeek - 1].background }}>
+                    <div className={styles.bannerContent}>
+                        {daysContent[dayOfWeek - 1].firstPartCopy} 
+                        <span 
+                            style={{ backgroundColor: daysContent[dayOfWeek - 1].codeBackground }} 
+                            onClick={() => copyCode(daysContent[dayOfWeek - 1].code)}>
+                            {daysContent[dayOfWeek - 1].code}
+                        </span> 
+                        {daysContent[dayOfWeek - 1].secondPartCopy}
+                    </div>
+
+                    <Grow in={codeCopied}>
+                        <div className={styles.copiedSnackbar}>
+                            Copiado al portapapeles
+                        </div>
+                    </Grow>
                 </div>
-            </div>
+            }
             <div className={`${styles.desktopNavbar} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`}>
                 {/* <div className={styles.background}></div> */}
                 <div className={styles.logo}>

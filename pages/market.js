@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { client } from '../utils/shopify'
-import Head from 'next/head'
+
 import styles from '../styles/gifts-to-go.module.scss'
+import Head from 'next/head'
 import Image from 'next/image';
 import Link from 'next/link'
 
+import Collapse from '@mui/material/Collapse';
 import Grow from '@mui/material/Grow';
-
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -14,13 +15,13 @@ import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import CircularProgress from '@mui/material/CircularProgress';
 import FilterListIcon from '@material-ui/icons/FilterList';
+import SearchIcon from '@material-ui/icons/Search';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
+import CloseIcon from '@material-ui/icons/Close';
 
-import Slider from '@material-ui/core/Slider';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -37,10 +38,6 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function valuetext(value) {
-    return `${value}°C`;
-}
-
 export default function GiftsForMe () {
     const classes = useStyles();
 
@@ -48,6 +45,9 @@ export default function GiftsForMe () {
     const [collection, setCollection] = useState(null)
     const [products, setProducts] = useState(null)
     const [mobileFiltersActive, setMobileFiltersActive] = useState(false)
+    const [mobileSearchBarActive, setmobileSearchBarActive] = useState(false)
+
+    const [searchQuery, setSearchQuery] = useState('')
 
     // Checks if the window is ready so the functional components can render.
     const [windowReady, setWindowReady] = useState(false)
@@ -57,31 +57,67 @@ export default function GiftsForMe () {
         }
 
         client.collection.fetchWithProducts(collectionId, {productsFirst: 250}).then((collection) => {
-            // Do something with the collection
-            // console.log(collection.products);
             setCollection(JSON.parse(JSON.stringify(collection)))
             setProducts(collection.products)
         });
-        // console.log(collection.products)
     }, [])
 
     // State of the Active Filter
     const [activeFilter, setActiveFilter] = useState("all")
+    // Ocassion Filter that doesn't apply in market
 
-    const openMobileFilters = () => {
+    const OpenMobileFilters = () => {
         setMobileFiltersActive(true)
+        setmobileSearchBarActive(false)
+        setSearchQuery('')
     }
 
     const closeMobileFilters = () => {
         setMobileFiltersActive(false)
     }
 
-    // Filter functions
-    const [value, setValue] = React.useState([20, 37]);
-    
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
-    };
+    const handleQueryChange = (event) => {
+        setActiveFilter('all')
+        // setOcassionFilter('all')
+        setSearchQuery(event.target.value)
+
+        if (event.target.value === ''){
+            setProducts(collection.products)
+        }else{
+            const query = event.target.value.toLowerCase();
+            setProducts(
+                collection.products.filter(
+                    (product) => product.title.toLowerCase().includes(query) || product.description.toLowerCase().includes(query)
+                )
+            )
+        }
+    }
+
+    const FilterByQuery = (e) => {
+        e.preventDefault();
+
+        if(searchQuery === ''){
+            setProducts(collection.products)
+        }else{
+            const query = searchQuery.toLowerCase();
+            setProducts(
+                collection.products.filter(
+                    (product) => product.title.toLowerCase().includes(query)
+                )
+            )
+            
+        }
+    }
+
+    const OpenMobileSearchBar = () => {
+        setActiveFilter('all')
+        setmobileSearchBarActive(true)
+    }
+ 
+    const closeMobileSearchbar = () => {
+        setSearchQuery('')
+        setmobileSearchBarActive(false)
+    }
 
     const handleActiveFilter = (event) => {
         setActiveFilter(event.target.value);
@@ -96,6 +132,8 @@ export default function GiftsForMe () {
                 )
             )
         }
+
+        setSearchQuery('')
     };
 
     return (
@@ -121,6 +159,23 @@ export default function GiftsForMe () {
                     <div className={`${styles.filters} ${styles.hidden}`}>
                         <h4>Filtrar por:</h4>
                         <div className={styles.filter}>
+                            <form onSubmit={FilterByQuery}>
+                                <div className={styles.searchBar}>
+                                    <input 
+                                        value={searchQuery} 
+                                        onChange={handleQueryChange}
+                                        type="text" 
+                                        id="search-product" 
+                                        name="search-product" 
+                                        placeholder="Buscar producto"
+                                    />
+                                    <div className={styles.searchBtn} onClick={FilterByQuery}>
+                                        <SearchIcon/>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div className={styles.filter}>
                             <h5>Categorías*</h5>
                             <FormControl component="fieldset">
                                 <RadioGroup aria-label="gender" name="gender1" value={activeFilter} onChange={handleActiveFilter}>
@@ -142,11 +197,16 @@ export default function GiftsForMe () {
                     </div>
 
                     <div className={styles.mobileFilters}>
-                        <div className={styles.trigger} onClick={openMobileFilters}>
-                            <FilterListIcon fontSize="medium"/>
-                            <span>Filtrar productos</span>
+                        <div className={styles.filterAndSearch}>
+                            <div className={styles.trigger} onClick={OpenMobileFilters}>
+                                <FilterListIcon style={{fontSize: '25px'}}/>
+                                <span>Filtrar productos</span>
+                            </div>
+                            <div className={styles.searchButton} onClick={OpenMobileSearchBar}>
+                                <SearchIcon style={{fontSize: '25px'}}/>
+                            </div>
                         </div>
-                        {activeFilter !== 'all' ?
+                        {activeFilter !== 'all' & mobileSearchBarActive === false ?
                             <div className={styles.activeFilters}>
                                 <Stack direction="row" spacing={1}>
                                     <Chip label={activeFilter} variant="outlined"/>
@@ -155,6 +215,26 @@ export default function GiftsForMe () {
                             :
                             ''
                         }
+
+                        <Collapse in={mobileSearchBarActive}>
+                            <div className={`${styles.filter} ${styles.mobileFilter}`}>
+                                <form onSubmit={FilterByQuery}>
+                                    <div className={styles.searchBar}>
+                                        <input 
+                                            value={searchQuery} 
+                                            onChange={handleQueryChange}
+                                            type="text" 
+                                            id="search-product" 
+                                            name="search-product" 
+                                            placeholder="Buscar producto"
+                                        />
+                                        <div className={styles.searchBtn} onClick={closeMobileSearchbar}>
+                                            <CloseIcon/>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </Collapse>
                     </div> 
 
                     <Grow in={mobileFiltersActive}>
@@ -183,6 +263,10 @@ export default function GiftsForMe () {
                                     </div>
                                 </div>
                                 <div className={styles.confirm} onClick={closeMobileFilters}>Confirmar filtros</div>
+
+                                <div className={styles.closeIcon} onClick={closeMobileFilters}>
+                                    <CloseIcon style={{ fontSize: '30px' }}/>
+                                </div>
                             </div>
                         </div>
                     </Grow>

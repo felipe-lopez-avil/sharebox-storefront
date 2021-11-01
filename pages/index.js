@@ -64,19 +64,19 @@ const CustomForm = ({ status, message, onValidated }) => {
                 {status === "success" && (
                     <div className={styles.confirmationMessage}>
                         <div className={styles.thanks}>
-                            ¡Gracias por suscribirte! Aquí tienes tu código para tu primera compra. 
+                            ¡Gracias por suscribirte! Aquí tienes tu código para recibir tu descuento. 
                         </div>
                         <div className={styles.codeSection}>
                             <div className={styles.codeWrapper}>
                                 <div className={styles.textCode}>
-                                    SHAREBOX10
+                                    SHAREBOX2021
                                 </div>
                                 <div className={styles.copyIcon} onClick={CopyToClipboard}>
                                     <FileCopyOutlinedIcon/>
                                 </div>
                             </div>
                         </div>
-                        <div className={styles.terms}>Cupón valido solo cuando yo quiera</div>
+                        <div className={styles.terms}>Cupón valido solo para la primera compra</div>
                     </div>
                 )}
             </div>
@@ -135,7 +135,7 @@ export default function Home() {
                     <div className={styles.dialogBox}>
                         <h2>¡ 10% OFF EN TU PRIMERA SHAREBOX !</h2>
                         <div className={styles.header}>
-                            Suscríbete a nuestro Newsletter y recibe 10% de descuento en tu primera compra. Nunca recibirás Spam :)
+                            Suscríbete a nuestro Newsletter y recibe 10% de descuento en tu primera compra. Nunca recibirás Spam 😜
                         </div>
                         <div className={styles.form}>
                             <MailchimpSubscribe
