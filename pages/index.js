@@ -119,47 +119,43 @@ export default function Home() {
 
     return (
         <div className={styles.container}>
-            {windowReady &&
-                <>
-                    <Head>
-                        <title>Sharebox</title>
-                    </Head>
-                    <Hero/>
-                    <Onboarding/>
-                    <Bestsellers products={products}/>
-                    <SmallDetails/>
-                    <WeAreSharebox/>
-                    <Methodology/>
-                    <InstaFeed/>
+            <Head>
+                <title>Sharebox</title>
+            </Head>
+            <Hero/>
+            <Onboarding/>
+            <Bestsellers products={products}/>
+            <SmallDetails/>
+            <WeAreSharebox/>
+            <Methodology/>
+            <InstaFeed/>
 
-                    <Grow in={subModal}>
-                        <div className={styles.subModal}>
-                            <div className={styles.dialogBox}>
-                                <h2>¡ 10% OFF EN TU PRIMERA SHAREBOX !</h2>
-                                <div className={styles.header}>
-                                    Suscríbete a nuestro Newsletter y recibe 10% de descuento en tu primera compra. Nunca recibirás Spam 😜
-                                </div>
-                                <div className={styles.form}>
-                                    <MailchimpSubscribe
-                                        url={url}
-                                        render={({ subscribe, status, message }) => (
-                                            <CustomForm
-                                            status={status}
-                                            message={message}
-                                            onValidated={formData => subscribe(formData)}
-                                            />
-                                        )}
-                                    />
-                                </div>
-
-                                <div className={styles.closeModal} onClick={CloseSubModal}>
-                                    <CloseIcon style={{ fontSize: '30px' }}/>
-                                </div>
-                            </div>
+            <Grow in={subModal}>
+                <div className={styles.subModal}>
+                    <div className={styles.dialogBox}>
+                        <h2>¡ 10% OFF EN TU PRIMERA SHAREBOX !</h2>
+                        <div className={styles.header}>
+                            Suscríbete a nuestro Newsletter y recibe 10% de descuento en tu primera compra. Nunca recibirás Spam 😜
                         </div>
-                    </Grow>
-                </>
-            }
+                        <div className={styles.form}>
+                            <MailchimpSubscribe
+                                url={url}
+                                render={({ subscribe, status, message }) => (
+                                    <CustomForm
+                                    status={status}
+                                    message={message}
+                                    onValidated={formData => subscribe(formData)}
+                                    />
+                                )}
+                            />
+                        </div>
+
+                        <div className={styles.closeModal} onClick={CloseSubModal}>
+                            <CloseIcon style={{ fontSize: '30px' }}/>
+                        </div>
+                    </div>
+                </div>
+            </Grow>
         </div>
     )
   }
