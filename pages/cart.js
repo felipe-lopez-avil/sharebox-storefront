@@ -94,7 +94,6 @@ export default function Cart () {
     let dayOfWeek = format(today, "i")
 
     useEffect(() => {
-        console.log(currrentHour)
         if(typeof window !== 'undefined'){
             const checkoutId = getDataFromStorage('checkoutId')
             setSendableCheckoutId(checkoutId)
