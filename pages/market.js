@@ -184,8 +184,8 @@ export default function GiftsForMe () {
                                     <FormControlLabel value="Arte & hogar" control={<Radio />} label="Arte & hogar" />
                                     <FormControlLabel value="Bebés y niños" control={<Radio />} label="Bebés y niños" />
                                     <FormControlLabel value="Bebidas y Complementos" control={<Radio />} label="Bebidas y complementos" />
-                                    <FormControlLabel value="Bienestar" control={<Radio />} label="Bienestar" />
-                                    <FormControlLabel value="Cuidado personal" control={<Radio />} label="Cuidado Personal" />
+                                    {/* <FormControlLabel value="Bienestar" control={<Radio />} label="Bienestar" /> */}
+                                    <FormControlLabel value="Cuidado personal" control={<Radio />} label="Bienestar y Cuidado Personal" />
                                     <FormControlLabel value="Diversión" control={<Radio />} label="Diversión" />
                                     <FormControlLabel value="Joyería" control={<Radio />} label="Joyería" />
                                     {/* <FormControlLabel value="Arte & hogar" control={<Radio />} label="Arte y Hogar" /> */}
