@@ -94,6 +94,7 @@ export default function Cart () {
     let dayOfWeek = format(today, "i")
 
     useEffect(() => {
+        console.log(currrentHour)
         if(typeof window !== 'undefined'){
             const checkoutId = getDataFromStorage('checkoutId')
             setSendableCheckoutId(checkoutId)
@@ -131,7 +132,7 @@ export default function Cart () {
             }
         }
 
-        if (currrentHour > 15){
+        if (currrentHour > 16){
 
             if(format(add(today, {days: 2}), "i") !== '7'){
                 let newDate = add(today, {days: 2});
