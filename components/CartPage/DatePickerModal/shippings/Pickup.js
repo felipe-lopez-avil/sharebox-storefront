@@ -77,6 +77,7 @@ export default function Pickup ({shouldDisableDate, minDate, date, handleDateCha
                                 label="Date picker inline"
                                 value={date}
                                 onChange={handleDateChange}
+                                InputProps={{ readOnly: true }}
                                 KeyboardButtonProps={{
                                     'aria-label': 'change date',
                                 }}

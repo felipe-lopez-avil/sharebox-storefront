@@ -40,7 +40,6 @@ export default function Home() {
     
     const [index, setIndex] = useState(0)
     const timeoutRef = useRef(null);
-    const [windowReady, setWindowReady] = useState(false)
 
     function resetTimeout() {
         if (timeoutRef.current) {
@@ -69,9 +68,6 @@ export default function Home() {
     }
 
     useEffect(() => {
-        if(window !== 'undefined'){
-            setWindowReady(true)
-        }
         resetTimeout();
         timeoutRef.current = setTimeout(
           () =>
@@ -87,9 +83,7 @@ export default function Home() {
 
     return (
         <div className={styles.heroSection}>
-            {windowReady && 
-            <>
-                <div className={styles.slideshowSlider} style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }}>
+            <div className={styles.slideshowSlider} style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }}>
                 {slidesContent.map((currentSlide, index) => (
                     <div className={styles.slide} key={index} style={{ backgroundColor: currentSlide.backgroundColor }}>
                         <div className={styles.slideContainer}>
@@ -134,8 +128,6 @@ export default function Home() {
             <div className={styles.rightArrow} >
                 <ArrowBackIosIcon style={{ fontSize: 50, transform: 'rotate(180deg)', cursor: 'pointer' }} onClick={goNext} />
             </div>
-            </>
-            }
         </div>
     )
 }

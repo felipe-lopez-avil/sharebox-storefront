@@ -91,6 +91,7 @@ export default function Cart () {
     let today = new Date();
     let meridiem = format(today, "aaa")
     let currrentHour = parseInt(format(today, "H"))
+    let dayOfWeek = format(today, "i")
 
     useEffect(() => {
         if(typeof window !== 'undefined'){
@@ -104,20 +105,24 @@ export default function Cart () {
                     }
                     if (checkout.customAttributes.length > 0){
                         let attributes = checkout.customAttributes;
-                        let deliveryInfoExist = attributes.map(function(e) { return e.key; }).indexOf('Tipo de Envío');
-                        if(deliveryInfoExist > -1 & attributes[deliveryInfoExist + 1].value !== '') {
-                            if(attributes[deliveryInfoExist].value === "Envío Nacional"){
-                                let deliveryMessage = `Seleccionaste envío Nacional ${attributes[deliveryInfoExist + 1].value}`
-                                setDeliveryResume(deliveryMessage);
-                            }else{
-                                let deliveryMessage = `${attributes[deliveryInfoExist].value} el día ${attributes[deliveryInfoExist + 1].value} (${attributes[deliveryInfoExist + 2].value})`
-                                setDeliveryResume(deliveryMessage);
+                        let deliveryInfoExist = attributes.map(function(e) { return e.key; }).indexOf('Tipo-de-Envío');
+                        if(deliveryInfoExist > -1) {
+                            if(attributes[deliveryInfoExist + 1].value !== ''){
+                                if(attributes[deliveryInfoExist].value === "Envío Nacional"){
+                                    let deliveryMessage = `Seleccionaste envío Nacional ${attributes[deliveryInfoExist + 1].value}`
+                                    setDeliveryResume(deliveryMessage);
+                                }else{
+                                    let deliveryMessage = `${attributes[deliveryInfoExist].value} el día ${attributes[deliveryInfoExist + 1].value} (${attributes[deliveryInfoExist + 2].value})`
+                                    setDeliveryResume(deliveryMessage);
+                                }
                             }
                         }
-                        let cardInfoExist = attributes.map(function(e) { return e.key; }).indexOf('Tipo de Tarjeta');
-                        if(cardInfoExist > -1 & attributes[cardInfoExist].value !== '') {
-                            let cardMessage = `Seleccionaste ${attributes[cardInfoExist].value}`
-                            setCardResume(cardMessage);
+                        let cardInfoExist = attributes.map(function(e) { return e.key; }).indexOf('Tipo-de-Tarjeta');
+                        if(cardInfoExist > -1) {
+                            if(attributes[cardInfoExist].value !== ''){
+                                let cardMessage = `Seleccionaste ${attributes[cardInfoExist].value}`
+                                setCardResume(cardMessage);
+                            }
                         }
                     }
                 });
@@ -127,11 +132,23 @@ export default function Cart () {
         }
 
         if (currrentHour > 15){
-            let newDate = add(today, {days: 2});
-            setDate(newDate, 'dd/MM/yyyy')
-            setMinDate(newDate);
-            setNextDayOnly(true)
-            setAfternoonOnly(false)
+
+            if(format(add(today, {days: 2}), "i") !== '7'){
+                let newDate = add(today, {days: 2});
+                setDefinitiveDate(newDate, 'dd/MM/yyyy')
+                setDate(newDate, 'dd/MM/yyyy')
+                setMinDate(newDate);
+                setNextDayOnly(true)
+                setAfternoonOnly(false)
+            }else{
+                let newDate = add(today, {days: 3});
+                setDefinitiveDate(newDate, 'dd/MM/yyyy')
+                setDate(newDate, 'dd/MM/yyyy')
+                setMinDate(newDate);
+                setNextDayOnly(true)
+                setAfternoonOnly(false)
+            }
+            
         }
         /* if (currrentHour >= 4){
             setAfternoonOnly(true)

@@ -75,6 +75,7 @@ export default function Local ({cp, handleCP, validCP, validateCP, confirmationM
                                     label="Date picker inline"
                                     value={date}
                                     onChange={handleDateChange}
+                                    InputProps={{ readOnly: true }}
                                     KeyboardButtonProps={{
                                         'aria-label': 'change date',
                                     }}
