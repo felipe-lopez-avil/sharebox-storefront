@@ -1,15 +1,17 @@
 import { useState, useEffect } from 'react';
-
 import styles from './styles.module.scss'
 import { client } from '../../../utils/shopify'
-
 import Image from 'next/image'
 
+import ProductDetailModal from './ProductDetailModal/ProductDetailModal';
+
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Grow from '@material-ui/core/Grow';
-import Badge from '@material-ui/core/Badge';
+
+import Zoom from '@mui/material/Zoom';
+import Slide from '@mui/material/Slide';
+import Fade from '@mui/material/Fade';
 
 import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
 import AddOutlinedIcon from '@material-ui/icons/AddOutlined';
@@ -63,6 +65,17 @@ export default function SecondStep ({step2Items, setStep2Items, secondStepPrice,
     const [activeCategory, setActiveCategory] = useState(null)
     const [catTitle, setCatTitle] = useState('')
 
+    const [productDetailActive, setProductDetailActive] = useState(false)
+    const [currentProductDeatil, setCurrentProductDeatil] = useState(
+        {
+            id: '',
+            title: '',
+            price: '',
+            description: '',
+            images: []
+        }
+    )
+
     const [productsMYB2, setProductsMYB2] = useState(null)
 
     // State to handle the custom attributes
@@ -96,8 +109,23 @@ export default function SecondStep ({step2Items, setStep2Items, secondStepPrice,
         });
     }, [])
 
+    const showProductDetails = (id, title, price, description, images) => {
+        setProductDetailActive(true)
+        setCurrentProductDeatil(
+            {
+                id: id,
+                title: title,
+                price: price,
+                description: description,
+                images: images
+            }
+        )
+    }
+
     function addItem(id, title, price, images, e) {
         e.preventDefault();
+
+        setProductDetailActive(false)
 
         let imageToAdd 
         if(images[0] === undefined){
@@ -154,6 +182,7 @@ export default function SecondStep ({step2Items, setStep2Items, secondStepPrice,
     }
 
     return(
+        <>
         <div className = {styles.container}>
             <div className={styles.stepTitle}>
                 <h2>Elige los Productos dentro de tu Box</h2>
@@ -298,6 +327,7 @@ export default function SecondStep ({step2Items, setStep2Items, secondStepPrice,
                                                 src={product.images[0] !== undefined ? product.images[0].src : 'https://cdn.shopify.com/s/files/1/0456/6820/4706/files/product-placeholder.png?v=1633451657'}
                                                 layout="fill"
                                                 objectFit="cover"
+                                                onClick={() => showProductDetails(product.variants[0].id, product.title, product.variants[0].price, product.description, product.images)}
                                             />
                                         </div>
                                         <div className={styles.actionButtons}>
@@ -328,6 +358,16 @@ export default function SecondStep ({step2Items, setStep2Items, secondStepPrice,
                 </div>
             </Grow>
         </div>
+        <Fade in={productDetailActive}>
+            <div>
+                <ProductDetailModal 
+                    setProductDetailActive={setProductDetailActive} 
+                    currentProductDeatil={currentProductDeatil}
+                    addItem={addItem}
+                />
+            </div>
+        </Fade>
+        </>
     )
     
 }
