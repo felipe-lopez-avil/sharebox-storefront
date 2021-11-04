@@ -22,7 +22,7 @@ export default function HowItWorks () {
         <div className={styles.howItWorks}>
             <div className={styles.header}>
                 <h2>¿Cómo funciona?</h2>
-                <p>Te contactaremos en menos de 60 min</p>
+                <p>Te contactaremos lo antes posible</p>
                 <span>Lun-Vie de 9:00 am a 6:00 pm</span>
             </div>
             <div className={styles.steps}>
