@@ -3,7 +3,7 @@ import CloseIcon from '@material-ui/icons/Close';
 
 import Image from 'next/image'
 
-export default function ProductDetailModal ({setProductDetailActive, currentProductDeatil, addItem}) {
+export default function ProductDetailModal ({setProductDetailActive, currentProductDeatil}) {
     return (
         <div className={styles.wrapper}>
             <div className={styles.container}>
@@ -22,20 +22,6 @@ export default function ProductDetailModal ({setProductDetailActive, currentProd
 
                     <div className={styles.description}>
                         {currentProductDeatil.description}
-                    </div>
-
-                    <div 
-                        className={styles.add} 
-                        onClick={
-                            (e) => addItem(
-                                currentProductDeatil.id,
-                                currentProductDeatil.title,
-                                currentProductDeatil.price,
-                                currentProductDeatil.images,
-                                e
-                            )
-                        } >
-                        AGREGAR
                     </div>
                 </div>
                 <div className={styles.close} onClick={() => setProductDetailActive(false)}>

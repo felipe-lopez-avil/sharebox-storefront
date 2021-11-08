@@ -100,6 +100,7 @@ export default function Cart () {
             if (checkoutId !== null){
                 client.checkout.fetch(checkoutId).then((checkout) => {
                     setCheckout(checkout)
+                    // console.log(checkout)
                     if (checkout.completedAt !== null) {
                         setCheckoutCompleted(true)
                     }

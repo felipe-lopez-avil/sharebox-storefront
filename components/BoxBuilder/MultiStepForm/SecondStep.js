@@ -4,20 +4,17 @@ import { client } from '../../../utils/shopify'
 import Image from 'next/image'
 
 import ProductDetailModal from './ProductDetailModal/ProductDetailModal';
+import CustomProductModal from './CustomProductModal/CustomProductModal';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Grow from '@material-ui/core/Grow';
 
-import Zoom from '@mui/material/Zoom';
-import Slide from '@mui/material/Slide';
 import Fade from '@mui/material/Fade';
 
 import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
 import AddOutlinedIcon from '@material-ui/icons/AddOutlined';
-
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -52,9 +49,17 @@ const useStyles = makeStyles((theme) => ({
         marginRight: '-5px',
     },
     padding: {
-        padding: '0px 3%'
+        padding: '0px 3%',
+        paddingBottom: '200px'
     }
 }));
+
+const customTypes = [
+    'Lorem',
+    'Ipsum',
+    'Dolor',
+    'Sit',
+]
 
 export default function SecondStep ({step2Items, setStep2Items, secondStepPrice, setSecondStepPrice}) {
 
@@ -64,6 +69,21 @@ export default function SecondStep ({step2Items, setStep2Items, secondStepPrice,
     const [checked, setChecked] = useState(false)
     const [activeCategory, setActiveCategory] = useState(null)
     const [catTitle, setCatTitle] = useState('')
+
+    const [customModalActive, setCustomModalActive] = useState(false)
+    const [currentCustomType, setCurrentCustomType] = useState('')
+    const [productToAdd, setProductToAdd] = useState({})
+
+    function openModal(product) {
+        setCustomModalActive(true)
+        setCurrentCustomType(product.vendor)
+        setProductToAdd(product)
+    }
+
+    function closeModal() {
+        setCustomModalActive(false)
+        setProductToAdd({})
+    }
 
     const [productDetailActive, setProductDetailActive] = useState(false)
     const [currentProductDeatil, setCurrentProductDeatil] = useState(
@@ -77,9 +97,6 @@ export default function SecondStep ({step2Items, setStep2Items, secondStepPrice,
     )
 
     const [productsMYB2, setProductsMYB2] = useState(null)
-
-    // State to handle the custom attributes
-    const [productAttributes, setProductAttributes] = useState([])
 
     const openPopup = (category, categoryTitle, e) => {
         e.preventDefault();
@@ -122,9 +139,10 @@ export default function SecondStep ({step2Items, setStep2Items, secondStepPrice,
         )
     }
 
-    function addItem(id, title, price, images, e) {
+    function addItem(id, title, price, images, customAttributes, e) {
         e.preventDefault();
 
+        setCustomModalActive(false)
         setProductDetailActive(false)
 
         let imageToAdd 
@@ -150,6 +168,7 @@ export default function SecondStep ({step2Items, setStep2Items, secondStepPrice,
                 price: price,
                 quantity: 1,
                 image: imageToAdd,
+                customAttributes: customAttributes,
             }
             setStep2Items([...step2Items, toAdd]);
         }
@@ -161,6 +180,7 @@ export default function SecondStep ({step2Items, setStep2Items, secondStepPrice,
                 price: price,
                 quantity: 1,
                 image: imageToAdd,
+                customAttributes: customAttributes,
             }
             setStep2Items([...step2Items, toAdd]);
         }else{
@@ -324,7 +344,12 @@ export default function SecondStep ({step2Items, setStep2Items, secondStepPrice,
                                     <label className={styles.forBoxInput} for={product.id}>
                                         <div className={styles.productImage}>
                                             <Image
-                                                src={product.images[0] !== undefined ? product.images[0].src : 'https://cdn.shopify.com/s/files/1/0456/6820/4706/files/product-placeholder.png?v=1633451657'}
+                                                src={
+                                                    product.images[0] !== undefined ? 
+                                                    product.images[0].src 
+                                                    : 
+                                                    'https://cdn.shopify.com/s/files/1/0456/6820/4706/files/product-placeholder.png?v=1633451657'
+                                                }
                                                 layout="fill"
                                                 objectFit="cover"
                                                 onClick={() => showProductDetails(product.variants[0].id, product.title, product.variants[0].price, product.description, product.images)}
@@ -332,7 +357,22 @@ export default function SecondStep ({step2Items, setStep2Items, secondStepPrice,
                                         </div>
                                         <div className={styles.actionButtons}>
                                             <div className={styles.notSelected}>
-                                                <div className={styles.addButton} onClick={(e) => addItem(product.variants[0].id, product.title, product.variants[0].price, product.images, e)}>
+                                                <div 
+                                                    className={styles.addButton} 
+                                                    onClick={
+                                                        customTypes.indexOf(product.vendor) === -1 ?
+                                                        (e) => addItem(
+                                                            product.variants[0].id, 
+                                                            product.title, 
+                                                            product.variants[0].price, 
+                                                            product.images, 
+                                                            [{key: "Make Your Box", value: "Inside Box"}],
+                                                            e
+                                                        )
+                                                        :
+                                                        () => openModal(product)
+                                                    }
+                                                >
                                                     AGREGAR
                                                 </div>
                                             </div>
@@ -340,7 +380,7 @@ export default function SecondStep ({step2Items, setStep2Items, secondStepPrice,
                                                 <div className={styles.trashButton} onClick={(e) => removeItem(product.variants[0].id, e)}>
                                                     <DeleteOutlineOutlinedIcon/>
                                                 </div>
-                                                <div className={styles.plusButton} onClick={(e) => addItem(product.variants[0].id, product.title, product.variants[0].price, product.images, e)}>
+                                                <div className={styles.plusButton} onClick={(e) => addItem(product.variants[0].id, product.title, product.variants[0].price, product.images, [], e)}>
                                                     <AddOutlinedIcon/>
                                                 </div>
                                             </div>
@@ -358,15 +398,34 @@ export default function SecondStep ({step2Items, setStep2Items, secondStepPrice,
                 </div>
             </Grow>
         </div>
-        <Fade in={productDetailActive}>
-            <div>
-                <ProductDetailModal 
-                    setProductDetailActive={setProductDetailActive} 
-                    currentProductDeatil={currentProductDeatil}
-                    addItem={addItem}
-                />
+        
+        {productDetailActive &&
+            <div className={styles.productDetailContainer}>
+                <Fade in={productDetailActive}>
+                    <div>
+                        <ProductDetailModal 
+                            setProductDetailActive={setProductDetailActive} 
+                            currentProductDeatil={currentProductDeatil}
+                        />
+                    </div>
+                </Fade>
             </div>
-        </Fade>
+        }
+        
+        {customModalActive &&
+            <div className={styles.productDetailContainer}>
+                <Fade in={customModalActive}>
+                    <div>
+                        <CustomProductModal
+                            currentCustomType={currentCustomType}
+                            productToAdd={productToAdd}
+                            addItem={addItem}
+                            closeModal={closeModal}
+                        />
+                    </div>
+                </Fade>
+            </div>
+        }
         </>
     )
     

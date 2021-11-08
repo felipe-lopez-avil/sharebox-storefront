@@ -7,13 +7,14 @@
     justify-content: center;
     top: 0;
     left: 0;
-    z-index: 200000;
+    background-color: #00000021;
 }
 
 .container{
     background-color: #fff;
     width: 860px;
     min-height: 500px;
+    max-height: 95vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -76,4 +77,34 @@
     top: 20px;
     right: 20px;
     cursor: pointer;
+}
+
+@media (max-width: 950px) {
+    .container{
+        width: 92%;
+        min-height: 20%;
+    }
+
+    .imageColumn{
+        .image{
+            height: 50vw;
+        }
+    }
+}
+
+@media (max-width: 550px) {
+    .container{
+        flex-direction: column;
+        overflow-y: scroll;
+    }
+
+    .imageColumn{
+        padding: 0;
+    }
+
+    .descriptionColumn{
+        width: 100%;
+        margin-top: 20px;
+        text-align: center;
+    }
 }

@@ -64,7 +64,7 @@ export default function BoxBuilder() {
     const [totalPrice, setTotalPrice] = useState(firstStepPrice + secondStepPrice)
     const [stepper, setStepper] = useState(false)
 
-    const [step1Items, setStep1Items] = useState({productID: '', title: '', price: '', quantity: 1, image: '',})
+    const [step1Items, setStep1Items] = useState({productID: '', title: '', price: '', quantity: 1, image: '', customAttributes: []})
     const [step2Items, setStep2Items] = useState([])
     const [step3Items, setStep3Items] = useState([])
     const [step4Items, setStep4Items] = useState([])
@@ -163,11 +163,12 @@ export default function BoxBuilder() {
             checkoutId = newCheckout.id
             setDataToStorage('checkoutId', checkoutId)
         }
+
         const lineItems2 = step2Items.map((item) => (
             {
                 variantId: item.productID,
                 quantity: item.quantity,
-                customAttributes: [{key: "Make Your Box", value: "Inside Box"}]
+                customAttributes: item.customAttributes
             }
         ))
 
@@ -175,7 +176,7 @@ export default function BoxBuilder() {
             {
                 variantId: item.productID,
                 quantity: item.quantity,
-                customAttributes: [{key: "Make Your Box", value: "Inside Box"}]
+                customAttributes: item.customAttributes
             }
         ))
         
@@ -183,7 +184,7 @@ export default function BoxBuilder() {
             {
                 variantId: step1Items.productID,
                 quantity: step1Items.quantity,
-                customAttributes: [{key: "Make Your Box", value: "Box"}]
+                customAttributes: step1Items.customAttributes,
             },
             ...lineItems2,
             ...lineItems3,

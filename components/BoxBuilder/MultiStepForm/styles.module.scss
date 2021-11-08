@@ -124,6 +124,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    background-color: red;
 }
 
 .categoryTitle{
@@ -399,6 +400,13 @@
     text-align: right;
     font-size: 1.1rem;
     font-weight: 600;
+}
+
+.productDetailContainer{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 200000;
 }
 
 @media (max-width: 1250px) {

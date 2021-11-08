@@ -21,12 +21,12 @@ const QontoConnector = withStyles({
   },
   active: {
     '& $line': {
-      borderColor: '#784af4',
+      borderColor: '#028ab5',
     },
   },
   completed: {
     '& $line': {
-      borderColor: '#784af4',
+      borderColor: '#028ab5',
     },
   },
   line: {
@@ -44,7 +44,7 @@ const useQontoStepIconStyles = makeStyles({
     alignItems: 'center',
   },
   active: {
-    color: '#784af4',
+    color: '#028ab5',
   },
   circle: {
     width: 8,
@@ -53,7 +53,7 @@ const useQontoStepIconStyles = makeStyles({
     backgroundColor: 'currentColor',
   },
   completed: {
-    color: '#784af4',
+    color: '#028ab5',
     zIndex: 1,
     fontSize: 18,
   },
@@ -180,6 +180,9 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
   },
+  simulaFont: {
+    fontFamily: 'Prompt'
+  }
 }));
 
 function getSteps() {
@@ -219,16 +222,16 @@ export default function MobileStepper({currentStep}) {
   return (
       <Stepper alternativeLabel activeStep={currentStep} connector={<QontoConnector />}>
           <Step>
-            <StepLabel StepIconComponent={QontoStepIcon}><h4>PASO 1.</h4></StepLabel>
+            <StepLabel StepIconComponent={QontoStepIcon}><h4 className={classes.simulaFont}>PASO 1.</h4></StepLabel>
           </Step>
           <Step>
-            <StepLabel StepIconComponent={QontoStepIcon}><h4>PASO 2.</h4></StepLabel>
+            <StepLabel StepIconComponent={QontoStepIcon}><h4 className={classes.simulaFont}>PASO 2.</h4></StepLabel>
           </Step>
           <Step>
-            <StepLabel StepIconComponent={QontoStepIcon}><h4>PASO 3.</h4></StepLabel>
+            <StepLabel StepIconComponent={QontoStepIcon}><h4 className={classes.simulaFont}>PASO 3.</h4></StepLabel>
           </Step>
           <Step>
-            <StepLabel StepIconComponent={QontoStepIcon}><h4>PASO 4.</h4></StepLabel>
+            <StepLabel StepIconComponent={QontoStepIcon}><h4 className={classes.simulaFont}>PASO 4.</h4></StepLabel>
           </Step>
       </Stepper>      
   );
