@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import styles from './Hero.module.scss'
 import Link from 'next/link'
 
+import Fade from '@mui/material/Fade';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
 const slidesContent = [
@@ -34,10 +35,12 @@ const slidesContent = [
     },
 ]
 
-const delay =5000;
+const delay = 5000;
 
 export default function Home() {
     
+    const [heroContent, setHeroContent] = useState(false)
+
     const [index, setIndex] = useState(0)
     const timeoutRef = useRef(null);
 
@@ -69,6 +72,11 @@ export default function Home() {
 
     useEffect(() => {
         resetTimeout();
+
+        setTimeout(() => {
+            setHeroContent(true)
+        }, 600);
+
         timeoutRef.current = setTimeout(
           () =>
             setIndex((prevIndex) =>
@@ -98,15 +106,19 @@ export default function Home() {
                                 preload
                             >
                             </video>
-                            <div className={styles.heroContent}>
-                                <h2>{currentSlide.title}</h2>
-                                <div>
-                                    {currentSlide.copy}
+                            <Fade in={heroContent}>
+                                <div className={styles.heroContent}>
+                                    <>
+                                    <h2>{currentSlide.title}</h2>
+                                    <div>
+                                        {currentSlide.copy}
+                                    </div>
+                                    <Link href={currentSlide.link}>
+                                        <button>{currentSlide.button}</button>
+                                    </Link>
+                                    </>
                                 </div>
-                                <Link href={currentSlide.link}>
-                                    <button>{currentSlide.button}</button>
-                                </Link>
-                            </div>
+                            </Fade>
                         </div>
                     </div>
                 ))}

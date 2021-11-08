@@ -6,7 +6,7 @@ import styles from './Navbar.module.scss'
 import { useRouter } from 'next/router'
 
 import Grow from '@material-ui/core/Grow';
-import Slide from '@material-ui/core/Slide';
+import Slide from '@mui/material/Slide';
 import Fade from '@mui/material/Fade';
 import { FiShoppingBag } from 'react-icons/fi'
 import { FaBars } from 'react-icons/fa'
@@ -87,6 +87,8 @@ const daysContent = [
 export default function Navbar () {
     const router = useRouter();
     const classes = useStyles();
+
+    const [barEnters, setBarEnters] = useState(false)
     
     const [navBackgroung, setNavBackgroung] = useState(false)
     const [dayOfWeek, setDayOfWeek] = useState(1)
@@ -107,6 +109,10 @@ export default function Navbar () {
 
         const today = new Date();
         setDayOfWeek(parseInt(format(today, 'i')))
+
+        setTimeout(() => {
+            setBarEnters(true)
+        }, 400);
     }, [])
 
     const openGTG = () => {
@@ -184,17 +190,19 @@ export default function Navbar () {
         <>
             {windowReady === true &&
                 <>
-                    <div className={styles.banner} style={{ backgroundColor: daysContent[dayOfWeek - 1].background }}>
-                        <div className={styles.bannerContent}>
-                            {daysContent[dayOfWeek - 1].firstPartCopy} 
-                            <span 
-                                style={{ backgroundColor: daysContent[dayOfWeek - 1].codeBackground }} 
-                                onClick={() => copyCode(daysContent[dayOfWeek - 1].code)}>
-                                {daysContent[dayOfWeek - 1].code}
-                            </span> 
-                            {daysContent[dayOfWeek - 1].secondPartCopy}
+                    <Slide direction="down" in={barEnters} mountOnEnter unmountOnExit timeout={300}>
+                        <div className={styles.banner} style={{ backgroundColor: daysContent[dayOfWeek - 1].background }}>
+                            <div className={styles.bannerContent}>
+                                {daysContent[dayOfWeek - 1].firstPartCopy} 
+                                <span 
+                                    style={{ backgroundColor: daysContent[dayOfWeek - 1].codeBackground }} 
+                                    onClick={() => copyCode(daysContent[dayOfWeek - 1].code)}>
+                                    {daysContent[dayOfWeek - 1].code}
+                                </span> 
+                                {daysContent[dayOfWeek - 1].secondPartCopy}
+                            </div>
                         </div>
-                    </div>
+                    </Slide>
                     <Grow in={codeCopied}>
                         <div className={styles.copiedSnackbar}>
                             Copiado al portapapeles
