@@ -327,6 +327,7 @@ export default function GiftsToGo () {
                                                     <FormControlLabel value="Graduaciones y logros" control={<Radio />} label="Graduaciones y logros" />
                                                     <FormControlLabel value="New born & padrinos" control={<Radio />} label="New Born & Padrinos" />
                                                     <FormControlLabel value="Pets" control={<Radio />} label="Pets" />
+                                                    <FormControlLabel value="Navidad" control={<Radio />} label="Navidad" />
                                                 </RadioGroup>
                                             </FormControl>
                                         </div>
