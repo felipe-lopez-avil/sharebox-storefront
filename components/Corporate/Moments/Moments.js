@@ -15,7 +15,7 @@ export default function Moments () {
     };
 
     return (
-        <div className={styles.container}>
+        <div className={styles.container} id="nosotros">
             <div className={styles.moments}>
                 <div className={styles.content}>
                     <h3>En los mejores momentos</h3>

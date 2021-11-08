@@ -31,7 +31,7 @@ const CustomForm = ({ status, message, onValidated }) => {
         });
   
         return (
-            <div className={styles.formContainer}>
+            <div className={styles.formContainer} >
                 <div className={styles.inputRow}>
                     <div className={styles.inputContainer}>
                         <label>Nombre</label>
@@ -150,7 +150,7 @@ export default function Form () {
 
     return (
         <>
-        <div className={styles.formSection}>
+        <div className={styles.formSection} id="contacto">
             <h2>¡Cotiza con nosotros!</h2>
             <MailchimpSubscribe
                 url={url}

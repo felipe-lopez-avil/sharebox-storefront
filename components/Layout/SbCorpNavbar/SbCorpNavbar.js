@@ -3,6 +3,8 @@ import styles from './SbCorpNavbar.module.scss'
 import Link from 'next/link'
 import { FaBars } from 'react-icons/fa'
 
+import { Link as ScrollTo, animateScroll as scroll } from "react-scroll";
+
 import Slide from '@material-ui/core/Slide';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -36,13 +38,40 @@ export default function SbCorpNavbar() {
                 </div>
                 <div className={styles.nav}>
                     <div className={styles.navItem}>
-                        <a href="#">Inicio</a>
+                        <ScrollTo
+                            activeClass="active"
+                            to="inicio"
+                            spy={true}
+                            smooth={true}
+                            offset={0}
+                            duration={500}
+                        >
+                            Inicio
+                        </ScrollTo>
                     </div>
                     <div className={styles.navItem}>
-                        <a href="#">Nosotros</a>
+                        <ScrollTo
+                            activeClass="active"
+                            to="nosotros"
+                            spy={true}
+                            smooth={true}
+                            offset={-70}
+                            duration={500}
+                        >
+                            Nosotros
+                        </ScrollTo>
                     </div>
                     <div className={styles.navItem}>
-                        <a href="#">Contáctanos</a>
+                        <ScrollTo
+                            activeClass="active"
+                            to="contacto"
+                            spy={true}
+                            smooth={true}
+                            offset={-70}
+                            duration={500}
+                        >
+                            Contáctanos
+                        </ScrollTo>
                     </div>
                     <div className={styles.navItem}>
                         <Link href="/">Volver a Sharebox</Link>

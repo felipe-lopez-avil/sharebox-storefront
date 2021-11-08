@@ -2,7 +2,7 @@ import styles from './Hero.module.scss'
 
 export default function Hero () {
     return (
-        <div className={styles.heroSection}>
+        <div className={styles.heroSection} id="inicio">
             <div className={styles.heroImage}>
                 <img src="https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Main_3b.png?v=1628265752"/>
             </div>
