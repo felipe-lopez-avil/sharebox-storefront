@@ -73,6 +73,14 @@
     }
 }
 
+.confirmationMessage{
+    padding: 10px;
+    text-align: center;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: 2px solid #f1d433;
+}
+
 @media (max-width: 750px) {
     .formContainer{
         width: 90%;

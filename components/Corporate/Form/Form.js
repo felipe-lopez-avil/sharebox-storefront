@@ -3,6 +3,8 @@ import styles from './Form.module.scss'
 
 import MailchimpSubscribe from "react-mailchimp-subscribe"
 
+import { useRouter } from 'next/router'
+
 const url = "https://sharebox.us5.list-manage.com/subscribe/post?u=e3cd0b50aa0b11ff7170a7545&amp;id=65b9fe8c05";
 
 const CustomForm = ({ status, message, onValidated }) => {
@@ -29,7 +31,7 @@ const CustomForm = ({ status, message, onValidated }) => {
             IDEALDATE: idealDate.value,
             BUDGET: budget.value,
         });
-  
+
         return (
             <div className={styles.formContainer} >
                 <div className={styles.inputRow}>
@@ -122,13 +124,13 @@ const CustomForm = ({ status, message, onValidated }) => {
                 }
                 {status === "error" && (
                 <div
-                    dangerouslySetInnerHTML={{ __html: 'Ups, algo salió mal. Puede que el correo que ingresaste ya esté inscrito en nuestro boletín.' }}
+                    dangerouslySetInnerHTML={{ __html: 'Ups, algo salió mal. Puede ser que ya nos has contactado antes o que te faltó llenar algún dato importante' }}
                     className={`${styles.confirmationMessage} ${styles.error}`}
                 />
                 )}
                 {status === "success" && (
                 <div
-                    dangerouslySetInnerHTML={{ __html: '¡Gracias por suscribirte!' }}
+                    dangerouslySetInnerHTML={{ __html: '¡Gracias por ponerte en contacto!' }}
                     className={`${styles.confirmationMessage} ${styles.success}`}
                 />
                 )}
@@ -148,6 +150,8 @@ export default function Form () {
         setFormSent(true)
     }
 
+    const router = useRouter()
+
     return (
         <>
         <div className={styles.formSection} id="contacto">
@@ -156,9 +160,14 @@ export default function Form () {
                 url={url}
                 render={({ subscribe, status, message }) => (
                     <CustomForm
-                    status={status}
-                    message={message}
-                    onValidated={formData => subscribe(formData)}
+                        status={status}
+                        message={message}
+                        onValidated={formData => {
+                            subscribe(formData)
+                            router.push({
+                                query: { formSent: 'true' }
+                            })
+                        }}
                     />
                 )}
             />
