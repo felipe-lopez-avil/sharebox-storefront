@@ -35,10 +35,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const customTypes = [
-    'Lorem',
-    'Ipsum',
-    'Dolor',
-    'Sit',
+    'Mensaje en tapa',
 ]
 
 export default function FirstStep ({step1Items, setStep1Items, setFirstStepPrice}) {
