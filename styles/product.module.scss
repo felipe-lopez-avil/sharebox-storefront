@@ -63,6 +63,18 @@
         margin-bottom: 30px;
     }
 
+    .offerPrice{
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+        color: rgb(233, 57, 57);
+    }
+
+    .compareAtPrice{
+        color: #67839b;
+        text-decoration: line-through;
+        font-size: 1.8rem;
+    }
+
     .dropdown{
         display: flex;
         align-items: center;
@@ -326,6 +338,14 @@
         }
 
         .price{
+            font-size: 1.5rem;
+        }
+
+        .offerPrice{
+            font-size: 1.5rem;
+        }
+
+        .compareAtPrice{
             font-size: 1.5rem;
         }
     }

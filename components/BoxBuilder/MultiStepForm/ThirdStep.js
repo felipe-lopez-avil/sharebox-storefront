@@ -55,10 +55,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const customTypes = [
-    'Lorem',
-    'Ipsum',
-    'Dolor',
-    'Sit',
+    'Mensaje en Globo',
 ]
     
 export default function ThirdStep ({step3Items, setStep3Items, thirdStepPrice, setThirdStepPrice}) {
@@ -306,7 +303,17 @@ export default function ThirdStep ({step3Items, setStep3Items, thirdStepPrice, s
                                         </div>
                                         <div className={styles.description}>
                                             <div className={styles.productTitle}>{product.title}</div>
-                                            <div>{product.variants[0].price === "0.00" ? '¡Sin costo adicional!' : `$${product.variants[0].price}`}</div>
+                                            <div className={`${product.variants[0].compareAtPrice !== null ? styles.offerPrice : ''}`}>
+                                                {product.variants[0].price === "0.00" ? 
+                                                    '¡Sin costo adicional!' 
+                                                    : `$${product.variants[0].price}`
+                                                }
+                                                {product.variants[0].compareAtPrice !== null ?
+                                                    <span className={styles.compareAtPrice}>${product.variants[0].compareAtPrice}</span>
+                                                    : 
+                                                    ''
+                                                }
+                                            </div>
                                         </div>
                                     </label>
                                 </div>

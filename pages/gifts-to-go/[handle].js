@@ -264,7 +264,16 @@ export default function GTGProduct ({product, collection}) {
                     windowReady && 
                     <div className={`${styles.productInfo} ${multipleImages ? '' : styles.noGallery}`}>
                         <h3 className={styles.title}>{product.title}</h3>
-                        <div className={styles.price}>${product.variants[variantIndex].price}</div>
+                        
+                        <div className={`${product.variants[0].compareAtPrice !== null ? styles.offerPrice : styles.price}`}>
+                            ${product.variants[variantIndex].price} {product.variants[variantIndex].compareAtPrice !== null ?
+                                <span className={styles.compareAtPrice}>
+                                    ${product.variants[variantIndex].compareAtPrice}
+                                </span> 
+                                :
+                                ''
+                            }
+                        </div>
 
                         <div className={styles.dropdown} onClick={handleDropActive} >
                             ¿Qué incluye? <ExpandMoreIcon/>

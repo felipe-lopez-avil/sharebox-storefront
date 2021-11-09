@@ -127,6 +127,14 @@
     margin-bottom: 30px;
 }
 
+.offerPrice{
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 30px;
+    color: rgb(233, 57, 57);
+    font-weight: 500;
+}
+
 .filters{
     
     h4{
@@ -144,6 +152,12 @@
         margin-bottom: 10px;
     }
     
+}
+
+.compareAtPrice{
+    color: #67839b;
+    text-decoration: line-through;
+    font-weight: 400;
 }
 
 @media (max-width: 1250px) {

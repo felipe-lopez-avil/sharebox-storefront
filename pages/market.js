@@ -292,7 +292,15 @@ export default function GiftsForMe () {
                                             </div>
                                             <div className={styles.productDescription}>
                                                 <div className={styles.productTitle}>{product.title}</div>
-                                                <div className={styles.price}>${product.variants[0].price}</div>
+                                                <div className={`${product.variants[0].compareAtPrice !== null ? styles.offerPrice : styles.price}`}>
+                                                    ${product.variants[0].price} {product.variants[0].compareAtPrice !== null ? 
+                                                        <span className={styles.compareAtPrice}>
+                                                            ${product.variants[0].compareAtPrice}
+                                                        </span> 
+                                                        : 
+                                                        ''
+                                                    }
+                                                </div>
                                             </div>
                                         </div>
                                     </Link>

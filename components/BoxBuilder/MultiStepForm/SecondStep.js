@@ -55,10 +55,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const customTypes = [
-    'Lorem',
-    'Ipsum',
-    'Dolor',
-    'Sit',
+    'Nombre en copa',
+    'Nombre o mensaje en tabla',
+    'Nombre o mensaje en vino',
 ]
 
 export default function SecondStep ({step2Items, setStep2Items, secondStepPrice, setSecondStepPrice}) {
@@ -387,7 +386,18 @@ export default function SecondStep ({step2Items, setStep2Items, secondStepPrice,
                                         </div>
                                         <div className={styles.description}>
                                             <div className={styles.productTitle}>{product.title}</div>
-                                            <div>{product.variants[0].price === "0.00" ? '¡Sin costo adicional!' : `$${product.variants[0].price}`}</div>
+                                            <div className={`${product.variants[0].compareAtPrice !== null ? styles.offerPrice : ''}`}>
+                                                {product.variants[0].price === "0.00" ? 
+                                                    '¡Sin costo adicional!' 
+                                                    : 
+                                                    `$${product.variants[0].price}`
+                                                }
+                                                {product.variants[0].compareAtPrice !== null ?
+                                                    <span className={styles.compareAtPrice}>${product.variants[0].compareAtPrice}</span>
+                                                    : 
+                                                    ''
+                                                }
+                                            </div>
                                         </div>
                                     </label>
                                 </div>

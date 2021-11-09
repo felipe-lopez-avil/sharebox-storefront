@@ -289,6 +289,16 @@
     }
 }
 
+.offerPrice{
+    color: rgb(233, 57, 57);
+}
+
+.compareAtPrice{
+    text-decoration: line-through;
+    margin-left: 5px;
+    color: #67839b;
+}
+
 .productCard{
     display: flex;
     flex-direction: column;

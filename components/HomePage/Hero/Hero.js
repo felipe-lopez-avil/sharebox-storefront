@@ -7,6 +7,15 @@ import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
 const slidesContent = [
     {
+        title: '¡Llegó el Buen Fin!',
+        copy: "Tenemos promociones únicas como tú", 
+        button: "¡Ver Ofertas!",
+        link: "/buen-fin",
+        videoUrl: "https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Buen_Fin_a.mp4?v=1636498782",
+        poster: "/gtg-placeholder.png",
+        backgroundColor: "#ececec"
+    },
+    {
         title: "Gifts To Go",
         copy: "Sorpresas listas para llevar, ¡perfectas para cualquier ocasión!", 
         button: "¡Escoge tu Box!",

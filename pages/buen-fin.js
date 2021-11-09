@@ -41,10 +41,10 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function GiftsToGo () {
+export default function BuenFin () {
     const classes = useStyles();
 
-    const collectionId = 'Z2lkOi8vc2hvcGlmeS9Db2xsZWN0aW9uLzI3NTY0MjE4NzkzOA==';
+    const collectionId = 'Z2lkOi8vc2hvcGlmeS9Db2xsZWN0aW9uLzM3MzUwMzA2NjMyOQ==';
     const [collection, setCollection] = useState(null)
     const [products, setProducts] = useState(null)
     const [mobileFiltersActive, setMobileFiltersActive] = useState(false)
@@ -68,6 +68,7 @@ export default function GiftsToGo () {
     // State of the Active Filter
     const [typeFilter, setTypeFilter] = useState("all")
     const [ocassionFilter, setOcassionFilter] = useState('all')
+    const [activeFilter, setActiveFilter] = useState("all")
  
     const openMobileFilters = () => {
         setMobileFiltersActive(true)
@@ -112,41 +113,24 @@ export default function GiftsToGo () {
         }
     }
 
-    const OpenMobileSearchBar = () => {
-        setTypeFilter('all')
-        setOcassionFilter('all')
-        setmobileSearchBarActive(true)
-    }
- 
-    const closeMobileSearchbar = () => {
-        setSearchQuery('')
-        setmobileSearchBarActive(false)
-    }
-
     const handleTypeFilter = (event) => {
 
         setTypeFilter(event.target.value);
+        setOcassionFilter('all')
+        setActiveFilter('all')
 
-
-        if(event.target.value === "all" && ocassionFilter === 'all'){
+        if(event.target.value === "all"){
             setProducts(collection.products)
-        } else if (event.target.value === 'all'){
-            setProducts(
-                collection.products.filter(
-                    (product) => product.vendor === ocassionFilter
-                )
-            )
-        } else if (ocassionFilter === 'all' || event.target.value === 'Globos y Flores' || event.target.value === 'Snacks y Postres'){
+        } else if (event.target.value === "Boxes"){
             setProducts(
                 collection.products.filter(
                     (product) => product.productType === event.target.value
                 )
             )
-        } else{
+        } else {
             setProducts(
-                // collection.products.filter(filterProducts)
                 collection.products.filter(
-                    (product) => product.productType === event.target.value && product.vendor === ocassionFilter
+                    (product) => product.productType !== 'Box'
                 )
             )
         }
@@ -154,30 +138,18 @@ export default function GiftsToGo () {
         setSearchQuery('')
     };
 
-    const handleOcassionFilter = (event) => {
+    const handleActiveFilter = (event) => {
 
-        setOcassionFilter(event.target.value);
+        setActiveFilter(event.target.value);
+        setTypeFilter('all')
+        setOcassionFilter('all')
 
-
-        if(event.target.value === "all" && typeFilter === 'all'){
+        if(event.target.value === "all"){
             setProducts(collection.products)
-        } else if (event.target.value === 'all') {
+        } else {
             setProducts(
                 collection.products.filter(
-                    (product) => product.productType === typeFilter
-                )
-            )
-        } else if (typeFilter === 'all') {
-            setProducts(
-                collection.products.filter(
-                    (product) => product.vendor === event.target.value
-                )
-            )
-        } else{
-            setProducts(
-                // collection.products.filter()
-                collection.products.filter(
-                    (product) => product.vendor === event.target.value && product.productType === typeFilter
+                    (product) => product.productType === event.target.value
                 )
             )
         }
@@ -189,12 +161,12 @@ export default function GiftsToGo () {
         <div className={styles.container}>
 
             <Head>
-                <title>Gifts To Go!</title>
+                <title>¡Ofertas de Buen Fin!</title>
                 <link rel="icon" href="/favicon.png" />
             </Head>
 
             <div className={styles.title}>
-                <h1>GIFTS TO GO</h1>
+                <h1>BUEN FIN</h1>
             </div>
             {windowReady === true &&             
                 <div className={styles.content}>
@@ -204,55 +176,31 @@ export default function GiftsToGo () {
                         <div className={`${styles.filters} ${styles.hidden}`}>
                             <h4>Filtrar por:</h4>
                             <div className={styles.filter}>
-                                <form onSubmit={FilterByQuery}>
-                                    <div className={styles.searchBar}>
-                                        <input 
-                                            value={searchQuery} 
-                                            onChange={handleQueryChange}
-                                            type="text" 
-                                            id="search-product" 
-                                            name="search-product" 
-                                            placeholder="Buscar producto"
-                                        />
-                                        <div className={styles.searchBtn} onClick={FilterByQuery}>
-                                            <SearchIcon/>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <div className={styles.filter}>
                                 <h5>Tipo de producto</h5>
                                 <FormControl component="fieldset">
                                     <RadioGroup aria-label="productType" name="productType" value={typeFilter} onChange={handleTypeFilter}>
                                         <FormControlLabel value="all" control={<Radio />} label="Todos"/>
                                         <FormControlLabel value="Boxes" control={<Radio />} label="Boxes" />
-                                        {/* <FormControlLabel value="kits armados" control={<Radio />} label="Kits Armados" /> */}
-                                        <FormControlLabel value="Globos y Flores" control={<Radio />} label="Globos y Flores" />
-                                        <FormControlLabel value="Snacks y Postres" control={<Radio />} label="Snacks y Postres" />
+                                        <FormControlLabel value="Market" control={<Radio />} label="Market" />
                                     </RadioGroup>
                                 </FormControl>
                             </div>
-                            {typeFilter !== 'Globos y Flores' & typeFilter !== 'Snacks y Postres' ?
-                                <div className={styles.filter}>
-                                    <h5>Ocasiones</h5>
-                                    <FormControl component="fieldset">
-                                        <RadioGroup aria-label="gender" name="gender1" value={ocassionFilter} onChange={handleOcassionFilter}>
-                                            <FormControlLabel value="all" control={<Radio />} label="Todas" />
-                                            <FormControlLabel value="Anillos y compromisos" control={<Radio />} label="Anillos y compromisos" />
-                                            <FormControlLabel value="Aniversario" control={<Radio />} label="Aniversario" />
-                                            <FormControlLabel value="Condolencias" control={<Radio />} label="Condolencias" />
-                                            <FormControlLabel value="Cumpleaños" control={<Radio />} label="Cumpleaños" />
-                                            <FormControlLabel value="For a long day" control={<Radio />} label="For a Long Day" />
-                                            <FormControlLabel value="Graduaciones y logros" control={<Radio />} label="Graduaciones y logros" />
-                                            <FormControlLabel value="New born & padrinos" control={<Radio />} label="New Born & Padrinos" />
-                                            <FormControlLabel value="Pets" control={<Radio />} label="Pets" />
-                                            <FormControlLabel value="Navidad" control={<Radio />} label="Navidad" />
-                                        </RadioGroup>
-                                    </FormControl>
-                                </div>
-                                :
-                                ''
-                            }
+                            
+                            <div className={styles.filter}>
+                                <h5>Categorías*</h5>
+                                <FormControl component="fieldset">
+                                    <RadioGroup aria-label="gender" name="gender1" value={activeFilter} onChange={handleActiveFilter}>
+                                        <FormControlLabel value="all" control={<Radio />} label="Todo" />
+                                        <FormControlLabel value="Accesorios y complementos" control={<Radio />} label="Accesorios y complementos" />
+                                        <FormControlLabel value="Arte & hogar" control={<Radio />} label="Arte & hogar" />
+                                        <FormControlLabel value="Bebidas y Complementos" control={<Radio />} label="Bebidas y complementos" />
+                                        <FormControlLabel value="Cuidado personal" control={<Radio />} label="Bienestar y Cuidado Personal" />
+                                        <FormControlLabel value="Diversión" control={<Radio />} label="Diversión" />
+                                        <FormControlLabel value="Joyería" control={<Radio />} label="Joyería" />
+                                        <FormControlLabel value="Pets" control={<Radio />} label="Pets" />
+                                    </RadioGroup>
+                                </FormControl>
+                            </div>
                         </div>
 
                         <div className={styles.mobileFilters}>
@@ -260,9 +208,6 @@ export default function GiftsToGo () {
                                 <div className={styles.trigger} onClick={openMobileFilters}>
                                     <FilterListIcon style={{fontSize: '25px'}}/>
                                     <span>Filtrar productos</span>
-                                </div>
-                                <div className={styles.searchButton} onClick={OpenMobileSearchBar}>
-                                    <SearchIcon style={{fontSize: '25px'}}/>
                                 </div>
                             </div>
                             {(typeFilter !== 'all' || ocassionFilter !== "all") & mobileSearchBarActive === false ?
@@ -275,26 +220,6 @@ export default function GiftsToGo () {
                                 :
                                 ''
                             }
-
-                            <Collapse in={mobileSearchBarActive}>
-                                <div className={`${styles.filter} ${styles.mobileFilter}`}>
-                                    <form onSubmit={FilterByQuery}>
-                                        <div className={styles.searchBar}>
-                                            <input 
-                                                value={searchQuery} 
-                                                onChange={handleQueryChange}
-                                                type="text" 
-                                                id="search-product" 
-                                                name="search-product" 
-                                                placeholder="Buscar producto"
-                                            />
-                                            <div className={styles.searchBtn} onClick={closeMobileSearchbar}>
-                                                <CloseIcon/>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </Collapse>
                         </div>
                         
                         <Grow in={mobileFiltersActive}>
@@ -308,26 +233,22 @@ export default function GiftsToGo () {
                                                 <RadioGroup aria-label="productType" name="productType" value={typeFilter} onChange={handleTypeFilter}>
                                                     <FormControlLabel value="all" control={<Radio />} label="Todos los productos"/>
                                                     <FormControlLabel value="Boxes" control={<Radio />} label="Boxes" />
-                                                    {/* <FormControlLabel value="kits armados" control={<Radio />} label="Kits Armados" /> */}
-                                                    <FormControlLabel value="Globos y Flores" control={<Radio />} label="Globos y Flores" />
-                                                    <FormControlLabel value="Snacks y Postres" control={<Radio />} label="Snacks y Postres" />
+                                                    <FormControlLabel value="Market" control={<Radio />} label="Market" />
                                                 </RadioGroup>
                                             </FormControl>
                                         </div>
                                         <div className={styles.filter}>
-                                            <h5>Ocasiones</h5>
+                                            <h5>Categorías*</h5>
                                             <FormControl component="fieldset">
-                                                <RadioGroup aria-label="gender" name="gender1" value={ocassionFilter} onChange={handleOcassionFilter}>
-                                                    <FormControlLabel value="all" control={<Radio />} label="Cualquier Ocasión" />
-                                                    <FormControlLabel value="Anillos y compromisos" control={<Radio />} label="Anillos y compromisos" />
-                                                    <FormControlLabel value="Aniversario" control={<Radio />} label="Aniversario" />
-                                                    <FormControlLabel value="Condolencias" control={<Radio />} label="Condolencias" />
-                                                    <FormControlLabel value="Cumpleaños" control={<Radio />} label="Cumpleaños" />
-                                                    <FormControlLabel value="For a long day" control={<Radio />} label="For a Long Day" />
-                                                    <FormControlLabel value="Graduaciones y logros" control={<Radio />} label="Graduaciones y logros" />
-                                                    <FormControlLabel value="New born & padrinos" control={<Radio />} label="New Born & Padrinos" />
+                                                <RadioGroup aria-label="gender" name="gender1" value={activeFilter} onChange={handleActiveFilter}>
+                                                    <FormControlLabel value="all" control={<Radio />} label="Todo" />
+                                                    <FormControlLabel value="Accesorios y complementos" control={<Radio />} label="Accesorios y complementos" />
+                                                    <FormControlLabel value="Arte & hogar" control={<Radio />} label="Arte & hogar" />
+                                                    <FormControlLabel value="Bebidas y Complementos" control={<Radio />} label="Bebidas y complementos" />
+                                                    <FormControlLabel value="Cuidado personal" control={<Radio />} label="Bienestar y Cuidado Personal" />
+                                                    <FormControlLabel value="Diversión" control={<Radio />} label="Diversión" />
+                                                    <FormControlLabel value="Joyería" control={<Radio />} label="Joyería" />
                                                     <FormControlLabel value="Pets" control={<Radio />} label="Pets" />
-                                                    <FormControlLabel value="Navidad" control={<Radio />} label="Navidad" />
                                                 </RadioGroup>
                                             </FormControl>
                                         </div>
@@ -347,7 +268,7 @@ export default function GiftsToGo () {
                                 {products.map(product => (
 
                                     <Grid item xs={6} sm={4} md={3} className={classes.grid}>
-                                        <Link href={`/gifts-to-go/${product.handle}`}>
+                                        <Link href={`/buen-fin/${product.handle}`}>
                                             <div className={styles.productContainer}>
                                                 <div className={styles.productImage}>
                                                     <Image
@@ -385,16 +306,3 @@ export default function GiftsToGo () {
         </div>
     )
 }
-/* 
-export async function getServerSideProps() {
-    // Fetch data from external API
-
-    const collectionId = 'Z2lkOi8vc2hvcGlmeS9Db2xsZWN0aW9uLzIxMjM4MTEzOTEwNg==';
-
-    const collection = await client.collection.fetchWithProducts(collectionId, {productsFirst: 50})
-    
-    
-    console.log({ collection })
-    // Pass data to the page via props
-    return { props: { collection: JSON.parse(JSON.stringify(collection))} }
-} */

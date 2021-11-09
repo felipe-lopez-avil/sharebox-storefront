@@ -94,6 +94,7 @@ export default function Navbar () {
     const [dayOfWeek, setDayOfWeek] = useState(1)
     
     const [windowReady, setWindowReady] = useState(false)
+    const [buenFin, setBuenFin] = useState(false)
     const [gtg, setGtg] = useState(false);
     const [myb, setMyb] = useState(false);
     const [gfm, setGfm] = useState(false);
@@ -115,7 +116,23 @@ export default function Navbar () {
         }, 400);
     }, [])
 
+    const openBuenFin = () => {
+        setGtg(false)
+        setMyb(false)
+        setGfm(false)
+        if(buenFin){
+            setBuenFin(false)
+        }else{
+            setBuenFin(true)
+        }
+    }
+
+    const closeBuenFin = () => {
+        setBuenFin(false)
+    }
+
     const openGTG = () => {
+        setBuenFin(false)
         setMyb(false)
         setGfm(false)
         if(gtg){
@@ -130,6 +147,7 @@ export default function Navbar () {
     }
 
     const openMYB = () => {
+        setBuenFin(false)
         setGtg(false)
         setGfm(false)
         if(myb){
@@ -144,6 +162,7 @@ export default function Navbar () {
     }
 
     const openGFM = () => {
+        setBuenFin(false)
         setGtg(false)
         setMyb(false)
         if(gfm){
@@ -199,7 +218,6 @@ export default function Navbar () {
                                     onClick={() => copyCode(daysContent[dayOfWeek - 1].code)}>
                                     {daysContent[dayOfWeek - 1].code}
                                 </span> 
-                                {daysContent[dayOfWeek - 1].secondPartCopy}
                             </div>
                         </div>
                     </Slide>
@@ -277,6 +295,35 @@ export default function Navbar () {
 
                 {windowReady === true && 
                 <div className={styles.navigation}>
+
+                    {/* BEGIN TEMPORAL BUEN FIN NAVITEM */}
+                    <div className={`${styles.navItem} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`} onClick={openBuenFin}>
+                        <span>Buen Fin</span>
+
+                        <Grow in={buenFin} className={classes.collapse} style={{ transformOrigin: '0 0 0' }}>
+                            <div onMouseLeave={closeBuenFin}>
+                                <div className={`${styles.dropdownWrapper} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`}>
+                                    <div className={styles.navItemContent}>
+                                        <div className={styles.itemImage}>
+                                            <div className={styles.image}>
+                                                <Image
+                                                    src='https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Logotipo_BF_2021.png?v=1636495808'
+                                                    layout='fill'
+                                                    objectFit='contain'
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className={`${styles.itemDescription} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`}>
+                                            <h3>BUEN FIN</h3>
+                                            <p>¿Ya viste los descuentos? Pasa a verlos antes de que se agoten</p>
+                                            <Link href="/buen-fin"><div className={`${styles.button} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`}>¡Ver productos!</div></Link>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                            
+                        </Grow>
+                    </div>
+                    {/* ENDS TEMPORAL BUEN FIN NAVITEM */}
                     
                     <div className={`${styles.navItem} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`} onClick={openGTG}>
                         <span>Gifts To Go! <ExpandMoreIcon/></span>

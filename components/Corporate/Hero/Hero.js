@@ -4,6 +4,8 @@ import styles from './Hero.module.scss'
 import Grow from '@mui/material/Grow';
 import Slide from '@mui/material/Slide';
 
+import { Link as ScrollTo, animateScroll as scroll } from "react-scroll";
+
 export default function Hero () {
 
     const [image, setImage] = useState(false)
@@ -32,7 +34,16 @@ export default function Hero () {
                         Creamos experiencias únicas, a través de BOXES personalizadas
                         para tus clientes, colaboradores y cualquier ocasión.
                     </p>
-                    <button>¡Contáctanos ahora!</button>
+                    <ScrollTo
+                        activeClass="active"
+                        to="contacto"
+                        spy={true}
+                        smooth={true}
+                        offset={-70}
+                        duration={500}
+                    >
+                        <button>¡Contáctanos ahora!</button>
+                    </ScrollTo>
                 </div>
             </Slide>
         </div>
