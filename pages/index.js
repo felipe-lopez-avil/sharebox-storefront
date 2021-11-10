@@ -18,6 +18,8 @@ import InstaFeed from '../components/HomePage/InstaFeed/InstaFeed'
 
 import MailchimpSubscribe from "react-mailchimp-subscribe"
 
+import Pixel from '../components/Pixel'
+
 const url = "https://sharebox.us2.list-manage.com/subscribe/post?u=4d7b381e967db5d4820bb8e94&amp;id=a75229ef2c";
 
 const CustomForm = ({ status, message, onValidated }) => {
@@ -122,6 +124,7 @@ export default function Home() {
             <Head>
                 <title>Sharebox</title>
             </Head>
+            <Pixel name='FACEBOOK_PIXEL_1'/>
             <Hero/>
             <Onboarding/>
             <Bestsellers products={products}/>
