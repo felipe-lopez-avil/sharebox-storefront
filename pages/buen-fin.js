@@ -130,7 +130,7 @@ export default function BuenFin () {
         } else {
             setProducts(
                 collection.products.filter(
-                    (product) => product.productType !== 'Box'
+                    (product) => product.productType !== 'Boxes'
                 )
             )
         }

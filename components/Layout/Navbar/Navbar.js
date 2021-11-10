@@ -506,6 +506,11 @@ export default function Navbar () {
                             <CloseIcon style={{ fontSize: 40 }} onClick={closeMobileMenu}/>
                         </div>
                         <div className={styles.mobileNavigation}>
+                            <Link href="/buen-fin">
+                                <div className={styles.mobileNavItem} onClick={closeMobileMenu}>
+                                    ¡Buen Fin!
+                                </div>
+                            </Link>
                             <Link href="/gifts-to-go">
                                 <div className={styles.mobileNavItem} onClick={closeMobileMenu}>
                                     Gifts To Go
