@@ -1,7 +1,24 @@
+.goBackContainer{
+    padding-top: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.goBack{
+    width: 90%;
+    max-width: 950px;
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+
+    span{
+        cursor: pointer;
+    }
+}
+
 .container{
-    min-height: 100vh;
-    padding-top: 140px;
-    padding-bottom: 60px;
+    padding-bottom: 80px;
     display: flex;
     justify-content: center;
 }
@@ -10,7 +27,7 @@
     width: 950px;
     display: flex;
     justify-content: space-between;
-    margin-top: 50px;
+    margin-top: 30px;
 }
 
 .productGalery{
@@ -181,6 +198,10 @@
 
 @media (max-width: 1000px) {
 
+    .goBackContainer{
+        padding-top: 160px;
+    }
+
     .product{
         width: 100%;
         padding: 0 5%;
@@ -225,6 +246,9 @@
 }
 
 @media (max-width: 750px) {
+    .goBackContainer{
+        padding-top: 150px;
+    }
     
     .product{
         flex-direction: column;

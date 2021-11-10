@@ -7,6 +7,7 @@ import Select from '@material-ui/core/Select';
 import { makeStyles } from '@material-ui/core/styles';
 
 import SearchIcon from '@material-ui/icons/Search';
+import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
@@ -105,6 +106,10 @@ export default function Local ({cp, handleCP, validCP, validateCP, confirmationM
             {validCP === 'noValid' && 
                 <div className={styles.confirmationNegativeBox}>Lo sentimos, no contamos con envíos en tu zona</div>
             }
+
+            <div className={styles.priceFrom}>
+                <InfoOutlinedIcon/> <span>Costos de envío desde $75.00</span>
+            </div>
             
             {/* <button onClick={showDate}>Date</button> */}
         </div>

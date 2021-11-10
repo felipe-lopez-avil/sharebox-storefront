@@ -8,6 +8,7 @@ import parse from 'html-react-parser';
 
 import { makeStyles } from '@material-ui/core/styles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import Collapse from '@material-ui/core/Collapse';
 import Snackbar from '@material-ui/core/Snackbar';
 import Grid from '@material-ui/core/Grid';
@@ -48,7 +49,6 @@ const parseData = (data) => {
 }
 
 export default function BuenFinProduct ({product, collection}) {
-
     const classes = useStyles();
     //console.log(product)
     let multipleImages = false
@@ -236,6 +236,13 @@ export default function BuenFinProduct ({product, collection}) {
             <title>{product.title}</title>
             <link rel="icon" href="/favicon.png" />
         </Head>
+        <div className={styles.goBackContainer}>
+            <Link href='/buen-fin'>
+                <div className={styles.goBack}>
+                    <span><ArrowBackIosIcon/></span> <span>Volver a Productos de Buen Fin</span>
+                </div>
+            </Link>
+        </div>
         <div className={styles.container}>
             <div className={styles.product}>
                 {multipleImages &&

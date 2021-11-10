@@ -7,6 +7,7 @@ import Link from 'next/link'
 import parse from 'html-react-parser';
 
 import { makeStyles } from '@material-ui/core/styles';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Collapse from '@material-ui/core/Collapse';
 import Snackbar from '@material-ui/core/Snackbar';
@@ -236,6 +237,13 @@ export default function GTGProduct ({product, collection}) {
             <title>{product.title}</title>
             <link rel="icon" href="/favicon.png" />
         </Head>
+        <div className={styles.goBackContainer}>
+            <Link href='/gifts-to-go'>
+                <div className={styles.goBack}>
+                    <span><ArrowBackIosIcon/></span> <span>Volver Gifts To Go</span>
+                </div>
+            </Link>
+        </div>
         <div className={styles.container}>
             <div className={styles.product}>
                 {multipleImages &&

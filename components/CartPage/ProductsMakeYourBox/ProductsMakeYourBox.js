@@ -30,7 +30,7 @@ export default function ProductsInCart({items, sendableCheckoutId, setCheckout, 
             <div className={styles.firstField}>
                 <div className={styles.image}>
                     <Image
-                        src="https://cdn.shopify.com/s/files/1/0456/6820/4706/files/product-placeholder.png?v=1633451657"
+                        src="https://cdn.shopify.com/s/files/1/0456/6820/4706/files/classic-box-craft.jpg?v=1636561794"
                         layout="fill"
                         objectFit="cover"
                     />
