@@ -34,6 +34,7 @@ export default class MyDocument extends Document {
                         src={`https://www.facebook.com/tr?id=${FB_PIXEL_ID}&ev=PageView&noscript=1`}
                         />
                     </noscript>
+                    <meta name="facebook-domain-verification" content="h4y73v7s13ssw4qvfu42rcl7piftac" />
                 </Head>
                 <body>
                     <Main/>
