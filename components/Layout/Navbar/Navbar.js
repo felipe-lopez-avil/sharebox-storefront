@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     },
     collapse: {
         position: 'fixed',
-        top: '145px',
+        top: '125px',
         width: '100%',
         left: '0px',
         zIndex: '1',
