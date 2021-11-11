@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import styles from '../styles/cart.module.scss'
 import Head from 'next/head'
 import Link from 'next/link'
+import Image from 'next/image'
 import {client} from '../utils/shopify'
 
 import ProductsInCart from '../components/CartPage/ProductsInCart/ProductsInCart'
@@ -367,6 +368,23 @@ export default function Cart () {
                             </div>
                         </div>
                         <div>Los impuestos y gastos de envío se calculan en el próximo paso</div>
+                        <div className={styles.superCustomContainer}>
+                            <div className={styles.customizeCopy}>
+                                ¿Necesitas personzalizar tus regalos?
+                            </div>
+                            <a href="https://api.whatsapp.com/send?phone=528134053769&text=%C2%A1Hola!%20Me%20comunico%20de%20la%20p%C3%A1gina%20de%20Sharebox%20Corporate%20y%20me%20gustar%C3%ADa%20solicitar%20m%C3%A1s%20imformaci%C3%B3n." target="blank">
+                            <button className={styles.contactButton}>
+                                <div className={styles.wppIcon}>
+                                    <Image
+                                        src='https://cdn.shopify.com/s/files/1/0456/6820/4706/files/whatsAppLogo.png?v=1636568821'
+                                        layout='fill'
+                                        objectFit='cover'
+                                    />
+                                </div> 
+                                <div>Contáctanos</div> 
+                            </button>
+                            </a>
+                        </div>
                         </>
                         :
                         <div className={styles.noProducts}>

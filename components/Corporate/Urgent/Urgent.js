@@ -13,7 +13,9 @@ export default function Urgent () {
             </div>
             <div className={styles.content}>
                 <h3>¿Pedidos urgentes?</h3>
-                <button>Contáctanos</button>
+                <a href="https://api.whatsapp.com/send?phone=528134053769&text=%C2%A1Hola!%20Me%20comunico%20de%20la%20p%C3%A1gina%20de%20Sharebox%20Corporate%20y%20me%20gustar%C3%ADa%20solicitar%20m%C3%A1s%20imformaci%C3%B3n." target="blank">
+                    <button>Contáctanos</button>
+                </a>
             </div>
         </div>
     )

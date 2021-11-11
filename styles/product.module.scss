@@ -272,13 +272,13 @@
 
     .productImages{
         width: 62vw;
-        height: 70vw;
+        height: 75vw;
         order: 1;
     }
 
     .productImages.noGallery{
         width: 62vw;
-        height: 70vw;
+        height: 75vw;
         order: 1;
     }
     
@@ -324,6 +324,7 @@
 @media (max-width: 600px) {
     .productImages{
         width: 80vw;
+        height: 94vw;
     }
 
     .productGalery{
@@ -334,7 +335,7 @@
 
     .productImages.noGallery{
         width: 80vw;
-        height: 90vw;
+        height: 94vw;
     }
 
     .singleImage{

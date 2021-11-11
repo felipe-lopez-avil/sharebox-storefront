@@ -343,9 +343,7 @@ export default function GiftsToGo () {
 
                         <div className={styles.products}>
                             <Grid container spacing={0}>
-
                                 {products.map(product => (
-
                                     <Grid item xs={6} sm={4} md={3} className={classes.grid}>
                                         <Link href={`/gifts-to-go/${product.handle}`}>
                                             <div className={styles.productContainer}>
@@ -372,6 +370,23 @@ export default function GiftsToGo () {
                                         </Link>
                                     </Grid>
                                 ))}
+                                <Grid item xs={12}>
+                                    <div className={styles.didntFind}>
+                                        <div className={styles.copy}>¿No encontraste lo que buscabas?</div>
+                                        <a href="https://api.whatsapp.com/send?phone=528134053769&text=%C2%A1Hola!%20Me%20comunico%20de%20la%20p%C3%A1gina%20de%20Sharebox%20Corporate%20y%20me%20gustar%C3%ADa%20solicitar%20m%C3%A1s%20imformaci%C3%B3n." target="blank">
+                                            <button>
+                                                <div className={styles.wppButton}>
+                                                    <Image
+                                                        src='https://cdn.shopify.com/s/files/1/0456/6820/4706/files/whatsAppLogo.png?v=1636568821'
+                                                        layout='fill'
+                                                        objectFit='cover'
+                                                    />
+                                                </div>
+                                                <div>Contáctanos</div> 
+                                            </button>
+                                        </a>
+                                    </div>
+                                </Grid>
                             </Grid>
                         </div>
                     </>
