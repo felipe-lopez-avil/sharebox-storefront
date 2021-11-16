@@ -56,7 +56,7 @@ function makeYourBoxFilter(lineItem) {
     }
 }
 
-export default function Cart () {
+export default function Cart ({setProductsInCartExist}) {
     
     const classes = useStyles();
 
@@ -287,6 +287,7 @@ export default function Cart () {
                                         sendableCheckoutId={sendableCheckoutId}
                                         setCheckout={setCheckout}
                                         checkout={client.checkout}
+                                        setProductsInCartExist={setProductsInCartExist}
                                     />
                                 }
                                 {checkout.lineItems.map(lineItem => {
@@ -306,6 +307,7 @@ export default function Cart () {
                                                         setCheckout={setCheckout}
                                                         checkout={client.checkout}
                                                         customAttributes={lineItem.customAttributes}
+                                                        setProductsInCartExist={setProductsInCartExist}
                                                     />
                                                 )
                                             }else{
@@ -327,6 +329,7 @@ export default function Cart () {
                                                     setCheckout={setCheckout}
                                                     checkout={client.checkout}
                                                     customAttributes={lineItem.customAttributes}
+                                                    setProductsInCartExist={setProductsInCartExist}
                                                 />
                                             )
                                         }else{

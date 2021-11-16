@@ -84,9 +84,11 @@ const daysContent = [
     }
 ]
 
-export default function Navbar () {
+export default function Navbar ({productsInCartExist}) {
     const router = useRouter();
     const classes = useStyles();
+
+    // console.log(productsInCartExist)
 
     const [barEnters, setBarEnters] = useState(false)
     
@@ -420,8 +422,13 @@ export default function Navbar () {
                         <Link href="/cart">                    
                             <FiShoppingBag style={{ fontSize: 27 }}/>
                         </Link>
+                        <Grow in={productsInCartExist} timeout={500}>
+                            <div className={styles.productsIndicator}></div>
+                        </Grow>
                     </div>
-                </div>  
+                </div>
+
+                <div className={styles.div}></div>  
             </div>
             
             <div className={`${styles.mobileNavbar} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`}>

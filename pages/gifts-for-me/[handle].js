@@ -34,7 +34,7 @@ const parseData = (data) => {
     return JSON.parse(JSON.stringify(data))
 }
 
-export default function GFMProduct ({product, collection}) {
+export default function GFMProduct ({product, setProductsInCartExist}) {
 
     let multipleImages = false
     let activeImageTemp
@@ -155,6 +155,7 @@ export default function GFMProduct ({product, collection}) {
     const addToCart = async () => {
 
         setProductAdded(true);
+        setProductsInCartExist(true)
 
         // Local Storage is checked to see if a CheckoutID already exists. If not, a new one is created;
         let checkoutId = null

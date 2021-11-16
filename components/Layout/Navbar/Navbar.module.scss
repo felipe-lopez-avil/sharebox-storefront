@@ -338,6 +338,17 @@
     cursor: pointer;
     color: #fff;
     transition: all 0.3s ease;
+    position: relative;
+}
+
+.productsIndicator{
+    width: 15px;
+    height: 15px;
+    background-color: #e95848;
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    border-radius: 50%;
 }
 
 .icon.active{

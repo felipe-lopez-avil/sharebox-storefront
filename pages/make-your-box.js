@@ -42,7 +42,7 @@ function makeYourBoxFilter(lineItem) {
     }
 }
 
-export default function BoxBuilder() {
+export default function BoxBuilder({setProductsInCartExist}) {
     const router = useRouter()
 
     const [currentCheckoutId, setcurrentCheckoutId] = useState('')
@@ -202,6 +202,7 @@ export default function BoxBuilder() {
             client.checkout.removeLineItems(checkoutId, lineItemIdsToRemove).then((checkout) => {
 
                 client.checkout.addLineItems(checkoutId, lineItemsToAdd).then((checkout) => {
+                    setProductsInCartExist(true)
                     router.push('cart') 
                 });
                 
@@ -209,7 +210,7 @@ export default function BoxBuilder() {
 
         }else{
             newCheckout = await client.checkout.addLineItems(checkoutId, lineItemsToAdd)
-
+            setProductsInCartExist(true)
             // console.log(parseData(newCheckout))
 
             router.push('cart')

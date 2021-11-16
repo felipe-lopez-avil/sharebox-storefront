@@ -48,7 +48,7 @@ const parseData = (data) => {
     return JSON.parse(JSON.stringify(data))
 }
 
-export default function GTGProduct ({product, collection}) {
+export default function GTGProduct ({product, setProductsInCartExist}) {
 
     const classes = useStyles();
     //console.log(product)
@@ -181,7 +181,7 @@ export default function GTGProduct ({product, collection}) {
     const addToCart = async () => {
 
         setProductAdded(true);
-
+        setProductsInCartExist(true)
         // Local Storage is checked to see if a CheckoutID already exists. If not, a new one is created;
         let checkoutId = null
         let checkoutTemp = null
