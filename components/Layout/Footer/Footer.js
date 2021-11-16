@@ -80,6 +80,12 @@ export default function Footer() {
                 <p className={styles.adress}>
                     Dirección: Lic. José Benitez 645, Col. Obispado, Monterrey, Nuevo León, México, C.P. 64060
                 </p>
+                <p className={styles.adress}>
+                    Correo: share@sharebox.mx
+                </p>
+                <p className={styles.adress}>
+                    Teléfono: +52 81 3405 3769
+                </p>
             </div>
             <div className={styles.newsletter}>
                 <h5 className={styles.sectionTitle}>Boletín</h5>
