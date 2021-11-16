@@ -328,6 +328,7 @@ export default function GFMProduct ({product, setProductsInCartExist}) {
                         <SwiperSlide>
                             <div className={styles.centerCard}>
                                 <Link href={`/gifts-to-go/${product.handle}`}>
+                                    <a>
                                     <div className={styles.productCard}>
                                         <div className={styles.recomendedProductImage}>
                                             <Image
@@ -339,6 +340,7 @@ export default function GFMProduct ({product, setProductsInCartExist}) {
                                         <div className={styles.productTitle}>{product.title}</div>
                                         <div className={styles.productPrice}>${product.variants[0].price}</div>
                                     </div>
+                                    </a>
                                 </Link>
                             </div>
                         </SwiperSlide>

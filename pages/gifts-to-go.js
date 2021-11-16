@@ -346,6 +346,7 @@ export default function GiftsToGo () {
                                 {products.map(product => (
                                     <Grid item xs={6} sm={4} md={3} className={classes.grid}>
                                         <Link href={`/gifts-to-go/${product.handle}`}>
+                                            <a>
                                             <div className={styles.productContainer}>
                                                 <div className={styles.productImage}>
                                                     <Image
@@ -367,6 +368,7 @@ export default function GiftsToGo () {
                                                     </div>
                                                 </div>
                                             </div>
+                                            </a>
                                         </Link>
                                     </Grid>
                                 ))}
