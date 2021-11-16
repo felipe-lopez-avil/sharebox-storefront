@@ -268,7 +268,7 @@ export default function BuenFin () {
                                 {products.map(product => (
 
                                     <Grid item xs={6} sm={4} md={3} className={classes.grid}>
-                                        <Link href={`/buen-fin/${product.handle}`}>
+                                        <Link href={`/black-friday/${product.handle}`}>
                                             <div className={styles.productContainer}>
                                                 <div className={styles.productImage}>
                                                     <Image

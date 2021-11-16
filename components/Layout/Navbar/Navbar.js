@@ -299,7 +299,7 @@ export default function Navbar ({productsInCartExist}) {
                 <div className={styles.navigation}>
 
                     {/* BEGIN TEMPORAL BUEN FIN NAVITEM */}
-                    <div className={`${styles.navItem} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`} onClick={openBuenFin}>
+                    {/* <div className={`${styles.navItem} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`} onClick={openBuenFin}>
                         <span>Buen Fin</span>
 
                         <Grow in={buenFin} className={classes.collapse} style={{ transformOrigin: '0 0 0' }}>
@@ -324,7 +324,7 @@ export default function Navbar ({productsInCartExist}) {
                                 </div>
                             </div>                            
                         </Grow>
-                    </div>
+                    </div> */}
                     {/* ENDS TEMPORAL BUEN FIN NAVITEM */}
                     
                     <div className={`${styles.navItem} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`} onClick={openGTG}>
