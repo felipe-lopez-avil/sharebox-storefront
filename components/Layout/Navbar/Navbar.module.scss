@@ -130,6 +130,10 @@
         position: relative;
         transition: all 0.3s ease;
 
+        &:hover{
+            color: #6db8cf;
+        }
+
         span{
             display: flex;
             align-items: center;
@@ -143,6 +147,10 @@
 
     .navItem.active{
         color: #59748b;
+
+        &:hover{
+            color: #028ab5;
+        }
     }
 
     @media (max-width: 985px) {
@@ -285,11 +293,17 @@
 
     p{
         font-weight: 400;
+        color: #fff;
     }
 }
 
 .gtgCopy.active{
+
     h3{
+        color: #003360;
+    }
+
+    p{
         color: #003360;
     }
 }
