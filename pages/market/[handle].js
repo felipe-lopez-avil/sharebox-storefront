@@ -34,7 +34,7 @@ const parseData = (data) => {
     return JSON.parse(JSON.stringify(data))
 }
 
-export default function GFMProduct ({product, setProductsInCartExist}) {
+export default function GFMProduct ({product, setProductsInCartExist, setProductsInBasket}) {
 
     let multipleImages = false
     let activeImageTemp
@@ -186,7 +186,9 @@ export default function GFMProduct ({product, setProductsInCartExist}) {
         }
         ];
 
-        checkout = await client.checkout.addLineItems(checkoutId, lineItemsToAdd)
+        checkout = await client.checkout.addLineItems(checkoutId, lineItemsToAdd).then((checkout) => {
+            setProductsInBasket(checkout.lineItems)
+        })
 
     }
 
@@ -303,6 +305,7 @@ export default function GFMProduct ({product, setProductsInCartExist}) {
                             open={productAdded}
                             onClose={closeSnackbar}
                             message={`${product.title} se añadió a tu carrito`}
+                            autoHideDuration={2500}
                         />
                     </div>
                 }

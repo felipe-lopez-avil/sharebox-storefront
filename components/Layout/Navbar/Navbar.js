@@ -8,10 +8,12 @@ import { useRouter } from 'next/router'
 import Grow from '@material-ui/core/Grow';
 import Slide from '@mui/material/Slide';
 import Fade from '@mui/material/Fade';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import { FiShoppingBag } from 'react-icons/fi'
 import { FaBars } from 'react-icons/fa'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import CloseIcon from '@material-ui/icons/Close';
+import ShoppingBasketOutlinedIcon from '@material-ui/icons/ShoppingBasketOutlined';
 
 import 'date-fns';
 import format from 'date-fns/format'
@@ -84,7 +86,7 @@ const daysContent = [
     }
 ]
 
-export default function Navbar ({productsInCartExist}) {
+export default function Navbar ({productsInCartExist, productsInBasket}) {
     const router = useRouter();
     const classes = useStyles();
 
@@ -103,7 +105,11 @@ export default function Navbar ({productsInCartExist}) {
 
     const [mobileMenu, setMobileMenu] = useState(false);
 
-    const [codeCopied, setCodeCopied] = useState(false)
+    const [codeCopied, setCodeCopied] = useState(false);
+
+    const [cartPreviewActive, setCartPreviewActive] = useState(false)
+
+    const [productsInCart, setProductsInCart] = useState([])
 
     useEffect(() => {
         if(typeof window !== 'undefined'){
@@ -419,9 +425,7 @@ export default function Navbar ({productsInCartExist}) {
                 }
                 <div className={styles.icons}>
                     <div className={`${styles.icon} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`}>
-                        <Link href="/cart">                    
-                            <FiShoppingBag style={{ fontSize: 27 }}/>
-                        </Link>
+                        <FiShoppingBag style={{ fontSize: 27 }} onClick={() => {setCartPreviewActive(!cartPreviewActive)}}/>
                         <Grow in={productsInCartExist} timeout={500}>
                             <div className={styles.productsIndicator}></div>
                         </Grow>
@@ -430,6 +434,69 @@ export default function Navbar ({productsInCartExist}) {
 
                 <div className={styles.div}></div>  
             </div>
+
+            <Grow 
+                in={cartPreviewActive} 
+                style={{ transformOrigin: '100% 0 0' }}
+                timeout={350}
+            >
+            <div 
+                className={styles.cartPreview}
+                onMouseLeave={() => setCartPreviewActive(false)}
+            >
+                <div className={styles.previewHeader}>
+                    Carrito de compras
+                </div>
+                <div className={styles.divider}></div>
+                {!productsInCartExist ? 
+                    <div className={styles.noProducts}>
+                        <div className={styles.emptyIcon}>
+                            <Image
+                                src="https://cdn.shopify.com/s/files/1/0456/6820/4706/files/icons8-caja-vacia-100.png?v=1637169483"
+                                layout="fill"
+                                objectFit="contain"
+                            />
+                        </div>
+                        Tu carrito está vacío
+                    </div>
+                    :
+                    <>
+                    {
+                        productsInBasket.length > 0 ?
+                        <>
+                            <div className={styles.productList}>
+                                {productsInBasket.map((product)=>(
+                                    <div className={styles.product}>
+                                        <div className={styles.productImage}>
+                                            <Image
+                                                src={product.variant.image.src}
+                                                layout="fill"
+                                                objectFit="cover"
+                                            />
+                                        </div>
+                                        <div className={styles.productDescription}>
+                                            <div className={styles.productTitle}>{product.title} (x{product.quantity})</div>
+                                            <div>${product.variant.price}</div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                            <Link href="/cart">
+                                <div className={styles.checkout}>Ir a Checkout</div>
+                            </Link>
+                        </>
+                        :
+                        <>
+                            <div className={styles.loaderContainer}>
+                                <CircularProgress color="inherit"/>
+                            </div>
+                        </>
+                    }
+                    
+                    </>
+                }
+            </div>
+            </Grow>
             
             <div className={`${styles.mobileNavbar} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`}>
                 <div className={styles.mobileLogo}>

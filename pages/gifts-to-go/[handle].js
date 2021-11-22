@@ -29,9 +29,6 @@ const useStyles = makeStyles((theme) => ({
     selectEmpty: {
       marginTop: theme.spacing(2),
     },
-    background: {
-        backgroundColor: '#0188b3'
-    }
 }));
 
 const getDataFromStorage = (key) => {
@@ -48,7 +45,7 @@ const parseData = (data) => {
     return JSON.parse(JSON.stringify(data))
 }
 
-export default function GTGProduct ({product, setProductsInCartExist}) {
+export default function GTGProduct ({product, setProductsInCartExist, setProductsInBasket}) {
 
     const classes = useStyles();
     //console.log(product)
@@ -211,7 +208,9 @@ export default function GTGProduct ({product, setProductsInCartExist}) {
         }
         ];
 
-        checkout = await client.checkout.addLineItems(checkoutId, lineItemsToAdd)
+        checkout = await client.checkout.addLineItems(checkoutId, lineItemsToAdd).then((checkout) => {
+            setProductsInBasket(checkout.lineItems)
+        })
 
     }
 
@@ -329,7 +328,7 @@ export default function GTGProduct ({product, setProductsInCartExist}) {
                             open={productAdded}
                             onClose={closeSnackbar}
                             message={`${product.title} se añadió a tu carrito`}
-                            className={classes.background}
+                            autoHideDuration={2500}
                         />
                     </div>
                 }

@@ -4,7 +4,7 @@ import SbCorpNavbar from './SbCorpNavbar/SbCorpNavbar';
 
 import { useRouter } from 'next/router'
 
-export default function Layout ({children, productsInCartExist}) {
+export default function Layout ({children, productsInCartExist, productsInBasket}) {
     const router = useRouter();
 
     return (
@@ -12,7 +12,7 @@ export default function Layout ({children, productsInCartExist}) {
             { router.pathname === '/corporate' ? 
                 <SbCorpNavbar/> 
                 : 
-                <Navbar productsInCartExist={productsInCartExist}/> 
+                <Navbar productsInCartExist={productsInCartExist} productsInBasket={productsInBasket}/> 
             }
                 {children}
             <Footer/>

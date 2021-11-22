@@ -68,7 +68,7 @@
 
 .desktopNavbar.active{
     background-color: #fff;
-    border-bottom: 2px solid #ECECEC;
+    border-bottom: 2px solid #ececec;
 }
 
 .background{
@@ -367,6 +367,118 @@
 
 .icon.active{
     color: #003360;
+}
+
+
+.cartPreview{
+    position: fixed;
+    top: 115px;
+    right: 15px;
+    background-color: #fff;
+    width: 330px;
+    min-height: 100px;
+    z-index: 999;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #ececec;
+    padding: 20px;
+}
+
+.previewHeader{
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.divider{
+    border-bottom: 2px solid #ececec;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.noProducts{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.emptyIcon{
+    position: relative;
+    width: 55px;
+    height: 55px;
+    margin-bottom: 10px;
+}
+
+.productList{
+    width: 100%;
+    max-height: calc(100vh - 275px);
+    overflow-y: scroll;
+    margin: 10px 0;
+
+    &::-webkit-scrollbar {
+        width: 8px;               /* width of the entire scrollbar */
+      }
+      
+    &::-webkit-scrollbar-track {
+    background: transparent;        /* color of the tracking area */
+    }
+    
+    &::-webkit-scrollbar-thumb {
+    background-color: #0000002c;    /* color of the scroll thumb */
+    border-radius: 20px;       /* roundness of the scroll thumb */
+    }
+}
+
+.product{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 0;
+
+    .productImage{
+        width: 65px;
+        height: 65px;
+        background-color: #ececec;
+        border-radius: 5px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .productDescription{
+        width: calc(100% - 75px);
+        font-weight: 300;
+        //background-color: darkgoldenrod;
+
+        .productTitle{
+            font-weight: 500;
+        }
+    }
+}
+
+.checkout{
+    padding: 12px 20px;
+    background-color: #028ab5;
+    border-radius: 5px;
+    text-align: center;
+    width: 100%;
+    color: #fff;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.loaderContainer{
+    width: 100%;
+    color: #028ab5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
 }
 
 .mobileNavbar{

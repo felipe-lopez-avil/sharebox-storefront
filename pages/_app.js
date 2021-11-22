@@ -22,6 +22,7 @@ function MyApp({ Component, pageProps }) {
   const router = useRouter()
 
   const [productsInCartExist, setProductsInCartExist] = useState(false)
+  const [productsInBasket, setProductsInBasket] = useState([])
 
   let checkoutId;
 
@@ -36,6 +37,8 @@ function MyApp({ Component, pageProps }) {
           if (checkout.completedAt === null & checkout.lineItems.length > 0){
             // console.log('Carrito sin completar y con productos agregados')
             setProductsInCartExist(true)
+            setProductsInBasket(checkout.lineItems)
+            console.log(checkout.lineItems)
           }
         })
       } else{
@@ -72,10 +75,11 @@ function MyApp({ Component, pageProps }) {
           gtag('config', 'UA-177859708-1');
         `}
       </Script> */}
-      <Layout productsInCartExist={productsInCartExist}>
+      <Layout productsInCartExist={productsInCartExist} productsInBasket={productsInBasket}>
         <Component 
           {...pageProps}
-          setProductsInCartExist={setProductsInCartExist} 
+          setProductsInCartExist={setProductsInCartExist}
+          setProductsInBasket={setProductsInBasket} 
         />
       </Layout>    
     </>
