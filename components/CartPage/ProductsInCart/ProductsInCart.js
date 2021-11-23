@@ -1,7 +1,7 @@
 import styles from './ProductsInCart.module.scss'
 import Image from 'next/image'
 
-export default function ProductsInCart({image, product, selectedOptions, price, quantity, total, id, sendableCheckoutId, setCheckout, checkout, customAttributes, setProductsInCartExist}) {
+export default function ProductsInCart({image, product, selectedOptions, price, quantity, total, id, sendableCheckoutId, setCheckout, checkout, customAttributes, setProductsInCartExist, setProductsInBasket}) {
 
     const deleteElement = (sendableCheckoutId, id) => {
 
@@ -15,6 +15,7 @@ export default function ProductsInCart({image, product, selectedOptions, price, 
             // Do something with the updated checkout
             //console.log(checkout); // Checkout with line item 'Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0Lzc4NTc5ODkzODQ=' removed
             setCheckout(checkout)
+            setProductsInBasket(checkout.lineItems)
 
             if(checkout.lineItems.length <= 0){
                 setProductsInCartExist(false)
