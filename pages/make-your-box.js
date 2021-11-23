@@ -42,7 +42,7 @@ function makeYourBoxFilter(lineItem) {
     }
 }
 
-export default function BoxBuilder({setProductsInCartExist}) {
+export default function BoxBuilder({setProductsInCartExist, setProductsInBasket}) {
     const router = useRouter()
 
     const [currentCheckoutId, setcurrentCheckoutId] = useState('')
@@ -204,6 +204,7 @@ export default function BoxBuilder({setProductsInCartExist}) {
                 client.checkout.addLineItems(checkoutId, lineItemsToAdd).then((checkout) => {
                     setProductsInCartExist(true)
                     router.push('cart') 
+                    setProductsInBasket(checkout.lineItems)
                 });
                 
             });  
@@ -212,6 +213,7 @@ export default function BoxBuilder({setProductsInCartExist}) {
             newCheckout = await client.checkout.addLineItems(checkoutId, lineItemsToAdd)
             setProductsInCartExist(true)
             // console.log(parseData(newCheckout))
+            setProductsInBasket(newCheckout.lineItems)
 
             router.push('cart')
         }
