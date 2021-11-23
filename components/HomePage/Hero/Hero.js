@@ -20,7 +20,7 @@ const slidesContent = [
         copy: "Sorpresas listas para llevar, ¡perfectas para cualquier ocasión!", 
         button: "¡Escoge tu Box!",
         link: "/gifts-to-go",
-        videoUrl: "https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Video_2.mp4?v=1633726286",
+        videoUrl: "https://cdn.shopify.com/s/files/1/0456/6820/4706/files/IMG_5895.mp4?v=1637709980",
         poster: "/gtg-placeholder.png",
         backgroundColor: "#ececec"
     },
@@ -29,7 +29,7 @@ const slidesContent = [
         copy: "Arma tu caja desde cero y personalízala como tú quieras.",
         button: "¡Crea tu Box!",
         link: "/make-your-box",
-        videoUrl: "https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Video_1.mp4?v=1633726286",
+        videoUrl: "https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Video_1_grain.mp4?v=1637688095",
         poster: "/myb-placeholder.png",
         backgroundColor: "#ececec"
     },
@@ -38,7 +38,7 @@ const slidesContent = [
         copy: "Cómprate ese producto que siempre te encantó.",
         button: "¡Consiéntete!",
         link: "/market",
-        videoUrl: "https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Video_2b_Trim.mp4?v=1633726287",
+        videoUrl: "https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Video_2_grain.mp4?v=1637688296",
         poster: "/gfm-placeholder.png",
         backgroundColor: "#ececec"
     },

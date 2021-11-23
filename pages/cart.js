@@ -394,7 +394,13 @@ export default function Cart ({setProductsInCartExist, setProductsInBasket}) {
                         </>
                         :
                         <div className={styles.noProducts}>
-                            <RemoveShoppingCartOutlinedIcon style={{ fontSize: 60, marginBottom: '20px' }}/>
+                            <div className={styles.noItemsIcon}>
+                                <Image
+                                    src="https://cdn.shopify.com/s/files/1/0456/6820/4706/files/noProductsIcon.png?v=1637686960"
+                                    layout="fill"
+                                    objectFit="contain"
+                                />
+                            </div>
                             <div>No tienes productos en el carrito</div>
                         </div>
                     }
@@ -403,7 +409,13 @@ export default function Cart ({setProductsInCartExist, setProductsInBasket}) {
                     <>
                     {confirmationEmptyCart ?
                         <div className={styles.noProducts}>
-                            <RemoveShoppingCartOutlinedIcon style={{ fontSize: 60, marginBottom: '20px' }}/>
+                            <div className={styles.noItemsIcon}>
+                                <Image
+                                    src="https://cdn.shopify.com/s/files/1/0456/6820/4706/files/noProductsIcon.png?v=1637686960"
+                                    layout="fill"
+                                    objectFit="contain"
+                                />
+                            </div>
                             <div>No tienes productos en el carrito</div>
                         </div>
                         :

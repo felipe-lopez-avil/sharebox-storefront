@@ -453,7 +453,7 @@ export default function Navbar ({productsInCartExist, productsInBasket}) {
                     <div className={styles.noProducts}>
                         <div className={styles.emptyIcon}>
                             <Image
-                                src="https://cdn.shopify.com/s/files/1/0456/6820/4706/files/icons8-caja-vacia-100.png?v=1637169483"
+                                src="https://cdn.shopify.com/s/files/1/0456/6820/4706/files/noProductsIcon.png?v=1637686960"
                                 layout="fill"
                                 objectFit="contain"
                             />
