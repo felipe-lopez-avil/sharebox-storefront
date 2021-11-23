@@ -38,11 +38,8 @@ function MyApp({ Component, pageProps }) {
             // console.log('Carrito sin completar y con productos agregados')
             setProductsInCartExist(true)
             setProductsInBasket(checkout.lineItems)
-            console.log(checkout.lineItems)
           }
         })
-      } else{
-        console.log("'checkoutId' doesn't exist")
       }
     }
 

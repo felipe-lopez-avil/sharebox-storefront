@@ -108,6 +108,7 @@ export default function Navbar ({productsInCartExist, productsInBasket}) {
     const [codeCopied, setCodeCopied] = useState(false);
 
     const [cartPreviewActive, setCartPreviewActive] = useState(false)
+    let mybPrice = 0;
 
     const [productsInCart, setProductsInCart] = useState([])
 
@@ -465,21 +466,72 @@ export default function Navbar ({productsInCartExist, productsInBasket}) {
                         productsInBasket.length > 0 ?
                         <>
                             <div className={styles.productList}>
-                                {productsInBasket.map((product)=>(
+
+                                { productsInBasket.map(
+                                    function(e) { 
+                                        if(e.customAttributes[0] !== undefined) {
+                                            if(e.customAttributes[0].key === 'Make Your Box'){
+                                                mybPrice = (mybPrice + (parseFloat(e.variant.price) * e.quantity))
+                                            }
+                                            return e.customAttributes[0].key 
+                                        } else { 
+                                            return "No Custom Attributes"
+                                        }
+                                    }).indexOf('Make Your Box') > -1 &&
                                     <div className={styles.product}>
                                         <div className={styles.productImage}>
                                             <Image
-                                                src={product.variant.image.src}
+                                                src="https://cdn.shopify.com/s/files/1/0456/6820/4706/files/classic-box-craft.jpg?v=1636561794"
                                                 layout="fill"
                                                 objectFit="cover"
                                             />
                                         </div>
                                         <div className={styles.productDescription}>
-                                            <div className={styles.productTitle}>{product.title} (x{product.quantity})</div>
-                                            <div>${product.variant.price}</div>
+                                            <div className={styles.productTitle}>Box Personalizada</div>
+                                            <div>${mybPrice.toFixed(2)}</div>
                                         </div>
                                     </div>
-                                ))}
+                                }
+
+                                {productsInBasket.map((product)=>{
+                                    if(product.variant !== null){
+                                        if(product.customAttributes[0] !== undefined){
+                                            if(product.customAttributes[0].key !== 'Make Your Box'){
+                                                return(
+                                                    <div className={styles.product}>
+                                                        <div className={styles.productImage}>
+                                                            <Image
+                                                                src={product.variant.image.src}
+                                                                layout="fill"
+                                                                objectFit="cover"
+                                                            />
+                                                        </div>
+                                                        <div className={styles.productDescription}>
+                                                            <div className={styles.productTitle}>{product.title} (x{product.quantity})</div>
+                                                            <div>${product.variant.price}</div>
+                                                        </div>
+                                                    </div>
+                                                )
+                                            } 
+                                        }else{
+                                            return(
+                                                <div className={styles.product}>
+                                                    <div className={styles.productImage}>
+                                                        <Image
+                                                            src={product.variant.image.src}
+                                                            layout="fill"
+                                                            objectFit="cover"
+                                                        />
+                                                    </div>
+                                                    <div className={styles.productDescription}>
+                                                        <div className={styles.productTitle}>{product.title} (x{product.quantity})</div>
+                                                        <div>${product.variant.price}</div>
+                                                    </div>
+                                                </div>
+                                            )
+                                        } 
+                                    }
+                                })}
                             </div>
                             <Link href="/cart">
                                 <div className={styles.checkout}>Ir a Checkout</div>

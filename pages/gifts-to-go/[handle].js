@@ -80,7 +80,7 @@ export default function GTGProduct ({product, setProductsInCartExist, setProduct
     }
 
     useEffect(() => {
-        // console.log(product)
+         console.log(product)
         if(typeof window !== 'undefined'){
             setWindowReady(true)
         }
@@ -152,8 +152,6 @@ export default function GTGProduct ({product, setProductsInCartExist, setProduct
                 if(product.variants[index].image !== null & product.variants[index].image !== ''){
                     setActiveImage(product.variants[index].image.src)
                 } 
-                /* console.log("La variante activa es:")
-                console.log(index) */
             }
 
         })

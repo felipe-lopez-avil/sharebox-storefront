@@ -385,6 +385,10 @@
     justify-content: center;
     border: 2px solid #ececec;
     padding: 20px;
+
+    @media (max-width: 890px) {
+        display: none;
+    }
 }
 
 .previewHeader{
