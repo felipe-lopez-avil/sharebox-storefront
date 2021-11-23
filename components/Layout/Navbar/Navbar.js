@@ -356,7 +356,7 @@ export default function Navbar ({productsInCartExist, productsInBasket}) {
                                         </div>
                                         <div className={`${styles.gtgCategories} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`}>
                                             <Link href="/gifts-to-go"><div className={`${styles.categoryLink} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`}>Boxes</div></Link>
-                                            <Link href="/gifts-to-go"><div className={`${styles.categoryLink} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`}>Kits Armados</div></Link>
+                                            <Link href="/gifts-to-go"><div className={`${styles.categoryLink} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`}>Detalles Navideños</div></Link>
                                             <Link href="/gifts-to-go"><div className={`${styles.categoryLink} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`}>Globos y Flores</div></Link>
                                             <Link href="/gifts-to-go"><div className={`${styles.categoryLink} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`}>Snacks y Postres</div></Link>
                                         </div>
@@ -632,11 +632,6 @@ export default function Navbar ({productsInCartExist, productsInBasket}) {
                             <CloseIcon style={{ fontSize: 40 }} onClick={closeMobileMenu}/>
                         </div>
                         <div className={styles.mobileNavigation}>
-                            <Link href="/buen-fin">
-                                <div className={styles.mobileNavItem} onClick={closeMobileMenu}>
-                                    ¡Buen Fin!
-                                </div>
-                            </Link>
                             <Link href="/gifts-to-go">
                                 <div className={styles.mobileNavItem} onClick={closeMobileMenu}>
                                     Gifts To Go

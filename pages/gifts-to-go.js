@@ -226,6 +226,7 @@ export default function GiftsToGo () {
                                     <RadioGroup aria-label="productType" name="productType" value={typeFilter} onChange={handleTypeFilter}>
                                         <FormControlLabel value="all" control={<Radio />} label="Todos"/>
                                         <FormControlLabel value="Boxes" control={<Radio />} label="Boxes" />
+                                        <FormControlLabel value="Menos de 350" control={<Radio />} label="Detalles Navideños" />
                                         {/* <FormControlLabel value="kits armados" control={<Radio />} label="Kits Armados" /> */}
                                         <FormControlLabel value="Globos y Flores" control={<Radio />} label="Globos y Flores" />
                                         <FormControlLabel value="Snacks y Postres" control={<Radio />} label="Snacks y Postres" />
@@ -238,6 +239,7 @@ export default function GiftsToGo () {
                                     <FormControl component="fieldset">
                                         <RadioGroup aria-label="gender" name="gender1" value={ocassionFilter} onChange={handleOcassionFilter}>
                                             <FormControlLabel value="all" control={<Radio />} label="Todas" />
+                                            <FormControlLabel value="Navidad" control={<Radio />} label="Navidad" />
                                             <FormControlLabel value="Anillos y compromisos" control={<Radio />} label="Anillos y compromisos" />
                                             <FormControlLabel value="Aniversario" control={<Radio />} label="Aniversario" />
                                             <FormControlLabel value="Condolencias" control={<Radio />} label="Condolencias" />
@@ -246,7 +248,6 @@ export default function GiftsToGo () {
                                             <FormControlLabel value="Graduaciones y logros" control={<Radio />} label="Graduaciones y logros" />
                                             <FormControlLabel value="New born & padrinos" control={<Radio />} label="New Born & Padrinos" />
                                             <FormControlLabel value="Pets" control={<Radio />} label="Pets" />
-                                            <FormControlLabel value="Navidad" control={<Radio />} label="Navidad" />
                                         </RadioGroup>
                                     </FormControl>
                                 </div>

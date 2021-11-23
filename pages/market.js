@@ -180,6 +180,7 @@ export default function GiftsForMe () {
                             <FormControl component="fieldset">
                                 <RadioGroup aria-label="gender" name="gender1" value={activeFilter} onChange={handleActiveFilter}>
                                     <FormControlLabel value="all" control={<Radio />} label="Todo" />
+                                    <FormControlLabel value="Navidad" control={<Radio />} label="Navidad" />
                                     <FormControlLabel value="Accesorios y complementos" control={<Radio />} label="Accesorios y complementos" />
                                     <FormControlLabel value="Arte & hogar" control={<Radio />} label="Arte & hogar" />
                                     <FormControlLabel value="Bebés y niños" control={<Radio />} label="Bebés y niños" />

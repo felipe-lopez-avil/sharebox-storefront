@@ -80,7 +80,6 @@ export default function GTGProduct ({product, setProductsInCartExist, setProduct
     }
 
     useEffect(() => {
-         console.log(product)
         if(typeof window !== 'undefined'){
             setWindowReady(true)
         }
