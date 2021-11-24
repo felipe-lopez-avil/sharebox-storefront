@@ -28,16 +28,30 @@ function MyApp({ Component, pageProps }) {
 
   useEffect(() => {
 
+    let itemIdsToDelete = []
+
     if(window !== undefined){
       checkoutId = getDataFromStorage('checkoutId')
       if(checkoutId !== null){
         // console.log("'checkoutId' exist" )
         client.checkout.fetch(checkoutId).then((checkout) => {
           // console.log(checkout.lineItems.length)
+          // console.log(checkout.lineItems)
+
+          checkout.lineItems.map((item) => {
+            if (item.variant === null){
+              itemIdsToDelete.push(item.id)
+            }
+          })
+
+          // console.log(itemIdsToDelete)
+
           if (checkout.completedAt === null & checkout.lineItems.length > 0){
-            // console.log('Carrito sin completar y con productos agregados')
-            setProductsInCartExist(true)
-            setProductsInBasket(checkout.lineItems)
+
+            client.checkout.removeLineItems(checkoutId, itemIdsToDelete).then((checkout) => {
+              setProductsInCartExist(true)
+              setProductsInBasket(checkout.lineItems)
+            });
           }
         })
       }

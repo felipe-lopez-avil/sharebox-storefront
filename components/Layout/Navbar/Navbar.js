@@ -469,7 +469,7 @@ export default function Navbar ({productsInCartExist, productsInBasket}) {
 
                                 { productsInBasket.map(
                                     function(e) { 
-                                        if(e.customAttributes[0] !== undefined) {
+                                        if(e.customAttributes[0] !== undefined && e.variant !== null) {
                                             if(e.customAttributes[0].key === 'Make Your Box'){
                                                 mybPrice = (mybPrice + (parseFloat(e.variant.price) * e.quantity))
                                             }
@@ -534,7 +534,7 @@ export default function Navbar ({productsInCartExist, productsInBasket}) {
                                 })}
                             </div>
                             <Link href="/cart">
-                                <div className={styles.checkout}>Ir a Checkout</div>
+                                <div className={styles.checkout}>Pasar a carrito</div>
                             </Link>
                         </>
                         :
