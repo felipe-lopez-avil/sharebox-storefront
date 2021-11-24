@@ -21,7 +21,7 @@ const slidesContent = [
         button: "¡Escoge tu Box!",
         link: "/gifts-to-go",
         videoUrl: "https://cdn.shopify.com/s/files/1/0456/6820/4706/files/IMG_5895.mp4?v=1637709980",
-        poster: "/gtg-placeholder.png",
+        poster: "https://cdn.shopify.com/s/files/1/0456/6820/4706/files/vid-3.jpg?v=1637770737",
         backgroundColor: "#ececec"
     },
     {
@@ -30,7 +30,7 @@ const slidesContent = [
         button: "¡Crea tu Box!",
         link: "/make-your-box",
         videoUrl: "https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Video_1_grain.mp4?v=1637688095",
-        poster: "/myb-placeholder.png",
+        poster: "https://cdn.shopify.com/s/files/1/0456/6820/4706/files/vid-1.jpg?v=1637770737",
         backgroundColor: "#ececec"
     },
     {
@@ -39,7 +39,7 @@ const slidesContent = [
         button: "¡Consiéntete!",
         link: "/market",
         videoUrl: "https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Video_2_grain.mp4?v=1637688296",
-        poster: "/gfm-placeholder.png",
+        poster: "/https://cdn.shopify.com/s/files/1/0456/6820/4706/files/vid-2.jpg?v=1637770737",
         backgroundColor: "#ececec"
     },
 ]
