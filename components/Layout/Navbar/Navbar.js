@@ -306,8 +306,8 @@ export default function Navbar ({productsInCartExist, productsInBasket}) {
                 <div className={styles.navigation}>
 
                     {/* BEGIN TEMPORAL BUEN FIN NAVITEM */}
-                    {/* <div className={`${styles.navItem} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`} onClick={openBuenFin}>
-                        <span>Buen Fin</span>
+                    <div className={`${styles.navItem} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`} onClick={openBuenFin}>
+                        <span>Black Friday</span>
 
                         <Grow in={buenFin} className={classes.collapse} style={{ transformOrigin: '0 0 0' }}>
                             <div onMouseLeave={closeBuenFin}>
@@ -323,15 +323,15 @@ export default function Navbar ({productsInCartExist, productsInBasket}) {
                                             </div>
                                         </div>
                                         <div className={`${styles.itemDescription} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`}>
-                                            <h3>BUEN FIN</h3>
+                                            <h3>BLACK FRIDAY</h3>
                                             <p>¿Ya viste los descuentos? Pasa a verlos antes de que se agoten</p>
-                                            <Link href="/buen-fin"><div className={`${styles.button} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`}>¡Ver productos!</div></Link>
+                                            <Link href="/black-friday"><div className={`${styles.button} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`}>¡Ver productos!</div></Link>
                                         </div>
                                     </div>
                                 </div>
                             </div>                            
                         </Grow>
-                    </div> */}
+                    </div>
                     {/* ENDS TEMPORAL BUEN FIN NAVITEM */}
                     
                     <div className={`${styles.navItem} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`} onClick={openGTG}>

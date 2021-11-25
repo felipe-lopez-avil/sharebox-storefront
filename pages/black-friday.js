@@ -166,7 +166,7 @@ export default function BuenFin () {
             </Head>
 
             <div className={styles.title}>
-                <h1>BUEN FIN</h1>
+                <h1>BLACK FRIDAY</h1>
             </div>
             {windowReady === true &&             
                 <div className={styles.content}>
