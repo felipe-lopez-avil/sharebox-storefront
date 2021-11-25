@@ -254,9 +254,9 @@ export default function GiftsToGo () {
                                             }
                                             {typeFilter === "Menos de 350" &&
                                                 <>
-                                                    <FormControlLabel value="Graduaciones y logros" control={<Radio />} label="$50 a $250" />
-                                                    <FormControlLabel value="New born & padrinos" control={<Radio />} label="$250 a $400" />
-                                                    <FormControlLabel value="Pets" control={<Radio />} label="$400 a $600" />
+                                                    <FormControlLabel value="$50 a $250" control={<Radio />} label="$50 a $250" />
+                                                    <FormControlLabel value="$250 a $400" control={<Radio />} label="$250 a $400" />
+                                                    <FormControlLabel value="$400 a $600" control={<Radio />} label="$400 a $600" />
                                                 </>
                                             }
                                         </RadioGroup>
