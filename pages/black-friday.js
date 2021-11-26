@@ -161,7 +161,7 @@ export default function BuenFin () {
         <div className={styles.container}>
 
             <Head>
-                <title>¡Ofertas de Buen Fin!</title>
+                <title>¡Ofertas de Black Friday!</title>
                 <link rel="icon" href="/favicon.png" />
             </Head>
 
