@@ -239,7 +239,7 @@ export default function BuenFinProduct ({product, collection}) {
         <div className={styles.goBackContainer}>
             <Link href='/buen-fin'>
                 <div className={styles.goBack}>
-                    <span><ArrowBackIosIcon/></span> <span>Volver a Productos de Buen Fin</span>
+                    <span><ArrowBackIosIcon/></span> <span>Volver a Ofertas</span>
                 </div>
             </Link>
         </div>
