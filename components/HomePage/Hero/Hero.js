@@ -6,15 +6,15 @@ import Fade from '@mui/material/Fade';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
 const slidesContent = [
-    /* {
-        title: '¡Llegó el Buen Fin!',
-        copy: "Tenemos promociones únicas como tú", 
+    {
+        title: '¡Llegó el Black Friday!',
+        copy: "Descuentos increíbles pensados para tí", 
         button: "¡Ver Ofertas!",
-        link: "/buen-fin",
-        videoUrl: "https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Buen_Fin_a.mp4?v=1636498782",
-        poster: "/gtg-placeholder.png",
+        link: "/bblack-friday",
+        videoUrl: "https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Black_Friday.mp4?v=1637941690",
+        poster: "https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Black_Friday_a.png?v=1637941708",
         backgroundColor: "#ececec"
-    }, */
+    },
     {
         title: "Gifts To Go",
         copy: "Sorpresas listas para llevar, ¡perfectas para cualquier ocasión!", 

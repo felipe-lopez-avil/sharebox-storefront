@@ -316,9 +316,9 @@ export default function Navbar ({productsInCartExist, productsInBasket}) {
                                         <div className={styles.itemImage}>
                                             <div className={styles.image}>
                                                 <Image
-                                                    src='https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Logotipo_BF_2021.png?v=1636495808'
+                                                    src='https://cdn.shopify.com/s/files/1/0456/6820/4706/files/BFMenu.png?v=1637942053'
                                                     layout='fill'
-                                                    objectFit='contain'
+                                                    objectFit='cover'
                                                 />
                                             </div>
                                         </div>
@@ -632,6 +632,11 @@ export default function Navbar ({productsInCartExist, productsInBasket}) {
                             <CloseIcon style={{ fontSize: 40 }} onClick={closeMobileMenu}/>
                         </div>
                         <div className={styles.mobileNavigation}>
+                            <Link href="/black-friday">
+                                <div className={styles.mobileNavItem} onClick={closeMobileMenu}>
+                                    Black Friday
+                                </div>
+                            </Link>
                             <Link href="/gifts-to-go">
                                 <div className={styles.mobileNavItem} onClick={closeMobileMenu}>
                                     Gifts To Go
