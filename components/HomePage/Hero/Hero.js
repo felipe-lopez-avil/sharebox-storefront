@@ -7,15 +7,6 @@ import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
 const slidesContent = [
     {
-        title: '¡Llegó el Black Friday!',
-        copy: "Descuentos increíbles pensados para tí", 
-        button: "¡Ver Ofertas!",
-        link: "/black-friday",
-        videoUrl: "https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Black_Friday.mp4?v=1637941690",
-        poster: "https://cdn.shopify.com/s/files/1/0456/6820/4706/files/Black_Friday_a.png?v=1637941708",
-        backgroundColor: "#ececec"
-    },
-    {
         title: "Gifts To Go",
         copy: "Sorpresas listas para llevar, ¡perfectas para cualquier ocasión!", 
         button: "¡Escoge tu Box!",

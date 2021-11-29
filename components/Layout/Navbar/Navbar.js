@@ -306,7 +306,7 @@ export default function Navbar ({productsInCartExist, productsInBasket}) {
                 <div className={styles.navigation}>
 
                     {/* BEGIN TEMPORAL BUEN FIN NAVITEM */}
-                    <div className={`${styles.navItem} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`} onClick={openBuenFin}>
+                    {/* <div className={`${styles.navItem} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`} onClick={openBuenFin}>
                         <span>Black Friday</span>
 
                         <Grow in={buenFin} className={classes.collapse} style={{ transformOrigin: '0 0 0' }}>
@@ -331,7 +331,7 @@ export default function Navbar ({productsInCartExist, productsInBasket}) {
                                 </div>
                             </div>                            
                         </Grow>
-                    </div>
+                    </div> */}
                     {/* ENDS TEMPORAL BUEN FIN NAVITEM */}
                     
                     <div className={`${styles.navItem} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`} onClick={openGTG}>
@@ -632,11 +632,6 @@ export default function Navbar ({productsInCartExist, productsInBasket}) {
                             <CloseIcon style={{ fontSize: 40 }} onClick={closeMobileMenu}/>
                         </div>
                         <div className={styles.mobileNavigation}>
-                            <Link href="/black-friday">
-                                <div className={styles.mobileNavItem} onClick={closeMobileMenu}>
-                                    Black Friday
-                                </div>
-                            </Link>
                             <Link href="/gifts-to-go">
                                 <div className={styles.mobileNavItem} onClick={closeMobileMenu}>
                                     Gifts To Go
