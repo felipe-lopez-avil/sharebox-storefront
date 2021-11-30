@@ -162,7 +162,7 @@ export default function DatePickerModal ({closeDateModal, setDefinitiveDate, dat
     }
 
     function shouldDisableDate(day) {
-        return day.getDay() === 0;
+        return day.getDay() === 0 || day.getDay() === 1;
     }
 
     const [windowReady, setWindowReady] = useState(false)
