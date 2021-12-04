@@ -133,25 +133,26 @@ export default function Cart ({setProductsInCartExist, setProductsInBasket}) {
             }
         }
 
-        if (currrentHour > 16){
-
-            if(format(add(today, {days: 2}), "i") !== '7'){
-                let newDate = add(today, {days: 2});
-                setDefinitiveDate(newDate, 'dd/MM/yyyy')
-                setDate(newDate, 'dd/MM/yyyy')
-                setMinDate(newDate);
-                setNextDayOnly(true)
-                setAfternoonOnly(false)
-            }else{
-                let newDate = add(today, {days: 3});
-                setDefinitiveDate(newDate, 'dd/MM/yyyy')
-                setDate(newDate, 'dd/MM/yyyy')
-                setMinDate(newDate);
-                setNextDayOnly(true)
-                setAfternoonOnly(false)
-            }
-            
+        if(format(today, "i") === '6'){
+            let newDate = add(today, {days: 3})
+            setDefinitiveDate(newDate, 'dd/MM/yyyy')
+            setDate(newDate, 'dd/MM/yyyy')
+            setMinDate(newDate);
+        } else if(format(today, "i") === '7'){
+            let newDate = add(today, {days: 2})
+            setDefinitiveDate(newDate, 'dd/MM/yyyy')
+            setDate(newDate, 'dd/MM/yyyy')
+            setMinDate(newDate);
+            console.log("Hoy es sabado")
+        } else if (currrentHour > 16){
+            let newDate = add(today, {days: 2});
+            setDefinitiveDate(newDate, 'dd/MM/yyyy')
+            setDate(newDate, 'dd/MM/yyyy')
+            setMinDate(newDate);
+            setNextDayOnly(true)
+            setAfternoonOnly(false)
         }
+            
         /* if (currrentHour >= 4){
             setAfternoonOnly(true)
         } */
