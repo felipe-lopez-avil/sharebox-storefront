@@ -143,7 +143,7 @@ export default function Cart ({setProductsInCartExist, setProductsInBasket}) {
             setDefinitiveDate(newDate, 'dd/MM/yyyy')
             setDate(newDate, 'dd/MM/yyyy')
             setMinDate(newDate);
-            console.log("Hoy es sabado")
+            // console.log("Hoy es sabado")
         } else if (currrentHour > 16){
             let newDate = add(today, {days: 2});
             setDefinitiveDate(newDate, 'dd/MM/yyyy')
@@ -152,10 +152,23 @@ export default function Cart ({setProductsInCartExist, setProductsInBasket}) {
             setNextDayOnly(true)
             setAfternoonOnly(false)
         }
-            
-        /* if (currrentHour >= 4){
-            setAfternoonOnly(true)
-        } */
+
+        if((format(today, "d") === '24' || format(today, "d") === '25') && format(today, "L") === '12'){
+            let newDate = new Date(2021,11,18)
+            setDefinitiveDate(newDate, 'dd/MM/yyyy')
+            setDate(newDate, 'dd/MM/yyyy')
+            setMinDate(newDate);
+        }else if((format(today, "d") === '30' || format(today, "d") === '31') && format(today, "L") === '12'){
+            let newDate = new Date(2022,0,4)
+            setDefinitiveDate(newDate, 'dd/MM/yyyy')
+            setDate(newDate, 'dd/MM/yyyy')
+            setMinDate(newDate);
+        }else if((format(today, "d") === '1' || format(today, "d") === '2') && format(today, "L") === '1'){
+            let newDate = new Date(2022,0,4)
+            setDefinitiveDate(newDate, 'dd/MM/yyyy')
+            setDate(newDate, 'dd/MM/yyyy')
+            setMinDate(newDate);
+        }
     }, [])
 
     const openCardModal = () => {

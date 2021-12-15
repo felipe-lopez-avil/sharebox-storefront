@@ -75,15 +75,15 @@ export default function DatePickerModal ({closeDateModal, setDefinitiveDate, dat
             setLocalDeliverActive(false);
             setNationalActive(false);
 
-            setDate(add(new Date(), {days: 1}), 'dd/MM/yyyy');
-            setDefinitiveDate(add(new Date(), {days: 1}), 'dd/MM/yyyy');
+            /* setDate(add(new Date(), {days: 1}), 'dd/MM/yyyy');
+            setDefinitiveDate(add(new Date(), {days: 1}), 'dd/MM/yyyy'); */
             setTime('Por la mañana - 9:00 a 13:00');
             setDeliveryType('Recogida Local')
             setCp('');
             setValidCP('');
             setConfirmationMessage('');
 
-            let today = new Date();
+            /* let today = new Date();
             let meridiem = format(today, "aaa")
             let newDate
             let currrentHour = parseInt(format(today, "H"))
@@ -92,7 +92,7 @@ export default function DatePickerModal ({closeDateModal, setDefinitiveDate, dat
                 newDate = add(today, {days: 2});
                 setDate(newDate, 'dd/MM/yyyy')
                 setMinDate(newDate);
-            }
+            } */
         }
 
     }
@@ -105,15 +105,15 @@ export default function DatePickerModal ({closeDateModal, setDefinitiveDate, dat
             setNationalActive(false);
 
             //console.log(format(add(new Date(), {days: 1}), 'dd/MM/yyyy'))
-            setDate(add(new Date(), {days: 1}), 'dd/MM/yyyy');
-            setDefinitiveDate(add(new Date(), {days: 1}), 'dd/MM/yyyy');
+            /* setDate(add(new Date(), {days: 1}), 'dd/MM/yyyy');
+            setDefinitiveDate(add(new Date(), {days: 1}), 'dd/MM/yyyy'); */
             setTime('Por la mañana - 9:00 a 13:00');
             setDeliveryType('Envío Local')
             setCp('');
             setValidCP('')
             setConfirmationMessage('')
 
-            let today = new Date();
+            /* let today = new Date();
             let meridiem = format(today, "aaa")
             let newDate
             let currrentHour = parseInt(format(today, "H"))
@@ -122,7 +122,7 @@ export default function DatePickerModal ({closeDateModal, setDefinitiveDate, dat
                 newDate = add(today, {days: 2});
                 setDate(newDate, 'dd/MM/yyyy')
                 setMinDate(newDate);
-            }
+            } */
         }
 
     }
@@ -134,7 +134,7 @@ export default function DatePickerModal ({closeDateModal, setDefinitiveDate, dat
             setLocalDeliverActive(false);
             setNationalActive(true);
 
-            setDate(add(new Date(), {days: 1}), 'dd/MM/yyyy')
+            /* setDate(add(new Date(), {days: 1}), 'dd/MM/yyyy') */
             setTime('');
             setDeliveryType('Envío Nacional')
             setCp('');
@@ -162,9 +162,21 @@ export default function DatePickerModal ({closeDateModal, setDefinitiveDate, dat
     }
 
     function shouldDisableDate(day) {
-        return day.getDay() === 0 || day.getDay() === 1;
+        return (
+            day.getDay() === 0 || 
+            day.getDay() === 1 || 
+            (day.getDate() === 24 & format(day, "L") === '12') ||
+            (day.getDate() === 25 & format(day, "L") === '12') ||
+            (day.getDate() === 26 & format(day, "L") === '12') ||
+            (day.getDate() === 27 & format(day, "L") === '12') ||
+            (day.getDate() === 30 & format(day, "L") === '12') ||
+            (day.getDate() === 31 & format(day, "L") === '12') ||
+            (day.getDate() === 1 & format(day, "L") === '1') ||
+            (day.getDate() === 2 & format(day, "L") === '1') ||
+            (day.getDate() === 3 & format(day, "L") === '1') 
+        )
     }
-
+    
     const [windowReady, setWindowReady] = useState(false)
 
     useEffect(() => {
