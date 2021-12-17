@@ -143,7 +143,6 @@ export default function Cart ({setProductsInCartExist, setProductsInBasket}) {
             setDefinitiveDate(newDate, 'dd/MM/yyyy')
             setDate(newDate, 'dd/MM/yyyy')
             setMinDate(newDate);
-            // console.log("Hoy es sabado")
         } else if (currrentHour > 16){
             let newDate = add(today, {days: 2});
             setDefinitiveDate(newDate, 'dd/MM/yyyy')
