@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import styles from '../../styles/product.module.scss'
 import Head from 'next/head'
 import {client} from '../../utils/shopify'
+import { useRouter } from 'next/router'
 import Image from 'next/image'
 import Link from 'next/link'
 import parse from 'html-react-parser';
@@ -46,7 +47,7 @@ const parseData = (data) => {
 }
 
 export default function GTGProduct ({product, setProductsInCartExist, setProductsInBasket}) {
-
+    const router = useRouter()
     const classes = useStyles();
     //console.log(product)
     let multipleImages = false

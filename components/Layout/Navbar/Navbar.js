@@ -355,8 +355,18 @@ export default function Navbar ({productsInCartExist, productsInBasket}) {
                                             <p>Sorpresas listas para llevar, ¡perfectas para cualquier ocasión!</p>
                                         </div>
                                         <div className={`${styles.gtgCategories} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`}>
-                                            <Link href="/gifts-to-go"><div className={`${styles.categoryLink} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`}>Boxes</div></Link>
-                                            <Link href="/gifts-to-go"><div className={`${styles.categoryLink} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`}>Detalles Navideños</div></Link>
+                                            <Link href="/gifts-to-go"><div 
+                                                className={`${styles.categoryLink} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`}
+                                                /* onClick={() => {
+                                                    router.push({
+                                                        pathname: '/gifts-to-go',
+                                                        query: { query: 'Boxes' },
+                                                    })
+                                                }} */
+                                            >
+                                                Boxes
+                                            </div>
+                                            </Link>
                                             <Link href="/gifts-to-go"><div className={`${styles.categoryLink} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`}>Globos y Flores</div></Link>
                                             <Link href="/gifts-to-go"><div className={`${styles.categoryLink} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`}>Snacks y Postres</div></Link>
                                         </div>

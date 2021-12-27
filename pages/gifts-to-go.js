@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { client } from '../utils/shopify'
 
 import styles from '../styles/gifts-to-go.module.scss'
+import { useRouter } from 'next/router'
 import Head from 'next/head'
 import Image from 'next/image';
 import Link from 'next/link'
@@ -43,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function GiftsToGo () {
     const classes = useStyles();
+    const router = useRouter();
 
     const collectionId = 'Z2lkOi8vc2hvcGlmeS9Db2xsZWN0aW9uLzI3NTY0MjE4NzkzOA==';
     const [collection, setCollection] = useState(null)
@@ -51,10 +53,24 @@ export default function GiftsToGo () {
     const [mobileSearchBarActive, setmobileSearchBarActive] = useState(false)
 
     const [searchQuery, setSearchQuery] = useState('')
-    
+
+    // State of the Active Filter
+    const [typeFilter, setTypeFilter] = useState("all")
+    const [ocassionFilter, setOcassionFilter] = useState('all')
+
+    const handlleInitialFilter = (queryToFilter) => {
+        setProducts(
+            collection.products.filter(
+                (product) => product.productType === queryToFilter
+            )
+        )
+    }
+
     // Checks if the window is ready so the functional components can render.
     const [windowReady, setWindowReady] = useState(false)
     useEffect(() => {
+
+        // console.log(router.query.query)
         if(typeof window !== 'undefined'){
             setWindowReady(true);
         }
@@ -62,12 +78,15 @@ export default function GiftsToGo () {
         client.collection.fetchWithProducts(collectionId, {productsFirst: 250}).then((collection) => {
             setCollection(JSON.parse(JSON.stringify(collection)))
             setProducts(collection.products)
+            // router.query.query !== undefined && setTypeFilter(router.query.query)
         });
-    }, [])
 
-    // State of the Active Filter
-    const [typeFilter, setTypeFilter] = useState("all")
-    const [ocassionFilter, setOcassionFilter] = useState('all')
+        /* if(collection !== null){
+            handlleInitialFilter(router.query.query)
+            console.log("Works")
+        } */
+
+    }, [])
  
     const openMobileFilters = () => {
         setMobileFiltersActive(true)
@@ -122,6 +141,7 @@ export default function GiftsToGo () {
         setSearchQuery('')
         setmobileSearchBarActive(false)
     }
+
 
     const handleTypeFilter = (event) => {
 
