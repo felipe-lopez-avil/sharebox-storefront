@@ -18,6 +18,11 @@ const getDataFromStorage = (key) => {
   return JSON.parse(storage.getItem(key))
 }
 
+const removeDataFromStorage = (key) => {
+  const storage = window.localStorage;
+  return JSON.parse(storage.removeItem(key))
+}
+
 function MyApp({ Component, pageProps }) {
   const router = useRouter()
 
@@ -33,26 +38,29 @@ function MyApp({ Component, pageProps }) {
     if(window !== undefined){
       checkoutId = getDataFromStorage('checkoutId')
       if(checkoutId !== null){
-        // console.log("'checkoutId' exist" )
+
         client.checkout.fetch(checkoutId).then((checkout) => {
-          // console.log(checkout.lineItems.length)
-          // console.log(checkout.lineItems)
-
-          checkout.lineItems.map((item) => {
-            if (item.variant === null){
-              itemIdsToDelete.push(item.id)
+          
+          if(checkout !== null){
+            checkout.lineItems.map((item) => {
+              if (item.variant === null){
+                itemIdsToDelete.push(item.id)
+              }
+            })
+  
+            // console.log(itemIdsToDelete)
+  
+            if (checkout.completedAt === null & checkout.lineItems.length > 0){
+  
+              client.checkout.removeLineItems(checkoutId, itemIdsToDelete).then((checkout) => {
+                setProductsInCartExist(true)
+                setProductsInBasket(checkout.lineItems)
+              });
             }
-          })
-
-          // console.log(itemIdsToDelete)
-
-          if (checkout.completedAt === null & checkout.lineItems.length > 0){
-
-            client.checkout.removeLineItems(checkoutId, itemIdsToDelete).then((checkout) => {
-              setProductsInCartExist(true)
-              setProductsInBasket(checkout.lineItems)
-            });
-          }
+          }else{
+            removeDataFromStorage('checkoutId')
+          } 
+          
         })
       }
     }
