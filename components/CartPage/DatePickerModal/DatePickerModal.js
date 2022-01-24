@@ -163,8 +163,7 @@ export default function DatePickerModal ({closeDateModal, setDefinitiveDate, dat
 
     function shouldDisableDate(day) {
         return (
-            day.getDay() === 0 || 
-            day.getDay() === 1 || 
+            (day.getDay() === 0 & !(day.getDate() === 13 & format(day, "L") === '2')) ||
             (day.getDate() === 24 & format(day, "L") === '12') ||
             (day.getDate() === 25 & format(day, "L") === '12') ||
             (day.getDate() === 26 & format(day, "L") === '12') ||
