@@ -245,6 +245,7 @@ export default function GiftsToGo () {
                                 <FormControl component="fieldset">
                                     <RadioGroup aria-label="productType" name="productType" value={typeFilter} onChange={handleTypeFilter}>
                                         <FormControlLabel value="all" control={<Radio />} label="Todos"/>
+                                        <FormControlLabel value="Detalles de San Valentín" control={<Radio />} label="Detalles San Valentín" />
                                         <FormControlLabel value="Boxes" control={<Radio />} label="Boxes" />
                                         {/* <FormControlLabel value="kits armados" control={<Radio />} label="Kits Armados" /> */}
                                         <FormControlLabel value="Globos y Flores" control={<Radio />} label="Globos y Flores" />
@@ -252,22 +253,23 @@ export default function GiftsToGo () {
                                     </RadioGroup>
                                 </FormControl>
                             </div>
-                            {typeFilter !== 'Globos y Flores' & typeFilter !== 'Snacks y Postres' ?
+                            {typeFilter !== 'Globos y Flores' & typeFilter !== 'Snacks y Postres' & typeFilter !== 'Detalles de San Valentín'?
                                 <div className={styles.filter}>
                                     <h5>Ocasiones</h5>
                                     <FormControl component="fieldset">
                                         <RadioGroup aria-label="gender" name="gender1" value={ocassionFilter} onChange={handleOcassionFilter}>
                                             <FormControlLabel value="all" control={<Radio />} label="Todas" />
-                                                <>
-                                                    <FormControlLabel value="Anillos y compromisos" control={<Radio />} label="Anillos y compromisos" />
-                                                    <FormControlLabel value="Aniversario" control={<Radio />} label="Aniversario" />
-                                                    <FormControlLabel value="Condolencias" control={<Radio />} label="Condolencias" />
-                                                    <FormControlLabel value="Cumpleaños" control={<Radio />} label="Cumpleaños" />
-                                                    <FormControlLabel value="For a long day" control={<Radio />} label="For a Long Day" />
-                                                    {/* <FormControlLabel value="Graduaciones y logros" control={<Radio />} label="Graduaciones y logros" /> */}
-                                                    <FormControlLabel value="New born & padrinos" control={<Radio />} label="New Born & Padrinos" />
-                                                    <FormControlLabel value="Pets" control={<Radio />} label="Pets" />
-                                                </>
+                                            <>
+                                                <FormControlLabel value="Valentine's" control={<Radio />} label="Valentine's" />
+                                                <FormControlLabel value="Anillos y compromisos" control={<Radio />} label="Anillos y compromisos" />
+                                                <FormControlLabel value="Aniversario" control={<Radio />} label="Aniversario" />
+                                                <FormControlLabel value="Condolencias" control={<Radio />} label="Condolencias" />
+                                                <FormControlLabel value="Cumpleaños" control={<Radio />} label="Cumpleaños" />
+                                                <FormControlLabel value="For a long day" control={<Radio />} label="For a Long Day" />
+                                                <FormControlLabel value="Graduaciones y logros" control={<Radio />} label="Graduaciones y logros" />
+                                                <FormControlLabel value="New born & padrinos" control={<Radio />} label="New Born & Padrinos" />
+                                                <FormControlLabel value="Pets" control={<Radio />} label="Pets" />
+                                            </>
                                         </RadioGroup>
                                     </FormControl>
                                 </div>
@@ -328,6 +330,7 @@ export default function GiftsToGo () {
                                             <FormControl component="fieldset">
                                                 <RadioGroup aria-label="productType" name="productType" value={typeFilter} onChange={handleTypeFilter}>
                                                     <FormControlLabel value="all" control={<Radio />} label="Todos los productos"/>
+                                                    <FormControlLabel value="Detalles de San Valentín" control={<Radio />} label="Detalles San Valentín" />
                                                     <FormControlLabel value="Boxes" control={<Radio />} label="Boxes" />
                                                     {/* <FormControlLabel value="kits armados" control={<Radio />} label="Kits Armados" /> */}
                                                     <FormControlLabel value="Globos y Flores" control={<Radio />} label="Globos y Flores" />
@@ -335,22 +338,29 @@ export default function GiftsToGo () {
                                                 </RadioGroup>
                                             </FormControl>
                                         </div>
-                                        <div className={styles.filter}>
-                                            <h5>Ocasiones</h5>
-                                            <FormControl component="fieldset">
-                                                <RadioGroup aria-label="gender" name="gender1" value={ocassionFilter} onChange={handleOcassionFilter}>
-                                                    <FormControlLabel value="all" control={<Radio />} label="Cualquier Ocasión" />
-                                                    <FormControlLabel value="Anillos y compromisos" control={<Radio />} label="Anillos y compromisos" />
-                                                    <FormControlLabel value="Aniversario" control={<Radio />} label="Aniversario" />
-                                                    <FormControlLabel value="Condolencias" control={<Radio />} label="Condolencias" />
-                                                    <FormControlLabel value="Cumpleaños" control={<Radio />} label="Cumpleaños" />
-                                                    <FormControlLabel value="For a long day" control={<Radio />} label="For a Long Day" />
-                                                    {/* <FormControlLabel value="Graduaciones y logros" control={<Radio />} label="Graduaciones y logros" /> */}
-                                                    <FormControlLabel value="New born & padrinos" control={<Radio />} label="New Born & Padrinos" />
-                                                    <FormControlLabel value="Pets" control={<Radio />} label="Pets" />
-                                                </RadioGroup>
-                                            </FormControl>
-                                        </div>
+                                        {typeFilter !== 'Globos y Flores' & typeFilter !== 'Snacks y Postres' & typeFilter !== 'Detalles de San Valentín' ?
+                                            <div className={styles.filter}>
+                                                <h5>Ocasiones</h5>
+                                                <FormControl component="fieldset">
+                                                    <RadioGroup aria-label="gender" name="gender1" value={ocassionFilter} onChange={handleOcassionFilter}>
+                                                        <FormControlLabel value="all" control={<Radio />} label="Todas" />
+                                                        <>
+                                                            <FormControlLabel value="Valentine's" control={<Radio />} label="Valentine's" />
+                                                            <FormControlLabel value="Anillos y compromisos" control={<Radio />} label="Anillos y compromisos" />
+                                                            <FormControlLabel value="Aniversario" control={<Radio />} label="Aniversario" />
+                                                            <FormControlLabel value="Condolencias" control={<Radio />} label="Condolencias" />
+                                                            <FormControlLabel value="Cumpleaños" control={<Radio />} label="Cumpleaños" />
+                                                            <FormControlLabel value="For a long day" control={<Radio />} label="For a Long Day" />
+                                                            <FormControlLabel value="Graduaciones y logros" control={<Radio />} label="Graduaciones y logros" />
+                                                            <FormControlLabel value="New born & padrinos" control={<Radio />} label="New Born & Padrinos" />
+                                                            <FormControlLabel value="Pets" control={<Radio />} label="Pets" />
+                                                        </>
+                                                    </RadioGroup>
+                                                </FormControl>
+                                            </div>
+                                            :
+                                            ''
+                                        }
                                     </div>
                                     <div className={styles.confirm} onClick={closeMobileFilters}>Confirmar filtros</div>
 

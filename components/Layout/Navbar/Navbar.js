@@ -218,7 +218,7 @@ export default function Navbar ({productsInCartExist, productsInBasket}) {
         <>
             {windowReady === true &&
                 <>
-                    <Slide direction="down" in={barEnters} mountOnEnter unmountOnExit timeout={300}>
+                    {/* <Slide direction="down" in={barEnters} mountOnEnter unmountOnExit timeout={300}>
                         <div className={styles.banner} style={{ backgroundColor: daysContent[dayOfWeek - 1].background }}>
                             <div className={styles.bannerContent}>
                                 {daysContent[dayOfWeek - 1].firstPartCopy} 
@@ -227,6 +227,18 @@ export default function Navbar ({productsInCartExist, productsInBasket}) {
                                     onClick={() => copyCode(daysContent[dayOfWeek - 1].code)}>
                                     {daysContent[dayOfWeek - 1].code}
                                 </span> 
+                            </div>
+                        </div>
+                    </Slide> */}
+                    <Slide direction="down" in={barEnters} mountOnEnter unmountOnExit timeout={300}>
+                        <div className={styles.banner} style={{ backgroundColor: '#FF5691' }}>
+                            <div className={styles.bannerContent}>
+                                ¡Preventa San Valentín ya disponible!
+                                {/* <span 
+                                    style={{ backgroundColor: daysContent[dayOfWeek - 1].codeBackground }} 
+                                    onClick={() => copyCode(daysContent[dayOfWeek - 1].code)}>
+                                    {daysContent[dayOfWeek - 1].code}
+                                </span>  */}
                             </div>
                         </div>
                     </Slide>

@@ -25,7 +25,7 @@ const url = "https://sharebox.us2.list-manage.com/subscribe/post?u=4d7b381e967db
 const CustomForm = ({ status, message, onValidated }) => {
 
     const CopyToClipboard = () => {
-        navigator.clipboard.writeText("SHAREBOX140")
+        navigator.clipboard.writeText("ShareLove")
     }
 
     let email;
@@ -71,7 +71,7 @@ const CustomForm = ({ status, message, onValidated }) => {
                         <div className={styles.codeSection}>
                             <div className={styles.codeWrapper}>
                                 <div className={styles.textCode}>
-                                    SHAREBOX2021
+                                    ShareLove
                                 </div>
                                 <div className={styles.copyIcon} onClick={CopyToClipboard}>
                                     <FileCopyOutlinedIcon/>
@@ -136,9 +136,9 @@ export default function Home() {
             <Grow in={subModal}>
                 <div className={styles.subModal}>
                     <div className={styles.dialogBox}>
-                        <h2>¡ 10% OFF EN TU PRIMERA SHAREBOX !</h2>
+                        <h2>¡ 5% adicional en tu preventa de San Valentín !</h2>
                         <div className={styles.header}>
-                            Suscríbete a nuestro Newsletter y recibe 10% de descuento en tu primera compra. Nunca recibirás Spam 😜
+                            Suscríbete a nuestro Newsletter y recibe 5% de descuento en tu primera compra. Nunca recibirás Spam 😜
                         </div>
                         <div className={styles.form}>
                             <MailchimpSubscribe
