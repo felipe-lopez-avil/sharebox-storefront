@@ -232,7 +232,14 @@ export default function Navbar ({productsInCartExist, productsInBasket}) {
                     </Slide> */}
                     <Slide direction="down" in={barEnters} mountOnEnter unmountOnExit timeout={300}>
                         <div className={styles.banner} style={{ backgroundColor: '#FF5691' }}>
-                            <div className={styles.bannerContent}>
+                            <div 
+                                className={styles.bannerContent}
+                                onClick={() => {
+                                    router.push({
+                                        pathname: '/gifts-to-go',
+                                    })
+                                }}
+                            >
                                 ¡Preventa San Valentín ya disponible!
                                 {/* <span 
                                     style={{ backgroundColor: daysContent[dayOfWeek - 1].codeBackground }} 

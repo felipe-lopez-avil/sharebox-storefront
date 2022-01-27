@@ -134,16 +134,11 @@ export default function Cart ({setProductsInCartExist, setProductsInBasket}) {
         }
 
         if(format(today, "i") === '6'){
-            let newDate = add(today, {days: 3})
-            setDefinitiveDate(newDate, 'dd/MM/yyyy')
-            setDate(newDate, 'dd/MM/yyyy')
-            setMinDate(newDate);
-        } else if(format(today, "i") === '7'){
             let newDate = add(today, {days: 2})
             setDefinitiveDate(newDate, 'dd/MM/yyyy')
             setDate(newDate, 'dd/MM/yyyy')
             setMinDate(newDate);
-        } else if (currrentHour > 16){
+        } else if (currrentHour > 14){
             let newDate = add(today, {days: 2});
             setDefinitiveDate(newDate, 'dd/MM/yyyy')
             setDate(newDate, 'dd/MM/yyyy')
