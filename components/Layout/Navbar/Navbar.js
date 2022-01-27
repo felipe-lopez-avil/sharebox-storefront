@@ -231,16 +231,18 @@ export default function Navbar ({productsInCartExist, productsInBasket}) {
                         </div>
                     </Slide> */}
                     <Slide direction="down" in={barEnters} mountOnEnter unmountOnExit timeout={300}>
-                        <div className={styles.banner} style={{ backgroundColor: '#FF5691' }}>
-                            <div className={styles.bannerContent}>
-                                ¡Preventa San Valentín ya disponible!
-                                {/* <span 
-                                    style={{ backgroundColor: daysContent[dayOfWeek - 1].codeBackground }} 
-                                    onClick={() => copyCode(daysContent[dayOfWeek - 1].code)}>
-                                    {daysContent[dayOfWeek - 1].code}
-                                </span>  */}
+                        <Link href="/gifts-to-go">
+                            <div className={styles.banner} style={{ backgroundColor: '#FF5691' }}>
+                                <div className={styles.bannerContent}>
+                                    ¡Preventa San Valentín ya disponible!
+                                    {/* <span 
+                                        style={{ backgroundColor: daysContent[dayOfWeek - 1].codeBackground }} 
+                                        onClick={() => copyCode(daysContent[dayOfWeek - 1].code)}>
+                                        {daysContent[dayOfWeek - 1].code}
+                                    </span>  */}
+                                </div>
                             </div>
-                        </div>
+                        </Link>
                     </Slide>
                     <Grow in={codeCopied}>
                         <div className={styles.copiedSnackbar}>
