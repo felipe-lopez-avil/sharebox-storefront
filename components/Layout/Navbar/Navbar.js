@@ -240,7 +240,7 @@ export default function Navbar ({productsInCartExist, productsInBasket}) {
                                     })
                                 }}
                             >
-                                ¡Preventa San Valentín ya disponible!
+                                ¡Boxes de San Valentín ya disponibles!
                                 {/* <span 
                                     style={{ backgroundColor: daysContent[dayOfWeek - 1].codeBackground }} 
                                     onClick={() => copyCode(daysContent[dayOfWeek - 1].code)}>
