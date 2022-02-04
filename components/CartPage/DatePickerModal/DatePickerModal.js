@@ -172,7 +172,8 @@ export default function DatePickerModal ({closeDateModal, setDefinitiveDate, dat
             (day.getDate() === 31 & format(day, "L") === '12') ||
             (day.getDate() === 1 & format(day, "L") === '1') ||
             (day.getDate() === 2 & format(day, "L") === '1') ||
-            (day.getDate() === 3 & format(day, "L") === '1') 
+            (day.getDate() === 3 & format(day, "L") === '1') ||
+            (day.getDate() === 7 & format(day, "L") === '2')
         )
     }
     
