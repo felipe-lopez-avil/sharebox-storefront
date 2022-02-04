@@ -139,12 +139,21 @@ export default function Cart ({setProductsInCartExist, setProductsInBasket}) {
             setDate(newDate, 'dd/MM/yyyy')
             setMinDate(newDate);
         } else if (currrentHour > 14){
-            let newDate = add(today, {days: 2});
-            setDefinitiveDate(newDate, 'dd/MM/yyyy')
-            setDate(newDate, 'dd/MM/yyyy')
-            setMinDate(newDate);
-            setNextDayOnly(true)
-            setAfternoonOnly(false)
+            if(format(today, "i") === '5'){
+                let newDate = add(today, {days: 4});
+                setDefinitiveDate(newDate, 'dd/MM/yyyy')
+                setDate(newDate, 'dd/MM/yyyy')
+                setMinDate(newDate);
+                setNextDayOnly(true)
+                setAfternoonOnly(false)
+            }else{
+                let newDate = add(today, {days: 2});
+                setDefinitiveDate(newDate, 'dd/MM/yyyy')
+                setDate(newDate, 'dd/MM/yyyy')
+                setMinDate(newDate);
+                setNextDayOnly(true)
+                setAfternoonOnly(false)
+            }
         }
 
         if((format(today, "d") === '24' || format(today, "d") === '25') && format(today, "L") === '12'){
@@ -162,7 +171,13 @@ export default function Cart ({setProductsInCartExist, setProductsInBasket}) {
             setDefinitiveDate(newDate, 'dd/MM/yyyy')
             setDate(newDate, 'dd/MM/yyyy')
             setMinDate(newDate);
+        }else if((format(today, "d") === '5' || format(today, "d") === '6') && format(today, "L") === '2'){
+            let newDate = new Date(2022,1,8)
+            setDefinitiveDate(newDate, 'dd/MM/yyyy')
+            setDate(newDate, 'dd/MM/yyyy')
+            setMinDate(newDate);
         }
+        
     }, [])
 
     const openCardModal = () => {
