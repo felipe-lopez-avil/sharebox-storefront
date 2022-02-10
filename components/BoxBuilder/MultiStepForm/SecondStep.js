@@ -58,6 +58,7 @@ const customTypes = [
     'Nombre en copa',
     'Nombre o mensaje en tabla',
     'Nombre o mensaje en vino',
+    'Mensaje en termo'
 ]
 
 export default function SecondStep ({step2Items, setStep2Items, secondStepPrice, setSecondStepPrice}) {
