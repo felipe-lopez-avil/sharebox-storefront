@@ -420,7 +420,7 @@ export default function Navbar ({productsInCartExist, productsInBasket}) {
                             </div>
                         </Grow>
                     </div>
-                    <div className={`${styles.navItem} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`} onClick={openGFM}>
+                    {/* <div className={`${styles.navItem} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`} onClick={openGFM}>
                         <span>Market</span>
 
                         <Grow in={gfm} className={classes.collapse} style={{ transformOrigin: '0 0 0' }}>
@@ -445,7 +445,7 @@ export default function Navbar ({productsInCartExist, productsInBasket}) {
                                 </div>
                             </div>
                         </Grow>
-                    </div>
+                    </div> */}
                     <div className={`${styles.navItem} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`}>
                         <Link href="/corporate">
                             <span>Sharebox Corporate</span>
@@ -671,11 +671,11 @@ export default function Navbar ({productsInCartExist, productsInBasket}) {
                                     Make Your Box
                                 </div>
                             </Link>
-                            <Link href="/market">
+                            {/* <Link href="/market">
                                 <div className={styles.mobileNavItem} onClick={closeMobileMenu}>
                                     Market
                                 </div>
-                            </Link>
+                            </Link> */}
                             <Link href="/corporate">
                                 <div className={styles.mobileNavItem} onClick={closeMobileMenu}>
                                    Sharebox Corporate
