@@ -69,6 +69,7 @@ export default function Home() {
             setIndex(index + 1)
         }
     }
+    
 
     useEffect(() => {
         resetTimeout();
