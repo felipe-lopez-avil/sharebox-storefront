@@ -218,7 +218,7 @@ export default function Navbar ({productsInCartExist, productsInBasket}) {
         <>
             {windowReady === true &&
                 <>
-                    {/* <Slide direction="down" in={barEnters} mountOnEnter unmountOnExit timeout={300}>
+                    <Slide direction="down" in={barEnters} mountOnEnter unmountOnExit timeout={300}>
                         <div className={styles.banner} style={{ backgroundColor: daysContent[dayOfWeek - 1].background }}>
                             <div className={styles.bannerContent}>
                                 {daysContent[dayOfWeek - 1].firstPartCopy} 
@@ -227,25 +227,6 @@ export default function Navbar ({productsInCartExist, productsInBasket}) {
                                     onClick={() => copyCode(daysContent[dayOfWeek - 1].code)}>
                                     {daysContent[dayOfWeek - 1].code}
                                 </span> 
-                            </div>
-                        </div>
-                    </Slide> */}
-                    <Slide direction="down" in={barEnters} mountOnEnter unmountOnExit timeout={300}>
-                        <div className={styles.banner} style={{ backgroundColor: '#FF5691' }}>
-                            <div 
-                                className={styles.bannerContent}
-                                onClick={() => {
-                                    router.push({
-                                        pathname: '/gifts-to-go',
-                                    })
-                                }}
-                            >
-                                ¡Boxes de San Valentín ya disponibles!
-                                {/* <span 
-                                    style={{ backgroundColor: daysContent[dayOfWeek - 1].codeBackground }} 
-                                    onClick={() => copyCode(daysContent[dayOfWeek - 1].code)}>
-                                    {daysContent[dayOfWeek - 1].code}
-                                </span>  */}
                             </div>
                         </div>
                     </Slide>
@@ -420,7 +401,7 @@ export default function Navbar ({productsInCartExist, productsInBasket}) {
                             </div>
                         </Grow>
                     </div>
-                    {/* <div className={`${styles.navItem} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`} onClick={openGFM}>
+                    <div className={`${styles.navItem} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`} onClick={openGFM}>
                         <span>Market</span>
 
                         <Grow in={gfm} className={classes.collapse} style={{ transformOrigin: '0 0 0' }}>
@@ -445,7 +426,7 @@ export default function Navbar ({productsInCartExist, productsInBasket}) {
                                 </div>
                             </div>
                         </Grow>
-                    </div> */}
+                    </div>
                     <div className={`${styles.navItem} ${navBackgroung || router.pathname !== '/' ? styles.active : ''}`}>
                         <Link href="/corporate">
                             <span>Sharebox Corporate</span>
